@@ -42,6 +42,31 @@
     font-size:.92rem;color:var(--ink);text-align:justify}
   .why span{display:block;font-size:.7rem;letter-spacing:.12em;color:var(--accent);
     font-weight:700;margin-bottom:.3rem}
+  /* 図解: CSS で組む（SVGだと縮小して読めなくなる）。縦積みなので幅の狭い画面でも崩れない */
+  .fig{margin:.9rem 0 1rem;padding:.9rem .85rem;border:1px solid var(--line);
+    border-radius:12px;background:var(--ground)}
+  .fig-t{font-size:.76rem;font-weight:700;letter-spacing:.06em;color:var(--accent);
+    margin-bottom:.7rem}
+  .fig-c{font-size:.78rem;color:var(--muted);margin-top:.7rem;line-height:1.7}
+  .flow{display:flex;flex-direction:column;align-items:stretch;gap:.3rem}
+  .flow .step{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .7rem;font-size:.9rem;font-weight:600;text-align:center}
+  .flow .arr{text-align:center;color:var(--accent);font-size:.9rem;line-height:1}
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
+  .cmp .col{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .65rem}
+  .cmp .ch{font-size:.78rem;font-weight:700;color:var(--accent);margin-bottom:.4rem;
+    padding-bottom:.35rem;border-bottom:1px solid var(--line)}
+  .cmp ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.3rem}
+  .cmp li{font-size:.86rem;line-height:1.6;padding-left:.75rem;position:relative}
+  .cmp li::before{content:"・";position:absolute;left:0;color:var(--faint)}
+  .rel{display:flex;flex-direction:column;align-items:center;gap:.55rem}
+  .rel .hub{background:var(--accent);color:var(--card);border-radius:999px;
+    padding:.5rem 1.1rem;font-size:.9rem;font-weight:700}
+  .rel .sats{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem}
+  .rel .sat{background:var(--card);border:1px solid var(--line);border-radius:999px;
+    padding:.35rem .75rem;font-size:.84rem}
+  @media (max-width:380px){ .cmp{grid-template-columns:1fr} }
   .src{display:inline-block;margin-top:.85rem;font-size:.82rem;color:var(--muted);
     text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:.1rem;
     word-break:break-word}
@@ -54,57 +79,64 @@
   <header>
     <p class="eyebrow">Weekly Insight</p>
     <h1>今週のインサイト <span style="color:var(--faint);font-weight:500">2026-07-31</span></h1>
-    <p class="lede">今週は生成AIの話題が全体の半分を占めましたが、その多くは「何が起きたか」の報告で、経営の手法として持ち帰れるものは意外と限られていました。むしろ目を引いたのは、人の採り方・育て方・伝え方という、昔からある問題に新しい研究が答えを出している論考です。採用では「応募が簡単すぎること」自体が選別を壊しているという実験結果が、人材評価では「転職の多さ」を欠点と見る通説を覆す研究が出ています。今週は7件、いずれも来年読んでも使える話に絞りました。</p>
+    <p class="lede">今週は「人をどう見極め、どう任せるか」に関する研究が目立ちました。転職歴の多い人材が実は早く成果を出すという発見、採用面接の前に応募者の本気度を見抜く仕組み、そして店長クラスが上の圧力を吸収しすぎることの弊害——いずれも店舗を持つ事業に直接効く話です。価格の面では、ブランドの強さではなく「顧客の自尊心がどこまで満たされているか」で値上げ余地を測る新しい診断枠組みが提案されました。あわせて、動画研修が生む「分かったつもり」や、どのAIを選ぶかが判断そのものを変えてしまう話も取り上げます。</p>
   </header>
   <div class="picks">
     <article class="pick">
       <div class="n">1</div>
-      <h2>応募が簡単すぎる採用は、なぜ人を見誤るのか</h2>
-      <p class="sum">求人への応募コストがほぼゼロになると、応募者は片っ端から出せるため「本気で来たい人」と「とりあえず出した人」を書類では区別できなくなります。フィールド実験では、応募者が限られた数の企業にだけ「本命です」という手間のかかるシグナルを送れる仕組みを入れたところ、採用側と応募者の組み合わせの精度が明確に改善しました。重要なのは、シグナルに「使える回数が限られている」という制約があること。無制限に押せる『気になる』ボタンでは意味がなく、コストがかかるからこそ情報になります。</p>
-      <p class="why"><span>効き方</span>店舗スタッフの募集で応募数だけが増えて面接がザルになっている状況に、そのまま効く話です。応募フォームに一手間（勤務希望店舗の理由を一行書かせる等）を入れるだけで、本気度の見分けがつくようになります。</p>
-      <a class="src" href="https://ide.mit.edu/insights/can-costly-signals-fix-hiring/" target="_blank" rel="noopener">MIT IDE ↗</a>
+      <h2>値上げの限界は「顧客の自尊心の飽き」で測る</h2>
+      <div class="fig"><div class="fig-t">値上げ余地の見方</div><div class="cmp"><div class="col"><div class="ch">従来のブランド指標</div><ul><li>認知度と好意度</li><li>過去の売上実績</li><li>競合との比較</li></ul></div><div class="col"><div class="ch">この診断が見るもの</div><ul><li>自尊心の充足度</li><li>満たされきったか</li><li>値上げ余地の先読み</li></ul></div></div><div class="fig-c">過去の結果ではなく、これから上げられるかを測る。</div></div>
+      <p class="sum">高価格を維持できるかどうかを、ブランド認知や過去の売上といった従来指標ではなく、顧客がその商品から得る自尊心の充足が飽和していないかで測る診断指標を提案した論考です。自我の充足が満たされきると、ブランドが強いままでも価格プレミアムは静かに崩れると指摘します。従来のブランド資産の指標が「過去の結果」を見ているのに対し、この指標は「これから値上げできるか」を先回りして捉えることを狙っています。ブランドが強いのに値上げが通らなくなる現象を説明する枠組みです。</p>
+      <p class="why"><span>効き方</span>美容室の指名料やメニュー単価、店舗のプレミアムプランは「ブランドが強いから上げられる」と考えがちですが、判断軸を顧客が感じる特別感の余白に置き換えると、値上げの打ち手と限界が見えます。</p>
+      <a class="src" href="https://news.google.com/rss/articles/CBMi2AFBVV95cUxPbjBJZmlvTjhtcTNrYlVmMm5mTEJEcmdwNW9fclplTE1UX1pGQmNWVG5rNnNndTBONmdBUFNpajhXLTVhcXZJU09wckxScGRleXFmdGIzMU8tMkgyb18zcEJxd2Jjc3otOHpSanVfTUgyc3RNVXBoQ0I4M0R1ZkxkY2xqd2JwbEx5Zm5RTWRRZWFUOW5uWk1XNnBSSVhGTHNuNVpzd1lteU9kNXQtd3UwNXFzTEJRQ1dBM3I4M21OVURNallCcHVjaTMxSG1wb0xaT1FYWkxubWk?oc=5" target="_blank" rel="noopener">California Mgmt Review ↗</a>
     </article>
     <article class="pick">
       <div class="n">2</div>
-      <h2>転職を繰り返してきた人こそ、実は早く戦力になる</h2>
-      <p class="sum">職歴に短い在籍が並ぶ「ジョブホッパー」は、忠誠心を疑われて書類段階で落とされがちです。しかし新しい研究は、こうした人材が新しい環境への適応が際立って速く、着任後に短期間で成果を出す傾向を示しました。転職の多さは飽きっぽさの証拠ではなく、初対面の職場・上司・顧客に順応する訓練を何度も積んだ結果だという読み替えです。逆に、長く一社にいた人ほど新環境で立ち上がるのに時間がかかることになります。</p>
-      <p class="why"><span>効き方</span>人手が慢性的に足りない店舗運営では、「長く続くか」で絞るより「三か月で店頭に立てるか」で選ぶほうが実利があります。書類で機械的に落としていた層に、見直す価値があります。</p>
+      <h2>転職を繰り返した人ほど早く成果を出す</h2>
+      <div class="fig"><div class="fig-t">職歴の読み替え</div><div class="cmp"><div class="col"><div class="ch">従来の見方</div><ul><li>転職多い＝定着しない</li><li>忠誠心が低い</li><li>書類で減点</li></ul></div><div class="col"><div class="ch">研究が示すこと</div><ul><li>適応が速い</li><li>立ち上がりが早い</li><li>早期に成果を出す</li></ul></div></div><div class="fig-c">同じ職歴が、逆の意味を持ちうる。</div></div>
+      <p class="sum">職を転々としてきた人材は定着しないと敬遠されがちですが、新しい研究はむしろ逆の側面を示しました。複数の職場を経験した人は環境の変化に適応する能力が際立って高く、入社後の立ち上がりが速く早期に成果を出す傾向があるといいます。職歴の多さを「忠誠心の欠如」ではなく「適応力の証拠」として読み替えるべきだという主張です。採用時の減点項目を一つ手放す根拠になります。</p>
+      <p class="why"><span>効き方</span>店舗スタッフは離職前提で採用計画を組まざるを得ませんが、短期で戦力化できる人を見分ける基準としては職歴の多さが逆に手がかりになります。応募母数が限られる地方の採用ではとくに効きます。</p>
       <a class="src" href="http://hbr.org/2026/07/the-case-for-hiring-job-hoppers" target="_blank" rel="noopener">HBR ↗</a>
     </article>
     <article class="pick">
       <div class="n">3</div>
-      <h2>店長が『緩衝材』になると、戦略は現場に届かない</h2>
-      <p class="sum">中間管理職の多くは、経営陣からの厳しい要求や矛盾したメッセージを、部下に届く前に自分のところで吸収してしまいます。短期的にはチームを守る善意の行動ですが、結果として現場は「なぜこの目標なのか」を知らないまま数字だけを渡されることになります。この論考は、緩衝材をやめて「翻訳者」になれと主張します。具体的には、上からの要求を隠すのではなく、何と何がトレードオフになっているかを明示して現場に示すことです。</p>
-      <p class="why"><span>効き方</span>複数店舗を店長に任せている体制では、オーナーの意図が店長のところで止まっているかどうかが業績差の正体になりがちです。店長に「守らせる」のではなく「トレードオフを説明させる」に変えるだけで、伝達の質が変わります。</p>
+      <h2>店長が上の圧力を吸収しすぎると現場は動かない</h2>
+      <div class="fig"><div class="fig-t">緩衝材の罠</div><div class="flow"><div class="step">上の圧力を吸収</div><div class="arr" aria-hidden="true">↓</div><div class="step">部下には穏やかに伝達</div><div class="arr" aria-hidden="true">↓</div><div class="step">判断材料が現場に届かない</div></div><div class="fig-c">守る行為が、そのまま情報の遮断になっている。</div></div>
+      <p class="sum">中間管理職が経営の厳しい要求や対立を自分のところで受け止め、部下には穏やかな形に変えて伝える行動を「緩衝材」と呼び、その副作用を論じています。守っているつもりが、現場には判断に必要な緊張感や優先順位が届かず、戦略が薄まって伝わるという指摘です。処方箋は、圧力を吸収するのをやめて、対立を「何を取り何を捨てるか」という具体的なトレードオフに翻訳して渡すこと。守ることと伝えることを分けて考える枠組みです。</p>
+      <p class="why"><span>効き方</span>エリアマネージャーや店長が本部の数字要求を丸めてスタッフに伝えていると、なぜその施策が要るのかが現場に落ちません。翻訳の型を共有するだけで指示の通り方が変わります。</p>
       <a class="src" href="https://www.imd.org/ibyimd/brain-circuits/are-you-a-corporate-shock-absorber/" target="_blank" rel="noopener">IMD ↗</a>
     </article>
     <article class="pick">
       <div class="n">4</div>
-      <h2>動画は見返すほど「分かったつもり」になる</h2>
-      <p class="sum">シカゴ大ブースの研究は、同じ動画を繰り返し見た人ほど、その内容を理解し記憶したと過信する「リプレイ錯覚」に陥ることを示しました。実際の理解度は再視聴でほとんど上がっていないのに、見慣れた映像がもたらす流暢さを「自分は分かっている」と取り違えてしまうためです。厄介なのは、本人には確信があるので追加の学習をやめてしまう点にあります。対策は再生回数を増やすことではなく、見終わった直後に何も見ずに説明させることです。</p>
-      <p class="why"><span>効き方</span>接客手順や新料金プランの研修を動画で流している場合、視聴完了率は当てになりません。視聴後に「自分の言葉で客に説明させる」一手間を挟むかどうかで、店頭での差が出ます。</p>
+      <h2>動画を見返すと「できるつもり」になる錯覚</h2>
+      <div class="fig"><div class="fig-t">再視聴の落とし穴</div><div class="cmp"><div class="col"><div class="ch">本人の実感</div><ul><li>見返せば身につく</li><li>もう理解した</li><li>練習は不要</li></ul></div><div class="col"><div class="ch">実際に起きること</div><ul><li>自信だけが上昇</li><li>技能は伸びていない</li><li>早すぎる学習終了</li></ul></div></div><div class="fig-c">視聴回数は習熟の証拠にならない。</div></div>
+      <p class="sum">同じ動画を繰り返し見ると、実際の理解や技能の向上以上に「自分は分かった・できる」という自信だけが上がることを示した研究です。再生した回数と習熟度が頭の中で取り違えられ、視聴のなめらかさが自分の能力の証拠だと誤解されます。結果として、練習が必要な段階なのに学習を打ち切ってしまう。教材としての動画は、視聴だけで完結させると効果を過大評価しやすいという警告です。</p>
+      <p class="why"><span>効き方</span>接客手順や施術・端末操作を動画マニュアルで教えている場合、視聴完了を習得の証拠にしてはいけないという実務的な示唆です。視聴の後に実演か口頭確認を挟む設計に変えられます。</p>
       <a class="src" href="https://news.google.com/rss/articles/CBMikgFBVV95cUxQdDlmS1VSaDg3dVVZcl9NOWh4aV8zdU5ZOHNXM1cweEdlM1pmWGZzcWxRc21WN0czTkxqeUNsdHNQT29JclhDN0xEdmF3NmZTSVVORFZrdVVNZzlZQkFnNFdpcjJIQnBOQVc5cUdsWXhQTUZITE9JNXNkYkl6R0t2eDdseTZWNTBBc1FNbTRiZmxFdw?oc=5" target="_blank" rel="noopener">Chicago Booth ↗</a>
     </article>
     <article class="pick">
       <div class="n">5</div>
-      <h2>「全部いま急ぎ」を三つの問いでふるいにかける</h2>
-      <p class="sum">経営者の手元には常に緊急に見える案件が並び、優先順位付けが実質的に機能しなくなります。この論考は、案件を減らすために三つの問いで圧力をかけることを提案します。それは、これをやらなかったら実際に何が壊れるのか、この判断は後で取り消せるのか、誰が最終的に決めるのかを明示することです。狙いは正しい順番を見つけることではなく、決める数そのものを減らして一件あたりの質を上げることにあります。</p>
-      <p class="why"><span>効き方</span>店舗・美容室・その他小売を同時に見ていると、判断の量そのものが品質を落とします。取り消せる判断は即決して部下に委ね、取り消せないものだけに時間を使う、という線引きに使えます。</p>
+      <h2>すべてが最優先に見えるときの3つの問い</h2>
+      <div class="fig"><div class="fig-t">優先順位の検め方</div><div class="flow"><div class="step">全部が急務に見える</div><div class="arr" aria-hidden="true">↓</div><div class="step">3つの問いで検証</div><div class="arr" aria-hidden="true">↓</div><div class="step">少数の判断に絞る</div></div><div class="fig-c">数を減らすこと自体が意思決定の質になる。</div></div>
+      <p class="sum">緊急に見える案件が並んだときに、優先順位を感覚ではなく問いで検証する方法を示した論考です。何を捨てるのかを言語化できているか、その判断は誰の視点で正しいのか、後戻りできる判断かどうか——といった問いで、抱えている優先事項を一つずつ突き崩していきます。狙いは決断の数を増やすことではなく、少なく・良く・明確にすること。「全部大事」という状態を、意思決定の失敗として扱う点が要点です。</p>
+      <p class="why"><span>効き方</span>オーナー経営者は複数事業の判断が同時に降ってくるため、緊急度で反応する癖がつきがちです。会議の冒頭でこの3問を通すだけで、案件の並び順が変わります。</p>
       <a class="src" href="http://hbr.org/2026/07/3-questions-to-pressure-test-your-priorities" target="_blank" rel="noopener">HBR ↗</a>
     </article>
     <article class="pick">
       <div class="n">6</div>
-      <h2>800年続く一族の教え「商品に惚れるな」</h2>
-      <p class="sum">30世代にわたり事業を続けてきたイタリアの同族企業フレスコバルディ家の型を分析した論考です。核心は、自社の商品や手法への愛着を、事業そのものへの責任と切り離すこと。愛着が強いほど、市場が変わったときに作り替えの判断が遅れるからです。長寿の条件として挙がるのは、謙虚さ（自分の代の成功を過大評価しない）、作り替え（主力商品を自ら陳腐化させる）、受託者意識（自分は所有者ではなく次代への預かり手だと考える）の三つでした。</p>
-      <p class="why"><span>効き方</span>携帯代理店も美容室も、事業の形が制度と競合で数年単位で変わる業種です。今の主力に思い入れが強いほど転換が遅れるという指摘は、次の柱を考える時期の判断材料になります。</p>
-      <a class="src" href="https://www.imd.org/ibyimd/videos/the-interview/dont-fall-in-love-with-your-product-lessons-from-an-800-year-old-family-business/" target="_blank" rel="noopener">IMD ↗</a>
+      <h2>どのAIを使うかで、下す判断そのものが変わる</h2>
+      <div class="fig"><div class="fig-t">AIが判断に効く経路</div><div class="rel"><div class="hub">使うAIの選択</div><div class="sats"><span class="sat">提示される選択肢</span><span class="sat">論拠の偏り</span><span class="sat">確信の強まり</span><span class="sat">最終決定</span></div></div><div class="fig-c">道具の違いが、答えの違いとして表れる。</div></div>
+      <p class="sum">同じ問いでも、使うAIによって提示される選択肢や論拠の傾向が異なり、利用者の最終判断が引きずられることを論じた研究です。AIは中立な道具ではなく、選択肢の並べ方を通じて意思決定の枠組み自体を形づくります。しかも利用者は自分の判断が誘導されたことに気づきにくく、確信だけが強まる。重要な判断ほど、単一のAIに依存しない設計が要るという指摘です。</p>
+      <p class="why"><span>効き方</span>仕入れ・人員配置・販促の相談をAIに投げる場面が増えるほど、道具の選択が経営判断の癖になります。重い判断だけは別のAIにも同じ問いを投げて突き合わせる、という運用ルールが有効です。</p>
+      <a class="src" href="https://news.google.com/rss/articles/CBMijAFBVV95cUxPRTdadjlndm91djY1Xy1LTENJV01yTWJ0SVN0WFZGN21JR2NYYXVSbnRoUmpYSnNLR3ctSS1YV3VuTHZtMEs0UUFSWU4yVkhtdzU1OGtYeEhRSmtaRVZ5c3FaZGJWLTdnaTJLM0N1WXlEdUtwdC02QkhxZFlTVzBDWnNMZHVyczJHQ3VnaQ?oc=5" target="_blank" rel="noopener">INSEAD ↗</a>
     </article>
     <article class="pick">
       <div class="n">7</div>
-      <h2>AIは、間違った分析を高速で全社に広げる</h2>
-      <p class="sum">AI導入で分析の生産量は跳ね上がりますが、元になるデータの定義や集計の前提が雑なままなら、増えるのは誤った結論の数です。人手でやっていた頃は作る本数が少なく、途中で誰かが気づく余地がありましたが、自動化するとその摩擦が消えます。この論考は、AIを入れる前に「その数字は何を数えているのか」の定義を固める規律を求めます。速度を上げる前に、間違いが混ざったときに気づける検算の仕組みを先に置くべきだという主張です。</p>
-      <p class="why"><span>効き方</span>店舗別の売上や来店数をAIに要約させる前に、その数字の定義（どの取引をどの店に計上するか）が揃っているかが先です。定義が曖昧なまま自動化すると、誤った店舗評価が一気に定着します。</p>
-      <a class="src" href="https://hacadr-cloud.github.io/weekly-insight/2026-07-31.html" target="_blank" rel="noopener">読みやすい版 → ↗</a>
+      <h2>800年続く同族企業「商品に惚れるな」</h2>
+      <div class="fig"><div class="fig-t">30代続く条件</div><div class="rel"><div class="hub">事業を継ぐ力</div><div class="sats"><span class="sat">商品に惚れない</span><span class="sat">謙虚さを保つ</span><span class="sat">作り替える</span><span class="sat">次代へ渡す</span></div></div><div class="fig-c">守るのは商品ではなく、変え続ける能力。</div></div>
+      <p class="sum">30世代にわたり事業を継いできたイタリアの家族企業フレスコバルディの事例から、長寿の条件を抽出した論考です。鍵は謙虚さ・作り替える力・次代への受け渡しの3つで、なかでも「自社の商品に惚れ込まない」ことが繰り返し強調されます。愛着が強いほど市場の変化に合わせて作り替える判断が遅れるためです。事業を守るのではなく、事業を持ち替えながら家を継ぐという発想の転換が示されています。</p>
+      <p class="why"><span>効き方</span>複数の業態を持つオーナー経営では、思い入れの強い事業ほど撤退・転換の判断が遅れます。継ぐべきは事業そのものではなく経営する力だ、という整理は事業ポートフォリオの見直しに使えます。</p>
+      <a class="src" href="https://www.imd.org/ibyimd/videos/the-interview/dont-fall-in-love-with-your-product-lessons-from-an-800-year-old-family-business/" target="_blank" rel="noopener">IMD ↗</a>
     </article>
   </div>
   <footer>
