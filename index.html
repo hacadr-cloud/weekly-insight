@@ -1,0 +1,36 @@
+<title>週次インサイト</title>
+<style>
+  :root{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E;
+    --sans: system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{--ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1;
+      --muted:#A79F93; --faint:#7C7468; --accent:#C9A468;}
+  }
+  :root[data-theme="light"]{--ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC;
+    --ink:#1E1C19; --muted:#6C665C; --faint:#9A9389; --accent:#7A5C2E;}
+  :root[data-theme="dark"]{--ground:#14130F; --card:#1C1A16; --line:#2E2A24;
+    --ink:#EDE9E1; --muted:#A79F93; --faint:#7C7468; --accent:#C9A468;}
+  *{box-sizing:border-box} body{margin:0}
+  .wrap{background:var(--ground);color:var(--ink);font-family:var(--sans);line-height:1.8;
+    padding:2rem 1.05rem 4rem;min-height:100vh}
+  .inner{max-width:36rem;margin:0 auto}
+  h1{font-size:1.35rem;margin:0 0 .3rem}
+  .sub{color:var(--muted);font-size:.9rem;margin:0 0 1.8rem}
+  ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.6rem}
+  a.item{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:.9rem 1rem;text-decoration:none;color:var(--ink);font-weight:600}
+  a.item:hover{border-color:var(--accent);color:var(--accent)}
+  footer{margin-top:2.4rem;padding-top:1rem;border-top:1px solid var(--line);
+    color:var(--faint);font-size:.78rem}
+</style>
+<div class="wrap"><div class="inner">
+  <h1>週次インサイト</h1>
+  <p class="sub">コンサル・ビジネススクール・調査機関の公開レポートを日本語で要約（毎週日曜）</p>
+  <ul>
+      <li><a class="item" href="2026-07-31.html">2026-07-31</a></li>
+  </ul>
+  <footer>各項目の「効き方」は自社事業への接続であり、原文の主張ではありません。本文は各出典のリンク先を参照してください。</footer>
+</div></div>
