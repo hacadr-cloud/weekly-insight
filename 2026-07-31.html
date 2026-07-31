@@ -19,36 +19,42 @@
     --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
     --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
   }
+  /* Phone-first. Body text sits at 16px (never below -- iOS zooms on focus under 16px and
+     small type is the main complaint on a handset), the column is capped just above a
+     comfortable measure, and side padding stays generous so text never touches the edge. */
   *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
   body{margin:0}
   .wrap{background:var(--ground);color:var(--ink);font-family:var(--sans);
-    line-height:1.85;-webkit-font-smoothing:antialiased;
-    padding:1.6rem 1.05rem 4rem;min-height:100vh}
-  .inner{max-width:44rem;margin:0 auto}
-  header{border-bottom:1px solid var(--line);padding-bottom:1.2rem;margin-bottom:1.6rem}
+    font-size:16px;line-height:1.9;-webkit-font-smoothing:antialiased;
+    padding:1.5rem 1.15rem 4rem;min-height:100vh}
+  .inner{max-width:34rem;margin:0 auto}
+  header{border-bottom:1px solid var(--line);padding-bottom:1.25rem;margin-bottom:1.5rem}
   .eyebrow{font-size:.72rem;letter-spacing:.16em;color:var(--faint);
     text-transform:uppercase;margin:0 0 .5rem}
-  h1{font-size:1.45rem;font-weight:700;letter-spacing:-.01em;margin:0;text-wrap:balance}
-  .lede{font-size:1rem;color:var(--muted);margin:1.1rem 0 0;text-align:justify}
-  .picks{display:flex;flex-direction:column;gap:1.1rem}
+  h1{font-size:1.4rem;font-weight:700;letter-spacing:-.01em;line-height:1.45;
+    margin:0;text-wrap:balance}
+  .lede{font-size:1rem;color:var(--muted);margin:1.1rem 0 0;line-height:1.95}
+  .picks{display:flex;flex-direction:column;gap:1.15rem}
   .pick{background:var(--card);border:1px solid var(--line);border-radius:14px;
-    padding:1.15rem 1.1rem;position:relative}
+    padding:1.2rem 1.1rem;position:relative}
   .n{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.1em;margin-bottom:.35rem}
-  .pick h2{font-size:1.08rem;font-weight:700;line-height:1.55;margin:0 0 .6rem;
+  .pick h2{font-size:1.12rem;font-weight:700;line-height:1.6;margin:0 0 .7rem;
     letter-spacing:-.005em;text-wrap:balance}
-  .sum{font-size:.95rem;color:var(--ink)}
-  .sum p{margin:0 0 .85rem;text-align:justify}
+  /* No justify: on a narrow screen it opens rivers of white space between Japanese runs. */
+  .sum{font-size:1rem;color:var(--ink)}
+  .sum p{margin:0 0 .95rem}
   .sum p:last-child{margin-bottom:0}
-  .sum .blist{list-style:none;margin:0 0 .95rem;padding:0;display:flex;
-    flex-direction:column;gap:.4rem}
-  .sum .blist li{position:relative;padding-left:1.05rem;line-height:1.8}
+  .sum .blist{list-style:none;margin:0 0 1rem;padding:0;display:flex;
+    flex-direction:column;gap:.5rem}
+  .sum .blist li{position:relative;padding-left:1.1rem;line-height:1.85}
   .sum .blist li::before{content:"";position:absolute;left:.2rem;top:.75em;
     width:.32rem;height:.32rem;border-radius:50%;background:var(--accent)}
   /* 図解の崩れ防止: 長い語も枠内で折り返し、幅が足りなければ横スクロールさせる */
   .fig *{overflow-wrap:anywhere;word-break:normal;min-width:0}
-  .why{margin:.9rem 0 0;padding:.75rem .85rem;background:var(--accent-bg);
+  .why{margin:1rem 0 0;padding:.9rem .95rem;background:var(--accent-bg);
     border-left:3px solid var(--accent);border-radius:0 10px 10px 0;
-    font-size:.92rem;color:var(--ink);text-align:justify}
+    font-size:.98rem;color:var(--ink);line-height:1.85}
   .why span{display:block;font-size:.7rem;letter-spacing:.12em;color:var(--accent);
     font-weight:700;margin-bottom:.3rem}
   /* 図解: CSS で組む（SVGだと縮小して読めなくなる）。縦積みなので幅の狭い画面でも崩れない */
@@ -105,9 +111,10 @@
   .rel .sat{background:var(--card);border:1px solid var(--line);border-radius:999px;
     padding:.35rem .75rem;font-size:.84rem}
   @media (max-width:380px){ .cmp{grid-template-columns:1fr} }
-  .src{display:inline-block;margin-top:.85rem;font-size:.82rem;color:var(--muted);
-    text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:.1rem;
-    word-break:break-word}
+  /* Tap target: a bare inline link is hard to hit on a phone, so give it real height. */
+  .src{display:inline-block;margin-top:1rem;font-size:.86rem;color:var(--muted);
+    text-decoration:none;border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .8rem;line-height:1.5;word-break:break-word}
   .src:hover{color:var(--accent);border-color:var(--accent)}
   /* 今週の論文: 定義リストで「問い／検証／結果／含意／留意」を固定の型に見せる */
   .papers{margin-top:2.2rem}
