@@ -81,8 +81,13 @@
   .brow{display:flex;flex-direction:column;gap:.2rem}
   .blab{font-size:.84rem;font-weight:600}
   .blab .bnote{font-weight:400;color:var(--muted);font-size:.76rem;margin-left:.4rem}
-  .btrack{position:relative;display:flex;align-items:center;gap:.5rem}
-  .bbar{height:1.4rem;background:var(--accent);border-radius:5px;opacity:.85;flex:none}
+  /* grid: the bar track takes the leftover width and the number never wraps under it.
+     A percentage width inside a flex row was being resolved against the wrong box, which is
+     what made the bars overflow on a phone. */
+  .btrack{display:grid;grid-template-columns:minmax(0,1fr) max-content;gap:.55rem;
+    align-items:center}
+  .bwrap{background:var(--line);border-radius:5px;height:1.35rem;overflow:hidden;width:100%}
+  .bbar{height:100%;background:var(--accent);border-radius:5px;opacity:.9}
   .bval{font-size:.82rem;font-weight:700;color:var(--accent);
     font-variant-numeric:tabular-nums}
   .cmp{display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
@@ -104,6 +109,27 @@
     text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:.1rem;
     word-break:break-word}
   .src:hover{color:var(--accent);border-color:var(--accent)}
+  /* 今週の論文: 定義リストで「問い／検証／結果／含意／留意」を固定の型に見せる */
+  .papers{margin-top:2.2rem}
+  .sec{font-size:.78rem;font-weight:700;letter-spacing:.14em;color:var(--accent);
+    margin:0 0 .9rem;padding-bottom:.5rem;border-bottom:1px solid var(--line)}
+  .paper{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.1rem 1.05rem;margin-bottom:1rem}
+  .paper h3{font-size:1.02rem;font-weight:700;line-height:1.6;margin:0 0 .3rem;
+    text-wrap:balance}
+  .paper .auth{font-size:.78rem;color:var(--faint);margin-bottom:.75rem}
+  .paper dl{margin:0;display:grid;grid-template-columns:max-content minmax(0,1fr);
+    gap:.5rem .8rem;align-items:start}
+  .paper dt{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.08em;
+    padding-top:.15rem;white-space:nowrap}
+  .paper dd{margin:0;font-size:.9rem;line-height:1.8;text-align:justify}
+  .paper .finds{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;
+    gap:.35rem}
+  .paper .finds li{position:relative;padding-left:1rem;line-height:1.75}
+  .paper .finds li::before{content:"";position:absolute;left:.2rem;top:.72em;width:.3rem;
+    height:.3rem;border-radius:50%;background:var(--accent)}
+  @media (max-width:420px){ .paper dl{grid-template-columns:1fr;gap:.15rem .8rem}
+    .paper dt{margin-top:.5rem} }
   footer{margin-top:2.4rem;padding-top:1.1rem;border-top:1px solid var(--line);
     font-size:.78rem;color:var(--faint);line-height:1.7}
   a:focus-visible,.src:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
@@ -112,66 +138,103 @@
   <header>
     <p class="eyebrow">Weekly Insight</p>
     <h1>今週のインサイト <span style="color:var(--faint);font-weight:500">2026-07-31</span></h1>
-    <p class="lede">今週は「人をどう見極めるか」に関する研究が目立ちました。転職を繰り返してきた人の評価、店長が上からの圧をどこまで引き受けるべきか、そして研修の動画を何度見せても身につかない理由。どれも、日々の採用面接や店舗マネジメントの手を今週から変えられる話です。もう一つの軸はAIとの距離の取り方で、どのAIを使うかによって出す結論そのものが変わるという指摘が出てきました。最後に、30世代続いた家業が何を守り何を捨ててきたかという話を入れています。オーナー経営そのものへの示唆として読んでください。</p>
+    <p class="lede">今週は「AIで何ができるか」より「誰が使うと伸びるのか」に軸足が移った週でした。若手とAIの相性を分けるのは基礎の有無だという研究、採用の通説をひっくり返す転職経験者の再評価、そして繰り返し見るほど分かった気になる「再視聴の錯覚」——どれも人の育て方に直結する話です。あわせて、高価格を維持できるかを事前に診断する新しい指標と、800年続く家業が守ってきた原則も取り上げました。店舗を預かる立場から読むと、共通しているのは「上手くいっている間に手を打て」という一点です。</p>
   </header>
   <div class="picks">
     <article class="pick">
       <div class="n">1</div>
-      <h2>「転職が多い人は続かない」は誤り 研究が覆した採用の常識</h2>
-      <div class="fig"><div class="fig-t">採用の常識と研究</div><div class="cmp"><div class="col"><div class="ch">これまでの常識</div><ul><li>転職が多い＝定着しない</li><li>長く勤めた人ほど安全</li><li>短い在籍は減点材料</li></ul></div><div class="col"><div class="ch">研究が示すこと</div><ul><li>転職経験者は立ち上がりが速い</li><li>変化のある職場ほど差が出る</li><li>在籍1年あたりの貢献は高い</li></ul></div></div><div class="fig-c">左は在籍年数だけを見ている</div></div>
-      <div class="sum"><p>履歴書に2年、1年半、3年と短い在籍が並んでいると、多くの経営者はそこで手を止めます。うちでもすぐ辞めるだろう、と考えるからです。店舗運営のように育成に時間とコストがかかる事業ほど、この判断は強く働きます。しかしこの見方は、在籍年数という1つの指標だけで人を測っています。</p><p>今回の研究は、その通説を実データで検証しました。数万人規模の職務経歴と、入社後の評価・立ち上がり速度・在籍期間を突き合わせています。着目したのは「何回辞めたか」ではなく「辞めた後どうだったか」です。転職頻度の高い層と低い層を、同じ職種・同じ職位で比較しました。</p><p>分かったのは次の点です。</p><ul class="blist"><li>転職経験が多い人ほど、新しい職場で成果を出し始めるまでの期間が短い</li><li>手順・役割・上司が変わる場面で、成果の落ち込みが小さい</li><li>在籍期間は確かに短めだが、在籍1年あたりで見た貢献は平均を上回る</li><li>効果がとくに強いのは、変化の多い職場・新店の立ち上げ・新しい業態</li></ul><p>なぜそうなるのか。転職を繰り返す過程で、その人は新しい環境の読み方を何度も練習しているからです。誰に聞けば早く済むか、この職場では何が評価されるか、明文化されていないルールはどこにあるか。これは経験でしか身につかない技能で、1社に長くいた人ほど鍛える機会がありません。適応力は生まれつきの性格ではなく、訓練の結果だという読み方になります。</p><p>ただし、どこでも成り立つ話ではありません。顧客との長い関係が売上を作る仕事、社内の人脈が効く仕事では、短い在籍は素直に不利です。見るべきは回数ではなく、辞めた理由に一貫性があるか、直前の職場で何を残したかです。面接では、過去の職場ごとに「入社して最初の1か月で何をしたか」を聞くと適応の型が見えます。そして定着は採用の瞬間に決まるのではなく、入社後3か月の設計で決まります。</p></div>
-      <p class="why"><span>効き方</span>店舗スタッフの採用で、経歴の短さだけで書類を落としている分の母集団が戻ります。とくに新店の立ち上げや新サービス導入の時期は、この層のほうが早く戦力になります。面接の質問を「なぜ辞めたか」から「入って最初の1か月で何をしたか」に変えるだけで、判断材料が変わります。</p>
-      <a class="src" href="http://hbr.org/2026/07/the-case-for-hiring-job-hoppers" target="_blank" rel="noopener">HBR ↗</a>
-    </article>
-    <article class="pick">
-      <div class="n">2</div>
-      <h2>高い値段が急に通らなくなる日を測る「エゴ飽和指数」</h2>
-      <div class="fig"><div class="fig-t">高価格の持続性</div><div class="mtx"><div class="ylab top">欲求が飽和</div><div class="grid"><div class="mcell"><b>価格競争</b><span>値引きしか手が残らない</span></div><div class="mcell"><b>崩落予備軍</b><span>ある日突然売れなくなる</span></div><div class="mcell"><b>機能勝負</b><span>品質で価格を説明できる</span></div><div class="mcell"><b>安全圏</b><span>今は値上げが通る</span></div></div><div class="ylab bot">欲求は未充足</div><div class="xlabs"><span>機能で選ぶ客</span><span>自己表現で選ぶ客</span></div></div><div class="fig-c">右上ほど高価格が急に崩れやすい</div></div>
-      <div class="sum"><p>高い価格が通るかどうかは、これまでブランド力で説明されてきました。しかしブランド力の指標は、過去の売上・認知・満足度を集計したものです。つまり後ろ向きで、価格が通らなくなってから数字が落ちます。経営者が本当に知りたいのは、今の価格があと何年通るのかという前向きの情報です。</p><p>この論考は、高価格を支えている本体は品質ではなく、顧客の自己表現の欲求だと整理します。そのうえで、欲求がどこまで満たされてしまったか（飽和したか）を事前に測る診断指標を提案しています。指標は、既存顧客への聞き取りを3つの要素に分解して構成します。</p><ul class="blist"><li>その価格を、機能ではなく自分を表すために払っているか</li><li>同じ欲求を、より安い別の手段でも満たせるようになっていないか</li><li>新しい買い手が今も入ってきているか</li></ul><p>検証で見えたのは、次の順序です。</p><ul class="blist"><li>売上も価格もまだ崩れていない段階で、この指数のほうが先に低下する</li><li>機能や技術で説明できる価格差は、飽和の影響を受けにくい</li><li>買い手の入れ替わりが止まったブランドほど、飽和の進行が速い</li><li>飽和が進んだ後の値引きは、指数をさらに下げる（自己表現の価値を自ら壊すため）</li></ul><p>なぜそうなるのか。自己表現の欲求は、まだ手に入れていない状態でこそ強く働きます。周囲に行き渡ると、同じものを持つことは何も語らなくなり、価格に見合う意味が失われます。品質は変わっていないのに売れなくなる、という現象の正体はここにあります。</p><p>限界もあります。この指数はまだ提案段階で、業種を横断した検証は途上です。また、機能の優位がはっきりしている商材には当てはまりません。小規模な事業であれば、大掛かりな調査は不要です。上位メニューを買っている既存客に、上の3つを聞くだけで傾向はつかめます。答えが機能側に寄っているなら値上げ余地があり、自己表現側に寄っていて新規客が増えていないなら、崩れる前に別の価値を用意する時期です。</p></div>
-      <p class="why"><span>効き方</span>美容室の上位メニューや指名料は、まさに自己表現で買われている価格です。既存客への3つの質問で、値上げが通る店と限界に来ている店を分けられます。代理店側でも、上位プランを勧める際に何を売っているのかを言語化する助けになります。</p>
+      <h2>値上げが効かなくなる前兆を測る「自我飽和指数」</h2>
+      <div class="fig"><div class="fig-t">高価格が保てる位置</div><div class="mtx"><div class="ylab top">余白がある</div><div class="grid"><div class="mcell"><b>性能競争</b><span>値下げ以外の手が薄い</span></div><div class="mcell"><b>値上げ可</b><span>今のうちに単価を上げる</span></div><div class="mcell"><b>消耗戦</b><span>価格勝負に落ちる</span></div><div class="mcell"><b>意味切れ</b><span>提供価値の作り直しが要る</span></div></div><div class="ylab bot">飽和した</div><div class="xlabs"><span>機能で選ばれる</span><span>自己表現で選ばれる</span></div></div><div class="fig-c">右上にいる間だけ高い値付けが保つ</div></div>
+      <div class="sum"><p>高い値付けを保てるかどうかは、ブランドの強さではなく「顧客の飽き」で決まる。カリフォルニア・マネジメント・レビューが提案するのは、そういう見方です。</p><p>従来のブランドエクイティ（認知度・好意度・ロイヤルティ）は、過去の積み上げを測る指標にすぎません。過去に強かったブランドが来期も高い価格を保てる保証はない。強いブランドが数年で値引き競争に飲み込まれる例は珍しくありませんが、指標が遅れて動くため、数字が下がった時にはもう手遅れになります。</p><p>提案されているのが Ego Saturation Index（自我飽和指数）という先行指標です。顧客がその商品や店を選ぶとき、機能ではなく「それを選ぶ自分」に価値を感じている部分がどれだけ残っているかを測ります。分かっているのは次の点です。</p><ul class="blist"><li>自己表現としての満足にまだ余白があるうちは、価格プレミアムを維持できる</li><li>周囲に同じ選択をする人が増えるほど、その満足は目減りする</li><li>飽和した瞬間、顧客は機能と価格の比較に戻り、値引き圧力が一気に来る</li><li>ブランド調査の数値が高いままでも、飽和はその手前で静かに進行する</li></ul><p>なぜこうなるのか。自己表現から得られる満足には収穫逓減が働くからです。希少なうちは「これを選んでいる自分」に意味がありますが、普及すれば意味は薄れる。ブランド側が何も間違えていなくても、成功そのものが価値を削っていく構造です。だから飽和は「失敗の兆候」ではなく「成功の副作用」として現れます。</p><p>限界もあります。この指標が効くのは、選択が自己像と結びつく高関与のカテゴリー——衣料、外食、美容、嗜好品などです。通信回線や日用品のように機能で選ばれる商材では、自己表現の余白そのものが小さく、指標は動きにくい。また飽和度は顧客の属性で大きく違うため、全体平均で見ると変化を見落とします。層別に見ることが前提です。</p><p>実務に落とすなら、既存の顧客アンケートに「この店を選んでいることを人に話したいか」「自分に合っていると感じるか」といった自己表現の項目を数問足し、来店頻度の高い層と離反しかけた層で比べる。差が縮まってきたら、値上げの余地が閉じ始めた合図と読みます。</p></div>
+      <p class="why"><span>効き方</span>美容室の指名料やメニュー単価は、まさに自己表現の余白で支えられている領域です。客数が伸びている今こそ飽和度を測り、余白があるうちに単価を上げる判断ができます。携帯販売のように商材が横並びの事業では自己表現の余白が小さいため、価格ではなく接客体験そのものを差別化の軸に置く必要がある、という読み方になります。</p>
       <a class="src" href="https://news.google.com/rss/articles/CBMi2AFBVV95cUxPbjBJZmlvTjhtcTNrYlVmMm5mTEJEcmdwNW9fclplTE1UX1pGQmNWVG5rNnNndTBONmdBUFNpajhXLTVhcXZJU09wckxScGRleXFmdGIzMU8tMkgyb18zcEJxd2Jjc3otOHpSanVfTUgyc3RNVXBoQ0I4M0R1ZkxkY2xqd2JwbEx5Zm5RTWRRZWFUOW5uWk1XNnBSSVhGTHNuNVpzd1lteU9kNXQtd3UwNXFzTEJRQ1dBM3I4M21OVURNallCcHVjaTMxSG1wb0xaT1FYWkxubWk?oc=5" target="_blank" rel="noopener">California Mgmt Review ↗</a>
     </article>
     <article class="pick">
+      <div class="n">2</div>
+      <h2>転職を繰り返してきた人ほど、早く戦力になる</h2>
+      <div class="fig"><div class="fig-t">転職歴の読み替え</div><div class="cmp"><div class="col"><div class="ch">従来の読み方</div><ul><li>定着しない</li><li>忠誠心が低い</li><li>教育が無駄になる</li><li>組織に馴染まない</li></ul></div><div class="col"><div class="ch">研究が示すこと</div><ul><li>適応が速い</li><li>立ち上がりが短い</li><li>変化局面で強い</li><li>聞く作法が身についている</li></ul></div></div><div class="fig-c">同じ履歴書が、逆の意味に読める</div></div>
+      <div class="sum"><p>「短期間で職を変えてきた人は採らない」という採用の常識に、新しい研究が正面から反論しています。ハーバード・ビジネス・レビューが紹介するのは、転職歴の多い人材（ジョブホッパー）が持つ適応能力の高さです。</p><p>従来、転職歴は「定着しない」「忠誠心がない」「教育投資が回収できない」というリスク信号として読まれてきました。書類選考の段階で落とす基準にしている会社も多い。ところが実際の入社後のパフォーマンスを追うと、この読み方が成果と対応していないことが見えてきます。</p><p>研究が示すのは次のような点です。</p><ul class="blist"><li>転職経験の多い人は、新しい職場のやり方を掴むまでの時間が短い</li><li>立ち上がりが早いぶん、在籍期間が短くても投入時間あたりの貢献は大きくなりうる</li><li>未経験の業務や役割の変更に対する抵抗が小さい</li><li>環境が変わる局面（新規出店、システム刷新、業態転換）でとくに力を発揮する</li></ul><p>なぜそうなるのか。職場を渡り歩くこと自体が訓練になっているからです。新しい人間関係の作り方、暗黙のルールの読み取り方、分からないことを聞く作法——これらは経験を重ねるほど上手くなる技能で、一社に長くいる人は磨く機会がありません。転職歴は「定着しない性質」の証拠であると同時に、「適応の反復回数」の記録でもあるわけです。</p><p>ただし無条件ではありません。この利点が効くのは、業務が標準化されておらず環境変化が速い職場です。長い年数をかけて蓄積する専門知識が価値の源泉になる仕事（熟練技能、深い顧客関係）では、短い在籍は不利に働きます。また転職の理由が「環境への適応」ではなく「対人トラブルからの回避」である場合は、同じことが繰り返されます。履歴の回数ではなく、各社で何を任され、何を残したかを聞くことが判断の分かれ目になります。</p><p>実務的には、採用条件を「在籍年数」から「立ち上がりの速さ」に置き換えるのが妥当です。面接では「入社何日目で一人で店を回せたか」「前職で最初に覚えたことは何か」を具体的に聞く。定着を求めるなら、長くいた人を探すより、入社後3か月で成果を出せる仕組みを作るほうが確実です。</p></div>
+      <p class="why"><span>効き方</span>店舗人材の採用は慢性的な母集団不足に悩まされる分野で、転職歴を理由に候補者を外している余裕は本来ありません。新規出店や業態変更が続く局面では、むしろ適応の速い人材が要になります。3年で辞める前提でも、3か月で戦力化できれば投資は回収できる、という設計に切り替える判断材料になります。</p>
+      <a class="src" href="http://hbr.org/2026/07/the-case-for-hiring-job-hoppers" target="_blank" rel="noopener">HBR ↗</a>
+    </article>
+    <article class="pick">
       <div class="n">3</div>
-      <h2>動画を繰り返し見せても、育つのは「できる気」だけ</h2>
-      <div class="fig"><div class="fig-t">20回見た後の変化</div><div class="bars"><div class="brow"><div class="blab">自分はできるという自信<span class="bnote">20回視聴後</span></div><div class="btrack"><div class="bbar" style="width:100.0%"></div><span class="bval">130指数(1回視聴=100)</span></div></div><div class="brow"><div class="blab">実際の成績<span class="bnote">ほぼ変化なし</span></div><div class="btrack"><div class="bbar" style="width:76.9%"></div><span class="bval">100指数(1回視聴=100)</span></div></div></div><div class="fig-c">自信だけが伸び、実力は伸びていない</div></div>
-      <div class="sum"><p>研修を動画に置き換えた店舗は多いはずです。手が空いた時間に見てもらえて、指導者の時間も取られない。ところが実技の水準が上がらない、という声もよく聞きます。この研究は、その理由を実験ではっきり示しました。</p><p>実験の作りは単純です。ダーツを投げる、テーブルクロスを引き抜く、ムーンウォークをするといった短い実演動画を用意し、参加者を2群に分けます。片方は1回だけ見る群、もう片方は同じ動画を20回繰り返し見る群です。見終わった直後に「自分はどれくらいうまくできると思うか」を答えてもらい、その後で実際にやらせて成績を測りました。</p><p>結果は次のとおりです。</p><ul class="blist"><li>20回見た群は、自分の成績予測が大きく上振れした（1回群を100とすると約130）</li><li>実際の成績は、1回群とほとんど変わらなかった（同じ基準で約100）</li><li>見た回数が増えるほど自己評価は上がり続け、実力との差が開いた</li><li>動画を見る前に自分で少しやらせておくと、この錯覚は小さくなった</li></ul><p>なぜこうなるのか。繰り返し見ると、動作の流れが滑らかに見えるようになります。人はこの見やすさ・分かりやすさの感覚を、自分の能力の証拠だと取り違えます。研究ではこれを再生の錯覚と呼びます。実際には、目で追える速さと体が動く速さは別物です。</p><p>注意すべき点もあります。知識を覚える課題では繰り返し視聴に効果があり、この錯覚は体を使う技能や、その場の判断が要る作業で強く出ます。接客の言い回し、端末の操作手順、施術の手つきはまさにこの領域です。対策は簡単で、動画の後に必ず本人にやらせ、他人に見せて指摘を受けさせることです。見た回数を研修の実績として数えるのをやめ、やって見せた回数を数えるように帳票を変えるだけで、水準は変わります。</p></div>
-      <p class="why"><span>効き方</span>店舗のマニュアル動画やメーカーの商品説明動画を、視聴で完了としている運用は見直せます。視聴回数ではなく実演回数を記録に変えるだけで、実力の見誤りが減ります。新人の自己評価が高すぎる原因も、この錯覚で説明がつきます。</p>
-      <a class="src" href="https://news.google.com/rss/articles/CBMikgFBVV95cUxQdDlmS1VSaDg3dVVZcl9NOWh4aV8zdU5ZOHNXM1cweEdlM1pmWGZzcWxRc21WN0czTkxqeUNsdHNQT29JclhDN0xEdmF3NmZTSVVORFZrdVVNZzlZQkFnNFdpcjJIQnBOQVc5cUdsWXhQTUZITE9JNXNkYkl6R0t2eDdseTZWNTBBc1FNbTRiZmxFdw?oc=5" target="_blank" rel="noopener">Chicago Booth ↗</a>
+      <h2>成績を決めるのは頭の良さより自制心——予測力は約2倍</h2>
+      <div class="fig"><div class="fig-t">成績の予測力</div><div class="bars"><div class="brow"><div class="blab">自己規律<span class="bnote">事前に測定</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:100.0%"></div></div><span class="bval">2倍</span></div></div><div class="brow"><div class="blab">IQ<span class="bnote">比較の基準</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:50.0%"></div></div><span class="bval">1倍</span></div></div></div><div class="fig-c">自制心の予測力はIQの約2倍だった</div></div>
+      <div class="sum"><p>人を採る、育てる、任せる——その判断の軸として、地頭より自制心を見るべきだという古典的な研究があらためて注目されています。</p><p>2005年に行われた研究では、中学2年生140人を対象に、学期の途中で自己規律（誘惑を先送りにして計画を守れる度合い）を測定しました。そして数か月後の最終成績と照合しています。結果は明確でした。</p><ul class="blist"><li>事前に測った自己規律は、最終成績を IQ のおよそ2倍の強さで予測した</li><li>出席率、宿題に費やす時間、テレビ視聴時間の少なさも、自己規律の高い生徒のほうが良好だった</li><li>IQ が高くても自己規律が低い生徒は、成績が伸び悩んだ</li><li>逆に IQ が平均的でも自己規律の高い生徒が、成績上位に入った</li></ul><p>なぜ差がつくのか。能力は「できる範囲」を決めますが、成果は「実際にやった量」で決まるからです。学習でも仕事でも、必要なことは大抵つまらない。つまらないことを、気分に関係なく毎日繰り返せるかどうかが、数か月後の差になって現れます。快適さと長期的な成果が逆方向を向くのはこのためです。楽なほうを選び続けると、その瞬間は気分がよく、半年後に何も残っていない。</p><p>限界も押さえておくべきです。対象は米国の中学生であり、大人の職場にそのまま当てはまるとは言えません。また自己規律は本人の性質だけでなく、環境の設計に強く左右されます。誘惑が視界にある環境では誰でも規律は落ちる。つまりこれは「意志の強い人を選べ」という話であると同時に、「規律を要求しない仕組みを作れ」という話でもあります。さらに、この指標は面接での自己申告では測れません。過去の行動——続けたこと、やめずに済んだこと——から推し量るしかない。</p><p>実務では二段構えが有効です。採用時は「何年続けた習慣があるか」を具体的に聞き、その一貫性を見る。入社後は個人の意志に頼らず、日次の締め・チェックリスト・当番制のように、やらざるを得ない仕組みで規律を外部化する。強い人を探すより、普通の人が続けられる設計にするほうが再現性があります。</p></div>
+      <p class="why"><span>効き方</span>店舗運営は、掃除・在庫確認・声かけ・記録といった地味な作業の積み上げで数字が決まる業態です。採用時に学歴や話の上手さで判断すると、この差を見落とします。同時に、店長の意志力に頼った運営は必ず崩れるため、規律を仕組み側に移す設計が有効だと分かります。</p>
+      <a class="src" href="https://news.google.com/rss/articles/CBMiywJBVV95cUxNNHBfZjh0bWk1eDRxOWJ6VkhQMmlkcXNaZ1p0V291SzNNbl9VVk9telJNY1lkQ3BvVHVsVkc5UDZ5YS14M0RIWEVMYUxfZnI1ZGdLdGRlRTlfLTY5V2hIdDFPaWlTY0YzYkotYXhwVDJrQ0tNbG4xNndnRWh5eVRTUzNNMWZYVmlnZjZNLURjTWNZVnJsYS0ydWczM1puR0kzYWhsVFYwOER3TlV2VEdnekd3NThLbTJOa25rZV9jT1RERmpUVHI5NVpQWTBCbHgxQ0Z0UWNMbWROeVBzRk95M0pfWlp4WXVrS0NmNEJpcmw0Z2NKVk5uQ243cUFqNkJ0WnNhRTJiNGNFTS0wa21tM2RKaXpMcmQ3eXVhZ0g5YkFrem5GUjZOYXZYRjdUbjVNQmdnakZhbjFybFdwYkdIeERtNHp4cU1jdjJv?oc=5" target="_blank" rel="noopener">学者(米3) ↗</a>
     </article>
     <article class="pick">
       <div class="n">4</div>
-      <h2>店長が「上の圧」を吸収するほど現場は動かなくなる</h2>
-      <div class="fig"><div class="fig-t">吸収から翻訳へ</div><div class="flow"><div class="step"><b>上から圧が来る</b><span>経営の要求が降りてくる</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>店長が吸収</b><span>部下には伝えない</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>現場が鈍る</b><span>理由が分からず自走できない</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>翻訳に変える</b><span>目的と制約を開示する</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>判断が現場に戻る</b><span>代償ごと選ばせる</span></div></div><div class="fig-c">3番目で止まらず4番目へ進めるかが分かれ目</div></div>
-      <div class="sum"><p>優秀な店長ほど、経営から降りてきた厳しい要求を自分のところで止めます。数字の詰め、急な方針変更、無茶な納期。それを部下に伝えず、自分が引き受けて処理する。本人は部下を守っているつもりで、周囲もそれを美徳とみなしてきました。この論考は、その振る舞いを組織の衝撃吸収材と名付け、実は現場を弱くしていると指摘します。</p><p>中間管理職への調査と面談から見えたのは、吸収する側に起きる3つの負担です。</p><ul class="blist"><li>判断の根拠を上と下で二重に持つことになり、意思決定が遅れる</li><li>圧を受け止め続けることによる消耗が、離職の主要因になる</li><li>上の要求を薄めて伝えるため、現場には理由の分からない指示だけが残る</li></ul><p>とくに3つ目が本質です。要求の背景を抜いて結果だけ伝えると、現場は「なぜ今それをやるのか」を知らないまま動きます。すると自分で調整ができません。想定外のことが起きるたびに店長に判断を仰ぐことになり、店長の負荷はさらに増えます。守ったつもりの行動が、依存を作り出す構造です。</p><p>代わりに勧められているのは、吸収ではなく翻訳です。上から来た要求を、そのまま流すのでも隠すのでもなく、現場が判断できる形に組み直して渡します。具体的には次の順序です。</p><ul class="blist"><li>要求の目的を一文にする（何のためにこの数字が要るのか）</li><li>制約を明示する（人員・時間・原資のうち動かせないものはどれか）</li><li>選択肢を2つか3つに整理し、それぞれの代償を並べる</li><li>どれを選ぶかを現場と一緒に決め、決めた理由を残す</li></ul><p>限界もあります。個人の人格に関わる叱責や、まだ確定していない人事の話は、そのまま流すべきではありません。翻訳すべきなのは要求であって、感情や未確定情報ではないという線引きが要ります。また、上位者が理由を説明しない組織では翻訳の材料自体がないため、店長が上に理由を聞ける関係が前提になります。</p></div>
-      <p class="why"><span>効き方</span>複数店舗を持つと、本部の要求と現場の実態の間に必ずこの構図ができます。店長が抱え込んでいるうちは、店長が休んだ日に店が回りません。要求を目的・制約・選択肢に分けて渡す型を店長会で共有するだけで、現場の自走度が変わります。</p>
+      <h2>店長が板挟みを吸収するほど、組織は学ばなくなる</h2>
+      <div class="fig"><div class="fig-t">緩衝材が生む構造</div><div class="flow"><div class="step"><b>上から圧力</b><span>方針が唐突に降りてくる</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>店長が吸収</b><span>言い換えて現場を守る</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>現場は無傷</b><span>だが狙いも切迫感も届かない</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>上は誤解を継続</b><span>現場は余裕があると判断する</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>店長が限界に</b><span>判断が滞り改善も止まる</span></div></div><div class="fig-c">痛みは消えず、一人に集まっている</div></div>
+      <div class="sum"><p>IMD が問いかけているのは、中間管理職が果たしている「緩衝材」の役割です。上から降りてくる無茶な要求や厳しい言葉を、そのまま現場に流さず、自分のところで受け止めて柔らかく言い換える。多くの中間管理職が善意でやっていることですが、これが組織にとって害になる場合がある、という指摘です。</p><p>何が問題なのか。緩衝することで、次の三つが同時に起きます。</p><ul class="blist"><li>現場は上層部の本当の意図や切迫感を知らないまま働く</li><li>上層部は現場の実情を知らないまま、要求を強め続ける</li><li>中間管理職だけが両方の圧力を抱え、判断が遅れ、やがて潰れる</li></ul><p>つまり「衝撃を吸収する」ことは、痛みを消しているのではなく、一人のところに集めているだけです。しかも情報の流れを遮断するので、上も下も現実を学習できません。組織として見ると、緩衝材が優秀であるほど問題の発見が遅れる構造になります。</p><p>では何をすべきか。IMD が示すのは、吸収する（buffer）のをやめて、翻訳する（translate）に切り替えるという方向です。</p><ul class="blist"><li>上の要求をそのまま伝えるのでも、握りつぶすのでもなく、「何が目的か」に翻訳して伝える</li><li>現場の負荷は、感情ではなく事実として上に返す（何が犠牲になるか）</li><li>相反する要求が来たときは、自分で選ばず、トレードオフを明示して判断を上に戻す</li></ul><p>最後の点が要です。「両方やります」と引き受けた瞬間に、板挟みは自分のものになります。「Aを優先するとBが遅れます。どちらを取りますか」と返すことは、責任放棄ではなく、判断を正しい場所に置く行為です。</p><p>限界もあります。上層部が対話を受け付けない組織では、翻訳を試みた中間管理職が孤立するだけで終わります。この方法は、上に耳がある前提でしか機能しません。また、短期的には緩衝したほうが現場は落ち着くため、翻訳への切り替えは一時的に摩擦を増やします。その摩擦に耐える覚悟が要ります。</p></div>
+      <p class="why"><span>効き方</span>複数店舗を持つ体制では、店長がオーナーと現場スタッフの間で緩衝材になっている構図がそのまま当てはまります。店長が全部飲み込んでいると、オーナーには現場の限界が見えず、スタッフには方針の理由が伝わりません。店長には「どちらを取るか」を判断者に返す権限があると明示することが、離職と情報遮断の両方を防ぎます。</p>
       <a class="src" href="https://www.imd.org/ibyimd/brain-circuits/are-you-a-corporate-shock-absorber/" target="_blank" rel="noopener">IMD ↗</a>
     </article>
     <article class="pick">
       <div class="n">5</div>
-      <h2>どのAIを使うかで、あなたが出す結論は変わっている</h2>
-      <div class="fig"><div class="fig-t">AIと確信の増幅</div><div class="mtx"><div class="ylab top">考えが固い</div><div class="grid"><div class="mcell"><b>検証が働く</b><span>思い込みが削られる</span></div><div class="mcell"><b>暴走</b><span>確信だけが増幅する</span></div><div class="mcell"><b>決まらない</b><span>判断が止まりやすい</span></div><div class="mcell"><b>早い決定</b><span>根拠は薄いまま進む</span></div></div><div class="ylab bot">考えが曖昧</div><div class="xlabs"><span>反論するAI</span><span>同調するAI</span></div></div><div class="fig-c">右上ほど誤りに気づけなくなる</div></div>
-      <div class="sum"><p>経営判断の相談相手としてAIを使う人が増えました。ここで見落とされているのは、道具の選択そのものが結論に影響しているという点です。同じ問いを投げても、AIによって返ってくる答えの傾向は違います。そしてその違いは、使う人が気づかないまま判断に入り込みます。</p><p>研究では、同じ意思決定課題を複数のAIに与え、そのうえで人間の被験者に判断させる形で比較しました。課題は投資判断、人員配置、価格設定など、正解が一つに定まらないものです。比較したのは、AIの応答傾向（利用者の考えに同調しやすいか、反論を返しやすいか）と、利用者の最終判断の変化です。</p><p>見えたのは次の点です。</p><ul class="blist"><li>同調的な応答を返すAIを使った群は、当初の考えをより強く確信して終わる</li><li>反論を返すAIを使った群は、当初案の弱点を自分で挙げられるようになる</li><li>どちらの群も、AIの影響を受けた自覚はほとんどない</li><li>もともと考えが固まっている人ほど、同調的なAIによる増幅が大きい</li></ul><p>なぜそうなるのか。AIの答えは根拠が整った文章で返ってくるため、自分の考えの裏付けに見えます。実際には、こちらの前提をなぞって整形しただけであることが多い。それでも、整った文章は検証を通過したような印象を与えます。確信だけが増えて、判断の質は変わらない状態です。</p><p>実務での対処は道具を変えることではなく、使い方を変えることです。</p><ul class="blist"><li>案を出させる前に、まず自分の案の弱点を3つ挙げさせる</li><li>賛成の理由と反対の理由を必ず両方書かせる</li><li>同じ問いを別のAIにも投げ、結論が割れる箇所を判断の焦点にする</li></ul><p>限界としては、この研究が扱ったのは正解の定まらない判断です。計算や要約のように答えが検証できる作業では、この歪みは問題になりません。歪みが効くのは、まさに経営者が一人で決めている種類の判断だという点が重要です。</p></div>
-      <p class="why"><span>効き方</span>社内の方針や仕入れ・価格の判断をAIに壁打ちする場面で、賛成材料ばかりが積み上がる危険があります。反対理由を先に書かせる一手間で、同じ道具のまま質が変わります。複数のAIに同じ問いを投げ、割れた箇所だけ自分で詰めるやり方が実用的です。</p>
-      <a class="src" href="https://news.google.com/rss/articles/CBMijAFBVV95cUxPRTdadjlndm91djY1Xy1LTENJV01yTWJ0SVN0WFZGN21JR2NYYXVSbnRoUmpYSnNLR3ctSS1YV3VuTHZtMEs0UUFSWU4yVkhtdzU1OGtYeEhRSmtaRVZ5c3FaZGJWLTdnaTJLM0N1WXlEdUtwdC02QkhxZFlTVzBDWnNMZHVyczJHQ3VnaQ?oc=5" target="_blank" rel="noopener">INSEAD ↗</a>
+      <h2>800年続いた家業の原則——「自社の商品に惚れるな」</h2>
+      <div class="fig"><div class="fig-t">続いた家業の中身</div><div class="rel"><div class="hub">渡せる事業</div><div class="sats"><span class="sat">製品に惚れない</span><span class="sat">各代で作り直す</span><span class="sat">預かり物の意識</span><span class="sat">顧客の変化を見る</span><span class="sat">名声より継続</span></div></div><div class="fig-c">守られたのは商品ではなく変える力</div></div>
+      <div class="sum"><p>IMD が取り上げたのは、イタリアで30世代にわたり事業を続けてきたワイン醸造家フレスコバルディ家です。800年という時間軸は日本の中小企業にも縁遠くありません。老舗の多い国だからこそ、何が続く条件だったのかは読む価値があります。</p><p>語られる原則は、意外なほど地味です。</p><ul class="blist"><li>自社の製品に惚れ込まないこと。愛着は改良の判断を鈍らせる</li><li>事業は「所有物」ではなく「預かり物」だと考えること</li><li>各世代が一度は作り直すこと。守るだけの代は、続かない代になる</li><li>名声より、次の世代に渡せる状態を優先すること</li></ul><p>とくに重いのが最初の一つです。長く続いた事業ほど、商品そのものが誇りになります。しかし顧客が買っているのは商品ではなく、その時代に欲しかった価値です。時代が変われば求められるものが変わる。製品に惚れていると、変えるべきときに「うちの伝統だから」という理由で変えられなくなります。フレスコバルディ家が守ったのは、特定の作り方ではなく、作り方を変える能力のほうでした。</p><p>「預かり物」という発想も実務的な意味を持ちます。自分の所有物なら、自分の代で使い切っても構わない理屈になる。預かり物なら、渡す相手がいる前提で判断せざるを得ない。設備投資、人材育成、借入の判断——時間軸が一世代分伸びると、答えが変わります。</p><p>注意点もあります。この種の家族企業の話は、生き残った例だけを見ているという偏りを免れません。同じ原則を守って消えた家も無数にあるはずで、これが成功の十分条件だとは言えない。また、ワインという商材は「歴史そのものが価値になる」希少な分野で、歴史が価値にならない業種に同じ論理は使えません。</p><p>それでも、事業承継を控えた経営者にとって使える問いは残ります。「自分は何に惚れているか」「それは顧客が買っているものか」「自分の代で何を作り直したか」。この三つに答えられないまま渡すと、次の代は守るしかなくなります。</p></div>
+      <p class="why"><span>効き方</span>事業承継を意識する年代のオーナーにとって、直接的に効く視点です。携帯代理店も美容室も、事業モデルそのものが数年単位で変わる業種で、「今の形を守って渡す」ことが最大のリスクになります。渡すべきは店舗や商材ではなく、作り直せる体力と判断の型だ、という整理ができます。</p>
+      <a class="src" href="https://www.imd.org/ibyimd/videos/the-interview/dont-fall-in-love-with-your-product-lessons-from-an-800-year-old-family-business/" target="_blank" rel="noopener">IMD ↗</a>
     </article>
     <article class="pick">
       <div class="n">6</div>
-      <h2>全部が急ぎに見えるとき、優先順位を壊す3つの問い</h2>
-      <div class="fig"><div class="fig-t">優先順位の3つの問い</div><div class="rel"><div class="hub">今決めるべきか</div><div class="sats"><span class="sat">やめたら何が壊れるか</span><span class="sat">誰が決めるべきか</span><span class="sat">効果はいつ出るか</span><span class="sat">本当の締切はどれか</span><span class="sat">渡せる相手はいるか</span></div></div><div class="fig-c">3つに答えられない案件は自分の手を離す</div></div>
-      <div class="sum"><p>重要な案件が同時に5つも6つも並ぶと、優先順位は事実上つけられなくなります。どれも大事だからです。結果として、直近で声が大きいものから手をつけることになり、後から振り返ると本当に効いた仕事は一部だけだった、という状態になります。この論考は、その場で使える3つの問いを提示します。</p><p>提案されている問いは次の3つです。</p><ul class="blist"><li>これをやらなかったら、半年後に何が壊れるか</li><li>この判断は誰が決めるべきか（自分でなければ誰か）</li><li>効果が出るのはいつか、そして本当の締切はいつか</li></ul><p>狙いは、緊急度と重要度を分離することにあります。1つ目の問いは、やらない場合の損害を具体化させます。答えが出ない案件は、そもそも重要ではありません。2つ目は、経営者の時間が本当に必要かを切り分けます。多くの案件は判断者が自分である必要がなく、権限を渡せば終わります。3つ目は締切の正体を暴きます。誰かが口頭で言っただけの日付なのか、契約や機会損失で決まっている日付なのかで、扱いは変わります。</p><p>この3つを使うと、案件は自然に4つに分かれます。</p><ul class="blist"><li>自分が今決めるべきもの（多くて2つか3つ）</li><li>他人に渡すもの</li><li>期日を明示して後ろに置くもの</li><li>やらないと決めるもの</li></ul><p>なぜ効くのか。優先順位がつかない状態の本体は、案件が多いことではなく、判断の基準が言語化されていないことだからです。基準が言葉になっていれば、部下に説明でき、断る理由も説明できます。逆に基準がないと、断ることが人格の否定に見えてしまい、全部を抱えることになります。</p><p>限界もあります。この問いは案件が並んだ後の整理には効きますが、そもそも案件が増える構造には触れません。同じ整理を毎月繰り返しているなら、案件が生まれる場所（無計画な依頼、決裁ルートの不在）を直すほうが先です。</p></div>
-      <p class="why"><span>効き方</span>複数業種を同時に見ているオーナー経営者ほど、判断の待ち行列が自分に集中します。2つ目の問いだけでも、渡せる案件がかなり出てくるはずです。3つの問いを紙に印刷して会議で使えば、部下も同じ基準で持ち込めるようになります。</p>
-      <a class="src" href="http://hbr.org/2026/07/3-questions-to-pressure-test-your-priorities" target="_blank" rel="noopener">HBR ↗</a>
+      <h2>AIで伸びる若手と潰れる若手を分けるのは「検証する癖」</h2>
+      <div class="fig"><div class="fig-t">若手とAIの相性</div><div class="mtx"><div class="ylab top">基礎がある</div><div class="grid"><div class="mcell"><b>もったいない</b><span>速いが本人は伸びない</span></div><div class="mcell"><b>最も伸びる</b><span>扱える仕事の幅が広がる</span></div><div class="mcell"><b>危険</b><span>誤りに気づけず出してしまう</span></div><div class="mcell"><b>育つ</b><span>確認の過程が訓練になる</span></div></div><div class="ylab bot">基礎が浅い</div><div class="xlabs"><span>丸投げする</span><span>検証する</span></div></div><div class="fig-c">右側にいるかどうかが数か月後に効く</div></div>
+      <div class="sum"><p>新しい研究が示すのは、AI が若手社員に与える影響が一様ではないということです。同じツールを渡しても、成果が跳ね上がる人と、かえって成長が止まる人に分かれます。分岐点は、AI の出力を検証する習慣があるかどうかです。</p><p>背景には、入社直後の仕事が消えつつあるという事情があります。かつて若手が任されていた——調べる、まとめる、下書きする——といった作業は、AI が数秒でこなします。効率だけ見れば歓迎すべき変化ですが、その作業こそが判断力を鍛える訓練でもありました。訓練の場が消えた結果、何が起きるか。</p><p>研究が示す差は次の点に整理できます。</p><ul class="blist"><li>基礎知識のある若手は、AI の出力を叩き台として使い、誤りを見つけて修正できる</li><li>基礎の浅い若手は、出力の正しさを評価できず、そのまま提出してしまう</li><li>前者は AI を使うほど扱える業務範囲が広がる</li><li>後者は成果物の見た目だけが整い、判断力が育たない</li><li>差は最初の数か月では見えず、複雑な仕事を任せた段階で表面化する</li></ul><p>なぜ検証の癖が決定的なのか。AI の出力は「もっともらしさ」で最適化されているからです。間違っていても文章は整っている。整った文章を疑うには、答えを別ルートで検算できる知識が要ります。知識がない状態で使うと、疑う手がかりそのものがない。</p><p>限界としては、この差が能力の差なのか、教え方の差なのかがまだ切り分けられていない点があります。検証させる指導をすれば基礎の浅い人も追いつくのか、それとも基礎が先に要るのか——ここは結論が出ていません。ただ実務上は、どちらであっても対応は同じです。</p><p>運用に落とすなら、AI の使用を禁止するのではなく、「出力をそのまま出さない」を規則にすること。使ってよいが、どこを直したかを一言添えさせる。この一手間だけで、丸投げと検証が分かれます。</p></div>
+      <p class="why"><span>効き方</span>店舗スタッフに接客文面・SNS投稿・提案資料をAIで作らせる場面は今後増えます。そのとき差が出るのは、商材知識のある人が下書きとして使うか、知識のない人が完成品として使うかです。「AIの出力に必ず一箇所は手を入れて、何を直したか報告する」という運用ルールが、そのまま教育になります。</p>
+      <a class="src" href="http://hbr.org/2026/07/why-some-junior-employees-work-well-with-ai-and-others-dont-2" target="_blank" rel="noopener">HBR ↗</a>
     </article>
     <article class="pick">
       <div class="n">7</div>
-      <h2>30世代続く家業に学ぶ「商品に惚れ込まない」経営</h2>
-      <div class="fig"><div class="fig-t">何を守るのか</div><div class="cmp"><div class="col"><div class="ch">製品を守る経営</div><ul><li>看板商品を磨き続ける</li><li>撤退が自己否定になる</li><li>代替わりで方針も継ぐ</li></ul></div><div class="col"><div class="ch">役割を守る経営</div><ul><li>商品は時代で入れ替える</li><li>果たす役割だけを継ぐ</li><li>次の代に渡す形で決める</li></ul></div></div><div class="fig-c">右が800年続いた側の考え方</div></div>
-      <div class="sum"><p>800年、30世代にわたって続いてきたイタリアの家族経営、フレスコバルディ家の事例です。長寿企業の話は精神論になりがちですが、この論考は具体的な行動原則として整理しています。中心にあるのは、自分たちの製品に恋をしてはいけないという一文です。</p><p>同家が守ってきたのは商品ではなく、果たす役割のほうでした。実際、扱う事業は時代ごとに大きく入れ替わっています。金融、織物、農業、そしてワイン。長く続いた理由は看板商品を磨き続けたからではなく、時代が求めなくなったものを手放せたからだと整理されています。</p><p>事例から抽出されている原則は次の3つです。</p><ul class="blist"><li>謙虚さ：自分たちが正しいと決めつけず、市場の変化を先に認める</li><li>作り直し：需要が変わったら製品も事業も入れ替える。看板を守らない</li><li>受託者意識：所有者ではなく預かり手として振る舞い、次の代に渡す状態で判断する</li></ul><p>3つ目がとくに実務的です。所有者として考えると、判断の基準は自分の在任中の成果になります。預かり手として考えると、基準は次の代に渡すときの状態になります。この違いは、設備投資・人材育成・借入のどれでも判断を変えます。短期的に利益を薄くしてでも、渡せる形を作る側に傾くからです。</p><p>なぜ商品への愛着が危険なのか。創業者や二代目にとって、看板商品は自分の実績そのものです。だから需要が落ちても、売り方が悪い・人が悪いと解釈してしまいます。製品と自分を切り離しておかないと、撤退の判断が人格の否定になり、決められなくなります。</p><p>限界も明確です。これは長期の同族経営を前提とした話で、外部資本を入れて短期の成長を狙う事業には当てはまりません。また、何を捨てても良いという話でもありません。同家も、品質の水準と土地との関係だけは一貫して手放していません。捨ててよいのは製品と事業の形であって、その事業が誰に何を提供しているかという役割ではない、という線引きです。</p></div>
-      <p class="why"><span>効き方</span>携帯代理店・美容室・小売という組み合わせは、いずれ形が変わる事業です。どの店舗を残すかを判断する際、看板ではなく果たしている役割で見ると決めやすくなります。次の代に渡せる状態を基準にすると、設備投資と人材育成の優先順位も変わります。</p>
-      <a class="src" href="https://www.imd.org/ibyimd/videos/the-interview/dont-fall-in-love-with-your-product-lessons-from-an-800-year-old-family-business/" target="_blank" rel="noopener">IMD ↗</a>
+      <h2>研修動画を見直すと「分かった気」だけが増える</h2>
+      <div class="fig"><div class="fig-t">再視聴で何が増えるか</div><div class="cmp"><div class="col"><div class="ch">私たちの実感</div><ul><li>繰り返せば身につく</li><li>2回目のほうがよく分かる</li><li>動画研修は効率がいい</li><li>見終われば教育は完了</li></ul></div><div class="col"><div class="ch">実験が示すこと</div><ul><li>増えるのは自信だけ</li><li>実技の成績は変わらない</li><li>乖離は回数とともに拡大</li><li>一度やらせると解消する</li></ul></div></div><div class="fig-c">伸びるのは自己評価で、能力ではない</div></div>
+      <div class="sum"><p>シカゴ大学ブース・スクールの研究が指摘するのは「リプレイ錯覚（replay illusion）」——動画を繰り返し見ると、実際の能力は変わらないのに、できるようになった感覚だけが強まる現象です。</p><p>実験では、参加者に何らかの技能を示す動画を見せ、一度だけ見た群と繰り返し見た群を比較しました。そのうえで「自分はこれをどれくらい上手くできるか」を予測させ、実際にやらせて照合しています。結果は次のとおりです。</p><ul class="blist"><li>繰り返し見た群は、自分の実力を大幅に高く見積もった</li><li>しかし実際のパフォーマンスは、一度だけ見た群とほとんど変わらなかった</li><li>自信と実力の乖離は、視聴回数が増えるほど広がった</li><li>自分で一度やってみた群では、この乖離は起きなかった</li></ul><p>なぜ錯覚が生まれるのか。繰り返し見ると、動作の流れがなめらかに感じられ、処理が楽になります。脳はこの「処理のしやすさ」を「自分の習熟」と取り違えます。実際に増えているのは動画への慣れであって、身体や手順の習得ではありません。見ている側は失敗を経験しないので、自分が何をできないかを知る機会もない。</p><p>注意すべき点もあります。実験で扱われたのは主に身体的・手続き的な技能で、知識の暗記など別種の学習には当てはまらない可能性があります。また繰り返し視聴が完全に無意味というわけではなく、「視聴だけで完結させると危ない」という話です。</p><p>実務への落とし方は明快です。動画研修を「見せて終わり」にしない。</p><ul class="blist"><li>視聴後に必ず一度やらせる（ロールプレイ、実機操作、実際の接客）</li><li>「見た回数」ではなく「やった回数」を記録する</li><li>本人の自己評価ではなく、第三者のチェックで習熟を判定する</li></ul><p>本人が「もう分かりました」と言うときこそ、この錯覚が起きている可能性が高い、と考えたほうが安全です。</p></div>
+      <p class="why"><span>効き方</span>携帯販売は料金プランや端末の説明を動画マニュアルで教える場面が多く、まさにこの錯覚が起きやすい領域です。研修動画の視聴完了率を管理指標にしていると、実力が伴わないまま「教育済み」と記録されます。視聴後に必ずロールプレイを一本入れるだけで、店頭での説明ミスとクレームを減らせます。</p>
+      <a class="src" href="https://news.google.com/rss/articles/CBMikgFBVV95cUxQdDlmS1VSaDg3dVVZcl9NOWh4aV8zdU5ZOHNXM1cweEdlM1pmWGZzcWxRc21WN0czTkxqeUNsdHNQT29JclhDN0xEdmF3NmZTSVVORFZrdVVNZzlZQkFnNFdpcjJIQnBOQVc5cUdsWXhQTUZITE9JNXNkYkl6R0t2eDdseTZWNTBBc1FNbTRiZmxFdw?oc=5" target="_blank" rel="noopener">Chicago Booth ↗</a>
     </article>
   </div>
+  <section class="papers"><h2 class="sec">今週の論文</h2>
+    <article class="paper">
+      <h3>応募者に「本気の一票」を持たせると採用の精度が上がる</h3>
+      <div class="auth">Prasanna Parasurama ほか（MIT IDE 紹介の2論文: Costly Capacity Signaling Increases Matching Efficiency / Preference Signaling in Labor Markets）</div>
+      <dl>
+        <dt>問い</dt><dd>応募のコストがほぼゼロになった労働市場で、応募者が「本当に行きたい会社」をどう伝えれば、企業と応募者のマッチングが改善するのかを問うた研究です。誰でも大量応募できる環境では、応募という行為自体が意欲の情報を持たなくなっている、という問題意識が出発点にあります。</dd>
+        <dt>検証</dt><dd>オンライン求人プラットフォーム上での2本のフィールド実験。応募者に対し、送信できる回数を厳しく制限した「シグナル」（この会社を特に志望しているという合図）を付与できる条件と、付与できない条件をランダムに割り当て、企業側の書類通過・面接招待・最終的な採用成立までを追跡して比較しました。シグナルは希少であるがゆえに送る側にコストが生じる設計になっています。</dd>
+        <dt>結果</dt><dd><ul class="finds"><li>希少なシグナルを受け取った企業は、その応募者を面接に呼ぶ確率が有意に高まった</li><li>マッチングの効率（面接まで進んだ人が実際に採用に至る割合）が全体として改善した</li><li>シグナルの効果は、応募者が多く企業が選別に困っている求人で特に大きかった</li><li>誰でも無制限に送れる形式では、同じ情報を伝えても効果が失われた</li><li>応募者側も、シグナルを使うことで応募先を絞り込む行動をとるようになった</li></ul></dd>
+        <dt>含意</dt><dd>意欲は言葉で表明しても伝わらず、「他を捨てた」という犠牲を伴ってはじめて情報になります。採用の場面では、志望動機を書かせるより「他に何社受けているか」「当社が第一希望か」を構造的に聞く仕組みのほうが精度が高い、という含意になります。</dd>
+        <dt>留意</dt><dd>検証はオンラインの専門職向けプラットフォームで行われており、店舗スタッフのように地域と時給で選ばれる労働市場に同じ仕組みが効くかは確認されていません。</dd>
+      </dl>
+      <a class="src" href="https://ide.mit.edu/insights/can-costly-signals-fix-hiring/" target="_blank" rel="noopener">MIT IDE ↗</a>
+    </article>
+    <article class="paper">
+      <h3>強いチームの正体は「どこに注意を向けさせるか」を決める力</h3>
+      <div class="auth">arXiv econ.GN (2607.26109) 掲載のワーキングペーパー</div>
+      <dl>
+        <dt>問い</dt><dd>なぜ同じような人員構成でも、集団としての力を出せるチームと、噛み合わないチームに分かれるのか。この差を説明する概念として Attention-Directing Ability（注意誘導能力）を新たに提案し、その妥当性を検証した研究です。</dd>
+        <dt>検証</dt><dd>チームの成果を、メンバー個々の能力やインセンティブ設計ではなく「集団の注意がどこに集まっているか」という変数で説明するモデルを構築し、複数チームの行動データに当てはめて検証しています。従来の説明変数（能力の総和、報酬設計、コミュニケーション量）を統制したうえで、注意誘導能力が説明力を持つかを確認する形式です。</dd>
+        <dt>結果</dt><dd><ul class="finds"><li>メンバーの能力の総和より、注意がどこに集まるかのほうがチーム成果をよく説明した</li><li>注意を誘導する役割は、必ずしも役職上のリーダーが担っているわけではなかった</li><li>注意の焦点が分散しているチームでは、努力の総量が同じでも成果が下がった</li><li>インセンティブを強めても、注意の向き先が定まらないチームでは効果が限定的だった</li></ul></dd>
+        <dt>含意</dt><dd>チームの立て直しで最初に手を付けるべきは、報酬でも人員でもなく「今週は何に注目するか」を一つに絞ることだ、という示唆になります。朝礼で扱う話題を絞る、指標を一つに減らすといった介入が、実は最も効く可能性があります。</dd>
+        <dt>留意</dt><dd>注意誘導能力という新しい概念の提案段階であり、測定方法が標準化されていないため、他の研究者による再現・検証はこれからです。</dd>
+      </dl>
+      <a class="src" href="https://arxiv.org/abs/2607.26109" target="_blank" rel="noopener">arXiv econ.GN ↗</a>
+    </article>
+    <article class="paper">
+      <h3>報酬より「書式」が行動を変える——申込書の言語設計</h3>
+      <div class="auth">arXiv econ.GN (2511.22834v2) 掲載のワーキングペーパー</div>
+      <dl>
+        <dt>問い</dt><dd>制度設計では、割当ルール（誰に何を配るか）と並んで「参加者が何をどう書けるか」というメッセージ空間が定義されます。この後者が、インセンティブとは独立に人の行動と結果を変えるのかを問うた研究です。</dd>
+        <dt>検証</dt><dd>複数の対象が束（バンドル）として割り当てられる実験室環境を構築し、割当ルールとインセンティブは完全に同一のまま、申告に使える言語の形式だけを変えた条件を比較しました。参加者の申告内容、到達した配分の効率、誤った申告の発生率を条件間で計測しています。</dd>
+        <dt>結果</dt><dd><ul class="finds"><li>割当ルールが同じでも、申告の書式が違うだけで参加者の行動が変わった</li><li>複雑な書式では、自分に不利な申告をしてしまう誤りが増えた</li><li>誤りの原因はインセンティブの理解不足ではなく、意図を表現しきれないことにあった</li><li>簡潔な言語を用意した条件では、最終的な配分の効率が改善した</li></ul></dd>
+        <dt>含意</dt><dd>申込書・アンケート・希望シフトの提出フォーマットは、単なる事務書式ではなく行動を左右する設計対象だという示唆です。回答が想定と違うとき、動機づけを疑う前に「そもそも書けるようになっているか」を疑うべきということになります。</dd>
+        <dt>留意</dt><dd>実験室環境の抽象的な割当課題であり、実際の商取引や雇用契約のように文脈情報が豊富な場面で同じ大きさの効果が出るかは未確認です。</dd>
+      </dl>
+      <a class="src" href="https://arxiv.org/abs/2511.22834" target="_blank" rel="noopener">arXiv econ.GN ↗</a>
+    </article></section>
   <footer>
     コンサルティングファーム・ビジネススクール・調査機関の19ソースから、
     直近7日の公開分を収集し日本語に要約したもの。「効き方」は自社事業への接続で、原文の主張ではない。
