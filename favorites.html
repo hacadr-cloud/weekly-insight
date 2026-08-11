@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>保存した記事</title>
+<style>
+  :root{--bg:#fbfcfd;--surface:#fff;--ink:#1a1f26;--ink-mut:#6b7280;--line:#e5e7eb;
+    --accent:#2F6BFF;--radius:12px;}
+  @media (prefers-color-scheme:dark){
+    :root{--bg:#0f1216;--surface:#171b21;--ink:#e6e9ee;--ink-mut:#9aa3ad;--line:#2a3038;}}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Noto Sans JP",
+    "Yu Gothic UI",sans-serif;line-height:1.75;-webkit-text-size-adjust:100%;}
+  .wrap{max-width:760px;margin:0 auto;padding:28px 18px 64px;}
+  h1{font-size:24px;font-weight:800;letter-spacing:-.01em;margin:0 0 6px;}
+  .sub{color:var(--ink-mut);font-size:13.5px;margin:0 0 22px;}
+  .grp{margin:26px 0 0;}
+  .grp h2{font-size:13px;font-weight:700;color:var(--ink-mut);letter-spacing:.04em;
+    margin:0 0 10px;text-transform:uppercase;}
+  ul{list-style:none;margin:0;padding:0;}
+  li{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:14px 15px;margin:0 0 10px;display:flex;gap:12px;align-items:flex-start;}
+  li a{color:var(--ink);text-decoration:none;font-weight:700;font-size:15.5px;
+    line-height:1.6;flex:1;min-width:0;}
+  li a:hover{color:var(--accent);}
+  li .m{display:block;color:var(--ink-mut);font-size:12.5px;font-weight:400;margin-top:4px;}
+  .rm{appearance:none;-webkit-appearance:none;background:none;border:0;cursor:pointer;
+    color:#c3c8d0;font-size:18px;line-height:1;padding:6px 4px;min-width:40px;min-height:40px;}
+  .rm:hover{color:#d64545;}
+  .empty{background:var(--surface);border:1px dashed var(--line);border-radius:var(--radius);
+    padding:26px 18px;color:var(--ink-mut);font-size:14.5px;text-align:center;}
+  footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);
+    color:var(--ink-mut);font-size:12px;line-height:1.7;}
+  footer a{color:var(--ink-mut);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>★ 保存した記事</h1>
+  <p class="sub">各ページの「あとで読む」で保存した記事です。日次経済レポート・週次インサイト・
+  今週の論文をまとめて表示します。</p>
+  <div id="list"></div>
+  <footer>保存先はこの端末のブラウザです（サーバーには送られません）。別の端末や、別のブラウザで
+  開くと表示されません。履歴やサイトデータを消すと保存内容も消えます。<br>
+  <a href="index.html">← 最新号へ戻る</a></footer>
+</div>
+<script>
+
+(function(){
+  var KEY = "lsm-favs-v1";
+  function load(){ try { return JSON.parse(localStorage.getItem(KEY)) || []; }
+                   catch(e){ return []; } }
+  function save(v){ try { localStorage.setItem(KEY, JSON.stringify(v)); } catch(e){} }
+  function has(url){ return load().some(function(x){ return x.url === url; }); }
+  function paint(b){
+    var on = has(b.dataset.url);
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+    var ic = b.querySelector(".ic"), tx = b.querySelector(".tx");
+    if (ic) ic.textContent = on ? "\u2605" : "\u2606";
+    if (tx) tx.textContent = on ? "保存済み" : "あとで読む";
+    if (!ic && !tx) b.textContent = on ? "\u2605" : "\u2606";
+  }
+  function toggle(b){
+    var d = b.dataset, list = load(), i = list.findIndex(function(x){ return x.url === d.url; });
+    if (i >= 0) list.splice(i, 1);
+    else list.unshift({url:d.url, title:d.title||d.url, kind:d.kind||"", date:d.date||"",
+                       note:d.note||"", saved:new Date().toISOString().slice(0,10)});
+    save(list); paint(b);
+    if (window.renderFavs) window.renderFavs();
+  }
+  function wire(){
+    var bs = document.querySelectorAll("[data-fav]");
+    for (var i = 0; i < bs.length; i++){
+      (function(b){ paint(b); b.addEventListener("click", function(e){
+        e.preventDefault(); e.stopPropagation(); toggle(b); }); })(bs[i]);
+    }
+  }
+  window.favStore = {load:load, save:save, has:has};
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", wire);
+  else wire();
+})();
+
+</script>
+<script>
+(function(){
+  var LABEL = {econ:"日次経済レポート", insight:"週次インサイト", paper:"今週の論文",
+               section:"レポートの節", article:"参照記事"};
+  function esc(s){ return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+  window.renderFavs = function(){
+    var list = window.favStore.load(), box = document.getElementById("list");
+    if (!list.length){
+      box.innerHTML = '<div class="empty">まだ保存された記事はありません。<br>'
+        + '各ページの「☆ あとで読む」を押すとここに並びます。</div>';
+      return;
+    }
+    var groups = {}, order = [];
+    list.forEach(function(x){
+      var k = x.kind || "article";
+      if (!groups[k]) { groups[k] = []; order.push(k); }
+      groups[k].push(x);
+    });
+    var pref = ["econ","insight","paper","section","article"], html = "";
+    order.sort(function(a,b){
+      var ia = pref.indexOf(a), ib = pref.indexOf(b);
+      return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib); });
+    order.forEach(function(k){
+      html += '<div class="grp"><h2>' + esc(LABEL[k] || k) + ' (' + groups[k].length + ')</h2><ul>';
+      groups[k].forEach(function(x){
+        html += '<li><a href="' + esc(x.url) + '">' + esc(x.title)
+             + '<span class="m">' + esc(x.date || "") + (x.date && x.saved ? " ・ " : "")
+             + (x.saved ? "保存 " + esc(x.saved) : "") + '</span></a>'
+             + '<button class="rm" data-url="' + esc(x.url) + '" '
+             + 'aria-label="削除" title="削除">×</button></li>';
+      });
+      html += "</ul></div>";
+    });
+    box.innerHTML = html;
+    var rm = box.querySelectorAll(".rm");
+    for (var i = 0; i < rm.length; i++){
+      rm[i].addEventListener("click", function(){
+        var u = this.dataset.url;
+        window.favStore.save(window.favStore.load().filter(function(x){ return x.url !== u; }));
+        window.renderFavs();
+      });
+    }
+  };
+  window.renderFavs();
+})();
+</script>
+</body>
+</html>
