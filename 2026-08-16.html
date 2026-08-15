@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>今週のインサイト 2026-08-16</title>
+<style>
+  :root{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E; --accent-bg:#F5EFE3;
+    --sans: system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
+      --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E; --accent-bg:#F5EFE3;
+  }
+  :root[data-theme="dark"]{
+    --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
+    --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
+  }
+  /* Phone-first. Body text sits at 16px (never below -- iOS zooms on focus under 16px and
+     small type is the main complaint on a handset), the column is capped just above a
+     comfortable measure, and side padding stays generous so text never touches the edge. */
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0}
+  .wrap{background:var(--ground);color:var(--ink);font-family:var(--sans);
+    font-size:16px;line-height:1.9;-webkit-font-smoothing:antialiased;
+    padding:1.5rem 1.15rem 4rem;min-height:100vh}
+  .inner{max-width:34rem;margin:0 auto}
+  header{border-bottom:1px solid var(--line);padding-bottom:1.25rem;margin-bottom:1.5rem}
+  .eyebrow{font-size:.72rem;letter-spacing:.16em;color:var(--faint);
+    text-transform:uppercase;margin:0 0 .5rem}
+  h1{font-size:1.4rem;font-weight:700;letter-spacing:-.01em;line-height:1.45;
+    margin:0;text-wrap:balance}
+  .lede{font-size:1rem;color:var(--muted);margin:1.1rem 0 0;line-height:1.95}
+  .picks{display:flex;flex-direction:column;gap:1.15rem}
+  .pick{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.2rem 1.1rem;position:relative}
+  .n{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.1em;margin-bottom:.35rem}
+  .pick h2{font-size:1.12rem;font-weight:700;line-height:1.6;margin:0 0 .7rem;
+    letter-spacing:-.005em;text-wrap:balance}
+  /* No justify: on a narrow screen it opens rivers of white space between Japanese runs. */
+  .sum{font-size:1rem;color:var(--ink)}
+  .sum p{margin:0 0 .95rem}
+  .sum p:last-child{margin-bottom:0}
+  .sum .blist{list-style:none;margin:0 0 1rem;padding:0;display:flex;
+    flex-direction:column;gap:.5rem}
+  /* 本文中の小見出し: 長い解説を拾い読みできるようにする */
+  .sum .sh{font-size:.94rem;font-weight:700;color:var(--ink);margin:1.5rem 0 .55rem;
+    padding-left:.6rem;border-left:3px solid var(--accent);line-height:1.6}
+  .sum .sh:first-child{margin-top:0}
+  .sum .blist li{position:relative;padding-left:1.1rem;line-height:1.85}
+  .sum .blist li::before{content:"";position:absolute;left:.2rem;top:.75em;
+    width:.32rem;height:.32rem;border-radius:50%;background:var(--accent)}
+  /* 図解の崩れ防止: 長い語も枠内で折り返し、幅が足りなければ横スクロールさせる */
+  .fig *{overflow-wrap:anywhere;word-break:normal;min-width:0}
+  /* 図解: CSS で組む（SVGだと縮小して読めなくなる）。縦積みなので幅の狭い画面でも崩れない */
+  .fig{margin:.9rem 0 1rem;padding:.9rem .85rem;border:1px solid var(--line);
+    border-radius:12px;background:var(--ground)}
+  .fig-t{font-size:.76rem;font-weight:700;letter-spacing:.06em;color:var(--accent);
+    margin-bottom:.7rem}
+  .fig-c{font-size:.78rem;color:var(--muted);margin-top:.7rem;line-height:1.7}
+  .flow{display:flex;flex-direction:column;align-items:stretch;gap:.3rem}
+  .flow .step{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .7rem;text-align:center}
+  .flow .step b{display:block;font-size:.9rem;font-weight:700}
+  .flow .step span{display:block;font-size:.78rem;color:var(--muted);margin-top:.15rem;
+    line-height:1.6}
+  .flow .arr{text-align:center;color:var(--accent);font-size:.9rem;line-height:1}
+  /* 2x2 マトリクス: 経営フレームの定番。軸ラベルを外側に置いて象限を読ませる */
+  .mtx{display:flex;flex-direction:column;gap:.3rem}
+  .mtx .ylab{font-size:.72rem;color:var(--muted);text-align:center}
+  .mtx .grid{display:grid;grid-template-columns:1fr 1fr;gap:.35rem}
+  .mtx .mcell{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .6rem;min-height:3.6rem;display:flex;flex-direction:column;
+    justify-content:center}
+  .mtx .mcell.empty{background:transparent;border-style:dashed;opacity:.5}
+  .mtx .mcell b{font-size:.86rem;font-weight:700;line-height:1.5}
+  .mtx .mcell span{font-size:.76rem;color:var(--muted);margin-top:.2rem;line-height:1.55}
+  .mtx .xlabs{display:flex;justify-content:space-between;font-size:.72rem;
+    color:var(--muted);padding:0 .2rem}
+  /* 横棒: 研究の効果量・前後差を数字で見せる */
+  .bars{display:flex;flex-direction:column;gap:.5rem}
+  .brow{display:flex;flex-direction:column;gap:.2rem}
+  .blab{font-size:.84rem;font-weight:600}
+  .blab .bnote{font-weight:400;color:var(--muted);font-size:.76rem;margin-left:.4rem}
+  /* grid: the bar track takes the leftover width and the number never wraps under it.
+     A percentage width inside a flex row was being resolved against the wrong box, which is
+     what made the bars overflow on a phone. */
+  .btrack{display:grid;grid-template-columns:minmax(0,1fr) max-content;gap:.55rem;
+    align-items:center}
+  .bwrap{background:var(--line);border-radius:5px;height:1.35rem;overflow:hidden;width:100%}
+  .bbar{height:100%;background:var(--accent);border-radius:5px;opacity:.9}
+  .bval{font-size:.82rem;font-weight:700;color:var(--accent);
+    font-variant-numeric:tabular-nums}
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
+  .cmp .col{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .65rem}
+  .cmp .ch{font-size:.78rem;font-weight:700;color:var(--accent);margin-bottom:.4rem;
+    padding-bottom:.35rem;border-bottom:1px solid var(--line)}
+  .cmp ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.3rem}
+  .cmp li{font-size:.86rem;line-height:1.6;padding-left:.75rem;position:relative}
+  .cmp li::before{content:"・";position:absolute;left:0;color:var(--faint)}
+  .rel{display:flex;flex-direction:column;align-items:center;gap:.55rem}
+  .rel .hub{background:var(--accent);color:var(--card);border-radius:999px;
+    padding:.5rem 1.1rem;font-size:.9rem;font-weight:700}
+  .rel .sats{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem}
+  .rel .sat{background:var(--card);border:1px solid var(--line);border-radius:999px;
+    padding:.35rem .75rem;font-size:.84rem}
+  @media (max-width:380px){ .cmp{grid-template-columns:1fr} }
+  /* Tap target: a bare inline link is hard to hit on a phone, so give it real height. */
+  .src{display:inline-block;margin-top:1rem;font-size:.86rem;color:var(--muted);
+    text-decoration:none;border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .8rem;line-height:1.5;word-break:break-word}
+  .src:hover{color:var(--accent);border-color:var(--accent)}
+  /* 今週の論文: 定義リストで「問い／検証／結果／含意／留意」を固定の型に見せる */
+  .papers{margin-top:2.2rem}
+  .sec{font-size:.78rem;font-weight:700;letter-spacing:.14em;color:var(--accent);
+    margin:0 0 .9rem;padding-bottom:.5rem;border-bottom:1px solid var(--line)}
+  .paper{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.1rem 1.05rem;margin-bottom:1rem}
+  .paper h3{font-size:1.02rem;font-weight:700;line-height:1.6;margin:0 0 .3rem;
+    text-wrap:balance}
+  .paper .auth{font-size:.78rem;color:var(--faint);margin-bottom:.75rem}
+  .paper dl{margin:0;display:grid;grid-template-columns:max-content minmax(0,1fr);
+    gap:.5rem .8rem;align-items:start}
+  .paper dt{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.08em;
+    padding-top:.15rem;white-space:nowrap}
+  .paper dd{margin:0;font-size:.9rem;line-height:1.8;text-align:justify}
+  .paper .finds{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;
+    gap:.35rem}
+  .paper .finds li{position:relative;padding-left:1rem;line-height:1.75}
+  .paper .finds li::before{content:"";position:absolute;left:.2rem;top:.72em;width:.3rem;
+    height:.3rem;border-radius:50%;background:var(--accent)}
+  @media (max-width:420px){ .paper dl{grid-template-columns:1fr;gap:.15rem .8rem}
+    .paper dt{margin-top:.5rem} }
+  footer{margin-top:2.4rem;padding-top:1.1rem;border-top:1px solid var(--line);
+    font-size:.78rem;color:var(--faint);line-height:1.7}
+  a:focus-visible,.src:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+.fav{appearance:none;-webkit-appearance:none;cursor:pointer;display:inline-flex;
+  align-items:center;justify-content:center;gap:6px;min-width:44px;min-height:44px;
+  padding:0 12px;border-radius:999px;font:inherit;font-size:14px;font-weight:600;
+  background:var(--surface,#fff);color:var(--ink-mut,#6b7280);
+  border:1px solid var(--line,#e5e7eb);line-height:1;}
+.fav:hover{border-color:#f0b429;color:#b26b00;}
+.fav[aria-pressed="true"]{background:#fff8e6;border-color:#f0b429;color:#b26b00;}
+.fav .ic{font-size:16px;line-height:1;}
+.fav-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:14px 0 6px;}
+.fav-bar a.all{font-size:13.5px;color:var(--ink-mut,#6b7280);text-decoration:none;
+  min-height:44px;display:inline-flex;align-items:center;}
+.fav-bar a.all:hover{text-decoration:underline;}
+.fav-mini{appearance:none;-webkit-appearance:none;cursor:pointer;background:none;border:0;
+  padding:6px 8px;margin-left:2px;font-size:15px;line-height:1;color:#c3c8d0;
+  min-width:36px;min-height:36px;}
+.fav-mini[aria-pressed="true"]{color:#f0b429;}
+
+</style>
+</head>
+<body>
+<div class="wrap"><div class="inner">
+  <header>
+    <p class="eyebrow">Weekly Insight</p>
+    <h1>今週のインサイト <span style="color:var(--faint);font-weight:500">2026-08-16</span></h1>
+    <p class="lede">今週の論考には、はっきりした共通の背骨があります。AIをどう入れるかではなく、AIを入れた組織で「人が何を隠し、何を信じなくなるか」という話が中心に来ました。従業員がAIによる業務改善をわざと隠す、AIが吐き出した低品質な情報が社内に溜まって確認作業が増える、AIが発想の幅をむしろ狭める——いずれも去年までの「導入すれば生産性が上がる」という論調とは逆向きです。ツールの性能ではなく、組織の信頼と判断の質がボトルネックになった、というのが今週の変化です。もうひとつの軸は、古典的な戦略論の再訪でした。垂直統合はどんな条件で儲かるのか、顧客にとっての価値を想像で決めてはいけない、他店のやり方を真似ても成果は移らない——どれも数十年読み継がれてきた論点ですが、AIで手段が増えた今こそ効きます。読む順としては、まず③の「従業員がAI活用を隠す」から入ってください。自社に思い当たる節があるはずです。次に②の知識の劣化、そこから⑤のSaaS判断マトリクスへ進むと、AI周りの論点が一本に繋がります。垂直統合と横展開の失敗の話は、店舗を増やす判断が視野にあるときに読むと効きます。</p>
+    <div class="fav-bar"><button class="fav" data-fav data-url="https://hacadr-cloud.github.io/weekly-insight/2026-08-16.html" data-title="週次インサイト 2026-08-16" data-kind="insight" data-date="2026-08-16" aria-pressed="false"><span class="ic">☆</span><span class="tx">あとで読む</span></button><a class="all" href="favorites.html">保存した記事を見る →</a></div>
+  </header>
+  <div class="picks">
+    <article class="pick">
+      <div class="n">1</div>
+      <h2>従業員はAIでの効率化を上司に隠す</h2>
+      <div class="fig"><div class="fig-t">沈黙が生む悪循環</div><div class="flow"><div class="step"><b>AIで効率化</b><span>個人が使い方を発見する</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>申告すると損</b><span>仕事が増える・職が危うい</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>黙って抱える</b><span>実践知が個人に留まる</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>組織は変わらず</b><span>導入率だけ高い状態が続く</span></div></div><div class="fig-c">3段目を切らないと4段目は変わらない</div></div>
+      <div class="sum"><h3 class="sh">何が起きているのか</h3><p>生成AIを使いこなして自分の仕事を大幅に効率化した従業員が、その事実を職場で共有せず、意図的に隠している。この現象が業種を問わず広がっている。</p><p>経営側から見れば理解しがたい行動に見える。会社がツールを用意し、使えと言い、実際に成果が出ている。それなのに現場は黙っている。</p><h3 class="sh">なぜこれまで解けなかったのか</h3><p>AI導入の議論は長らく「ツールの整備」と「研修」の問題として扱われてきた。使える環境を作り、使い方を教えれば普及する、という前提である。</p><p>しかしこの前提は、従業員が効率化の成果を会社と共有したいと思っている、という暗黙の仮定に立っている。その仮定が崩れているとしたら、ツールをいくら配っても知識は広がらない。</p><p>実際、多くの企業で「導入率は高いのに全社の生産性が上がらない」という現象が起きている。個人の中に閉じた改善が、組織の能力になっていない。</p><h3 class="sh">隠す理由は3つある</h3><p>従業員が黙る動機は、怠慢でも無理解でもなく、きわめて合理的な自己防衛だ。</p><ul class="blist"><li>仕事量が増える**——4時間かかっていた作業が1時間で終わると分かれば、空いた3時間に別の仕事が割り当てられる。効率化の見返りが「もっと働け」なら、誰も申告しない</li><li>雇用への不安**——自分の仕事がAIで代替できると証明することは、自分の職を不要だと証明することに等しい。特に定型業務の担当者ほどこの恐れは強い</li><li>評価の逆転**——今まで「早くて正確」で評価されてきた人が、その優位がツールによるものだと知られると、評価の根拠を失う</li></ul><h3 class="sh">「隠す」の中身</h3><p>隠し方は極端ではない。多くは、AIで下書きを作ってから自分で手直しし、あたかも全部自分で書いたように提出する、という形をとる。</p><p>あるいは、聞かれれば「少し使っている」と答えるが、実際にどんな指示の出し方をすれば精度が出るのか、どのタスクは任せてはいけないのか、といった実践知は口にしない。この実践知こそが組織にとって最も価値のある部分だ。</p><p>結果として、社内には「AIを使っている人」は増えるが、「AIをうまく使うノウハウ」は一切蓄積されない。</p><h3 class="sh">背景にあるのは組織への不信</h3><p>著者の見立てでは、これはAI固有の問題ではなく、組織への不信が新しい形で表面化したものだ。</p><p>過去に業務改善を提案したら仕事が増えただけだった、効率化の結果として人員が減らされた——そうした記憶がある職場ほど、従業員は口を閉ざす。AIは、その不信を可視化する道具として働いている。</p><p>逆に言えば、心理的安全性が確立している職場では同じ現象が起きにくい。「言っても損をしない」という確信があれば、人は自分の工夫を話したがるものだからだ。</p><h3 class="sh">組織として何をするか</h3><p>信頼を作る側に手を打つ必要がある。示されている方向は次のとおり。</p><ul class="blist"><li>効率化の見返りを先に約束する**——浮いた時間の使い道を本人に委ねる、あるいは成果として評価する。「時間が空いたら別の仕事」を既定にしない</li><li>雇用への影響を明示する**——AI活用を理由に人を減らさないと言い切れるなら、言い切る。言えないなら、どこまでなら約束できるかを具体的に示す</li><li>共有した人を評価する**——ノウハウを出した人が損をしない設計にする。使い方の共有そのものを評価項目に入れる</li><li>失敗事例も歓迎する**——「これは任せたら駄目だった」という情報は、成功事例と同じかそれ以上に価値がある</li></ul><h3 class="sh">具体的な場面</h3><p>店舗運営で考えると分かりやすい。ある店長が、日報や本部への報告書の作成をAIに任せて、毎日30分を浮かせているとする。</p><p>これを本部に申告したらどうなるか。「じゃあその30分で別の業務を」と言われる可能性が高いと本人が思えば、絶対に言わない。そして他の店舗は、同じ30分を今も手作業で使い続ける。</p><p>本部から見えるのは「AI導入したのに何も変わらない」という景色だ。実際には変わっているのだが、その変化は個人の中に留まっている。</p><h3 class="sh">別の見方</h3><p>この結論に反する立場もある。隠す行動を「不信」だけで説明するのは、従業員側の合理性を美化しすぎだという批判だ。</p><p>単に共有する手間が面倒なだけ、あるいは自分の優位を守りたいだけ、という説明でも同じ行動は起きる。その場合、心理的安全性を高めても共有は増えず、共有そのものにインセンティブを付ける方が効く。</p><h3 class="sh">限界</h3><p>議論の土台は事例と観察であり、統制された実験ではない。隠す従業員がどの程度の割合を占めるのか、業種や職位でどう違うのかといった定量的な裏付けは弱い。</p><p>また、この話が効くのは「AIで実際に効率が上がっている」職場に限られる。効果が出ていない段階では、隠すも何もない。</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14236" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">2</div>
+      <h2>AIが生む「知識の劣化」から会社を守る4段階</h2>
+      <div class="fig"><div class="fig-t">知識劣化への対処</div><div class="cmp"><div class="col"><div class="ch">よくある対処</div><ul><li>AI利用を禁止・制限する</li><li>読む側に確認を求める</li><li>気づいた人が都度直す</li><li>品質は個人の意識に任せる</li></ul></div><div class="col"><div class="ch">本稿が示す対処</div><ul><li>出所を文書に記録する</li><li>作る側に責任を置く</li><li>重要度で関門を変える</li><li>差し戻し件数を測る</li></ul></div></div><div class="fig-c">禁止でなく関門の設計で守る</div></div>
+      <div class="sum"><h3 class="sh">何が問題か</h3><p>生成AIの普及で、社内に出回る文書の量が急増している。問題は量ではなく質だ。もっともらしいが精度の低い情報が、業務プロセスの各所に混ざり込む。</p><p>これを著者は「スロップ化」——知識の劣化と呼ぶ。個々の誤りは小さくても、積み重なると業務基盤そのものへの信頼が失われる。</p><h3 class="sh">なぜ効率化が逆転するのか</h3><p>本来AIは作業時間を削るはずだった。ところが劣化した情報が混ざると、受け取った側が確認作業に時間を取られる。</p><p>作る側は10分で済ませ、読む側が30分かけて裏を取る。組織全体では時間が増えている。しかも作る側にはその負担が見えない。</p><p>さらに厄介なのは、確認コストが積もると人は確認をやめることだ。全部は見きれないので、だいたい合っているだろうと通す。そこから誤りが下流へ流れ始める。</p><h3 class="sh">信頼が失われる順序</h3><p>劣化は次の段階を踏んで進む。</p><ul class="blist"><li>第1段階**——AIが作った低品質な文書が業務に混ざる。この時点では個別の誤りにすぎない</li><li>第2段階**——受け手が確認に追われる。工数が膨らむが、まだ品質は保たれている</li><li>第3段階**——確認しきれなくなり、チェックが形骸化する。誤りが素通りし始める</li><li>第4段階**——「社内の資料はあてにならない」という認識が定着し、業務基盤への信頼が失われる</li></ul><p>第4段階まで行くと、正しい資料まで疑われるようになる。回復には長い時間がかかる。</p><h3 class="sh">4つのステップ</h3><p>本稿が示す対処は、AIの使用を制限する方向ではない。品質の関門を設計する方向だ。</p><ul class="blist"><li>出所を明示する**——どの文書がAI生成なのか、人の確認を経ているのかを、文書自体に記録する。区別がつかない状態が最も危ない</li><li>確認の責任を作る側に置く**——生成した人が正確性を保証する。読む側に検証を押し付けない。これは「AIを使ってよいが、出したものの責任は持つ」という単純な規律</li><li>重要度で関門の高さを変える**——全部を同じ厳しさで見る必要はない。社外に出るもの、金額が動くもの、人事に関わるものだけ厳格にする</li><li>劣化を測る**——誤りが見つかった件数、差し戻しの回数を記録する。感覚で「最近ひどい」と言い合っても対処できない</li></ul><h3 class="sh">具体的な場面</h3><p>複数店舗を持つ会社の本部を想像すると分かりやすい。各店から上がる報告、本部が出すマニュアル、取引先への提案書——どれもAIで作れる。</p><p>マニュアルがAI生成で、店舗スタッフが読んで実行し、実際には手順が違っていたとする。一度でもこれが起きると、スタッフは次からマニュアルを信じない。そして経験のある人に口頭で聞くようになる。</p><p>これは文書化された知識が口伝に退化する現象で、多店舗展開の土台を崩す。</p><h3 class="sh">反論</h3><p>この議論への反論はある。人間が書いた文書だって間違っていた、という指摘だ。AI以前から社内文書の質はばらついていた。</p><p>これは正しい。ただし違いは量とスピードにある。人が書いていた頃は、書く手間が自然な関門になっていた。その関門が消えたことで、確認の仕組みを別途作る必要が生じた——というのが著者の立場だ。</p><h3 class="sh">限界</h3><p>提示されているのはフレームワークであり、効果を測った実験ではない。4つのステップを踏んだ企業でどれだけ劣化が減ったか、という定量的な根拠は示されていない。</p><p>また、小さな組織では過剰な仕組みになりうる。文書の流通量が少なく、誰が書いたか全員が分かる規模なら、出所の記録は不要かもしれない。</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14289" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">3</div>
+      <h2>生成AIで価値が落ちるSaaSと落ちないSaaS</h2>
+      <div class="fig"><div class="fig-t">SaaSの生存判定</div><div class="mtx"><div class="ylab top">予測的</div><div class="grid"><div class="mcell"><b>規模次第</b><span>自社データ量が精度を決める</span></div><div class="mcell"><b>最も残る</b><span>データとモデルの両方が要る</span></div><div class="mcell"><b>内製候補</b><span>ルール明確・データも自社</span></div><div class="mcell"><b>外部集約が価値</b><span>データ自体を作れない</span></div></div><div class="ylab bot">決定論的</div><div class="xlabs"><span>社内データ</span><span>プール型データ</span></div></div><div class="fig-c">左下ほど自社で作れる／右上ほど残る</div></div>
+      <div class="sum"><h3 class="sh">何が問題か</h3><p>生成AIが普及して以来、「SaaSはもう要らない、自社で作れる」という議論が繰り返されている。実際に社内ツールをAIで内製する企業も出てきた。</p><p>しかしこの議論は乱暴すぎる。すべてのソフトウェアが一律に代替されるわけではないのに、一括りに論じられてきた。判断の基準がなかったのが問題だ。</p><h3 class="sh">2つの軸で分ける</h3><p>本稿は、ソフトウェアの価値を2つの軸で捉え直す。</p><ul class="blist"><li>扱うタスクの性格**——決定論的か、予測的か。決定論的とは「毎回同じ入力なら同じ答えが正しい」タスク（給与計算、在庫の引き当て、会計処理）。予測的とは「答えが一意に決まらない」タスク（需要予測、文章の生成、推薦）</li><li>コンテキストの源泉**——社内データか、プール型か。社内データとは自社の中だけで完結する情報。プール型とは多数の企業から集まったデータが価値を生むもの（業界ベンチマーク、決済の不正検知、求人市場の相場）</li></ul><p>この2軸で4象限を作ると、どのSaaSが危ういかが見える。</p><h3 class="sh">象限ごとの見立て</h3><ul class="blist"><li>決定論的 × 社内データ**——最も内製化されやすい。ルールが明確で、データも自社にある。AIで作れる領域</li><li>決定論的 × プール型**——外部データの集約自体に価値があるため、生成AIでは代替できない。残る</li><li>予測的 × 社内データ**——予測の質は自社データの量に依存する。中小規模なら外部サービスの方が精度が出やすい</li><li>予測的 × プール型**——最も代替されにくい。他社データの蓄積とモデルの両方が要る</li></ul><h3 class="sh">なぜこう分かれるのか</h3><p>生成AIが得意なのは「作ること」であって「持っていること」ではない。コードを書く手間は劇的に下がったが、データを集める手間は下がっていない。</p><p>したがって、価値の源泉がコードにあるSaaSは危うく、価値の源泉がデータの集積にあるSaaSは残る。この一点で説明がつく。</p><h3 class="sh">具体的な場面</h3><p>中小の小売・サービス業で考える。社内の勤怠管理や日報の集計は、決定論的で社内データだけで完結する。ここは内製の候補になりうる。</p><p>一方、周辺エリアの相場や競合の価格動向を知りたい場合、そのデータは自社の中にない。他社から集まったデータを持つサービスに払う価値がある。</p><p>判断の順序としては、まず契約中のSaaSを4象限に並べてみる。左下（決定論的×社内データ）に集まっているものが、見直しの候補になる。</p><h3 class="sh">内製化の落とし穴</h3><p>ただし「作れる」と「運用できる」は別だ。AIで作ったツールにも、保守・障害対応・データの移行・セキュリティが要る。</p><p>月額数万円のSaaSを解約して内製した結果、担当者一人分の時間を食い続ける、という結末はよくある。判断には作る費用ではなく持ち続ける費用を入れる。</p><h3 class="sh">反論</h3><p>この枠組みへの反論は、軸の切り方が固定的すぎる点だ。生成AIの能力は上がり続けており、今「予測的だから残る」とされた領域も、数年後には作れるようになる可能性がある。</p><p>また、プール型データの優位も、データが商品化されて誰でも買えるようになれば崩れる。</p><h3 class="sh">限界</h3><p>これは実証研究ではなく判断のための枠組みである。実際にこの分類で判断した企業がどうなったか、という追跡データはない。</p><p>また、多くの実在のSaaSは4象限のどれか1つにきれいに収まらない。複数の機能を持つ製品をどう分類するかは、使う側の解釈に委ねられている。</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14173" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">4</div>
+      <h2>垂直統合が儲かる会社と儲からない会社</h2>
+      <div class="fig"><div class="fig-t">垂直統合の可否</div><div class="mtx"><div class="ylab top">業務量が安定</div><div class="grid"><div class="mcell"><b>慎重に</b><span>差別化目的なら投資として</span></div><div class="mcell"><b>統合が効く</b><span>設備も人も常に埋まる</span></div><div class="mcell"><b>外注が有利</b><span>固定費を抱えるだけ</span></div><div class="mcell"><b>部分的に</b><span>埋まる業務だけ切り出す</span></div></div><div class="ylab bot">業務量が不安定</div><div class="xlabs"><span>市場地位が弱い</span><span>市場地位が強い</span></div></div><div class="fig-c">右上だけが明確に元が取れる</div></div>
+      <div class="sum"><h3 class="sh">何が問題か</h3><p>仕入先や販売先を自社に取り込む垂直統合は、古くからある成長の手段だ。中間マージンが消え、供給が安定し、品質を握れる——理屈の上では明快である。</p><p>しかし実際には、垂直統合で収益が改善した企業と、負担だけが増えた企業に分かれる。何がその分かれ目なのかが、長らく整理されてこなかった。</p><h3 class="sh">前提となる条件</h3><p>本稿の結論は明快だ。**強い市場地位を維持している事業なら、垂直統合はおそらく元が取れる。それ以外では成果は疑わしい。**</p><p>なぜ市場地位が条件になるのか。垂直統合は固定費を増やす行為だからである。自前で持つということは、稼働率が下がっても費用が消えないということだ。</p><p>販売量が安定して大きい事業なら、自前の設備は常に埋まる。量が読めない事業では、埋まらない設備を抱え続けることになる。</p><h3 class="sh">何を失うか</h3><p>垂直統合で失われるものは、見落とされがちだが大きい。</p><ul class="blist"><li>柔軟性**——外注なら発注量を絞れる。自前だと人も設備も残る</li><li>規模の経済**——専業の外部業者は複数社から仕事を受けており、自社1社分より量が多い。単位あたりの費用で負ける可能性がある</li><li>技術の陳腐化**——外部業者は競争にさらされて設備を更新し続ける。自前だと更新の判断が社内政治になり遅れる</li><li>経営の注意**——本業と異なる事業を抱えると、経営陣の関心が分散する</li></ul><h3 class="sh">統合しても得しないケース</h3><p>中間マージンが消えれば儲かる、という計算はしばしば誤る。外注先が取っている利益率が低い場合、内製しても浮く額は小さい。</p><p>むしろ、外注先の利益率が高い領域こそ統合の候補になる。ただしそこは往々にして専門性が高く、自社が同じ品質でやれる保証がない。</p><h3 class="sh">具体的な場面</h3><p>複数店舗を持つ小売・サービス業で言えば、清掃・警備・物流・内装工事といった業務が判断の対象になる。</p><p>店舗が20店あって毎日発生する業務なら、自前で人を持つ意味はある。稼働が埋まるからだ。3店舗で月に数回の業務なら、外注の方が安い。人を遊ばせないからである。</p><p>判断の分かれ目は「その業務が自社の中で常時埋まる量があるか」——これに尽きる。理念や効率ではなく、稼働率の問題として考える。</p><h3 class="sh">逆方向の統合</h3><p>販売側への統合（メーカーが直営店を持つ等）は、また事情が違う。ここで得られるのは費用の削減ではなく、顧客との接点と情報である。</p><p>この場合、判断基準は稼働率ではなく「顧客情報が本当に自社の意思決定を変えるか」になる。情報を取っても使わないなら、直営の費用は無駄になる。</p><h3 class="sh">反論</h3><p>本稿への反論としては、市場地位が弱い企業こそ統合で差別化すべきだ、という立場がある。他社と同じ外注先を使っている限り、提供するものは同じになる。</p><p>この立場からは、統合は費用の問題ではなく差別化の投資として捉えられる。ただしその場合も、差別化が顧客に伝わり価格に反映されるかを確認しないと、費用だけが増える。</p><h3 class="sh">限界</h3><p>本稿は古典的な戦略論であり、当時の製造業を前提とした議論が多く含まれる。外注市場が発達し、クラウドや業務委託で調達できる範囲が広がった現在では、統合の必要性そのものが下がっている。</p><p>また「強い市場地位」の定義が曖昧で、自社がそれに当てはまるかの判定は使う側に委ねられている。</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14200" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">5</div>
+      <h2>優秀な店を真似ても成果は移らない理由</h2>
+      <div class="fig"><div class="fig-t">横展開が失敗する道筋</div><div class="flow"><div class="step"><b>高成績を観察</b><span>目に見える手順を記録する</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>手順書を作る</b><span>判断の理由は記録されない</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>他店で実行</b><span>通常時は回るように見える</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>例外で崩れる</b><span>判断の基準を持っていない</span></div></div><div class="fig-c">2段目で落ちるものが成果の正体</div></div>
+      <div class="sum"><h3 class="sh">何が問題か</h3><p>複数の拠点を持つ企業は、成績の良い店舗のやり方を他店へ横展開しようとする。手順を文書化し、研修を行い、同じ道具を配る。</p><p>ところが、同じことをやらせても成果は再現しない。この現象は現場では広く知られているが、なぜそうなるのかの説明は曖昧なまま「人が違う」「立地が違う」で片付けられてきた。</p><h3 class="sh">研究が示す原因</h3><p>本稿の主張は明確だ。**コピーできるのは手順（ルーティン）であって、成果ではない。**</p><p>高成績の拠点で観察されるのは、目に見える手順だけではない。その手順が生まれた経緯、なぜその順序なのかという理由、例外が起きたときの判断——これらは文書に残らない。</p><p>横展開で移るのは表面の手順だけだ。手順を支えている判断の文脈が抜け落ちるため、想定外が起きた瞬間に崩れる。</p><h3 class="sh">なぜ抜け落ちるのか</h3><p>高成績の拠点の担当者に「何をしているか」を聞くと、答えは手順として返ってくる。本人も、自分がどこで判断を切り替えているかを言語化できていない。</p><p>つまり、写す側の観察が甘いのではなく、写される側も説明できない。これが横展開の難しさの根にある。</p><h3 class="sh">起きること</h3><p>手順だけを移した拠点では、次のような症状が出る。</p><ul class="blist"><li>例外に弱い**——想定通りの状況では回るが、イレギュラーが起きると止まる。判断の基準を持っていないため</li><li>手順が形骸化する**——なぜやるか分からない手順は、忙しくなると省略される</li><li>改善が止まる**——手順が与えられたものである以上、現場で直す発想が生まれない</li><li>元の拠点も落ちる**——横展開の担当に人手を取られ、成果を出していた拠点自体の運営が薄くなることがある</li></ul><h3 class="sh">何をすれば移るのか</h3><p>手順書を渡す代わりに、判断が生まれた経緯を移す必要がある。実務的には次のような形をとる。</p><ul class="blist"><li>人を動かす**——高成績の拠点の人間を一定期間、展開先に置く。文書では移らないものが人には付いている</li><li>例外を集める**——「こういう時はどうするか」を、成功例ではなく判断に迷った事例として集める</li><li>なぜを書く**——手順書に理由を併記する。「順番を変えてはいけない理由」まで書かないと守られない</li><li>一部だけ写す**——全部を写そうとせず、文脈依存の薄い部分（発注、清掃、記録）だけを標準化する</li></ul><h3 class="sh">具体的な場面</h3><p>美容室で考えると分かりやすい。ある店の再来率が突出して高いとする。予約の取り方、カウンセリングの手順、次回提案のタイミングを調べて、他店にそのまま導入する。</p><p>しかし移らない。なぜなら、その店のスタッフは「この客には次回提案をしない方がいい」という判断を無意識にしており、それが手順書に書かれていないからだ。</p><p>手順どおり全員に提案した店では、押し売り感が出て逆に再来率が下がる——という形で、写した結果がマイナスになることさえある。</p><h3 class="sh">別の見方</h3><p>この結論に対する反論は、標準化を諦める言い訳になりうるという点だ。実際、多くの業種で標準化は機能している。ファストフードや量販店の運営がその例である。</p><p>違いは、業務が判断を含むかどうかだろう。判断の余地が小さい業務ほど手順のコピーは効き、接客のように相手次第で正解が変わる業務ほど効かない。</p><h3 class="sh">限界</h3><p>本稿はルーティンの移転に関する組織研究の系譜にあり、扱っている対象は主に製造・サービスの現場である。すべての横展開が失敗すると言っているわけではない。</p><p>また「文脈が移らない」ことを示すのは、移った/移らないの線引きが観察者の解釈に依存する。定量的な効果量として示しにくい領域である。</p></div>
+      <a class="src" href="https://news.google.com/rss/articles/CBMi3wFBVV95cUxPV2s1QVFHd3ptME5seGNiMmNuek9COFlUNmRYY1lTZUpkWGJMWGRQbUVaaDA1TG1MeWdUbkYtRTZCVENSZThvODhqcGFrYVd1QnlONDN2VVdzUTRxbTBUNXR2S0dpT0dJRWYxblZ3d0E3X2FSdnZuaTRfRFhjNHNEWWV6LXNtMlNKd0hXcUo5bUh6LUUtbTlDOGtYTnEyMm10NmZHR3hTaGc1WHBVSkJCWUNHZndBbVJrUDRRTHpXNG9YZUVOTTdnTWNscEh2aXlzeExnbGQ4MU83NEoxSm5B?oc=5" target="_blank" rel="noopener">California Mgmt Review ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">6</div>
+      <h2>AIは発想を速めるが、狭くもする</h2>
+      <div class="fig"><div class="fig-t">AIの効きと副作用</div><div class="cmp"><div class="col"><div class="ch">よく測られる効果</div><ul><li>案が出るのが速い</li><li>件数が多い</li><li>文章が整っている</li><li>誰でも一定の水準を出せる</li></ul></div><div class="col"><div class="ch">測られない副作用</div><ul><li>案が互いに似る</li><li>通念が再生産される</li><li>顧客に会わなくなる</li><li>最初の提案が枠を決める</li></ul></div></div><div class="fig-c">件数で測ると右側が見えない</div></div>
+      <div class="sum"><h3 class="sh">何が問題か</h3><p>生成AIをアイデア出しに使うと、確かに速い。数十の案が数分で出る。この効果は多くの企業で実感されている。</p><p>しかし本稿の研究が指摘するのは、その裏側だ。AIを使ったチームは、**発想の幅が狭まり、既存の偏りを強め、顧客から遠ざかる**傾向がある。速さと引き換えに何かを失っている。</p><h3 class="sh">なぜこれまで見えなかったのか</h3><p>アイデア出しの評価は通常「何件出たか」「どれだけ速かったか」で行われる。この指標ではAIは圧勝する。</p><p>多様性——出た案がどれだけ互いに違うか——を測ると景色が変わる。AIは学習データの中心に寄った案を出すため、案の数は多くても互いに似る。人間のチームが出す案の方が、数は少なくてもばらつきが大きい。</p><h3 class="sh">3つの副作用</h3><p>研究が挙げる問題は次の3つに整理される。</p><ul class="blist"><li>思考の収束**——AIの提案を起点にすると、チームの議論がその枠内に収まる。最初に提示された方向から外れた案が出にくくなる。これは人間同士の会議でも起きる現象だが、AIの提案は流暢で完成度が高い分、より強く働く</li><li>偏りの強化**——学習データにある通念がそのまま出力される。「この業種ならこうするもの」という前提が疑われずに再生産される</li><li>顧客からの距離**——AIに聞けば答えが返るため、顧客に会いに行く動機が下がる。実際の観察やインタビューの代わりに、AIが想像した顧客像で議論が進む</li></ul><h3 class="sh">3つ目が最も重い</h3><p>著者が最も警戒しているのは、顧客からの距離である。前の2つは案の質の問題だが、これは問題設定そのものが誤る。</p><p>AIは「顧客はこう考えるだろう」を流暢に語る。それは学習データにある一般論であって、目の前の顧客ではない。しかし読むと納得できてしまうため、確認する必要を感じなくなる。</p><h3 class="sh">使い方の分岐</h3><p>本稿の含意は「AIを使うな」ではなく、どの工程に使うかの切り分けである。</p><ul class="blist"><li>発散には使わない**——最初のアイデア出しを AI から始めると、枠が固定される。人間が先に出してから AI に足させる</li><li>収束には使える**——出た案の整理、分類、抜けの指摘は AI が得意</li><li>検証には使わない**——顧客がどう思うかは顧客に聞く。AI の推測を検証の代わりにしない</li><li>叩き台には使える**——ただし「これは通念である」と全員が認識した上で</li></ul><h3 class="sh">具体的な場面</h3><p>新しいサービスや販促を考える場面を想像する。会議の冒頭で「AIに聞いてみました」と20案が配られると、その日の議論は20案の中から選ぶ作業になる。</p><p>本来なら現場の担当者が持っていた「あの常連客がこう言っていた」という情報は、20案のどれにも当てはまらないので出てこない。出しにくい空気ができる。</p><p>順序を変えるだけで結果が変わる。先に現場の声を30分出させて、その後でAIに補わせる。同じツールを使っても、枠を決めるのが誰かが変わる。</p><h3 class="sh">反論</h3><p>反論としては、そもそも人間の発想も既存の枠に縛られている、という指摘がある。AIが特別に狭いわけではなく、人間も自分の経験の範囲でしか考えていない。</p><p>これは妥当な指摘だ。ただし人間は複数人集まると経験がばらつくのに対し、AIは何人で使っても同じ中心に寄る。多様性の源が違う。</p><h3 class="sh">限界</h3><p>研究の対象はイノベーション業務であり、日常の定型業務には当てはまらない。定型業務でAIが通念どおりの答えを出すのは、むしろ望ましい。</p><p>また、効果はAIの使い方に強く依存する。指示の出し方を工夫すれば多様性は改善しうるが、本稿はその手法までは踏み込んでいない。</p></div>
+      <a class="src" href="http://hbr.org/2026/08/research-the-innovation-problems-ai-cant-solve" target="_blank" rel="noopener">HBR ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">7</div>
+      <h2>顧客にとっての価値を想像で決めてはいけない</h2>
+      <div class="fig"><div class="fig-t">価値を聞く相手</div><div class="rel"><div class="hub">顧客にとっての価値</div><div class="sats"><span class="sat">買う人</span><span class="sat">使う人</span><span class="sat">決める人</span><span class="sat">紹介する人</span><span class="sat">離れた人</span></div></div><div class="fig-c">5者の答えは一致しない</div></div>
+      <div class="sum"><h3 class="sh">何が問題か</h3><p>ドラッカーが経営者に投げかけた5つの質問の3つ目が「顧客にとっての価値は何か」である。そしてドラッカーはこの質問について、他とは異なる強い禁止を置いた。</p><p>**この答えを、経営者が想像で決めてはならない。** 顧客に聞くしかない、というのが彼の立場だった。</p><h3 class="sh">なぜ禁じたのか</h3><p>他の4つの質問——われわれの使命は何か、われわれの顧客は誰か、われわれの成果は何か、われわれの計画は何か——は、経営者が考えて答えるべきものだ。</p><p>しかし3つ目だけは違う。顧客が何に価値を感じているかは、提供する側からは見えないからである。</p><p>経営者は自社が何に力を入れているかを知っている。だからその力を入れた部分が評価されていると考える。この推論が、ほぼ常に外れる。</p><h3 class="sh">ずれの構造</h3><p>価値のずれは、次のような形で現れる。</p><ul class="blist"><li>提供側が誇る点が評価されていない**——技術・品質・こだわりに投資したが、顧客はそこを見ていない</li><li>提供側が軽視している点が評価されている**——立地、営業時間、担当者の対応、手続きの簡単さ</li><li>顧客の中でも分かれる**——同じ商品でも、顧客層によって価値の置き所が違う</li><li>価値が時間で動く**——最初は珍しさで来た顧客が、続けるうちに別の理由で来るようになる</li></ul><h3 class="sh">なぜ聞かないのか</h3><p>聞けばよい、という話に聞こえるが、実際にはほとんどの経営者が聞かない。理由はいくつかある。</p><p>聞くのが怖い、というのが一つ。自分が力を入れてきたことが評価されていないと知るのは、痛みを伴う。</p><p>もう一つは、聞いたつもりになる仕組みが社内にあることだ。アンケート、売上データ、担当者からの報告——これらは顧客の声そのものではなく、加工された情報である。</p><h3 class="sh">誰に聞くか</h3><p>ドラッカーの整理では、顧客は一種類ではない。直接の顧客（買う人）と、支援する顧客（使う人・決める人・紹介する人）が分かれる。</p><p>両方に価値があり、それぞれ違う。片方だけに合わせると、もう片方を失う。</p><h3 class="sh">具体的な場面</h3><p>携帯ショップを例に取る。店側は品揃え、プラン提案の的確さ、待ち時間の短さに力を入れているとする。</p><p>しかし来店客に聞くと、価値だと感じているのは「以前対応してくれた人がまた対応してくれた」だったりする。あるいは「聞いても馬鹿にされない」だったりする。</p><p>この答えが分かると、投資先が変わる。システムの高速化ではなく、担当者の定着率に手を打つべきだ、という判断になる。</p><p>美容室でも同じで、技術で選ばれていると思っていた店が、実は予約の取りやすさで選ばれていた、という結果はよくある。</p><h3 class="sh">聞き方</h3><p>ドラッカーが求めているのは大規模な調査ではない。少数でよいから、直接、開いた質問で聞くことである。</p><p>「満足しましたか」ではなく「なぜうちを使い続けているのか」を聞く。前者は自社の仮説を確認する質問で、後者は仮説を壊す可能性のある質問だ。</p><p>そして、聞くべき相手には**離れた顧客**も含まれる。使い続けている人は理由を語れるが、なぜ他社を選ばなかったかは語れない。</p><h3 class="sh">反論</h3><p>顧客に聞いても本当のことは分からない、という有名な反論がある。人は自分がなぜそれを選んだかを正確に説明できない、という認知科学の知見に基づく。</p><p>この反論は部分的に正しい。ただし、聞かずに想像するよりは、聞いて解釈する方が誤差が小さい。ドラッカーの禁止は「想像で決めるな」であって、「顧客の言葉を無批判に採用せよ」ではない。</p><h3 class="sh">限界</h3><p>この質問は答えを一度出せば終わりではない。顧客も市場も変わるため、定期的に問い直す必要がある。頻度をどう設定するかについて、明確な指針は示されていない。</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14510" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+  </div>
+  
+  <footer>
+    コンサルティングファーム・ビジネススクール・調査機関の19ソースから、
+    直近7日の公開分を収集し日本語に要約したもの。判断の前に各出典を確認してください。
+  </footer>
+</div></div>
+<script>
+(function(){
+  var KEY = "lsm-favs-v1";
+  function load(){ try { return JSON.parse(localStorage.getItem(KEY)) || []; }
+                   catch(e){ return []; } }
+  function save(v){ try { localStorage.setItem(KEY, JSON.stringify(v)); } catch(e){} }
+  function has(url){ return load().some(function(x){ return x.url === url; }); }
+  function paint(b){
+    var on = has(b.dataset.url);
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+    var ic = b.querySelector(".ic"), tx = b.querySelector(".tx");
+    if (ic) ic.textContent = on ? "\u2605" : "\u2606";
+    if (tx) tx.textContent = on ? "保存済み" : "あとで読む";
+    if (!ic && !tx) b.textContent = on ? "\u2605" : "\u2606";
+  }
+  function toggle(b){
+    var d = b.dataset, list = load(), i = list.findIndex(function(x){ return x.url === d.url; });
+    if (i >= 0) list.splice(i, 1);
+    else list.unshift({url:d.url, title:d.title||d.url, kind:d.kind||"", date:d.date||"",
+                       note:d.note||"", saved:new Date().toISOString().slice(0,10)});
+    save(list); paint(b);
+    if (window.renderFavs) window.renderFavs();
+  }
+  function wire(){
+    var bs = document.querySelectorAll("[data-fav]");
+    for (var i = 0; i < bs.length; i++){
+      (function(b){ paint(b); b.addEventListener("click", function(e){
+        e.preventDefault(); e.stopPropagation(); toggle(b); }); })(bs[i]);
+    }
+  }
+  window.favStore = {load:load, save:save, has:has};
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", wire);
+  else wire();
+})();
+</script>
+</body>
+</html>
