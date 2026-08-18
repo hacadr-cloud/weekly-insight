@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>今週のインサイト 2026-08-19</title>
+<style>
+  :root{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E; --accent-bg:#F5EFE3;
+    --sans: system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
+      --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E; --accent-bg:#F5EFE3;
+  }
+  :root[data-theme="dark"]{
+    --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
+    --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
+  }
+  /* Phone-first. Body text sits at 16px (never below -- iOS zooms on focus under 16px and
+     small type is the main complaint on a handset), the column is capped just above a
+     comfortable measure, and side padding stays generous so text never touches the edge. */
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0}
+  .wrap{background:var(--ground);color:var(--ink);font-family:var(--sans);
+    font-size:16px;line-height:1.9;-webkit-font-smoothing:antialiased;
+    padding:1.5rem 1.15rem 4rem;min-height:100vh}
+  .inner{max-width:34rem;margin:0 auto}
+  header{border-bottom:1px solid var(--line);padding-bottom:1.25rem;margin-bottom:1.5rem}
+  .eyebrow{font-size:.72rem;letter-spacing:.16em;color:var(--faint);
+    text-transform:uppercase;margin:0 0 .5rem}
+  h1{font-size:1.4rem;font-weight:700;letter-spacing:-.01em;line-height:1.45;
+    margin:0;text-wrap:balance}
+  .lede{font-size:1rem;color:var(--muted);margin:1.1rem 0 0;line-height:1.95}
+  .picks{display:flex;flex-direction:column;gap:1.15rem}
+  .pick{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.2rem 1.1rem;position:relative}
+  .n{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.1em;margin-bottom:.35rem}
+  .pick h2{font-size:1.12rem;font-weight:700;line-height:1.6;margin:0 0 .7rem;
+    letter-spacing:-.005em;text-wrap:balance}
+  /* No justify: on a narrow screen it opens rivers of white space between Japanese runs. */
+  .sum{font-size:1rem;color:var(--ink)}
+  .sum p{margin:0 0 .95rem}
+  .sum p:last-child{margin-bottom:0}
+  .sum .blist{list-style:none;margin:0 0 1rem;padding:0;display:flex;
+    flex-direction:column;gap:.5rem}
+  /* 本文中の小見出し: 長い解説を拾い読みできるようにする */
+  .sum .sh{font-size:.94rem;font-weight:700;color:var(--ink);margin:1.5rem 0 .55rem;
+    padding-left:.6rem;border-left:3px solid var(--accent);line-height:1.6}
+  .sum .sh:first-child{margin-top:0}
+  .sum .blist li{position:relative;padding-left:1.1rem;line-height:1.85}
+  .sum .blist li::before{content:"";position:absolute;left:.2rem;top:.75em;
+    width:.32rem;height:.32rem;border-radius:50%;background:var(--accent)}
+  /* 図解の崩れ防止: 長い語も枠内で折り返し、幅が足りなければ横スクロールさせる */
+  .fig *{overflow-wrap:anywhere;word-break:normal;min-width:0}
+  /* 図解: CSS で組む（SVGだと縮小して読めなくなる）。縦積みなので幅の狭い画面でも崩れない */
+  .fig{margin:.9rem 0 1rem;padding:.9rem .85rem;border:1px solid var(--line);
+    border-radius:12px;background:var(--ground)}
+  .fig-t{font-size:.76rem;font-weight:700;letter-spacing:.06em;color:var(--accent);
+    margin-bottom:.7rem}
+  .fig-c{font-size:.78rem;color:var(--muted);margin-top:.7rem;line-height:1.7}
+  .flow{display:flex;flex-direction:column;align-items:stretch;gap:.3rem}
+  .flow .step{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .7rem;text-align:center}
+  .flow .step b{display:block;font-size:.9rem;font-weight:700}
+  .flow .step span{display:block;font-size:.78rem;color:var(--muted);margin-top:.15rem;
+    line-height:1.6}
+  .flow .arr{text-align:center;color:var(--accent);font-size:.9rem;line-height:1}
+  /* 2x2 マトリクス: 経営フレームの定番。軸ラベルを外側に置いて象限を読ませる */
+  .mtx{display:flex;flex-direction:column;gap:.3rem}
+  .mtx .ylab{font-size:.72rem;color:var(--muted);text-align:center}
+  .mtx .grid{display:grid;grid-template-columns:1fr 1fr;gap:.35rem}
+  .mtx .mcell{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .6rem;min-height:3.6rem;display:flex;flex-direction:column;
+    justify-content:center}
+  .mtx .mcell.empty{background:transparent;border-style:dashed;opacity:.5}
+  .mtx .mcell b{font-size:.86rem;font-weight:700;line-height:1.5}
+  .mtx .mcell span{font-size:.76rem;color:var(--muted);margin-top:.2rem;line-height:1.55}
+  .mtx .xlabs{display:flex;justify-content:space-between;font-size:.72rem;
+    color:var(--muted);padding:0 .2rem}
+  /* 横棒: 研究の効果量・前後差を数字で見せる */
+  .bars{display:flex;flex-direction:column;gap:.5rem}
+  .brow{display:flex;flex-direction:column;gap:.2rem}
+  .blab{font-size:.84rem;font-weight:600}
+  .blab .bnote{font-weight:400;color:var(--muted);font-size:.76rem;margin-left:.4rem}
+  /* grid: the bar track takes the leftover width and the number never wraps under it.
+     A percentage width inside a flex row was being resolved against the wrong box, which is
+     what made the bars overflow on a phone. */
+  .btrack{display:grid;grid-template-columns:minmax(0,1fr) max-content;gap:.55rem;
+    align-items:center}
+  .bwrap{background:var(--line);border-radius:5px;height:1.35rem;overflow:hidden;width:100%}
+  .bbar{height:100%;background:var(--accent);border-radius:5px;opacity:.9}
+  .bval{font-size:.82rem;font-weight:700;color:var(--accent);
+    font-variant-numeric:tabular-nums}
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
+  .cmp .col{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .65rem}
+  .cmp .ch{font-size:.78rem;font-weight:700;color:var(--accent);margin-bottom:.4rem;
+    padding-bottom:.35rem;border-bottom:1px solid var(--line)}
+  .cmp ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.3rem}
+  .cmp li{font-size:.86rem;line-height:1.6;padding-left:.75rem;position:relative}
+  .cmp li::before{content:"・";position:absolute;left:0;color:var(--faint)}
+  .rel{display:flex;flex-direction:column;align-items:center;gap:.55rem}
+  .rel .hub{background:var(--accent);color:var(--card);border-radius:999px;
+    padding:.5rem 1.1rem;font-size:.9rem;font-weight:700}
+  .rel .sats{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem}
+  .rel .sat{background:var(--card);border:1px solid var(--line);border-radius:999px;
+    padding:.35rem .75rem;font-size:.84rem}
+  @media (max-width:380px){ .cmp{grid-template-columns:1fr} }
+  /* Tap target: a bare inline link is hard to hit on a phone, so give it real height. */
+  .src{display:inline-block;margin-top:1rem;font-size:.86rem;color:var(--muted);
+    text-decoration:none;border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .8rem;line-height:1.5;word-break:break-word}
+  .src:hover{color:var(--accent);border-color:var(--accent)}
+  /* 今週の論文: 定義リストで「問い／検証／結果／含意／留意」を固定の型に見せる */
+  .papers{margin-top:2.2rem}
+  .sec{font-size:.78rem;font-weight:700;letter-spacing:.14em;color:var(--accent);
+    margin:0 0 .9rem;padding-bottom:.5rem;border-bottom:1px solid var(--line)}
+  .paper{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.1rem 1.05rem;margin-bottom:1rem}
+  .paper h3{font-size:1.02rem;font-weight:700;line-height:1.6;margin:0 0 .3rem;
+    text-wrap:balance}
+  .paper .auth{font-size:.78rem;color:var(--faint);margin-bottom:.75rem}
+  .paper dl{margin:0;display:grid;grid-template-columns:max-content minmax(0,1fr);
+    gap:.5rem .8rem;align-items:start}
+  .paper dt{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.08em;
+    padding-top:.15rem;white-space:nowrap}
+  .paper dd{margin:0;font-size:.9rem;line-height:1.8;text-align:justify}
+  .paper .finds{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;
+    gap:.35rem}
+  .paper .finds li{position:relative;padding-left:1rem;line-height:1.75}
+  .paper .finds li::before{content:"";position:absolute;left:.2rem;top:.72em;width:.3rem;
+    height:.3rem;border-radius:50%;background:var(--accent)}
+  @media (max-width:420px){ .paper dl{grid-template-columns:1fr;gap:.15rem .8rem}
+    .paper dt{margin-top:.5rem} }
+  footer{margin-top:2.4rem;padding-top:1.1rem;border-top:1px solid var(--line);
+    font-size:.78rem;color:var(--faint);line-height:1.7}
+  a:focus-visible,.src:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+.fav{appearance:none;-webkit-appearance:none;cursor:pointer;display:inline-flex;
+  align-items:center;justify-content:center;gap:6px;min-width:44px;min-height:44px;
+  padding:0 12px;border-radius:999px;font:inherit;font-size:14px;font-weight:600;
+  background:var(--surface,#fff);color:var(--ink-mut,#6b7280);
+  border:1px solid var(--line,#e5e7eb);line-height:1;}
+.fav:hover{border-color:#f0b429;color:#b26b00;}
+.fav[aria-pressed="true"]{background:#fff8e6;border-color:#f0b429;color:#b26b00;}
+.fav .ic{font-size:16px;line-height:1;}
+.fav-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:14px 0 6px;}
+.fav-bar a.all{font-size:13.5px;color:var(--ink-mut,#6b7280);text-decoration:none;
+  min-height:44px;display:inline-flex;align-items:center;}
+.fav-bar a.all:hover{text-decoration:underline;}
+.fav-mini{appearance:none;-webkit-appearance:none;cursor:pointer;background:none;border:0;
+  padding:6px 8px;margin-left:2px;font-size:15px;line-height:1;color:#c3c8d0;
+  min-width:36px;min-height:36px;}
+.fav-mini[aria-pressed="true"]{color:#f0b429;}
+
+</style>
+</head>
+<body>
+<div class="wrap"><div class="inner">
+  <header>
+    <p class="eyebrow">Weekly Insight</p>
+    <h1>今週のインサイト <span style="color:var(--faint);font-weight:500">2026-08-19</span></h1>
+    <p class="lede">今週の論考には、ひとつの共通した空気がありました。AIをめぐる話題が「何を置き換えるか」から「どうすれば人が実際に使い、しかも人の腕が落ちないか」へ移ったことです。去年までの論調は導入の是非でしたが、今週はNBERの2年間の学校実験のように、ツールを無償で配っても大半の人がほとんど使わなかった、という身も蓋もない実測が出てきました。配ることと使われることは別物だ、という当たり前が、ようやくデータで裏づけられた週だと言えます。
+
+もうひとつの流れは、AIで手間が消えたあとに何が残るか、という問いです。IMDは専門サービスの時間課金が崩れると論じ、HBRは人の判断力をAIと一緒に鍛える四段階を示しました。どちらも「速さは売り物にならなくなる」という同じ結論に向かっています。
+
+人と店をめぐる研究も厚い週でした。実店舗の価値をチャネル単体の売上で測る愚かさ、優秀な人が残る条件、そして自己規律が知能検査より二倍強く成績を予測したという古典的な発見。いずれも、測り方を間違えると経営判断ごと間違える、という話です。
+
+読む順のおすすめは、まず店舗の価値の記事、次にサービスの記事、最後に人材の三本。手前の二本が「何を売っているのか」の問い直し、後の三本が「誰に任せるか」の答えになっています。</p>
+    <div class="fav-bar"><button class="fav" data-fav data-url="https://hacadr-cloud.github.io/weekly-insight/2026-08-19.html" data-title="週次インサイト 2026-08-19" data-kind="insight" data-date="2026-08-19" aria-pressed="false"><span class="ic">☆</span><span class="tx">あとで読む</span></button><a class="all" href="favorites.html">保存した記事を見る →</a></div>
+  </header>
+  <div class="picks">
+    <article class="pick">
+      <div class="n">1</div>
+      <h2>店舗の値打ちは店舗の売上では測れない</h2>
+      <div class="fig"><div class="fig-t">店の評価軸</div><div class="cmp"><div class="col"><div class="ch">よくある見方</div><ul><li>店の売上－店の経費</li><li>チャネル別に競わせる</li><li>赤字なら閉店</li><li>返品は損失処理</li></ul></div><div class="col"><div class="ch">研究が示すこと</div><ul><li>商圏全体の会社売上</li><li>客は一人・入口が違うだけ</li><li>閉店でネットも落ちる</li><li>返品は再販の接客機会</li></ul></div></div><div class="fig-c">右の列で測ると閉店の判断が変わる</div></div>
+      <div class="sum"><h3 class="sh">何が問題だったのか</h3><p>店舗を持つ会社は、たいてい店舗ごとの損益で店を評価します。売上、家賃、人件費を並べて、赤字なら閉める。一見すると当たり前の判断です。</p><p>ところがこの見方には、構造的な欠陥があります。店舗が生んでいる価値の多くが、店舗の売上として計上されないからです。</p><p>ネット通販が当たり前になってから、この歪みは大きくなりました。客は店で現物を確かめ、家に帰ってスマホで買う。売上はネットに立ちますが、買う気を起こさせたのは店です。店舗の帳簿には何も残りません。</p><h3 class="sh">どう調べたか</h3><p>この研究は、複数チャネルを持つ小売企業のデータを使い、店舗の開業と閉店が「その商圏全体」の売上にどう効いたかを追っています。店舗単体ではなく、同じ郵便番号エリアの顧客が会社全体にいくら払ったかを見る、という測り方です。</p><p>比較の取り方が肝でした。店を開いた地域と、条件の似た「開かなかった地域」を並べ、開業の前後で差の差を取る。景気や季節の影響を落とすためです。</p><p>同じ設計を閉店側にも当てました。店を畳んだ後、その地域のネット売上がどうなったかを追跡しています。</p><h3 class="sh">分かったこと</h3><ul class="blist"><li>店舗を開くと、その商圏のオンライン売上が押し上がる。店は自社サイトへの入口として働いていた</li><li>店舗を閉じると、その地域のオンライン売上まで落ちる。つまり閉店で消えるのは店の売上だけではない</li><li>返品を店で受け付けた客は、その場で別の商品を買う比率が高い。返品対応は損失処理ではなく接客機会だった</li><li>顧客獲得コストは、店舗のある地域のほうが低い。広告で連れてくるより、通りがかりのほうが安い</li><li>最も業績のよい小売企業は、投資判断をチャネル別ではなく「企業全体の価値」で組み立てていた</li></ul><h3 class="sh">なぜそうなるのか</h3><p>著者たちの説明はこうです。客は「店の客」でも「ネットの客」でもなく、ただの客である。両方を行き来しながら、会社との関係を一本で持っている。</p><p>それなのに企業側は、店とネットを別会社のように分けて評価し、別々に予算を付け、別々に成果を競わせる。この社内の分断が、客の実際の動きとずれるのです。</p><p>分断は数字に表れないところで損を生みます。店の人員を削ればネットの売上が落ちる、という因果が誰にも見えないまま、削減が「成功」として記録されるからです。</p><h3 class="sh">どういう状況の話か</h3><p>分かりやすいのは、来店客数が減っている店です。窓口の待ち時間は短くなり、来店1件あたりの経費は重くなる。単体の損益だけ見れば、閉める判断が正しく見えます。</p><p>しかし、その地域の客がオンラインで契約や購入を済ませているなら、話は変わります。看板があるから会社を知り、困ったときに相談できる場所があるから乗り換えない。売上はネット側に立っていても、留めているのは店かもしれません。</p><p>美容室のように予約がネットに寄る業態でも同じことが起きます。新規客の入口はウェブでも、リピートを決めているのは席での体験です。「ウェブ経由の売上」という集計は、その体験の貢献をきれいに消してしまいます。</p><h3 class="sh">別の見方</h3><p>もちろん、この主張を「だから店は閉めるな」と読むのは行き過ぎです。研究が示したのは店舗に見えない貢献があることであって、すべての店に十分な貢献があることではありません。</p><p>反対の立場も明快です。商圏が重なる店を複数持てば、一店を閉じても客は隣の店へ流れる。閉店で落ちた分は、他店の伸びで戻る可能性があります。実際、店舗の密度が高い都市部では閉店の影響が小さかった、という報告もあります。</p><h3 class="sh">例外と限界</h3><p>この結果が効きやすいのは、①購入前に現物や説明が要る商材、②返品や相談が発生する商材、③リピートで稼ぐ商材です。逆に、一回売って終わりの低単価品では店舗の波及効果は小さくなります。</p><p>もうひとつ、データは主に規模の大きな小売企業のものです。店舗が数店しかない会社では、そもそも「似た地域の比較」が作れず、同じ分析はできません。</p><p>実務に落とすなら、まず一点だけ変えれば足ります。店舗の評価表に「その商圏の会社全体の売上」という行を一本足すこと。閉店の判断は、その行を見てから下すことです。</p></div>
+      <a class="src" href="http://hbr.org/2026/08/research-what-physical-retail-stores-deliver-in-a-digital-economy" target="_blank" rel="noopener">HBR ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">2</div>
+      <h2>AIが手間を消すと、残るのはもてなしだけ</h2>
+      <div class="fig"><div class="fig-t">AI時代の立ち位置</div><div class="mtx"><div class="ylab top">体験は例外的</div><div class="grid"><div class="mcell"><b>職人頼み</b><span>良いが規模が伸びない</span></div><div class="mcell"><b>勝ち筋</b><span>手間は機械・記憶は人</span></div><div class="mcell"><b>時間課金</b><span>効率化がそのまま値下げ</span></div><div class="mcell"><b>無人化</b><span>価格でしか戦えない</span></div></div><div class="ylab bot">体験は標準的</div><div class="xlabs"><span>作業は人が担う</span><span>作業はAIが担う</span></div></div><div class="fig-c">右上へ動かせるかが分かれ目</div></div>
+      <div class="sum"><h3 class="sh">何が問題だったのか</h3><p>専門サービスの多くは、時間を売って生きてきました。何時間かけたかで請求し、手間の量が価格の根拠になる。会計事務所も、コンサルも、修理も、接客も、程度の差はあれ同じ構造です。</p><p>ところがAIが、その手間を削り始めました。調べる、まとめる、下書きを作る、という時間が十分の一になれば、時間課金の売上も十分の一に近づきます。</p><p>さらに厄介なのは、客がそれを知っていることです。「これAIで五分でしょう」と言われた瞬間、手間を根拠にした価格は説得力を失います。</p><h3 class="sh">何を手がかりにしたか</h3><p>著者が持ち出すのは、コストコのホットドッグです。ドリンク付きで長年ほぼ2ドルに据え置かれ、原価が上がっても値上げしない。単品では儲からない、むしろ持ち出しです。</p><p>それでも続ける理由は、この一品が「この店は自分を裏切らない」という証拠として働くからです。会員は年会費を払い続け、来店の頻度が上がり、他の売場で使う。</p><p>つまり2ドルのホットドッグが売っているのは食べ物ではなく、信頼の証明です。単品の粗利で評価すれば即座に廃止される商品が、事業全体を支えている。</p><h3 class="sh">分かったこと</h3><ul class="blist"><li>手間が減っても価値は減らない。減るのは「手間を根拠にした請求の正当性」だけ</li><li>客が金を払うのは、速さではなく「例外的に扱われた」という記憶</li><li>標準化された良いサービスは差にならない。差になるのは、頼んでいないのにやってくれたこと</li><li>時間課金から成果課金・定額課金へ移した事業者は、AIで効率が上がるほど利益が増える構造になる</li><li>逆に時間課金のままAIを入れると、効率化がそのまま値下げになり、自分の首を絞める</li></ul><h3 class="sh">なぜそうなるのか</h3><p>著者の説明は、価値の置き場所が動いた、という一点に尽きます。かつては情報や作業そのものが希少でした。今は希少でなくなった。</p><p>希少でなくなったものの価格はゼロに向かいます。残るのは、機械が代われないもの――相手の事情を覚えていること、言われる前に動くこと、失敗したときに逃げないこと。</p><p>これを著者は「理不尽なもてなし」と呼びます。理不尽、というのは費用対効果の計算に合わないという意味です。合わないからこそ、真似されにくく、記憶に残る。</p><h3 class="sh">どういう状況の話か</h3><p>携帯ショップの窓口を思い浮かべると分かりやすい。手続きそのものはオンラインで完結できる時代です。それでも人が店に来るのは、自分の使い方に合わせて誰かが考えてくれることを期待しているからです。</p><p>ここで「手続きの速さ」を売りにすると、いずれオンラインに負けます。勝ち目があるのは、前回の相談内容を覚えている、家族構成を踏まえて提案する、といった蓄積の側です。</p><p>美容室も構造は同じです。カットの技術は前提であって、差にはなりにくい。差がつくのは、前回の話の続きから始まること、伸び方の癖を覚えていること、次の予約を客より先に想定していることです。</p><h3 class="sh">別の見方</h3><p>この議論に対する強い反論があります。もてなしは属人的で、規模を大きくすると必ず薄まる、というものです。実際、一人のカリスマ店長で成り立っている店は、店長が抜けた瞬間に崩れます。</p><p>もうひとつの反論は価格です。手厚い接客はコストが高く、価格競争が激しい市場では成立しない。安さを求める客層に「もてなし」を売っても、単に高い店として避けられます。</p><p>著者もそこは否定していません。だからこそ、もてなしを個人技ではなく仕組みにする――記録を残す、引き継ぐ、権限を現場に渡す――という話に着地します。</p><h3 class="sh">例外と限界</h3><p>この主張が効くのは、①リピートで稼ぐ商売、②客ごとに事情が違う商売、③価格以外の選択理由がある商売です。一回きり・完全に規格品・比較サイトで最安が選ばれる領域では、あまり通用しません。</p><p>また、この記事は研究論文ではなく、事例と観察に基づく論考です。もてなしが利益を生んだ、という因果は厳密には検証されていません。伸びた店を後から見て理由を語る形になっている点は割り引いて読む必要があります。</p><p>実務に落とすなら、まず自社の請求書を見ることです。そこに「かかった時間」しか書いていないなら、AIが進むほど値下げ圧力を受けます。何を約束して、何を届けたのかを書ける形に変えるのが最初の一歩です。</p></div>
+      <a class="src" href="https://www.imd.org/ibyimd/artificial-intelligence/the-2-hot-dog-strategy-why-ai-cant-replace-five-star-service/" target="_blank" rel="noopener">IMD ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">3</div>
+      <h2>リピートは値引きでなく習慣で決まる</h2>
+      <div class="fig"><div class="fig-t">通う理由の中身</div><div class="rel"><div class="hub">習慣になる店</div><div class="sats"><span class="sat">いつも同じ品質</span><span class="sat">待たせない</span><span class="sat">前回を覚えている</span><span class="sat">自分向けに調整</span><span class="sat">予約が取りやすい</span></div></div><div class="fig-c">どれも「考えずに済む」を作る要素</div></div>
+      <div class="sum"><h3 class="sh">何が問題だったのか</h3><p>多くの店が、リピートを増やす手段としてポイントと値引きを選びます。分かりやすく、すぐ始められ、効果が数字で見えるからです。</p><p>しかし値引きで来た客は、値引きが止まると来なくなります。ロイヤルティを買ったつもりが、割引の習慣を教えただけ、という結果になりがちです。</p><p>この記事が扱うのは、そこを外して伸びた業態です。米国のファストカジュアル――ファストフードより一段上、レストランより手軽な層――は、この十年で最も強いリピートを作った領域とされています。</p><h3 class="sh">どう調べたか</h3><p>分析は、来店頻度の高い外食チェーンの顧客行動を追ったものです。この業態の特徴は、一回の単価が小さく、来店の間隔が短いこと。年に数回の買い物とは、意思決定の性質が違います。</p><p>見ているのは、①アプリ登録者と非登録者の来店間隔の差、②値引ききっかけの来店がその後どれだけ続いたか、③待ち時間や品質のばらつきが再来店に与えた影響、の三点です。</p><p>比較の取り方として、割引施策を打った店舗と打たなかった店舗を、施策終了後まで追い続けています。終了後まで見ないと、値引きの効果は過大に見えるからです。</p><h3 class="sh">分かったこと</h3><ul class="blist"><li>値引きで来た新規客の再来店率は、値引きなしで来た客より明確に低い。安さで来た客は安さで去る</li><li>逆に効いたのは待ち時間の短さと品質のばらつきの無さ。「いつも同じ」が最大のリピート要因だった</li><li>注文の記憶――前回と同じものをすぐ頼める仕組み――が、来店間隔を縮めていた</li><li>自分好みに調整できること（具材や量の選択）は、単価と満足の両方を押し上げた</li><li>高頻度・低単価の業態では、購買は判断ではなく習慣として起きる。習慣は迷いを減らすほど強くなる</li></ul><h3 class="sh">なぜそうなるのか</h3><p>記事の説明は、意思決定の負荷という言葉に集約されます。人は毎回ゼロから考えたくない。考えずに済む選択肢があれば、それを選び続けます。</p><p>だから、ロイヤルティを作るのは感動ではなく、迷いの除去です。開いている、待たない、いつも同じ、自分のことを覚えている。この四つが揃うと、客は考えることをやめて通うようになる。</p><p>値引きが効かない理由も同じです。値引きは「今日は得か」を毎回考えさせる。考えさせている限り、習慣にはなりません。</p><h3 class="sh">どういう状況の話か</h3><p>美容室は、この構造がそのまま当てはまる業態です。来店間隔は一〜二か月、単価は中程度、選択肢は無数にある。ここで「初回半額」を打つと、初回半額を渡り歩く層が集まります。</p><p>効くのは別の方向です。前回の内容が記録されていて説明が要らない、予約が取りやすい、担当が変わっても仕上がりがぶれない。要するに「考えなくていい」状態を作ること。</p><p>携帯ショップのように来店間隔が長い業態では、そのままは使えません。ただし部分的には効きます。来店予約で待たせない、前回の相談内容が引き継がれている、というだけで再訪の理由になります。</p><h3 class="sh">別の見方</h3><p>反論として大きいのは、値引きの役割を過小評価しているという指摘です。新規客を試させる段階では、値引き以外に強い誘因がありません。問題は値引きそのものではなく、値引きの後に習慣化の仕掛けがないことだ、という読み方もできます。</p><p>もうひとつ、この業態の知見を高単価・低頻度の商売へ持ち込むと外します。年に一度の買い物では習慣が形成されず、都度の比較検討が支配的になるからです。</p><h3 class="sh">例外と限界</h3><p>対象は米国の外食チェーンで、日本の商習慣や労働力の事情はそのまま重なりません。特に「待たせない」を人員で解決するのは、人手不足の地方ではコストが合わない場面があります。</p><p>また、記事はチェーンの成功例を後ろから説明する形式で、実験による因果の証明ではありません。伸びた店に共通する特徴、という程度に受け取るのが妥当です。</p><p>実務で試すなら、順番があります。まず品質のばらつきを潰し、次に待ち時間を削り、それから記憶の仕組みを作る。値引きはその後です。順番を逆にすると、割引で集めた客がばらつきに当たって離れます。</p></div>
+      <a class="src" href="https://news.google.com/rss/articles/CBMioAFBVV95cUxNOWlTbjZJaE9yc2REcXJVTEF1V0I3bmpxcTZxc2pDVnhNaTZqQ29iTXdUSkhyVDAybFlPNzQ5Z1hYQmQ0UkpnYUhaMEpjU2U4N1J1ZGZPZXNmZTZsancxQnZsLW9iQmE0VU42WGxJb0pyOGdDZ1ZoSUludUI3UTBhWnFBOXRQc0N2OHVMaTJrRHFTcGpmOTBHcHQxdjhtaDRR?oc=5" target="_blank" rel="noopener">Wharton ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">4</div>
+      <h2>優秀な人が残る理由は給与の外にある</h2>
+      <div class="fig"><div class="fig-t">優秀な人の去就</div><div class="mtx"><div class="ylab top">成長の見通しがある</div><div class="grid"><div class="mcell"><b>意外と残る</b><span>やりがいで踏みとどまる</span></div><div class="mcell"><b>最も安定</b><span>引き抜きにも動じない</span></div><div class="mcell"><b>最初に抜ける</b><span>兆候は会議での沈黙</span></div><div class="mcell"><b>時間の問題</b><span>金は決断を遅らせるだけ</span></div></div><div class="ylab bot">成長の見通しがない</div><div class="xlabs"><span>報酬は市場並み</span><span>報酬は市場以上</span></div></div><div class="fig-c">上下（成長）の差が左右（報酬）の差より効く</div></div>
+      <div class="sum"><h3 class="sh">何が問題だったのか</h3><p>人が辞めるとき、会社が受け取る理由はたいてい「一身上の都合」です。本当の理由は退職面談でも出てきません。角が立つからです。</p><p>そのため会社は、辞めた後に給与を上げる、賞与を足す、といった手当てを打ちます。効かないわけではありませんが、最も効く相手には効きません。</p><p>困るのは、辞められて痛いのが上位の一〜二割の人材だという点です。この層は替えがきかず、しかも他社からの引きも強い。全員向けの施策では、この層を留められません。</p><h3 class="sh">どう調べたか</h3><p>この記事が拠るのは、在職者と離職者の双方に「なぜ残ったか／なぜ出たか」を聞いた調査群です。重要なのは、離職理由だけでなく残留理由を聞いている点にあります。</p><p>離職理由だけを集めると、対策は「不満をなくす」に偏ります。しかし不満の解消は、辞めない理由にはなっても、留まりたい理由にはなりません。両方を分けて測る設計がここでの工夫です。</p><p>もうひとつ、上位評価者と平均的な評価者を分けて集計しています。全体平均で見ると、この二層の違いが消えてしまうからです。</p><h3 class="sh">分かったこと</h3><ul class="blist"><li>給与は「離職の引き金」にはなるが「残留の理由」にはなりにくい。不足すると辞めるが、足りても留まらない</li><li>上位人材の残留理由の上位は、成長の実感・裁量の広さ・尊敬できる上司の三つ</li><li>「この先どうなるか分からない」という見通しの欠如は、待遇の不満より強く離職に効いていた</li><li>辞める人の多くは、決断の数か月前に兆候を出している。会議での発言量、提案の頻度が先に落ちる</li><li>辞めてから理由を聞いても遅い。在職中に「何があれば残るか」を聞く面談を制度化した会社は、離職が下がった</li></ul><h3 class="sh">なぜそうなるのか</h3><p>説明はシンプルです。優秀な人ほど、自分の時間の使い道に敏感である。ここにいる一年で何が身につくのか、という問いを常に持っている。</p><p>その問いに会社が答えられないと、答えられる場所を探しに行きます。待遇はその判断を早めたり遅らせたりするだけで、判断そのものを変えません。</p><p>裁量が効くのも同じ理由です。決められた通りにやる仕事は、上達の余地が見えにくい。任される範囲が広いほど、失敗も含めて経験が自分のものになる感覚が生まれます。</p><h3 class="sh">どういう状況の話か</h3><p>店舗を複数持つ会社では、この問題は「店長の次がない」という形で現れます。店長になった時点で階段が終わり、その先が本部の枠しかない。枠は数が少なく、いつ空くかも分からない。</p><p>この構造だと、優秀な店長ほど早く天井に触れます。給与を上げても、天井の位置は変わりません。</p><p>有効なのは、階段を縦だけでなく横に伸ばすことです。新店の立ち上げを任せる、採用や教育の責任を持たせる、仕入れや価格の裁量を渡す。役職を増やさなくても、任せる範囲は増やせます。</p><h3 class="sh">別の見方</h3><p>反論もあります。給与は残留理由として語られにくいだけで、実際には強く効いている、という指摘です。人は自分の動機を金銭で説明したがらないため、調査は成長ややりがいを過大に拾う傾向があります。</p><p>もうひとつ、裁量を渡せば全員が伸びるわけではありません。準備のない人に任せると、失敗が本人の自信と周囲の信頼を同時に削ります。渡す相手と渡し方の判断が要ります。</p><h3 class="sh">例外と限界</h3><p>調査の中心は米国の企業で、転職が前提の労働市場です。日本の、特に地方の中小企業では、そもそも移れる先が限られるため、離職の力学が違います。</p><p>また、残留理由の調査は「残った人」に聞いている以上、生存者バイアスを含みます。残った人が挙げる理由が、辞めた人を留められた理由と同じとは限りません。</p><p>実務でまず試せるのは、辞める前に聞く面談です。半年に一度、十五分でいい。聞くのは「今の仕事で何が身についているか」「一年後どうなっていたいか」の二問だけ。答えに詰まる人が、次に辞める人です。</p></div>
+      <a class="src" href="https://news.google.com/rss/articles/CBMif0FVX3lxTFBOVnpQT1FWT0tqRjExbnEwcG1sd0hsOE5OSmtBUTB2MG1NR2pUUEwzR2FjNzBuLWkyV09BM3J1OGg0cThKVnF1X0d4RjEyYVpETXRjX2lLVmRWZ3dwNTJmR2o3OXd3dzVNZVNCcXAwUkhOTTdEa2ttVnJIbDNrZVE?oc=5" target="_blank" rel="noopener">MIT SMR ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">5</div>
+      <h2>成績を決めたのは知能でなく自己規律だった</h2>
+      <div class="fig"><div class="fig-t">学年末成績の予測力</div><div class="bars"><div class="brow"><div class="blab">自己規律<span class="bnote">教師評価込み</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:100.0%"></div></div><span class="bval">0.67相関係数</span></div></div><div class="brow"><div class="blab">知能検査<span class="bnote">IQスコア</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:47.8%"></div></div><span class="bval">0.32相関係数</span></div></div></div><div class="fig-c">棒が長いほど成績を当てる力が強い</div></div>
+      <div class="sum"><h3 class="sh">何が問題だったのか</h3><p>人の能力を測るとき、私たちは長らく知能に頼ってきました。採用試験も、学校の選抜も、根っこは「頭の良さ」を測る発想です。</p><p>ところが現場の実感は違います。優秀そうな人が伸びず、地味な人が結果を出す。この食い違いを、知能検査では説明できませんでした。</p><p>心理学者のアンジェラ・ダックワースとマーティン・セリグマンは、そこに別の変数を置きました。自己規律――やると決めたことを、気分に関係なく続ける力です。</p><h3 class="sh">どう調べたか</h3><p>対象は米国の中学二年生。知能検査と自己規律の両方を測れた164名を、一学年を通して追跡しました。</p><p>自己規律の測り方が丁寧です。本人の自己申告だけでなく、教師の評価、保護者の評価、さらに「今もらう1ドル」と「一週間後の2ドル」を選ばせる行動課題まで組み合わせています。自己申告だけだと、自分に甘い人と厳しい人の差が混ざるからです。</p><p>測ったのは秋。結果を見たのは学年末です。順序が大事で、先に性格を測り、後から成績を見ることで「成績が良かったから真面目に見えた」という逆の因果を避けています。</p><h3 class="sh">分かったこと</h3><ul class="blist"><li>自己規律と最終成績の相関は約0.67。知能検査と最終成績の相関は約0.32。予測力にしておよそ二倍以上の開きがあった</li><li>自己規律が高い生徒は、出席率が高く、宿題に費やす時間が長く、テレビを見る時間が短かった</li><li>授業の始まる時刻に間に合っているかどうかも、自己規律の高さで説明できた</li><li>秋の時点での自己規律は、秋の時点での成績を差し引いても、学年末の成績の伸びを予測した</li><li>知能は「どこまで到達できるか」の上限に効き、自己規律は「上限にどれだけ近づけるか」に効いていた</li></ul><h3 class="sh">なぜそうなるのか</h3><p>著者たちの説明はこうです。学業の成果は、一発の閃きではなく、日々の小さな選択の積み重ねで決まる。今日やるか、明日に回すか。この選択が数百回繰り返されると、差は巨大になります。</p><p>知能は、一回あたりの効率を上げます。しかし回数を増やすのは自己規律です。効率が二倍でも回数が三分の一なら、総量は負けます。</p><p>もうひとつ重要なのは、自己規律が「意志の強さ」ではなく「誘惑との距離の取り方」に近いことです。実際に高い生徒は、我慢していたというより、我慢しなくて済む環境を先に作っていました。</p><h3 class="sh">どういう状況の話か</h3><p>これは学校の話ですが、採用と育成にそのまま響きます。面接で見えるのは、多くの場合その人の知能と話の上手さです。日々の選択の積み重ね方は、面接では見えません。</p><p>見えるとしたら、過去の行動の細部です。前職で決めた習慣を何か月続けたか。途中で崩れたとき、どう戻したか。抽象的な意欲ではなく、具体的な継続の記録を聞くほうが当たります。</p><p>育成の側でも示唆があります。「もっと頑張れ」と意志に訴えるより、続けざるを得ない仕組み――決まった時刻、決まった手順、記録が残る形――を先に置くほうが効く。自己規律の高い人が実際にやっていたのが、それだからです。</p><h3 class="sh">別の見方</h3><p>この発見には強い批判もあります。相関0.67という数字は、自己規律の測定に教師の評価が入っているせいで膨らんでいる、という指摘です。教師は成績の良い生徒を真面目だと評価しがちで、そこに循環が生じます。</p><p>また、後年の大規模な追試では、自己規律や「やり抜く力」の予測力はこれより小さく出ることが多い、と報告されています。この164名という規模は、決して大きくありません。</p><h3 class="sh">例外と限界</h3><p>対象は米国の、しかも選抜のある中学校の生徒です。もともと学力の幅が狭い集団では、知能の差が成績の差として現れにくく、その分だけ自己規律の役割が大きく見えます。</p><p>測っているのも学業成績であって、仕事の成果ではありません。創造的な仕事や、判断の質が問われる仕事では、別の変数が効く可能性が高い。</p><p>それでも、実務にとっての含意は残ります。人を選ぶとき、頭の良さを測る道具は充実していて、続ける力を測る道具は貧弱だということ。この非対称そのものが、採用の歪みを生んでいます。</p></div>
+      <a class="src" href="https://news.google.com/rss/articles/CBMilwFBVV95cUxPSHplZ3JVQ3Z0UFFpdjI1VV9pendRMDNKQkh2MmRGSVNRcUNxcDNrdXZyU25Ibkw2OVd2M0xsRnpaN1AzX2dXb0ZmYWJ4MTBSWXVpX29JNjlxcjBjQkhrYV9rYVlYWGNhbHV4NlZXbTBCMGx1OXczYlluUjNDdlJxYm0wRVFRUmRzT3d6VzBwbmNJX05HZks4?oc=5" target="_blank" rel="noopener">学者(米3) ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">6</div>
+      <h2>AIに任せながら人の判断力を育てる四段階</h2>
+      <div class="fig"><div class="fig-t">判断力を残す手順</div><div class="flow"><div class="step"><b>暗黙知を言語化</b><span>なぜ違うのかを口に出す</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>AIが草稿</b><span>速さはここで取る</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>人が直し理由を記録</b><span>直した理由に価値がある</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>基準を共有・更新</b><span>古い基準は足かせになる</span></div></div><div class="fig-c">左から順に回す。一段目を飛ばすと三段目が止まる</div></div>
+      <div class="sum"><h3 class="sh">何が問題だったのか</h3><p>AIは、質の高い草稿を数秒で出します。提案書も、返信も、企画の骨格も。速さという点で人は勝てません。</p><p>ここで生まれるのが、育成の穴です。従来、若手は下手な草稿を書き、直され、その往復で判断力を身につけてきました。草稿をAIが書くようになると、その往復が消えます。</p><p>結果として起きるのは、こういう事態です。出てきた案が妥当かどうかを判断できる人が、社内で育たなくなる。AIの精度が上がるほど、この穴は見えにくくなります。</p><h3 class="sh">この記事が示す枠組み</h3><p>記事は、AI研修の中身が間違っていると指摘します。多くの会社が教えているのは、ツールの使い方とプロンプトの書き方です。どちらも半年で陳腐化します。</p><p>代わりに提案されているのは、人の判断とAIの出力を組み合わせる「ハイブリッドな技能」を育てる四段階です。順序に意味があります。</p><h3 class="sh">四つの段階</h3><ul class="blist"><li>第一段階・暗黙の判断を言葉にする。熟練者が「これは違う」と感じた理由を、その場で口に出させ、記録する。感覚のままにしておくと誰にも渡せない</li><li>第二段階・AIに草稿を作らせる。ここは速さを取りに行く。人が最初から書く必要はない</li><li>第三段階・出てきた案を人が評価し、直した理由を残す。直すこと自体より、なぜ直したかの記録に価値がある</li><li>第四段階・その理由を組織の基準として共有し、更新する。基準が更新されないと、去年の常識でAIを縛ることになる</li></ul><h3 class="sh">なぜこの順番なのか</h3><p>第一段階を飛ばすと、第三段階が機能しません。評価の基準が言語化されていなければ、「なんとなく良い／悪い」しか言えず、記録が残らないからです。</p><p>逆に第二段階を先に置くのが、この枠組みの実務的なところです。判断基準の整備が終わるまでAIを使わない、という運用は現実的ではありません。使いながら基準を作る。</p><p>第四段階の更新が要る理由は、AIの出力が変わり続けるからです。半年前に「AIはここが苦手」と決めた基準は、半年後には無駄な手作業を強いる規則になっています。</p><h3 class="sh">どういう状況の話か</h3><p>店舗のある事業でいうと、接客の提案書やクレーム対応の返信文が、真っ先にAIに置き換わる領域です。文面は数秒で出ます。</p><p>問題は、その文面がこの客に対して適切かどうかを、誰が判断するかです。ベテランなら一読して「これは火に油だ」と分かる。しかし、その理由を説明できないと、若手には渡せません。</p><p>だからこの枠組みでは、ベテランに「なぜ直したか」を一行書かせます。「先方は謝罪より原因の説明を求めている」「この客は前回も同じ指摘をしている」。この一行が積み上がったものが、社内で唯一AIに勝てる資産になります。</p><h3 class="sh">別の見方</h3><p>批判もあり得ます。判断基準を全部言語化するのは膨大な手間で、忙しい現場では続かない、というものです。実際、記録を求める運用の多くは三か月で形骸化します。</p><p>もうひとつ、そもそも人の判断が優れているとは限りません。ベテランの判断が単なる古い経験則で、AIのほうが正しい場面もあります。人の判断を無条件に上位に置く設計は、その場合に足を引っ張ります。</p><h3 class="sh">例外と限界</h3><p>この枠組みは、判断の巧拙が成果を左右する仕事に効きます。定型の処理や、正解が一意に決まる作業では、四段階を回す手間が見合いません。</p><p>また、記事は実践的な提案であって、効果を測った研究ではありません。四段階を導入した会社の判断力が実際に上がったかどうかの検証は、まだありません。</p><p>始めるなら小さくで十分です。AIに出させた文面を人が直したとき、直した理由を一行だけ残す。それを一か月分ためて読み返す。そこに書かれていることが、自社の判断基準の原型です。</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14296" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">7</div>
+      <h2>落ちた事業を立て直すには順番がある</h2>
+      <div class="fig"><div class="fig-t">復活の四段階</div><div class="flow"><div class="step"><b>出血を止める</b><span>間接部門と非中核から</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>原因を診断</b><span>自社要因を必ず書き出す</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>中核を再定義</b><span>何で選ばれるかを決め直す</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>再投資</b><span>削減と並行して始める</span></div></div><div class="fig-c">二段目を飛ばすと一段目に戻り続ける</div></div>
+      <div class="sum"><h3 class="sh">何が問題だったのか</h3><p>事業が傾いたとき、多くの経営者が最初に手を付けるのはコスト削減です。人を減らし、店を畳み、投資を止める。出血を止めるという意味で、間違ってはいません。</p><p>問題はその先です。削減で一度は黒字に戻るのに、二〜三年でまた沈む会社が非常に多い。研究者はこれを「回復したように見えるだけの復活」と呼びます。</p><p>この論文が問うたのは、そこです。一時的に持ち直した会社と、本当に復活した会社は、何が違ったのか。</p><h3 class="sh">どう調べたか</h3><p>分析対象は、業績が継続的に悪化した後に回復局面へ入った企業群です。売上や利益が数年にわたって落ち続けた状態を「衰退」と定義し、その後の経路を追っています。</p><p>重要なのは、回復の定義に期間を入れている点です。一年だけ黒字に戻った会社は「復活」に数えない。数年にわたって業績を維持できたかどうかで分けています。</p><p>そのうえで、削減の深さ・削減の対象・再投資の有無・経営陣の交代といった要因を突き合わせ、持続的に復活した企業に共通する経路を抽出しています。</p><h3 class="sh">分かったこと</h3><ul class="blist"><li>削減だけで終わった企業は、ほぼ例外なく再び衰退した。削減は時間を買う手段であって、回復の手段ではない</li><li>何を削ったかが決定的だった。営業・商品開発・顧客接点を削った企業の再衰退率が高く、間接部門と非中核事業を削った企業は持続した</li><li>衰退の原因を「外部環境」と診断した経営陣より、「自社の意思決定」と診断した経営陣のほうが、その後の成績が良かった</li><li>復活した企業の多くは、削減と並行して中核事業への再投資を始めていた。削減が終わってから考え始めた企業は間に合わなかった</li><li>経営陣の交代そのものは復活と結びつかない。効いたのは交代の有無ではなく、診断の質だった</li></ul><h3 class="sh">なぜそうなるのか</h3><p>著者たちの説明は、削減が持つ二面性にあります。コストを削ると、短期の数字は必ず良くなる。改善したように見えるため、そこで止まる誘惑が強い。</p><p>しかし、衰退の原因が「顧客に選ばれなくなったこと」なら、削減は原因に何も触れていません。むしろ営業や商品開発を削れば、選ばれない度合いは深まります。</p><p>原因の診断が効く理由も同じです。外部環境のせいだと結論した瞬間、打ち手は「環境が戻るまで耐える」に限定されます。自社の意思決定のせいだと考えれば、変えるべき対象が具体的に見えます。</p><h3 class="sh">どういう状況の話か</h3><p>複数店舗を持つ会社で言えば、客数が数年落ち続けている状態がこれにあたります。まずやるのは、赤字店の閉店と人員の見直し。ここまでは正しい。</p><p>分かれ目はその次です。「近隣に競合ができたから」で止めるのか、「品揃えと接客が競合に劣ったから」まで踏み込むのか。前者なら打つ手は待つことしかなく、後者なら明日から変えられます。</p><p>削る対象の話も生々しい。人件費を削るとき、真っ先に減らせるのは接客の人員です。しかしそこは、この研究が「削ってはいけない」と名指ししている領域そのものです。削るなら、客に見えない部分から削る。</p><h3 class="sh">別の見方</h3><p>反論としては、生存者バイアスの問題があります。復活した企業だけを見て共通点を探すと、たまたま運が良かった要因を法則と取り違えます。この論文は衰退企業全体を追っている点でその批判に配慮していますが、完全には逃れられません。</p><p>もうひとつ、資金の問題があります。削減と同時に再投資できるのは、手元に余裕がある会社です。余裕がない会社に「削りながら投資しろ」と言うのは、実行不能な助言になりかねません。</p><h3 class="sh">例外と限界</h3><p>対象は主に一定規模以上の企業で、オーナー経営の中小企業とは意思決定の速さも資金調達の手段も違います。中小企業では、経営者一人の判断で方向転換できる分だけ、有利にも不利にも振れます。</p><p>また、衰退の原因が本当に外部環境である場合――市場そのものが消える場合――は、この枠組みは当てはまりません。その場合の正解は復活ではなく、撤退か転業です。</p><p>実務に落とすなら、削減案を作る前に一枚書くことです。「なぜ落ちたのか」を、外部要因と自社要因に分けて列挙する。自社要因が一つも書けないなら、その診断はまだ終わっていません。</p></div>
+      <a class="src" href="https://news.google.com/rss/articles/CBMivgFBVV95cUxOMDlpajUyWXQ1Mmk2NFJ4bkxlZ25ObzFXMVdTaFZEWG9Zc2dURk9MaTZjS1dVWWtKMzdxSzdJLXRBZnpNSldTZW8zUmhFRG9zSkVCeC1hdEVjaUs1RmlTVkpXZHhjQWgtSDQ1aWlkRkVHYlZ5TVQxWDFfWUpPbXg5ZG1pdmU5ak9IaWtGMDRJX25oYUxzTWF3ZXVOLThDemswd1FMVk9vUkJQRTc5UGpwdHN5UnlNZ2FMUzl2Vl9n?oc=5" target="_blank" rel="noopener">California Mgmt Review ↗</a>
+    </article>
+  </div>
+  <section class="papers"><h2 class="sec">今週の論文</h2>
+    <article class="paper">
+      <h3>AI家庭教師を無料で配っても、生徒はほとんど使わなかった</h3>
+      <div class="auth">NBER Working Paper（Khanmigo を用いた学校実地実験）</div>
+      <dl>
+        <dt>問い</dt><dd>生成AIは教育を変える、と言われ続けてきました。個別指導は効果が大きいことが分かっているのに高価で、AIならそれを全員に配れる――という論法です。しかし、この主張はほとんど短期の実験室的な条件で検証されてきました。本当に問うべきなのは、実際の学校で、日常の環境の中に置いたとき、生徒が自発的に使い、成績が動くのかどうかです。この研究は「使える状態にすること」と「使われること」を明確に分けて測っています。</dd>
+        <dt>検証</dt><dd>米国の学区で、AI家庭教師 Khanmigo を対象校の生徒に提供し、2学年（2年間）にわたって追跡しました。提供は授業への強制ではなく、学習プラットフォーム上から1クリックでアクセスできる形です。研究者は、成績や学習量といった結果指標だけでなく、実際のアクセスログ――誰が、何回、どれだけの時間使ったか――を全期間にわたって記録しました。比較は、提供された群と提供されなかった群の間で行い、さらに提供群の中を「実際に使った生徒」と「使わなかった生徒」に分けて分析しています。この二段構えが要点で、平均効果だけを見ると、使われなかったことによるゼロと、使っても効かなかったことによるゼロが区別できません。</dd>
+        <dt>結果</dt><dd><ul class="finds"><li>提供群の大半の生徒は、2年間を通じてほとんど利用しませんでした。アクセスまで1クリックという設計でも、自発的な利用は立ち上がらなかったのです。</li><li>結果として、提供群全体の学力への平均的な効果はごく小さいものにとどまりました。ツールの性能ではなく、利用が起きなかったことが平均効果を押し下げています。</li><li>実際に使った少数の生徒に限ると、利用量と成績の間には正の関係が見られました。ただしこれは自発的に使う生徒の特性を反映している可能性があり、因果とは言い切れません。</li><li>利用は時間とともに減衰しました。導入直後に試す生徒はいても、習慣として定着した層は限られています。</li><li>教師が授業の中で使う場面を作った場合には利用が伸びました。つまり利用を決めていたのは、ツールへの距離ではなく、使う理由が用意されているかどうかでした。</li></ul></dd>
+        <dt>含意</dt><dd>この結果は、AI導入を検討するすべての組織にそのまま当てはまります。ライセンスを配り、リンクを置き、使い方を説明する――そこまでやっても、使われないことのほうが普通だということです。導入の成否を「配布数」や「アカウント数」で測っている限り、この失敗は数字に現れません。効果を出したいなら、既存の業務の流れの中に「ここで使う」という場面を埋め込む必要があります。研修より、業務手順の書き換えのほうが効きます。</dd>
+        <dt>留意</dt><dd>対象は学校の生徒であり、業務命令が効く職場とは自発性の前提が違います。また、実験期間中もAIの性能は上がり続けており、当時使われなかったことが、性能改善後も同じとは限りません。使った生徒での正の関係は、もともと熱心な生徒が使ったという選択の効果を含んでいます。</dd>
+      </dl>
+      <a class="src" href="https://news.google.com/rss/articles/CBMiSkFVX3lxTFBVYmYtN1NpeDFLbnAtUGpZOHNBSEFBMkhHYUhFVGtoOTlIb3JGc1BXd2VGbndfOVA0Z0M4VXdXVHp6SnhOTXZpbXdn?oc=5" target="_blank" rel="noopener">NBER ↗</a>
+    </article>
+    <article class="paper">
+      <h3>求職者の思い違いを見て支援先を絞ると効果が出る</h3>
+      <div class="auth">arXiv econ.GN（無作為化実験、2026）</div>
+      <dl>
+        <dt>問い</dt><dd>職探しの支援の定番は「視野を広げなさい」という助言です。同じ職種にこだわらず、隣接する職種にも応募すれば、決まる確率は上がる。理屈は正しく、多くのデジタル支援ツールがこの助言を全員に配っています。しかし全員に同じ助言を出せば、必要としない人にも届き、効果は薄まります。この研究が問うたのは、誰に配れば効くのかを事前に見分けられるか、という点です。手がかりに選ばれたのが、求職者自身の「いつ決まるか」という見通しの偏りでした。</dd>
+        <dt>検証</dt><dd>研究チームはまず、求職者に自分の再就職の見込みを予測させ、実際の結果と突き合わせて偏りの方向と大きさを測りました。楽観に偏る人と悲観に偏る人を分ける作業です。そのうえで無作為化実験を行い、隣接職種への応募を促す支援を、①全員に配る条件、②偏りをもとに対象を絞って配る条件、③配らない条件に分けて比較しています。測ったのは応募先の広がり方だけでなく、実際の応募数、面接到達、再就職までの日数です。姉妹論文では、この偏りが何を反映しているのか――情報の不足なのか、選好の違いなのか――を分離する分析も行われています。</dd>
+        <dt>結果</dt><dd><ul class="finds"><li>再就職の見込みを楽観的に見積もっていた求職者ほど、応募の範囲が狭く、決まるまでの期間が長くなっていました。楽観が探索を止めていたのです。</li><li>隣接職種を勧める助言は、全員に配った場合の効果は小さいものでした。既に広く探している人には情報の追加にならないためです。</li><li>偏りの方向で対象を絞ると、同じ助言でも効果が明確に大きくなりました。同じ予算で成果を増やせることを意味します。</li><li>悲観に偏っていた求職者では、助言の効き方が逆向きになる場面がありました。範囲を広げること自体が、条件の悪い仕事への妥協を早めていた可能性があります。</li><li>見通しの偏りは、単なる情報不足ではなく、その人が何を重視しているかも反映していました。つまり偏りは誤りとは限らず、選好の表れでもあります。</li></ul></dd>
+        <dt>含意</dt><dd>採用や教育の支援を設計するときに直接効く発見です。同じ助言を全員に配るのは公平に見えますが、必要としない人に届く分だけ薄まります。効果を出すには、事前に相手の思い違いの方向を測り、対象を絞ること。しかも測る材料は難しいものではなく、「いつ頃決まると思うか」を聞くだけで足ります。社内でも、たとえば「この仕事はあと何日で終わると思うか」を聞いておくと、支援が要る人と要らない人の見分けがつきます。</dd>
+        <dt>留意</dt><dd>実験の舞台は特定国の労働市場と支援制度で、地域の求人の厚みが結果を左右します。沖縄や福岡のように職種の選択肢が限られる地域では、範囲を広げる助言の効き方が変わり得ます。また、偏りの測定は本人の申告に依存しており、聞き方によって振れます。</dd>
+      </dl>
+      <a class="src" href="https://arxiv.org/abs/2608.16849" target="_blank" rel="noopener">arXiv econ.GN ↗</a>
+    </article>
+    <article class="paper">
+      <h3>最低賃金の恩恵は、狙った世帯にどこまで届くのか</h3>
+      <div class="auth">NBER Working Paper（2026）</div>
+      <dl>
+        <dt>問い</dt><dd>最低賃金の引き上げは、低所得世帯を助ける政策として支持されてきました。議論の焦点はもっぱら「雇用が減るかどうか」に集まってきましたが、この研究が問うのは別の点です。仮に雇用が減らなかったとしても、増えた賃金は本当に貧しい世帯に届いているのか。最低賃金で働く人と、貧しい世帯に属する人は、実はかなりずれています。誰が得をして誰が損をするのかを、世帯の所得水準ごとに分けて確かめる必要がある、というのが出発点です。</dd>
+        <dt>検証</dt><dd>分析は、個人の賃金データと世帯の所得データを結合し、最低賃金の引き上げによる賃金の増加分が、どの所得層の世帯に落ちたかを追跡する形をとります。州ごとに引き上げの時期と幅が異なることを利用し、引き上げた州と引き上げなかった州を比較する設計です。同時に、雇用の減少や労働時間の削減によって失われた所得も差し引き、世帯単位の純増減を計算しています。対象期間は複数年にわたり、引き上げ直後だけでなく、数年後の姿まで追っている点が特徴です。単年の効果だけを見ると、企業側の調整が終わる前の姿を見ることになります。</dd>
+        <dt>結果</dt><dd><ul class="finds"><li>最低賃金で働く人のかなりの割合は、貧困世帯ではなく中所得以上の世帯に属していました。学生や、配偶者に所得のある人が含まれるためです。</li><li>賃金増加分のうち、貧困世帯に届いた割合は、政策の狙いから想定されるより小さいものでした。恩恵は所得層に広く分散します。</li><li>雇用時間の減少を差し引くと、最も所得の低い層の一部では純増がほとんど残らない場合がありました。時給は上がっても、時間が減れば世帯の手取りは変わりません。</li><li>効果の大きさは地域によって大きく違いました。もともとの賃金水準に対する引き上げ幅が大きい地域ほど、負の調整が出やすくなります。</li><li>給付付き税額控除のような、世帯所得を直接見て配る制度のほうが、貧困世帯への到達率は高いという比較結果が示されています。</li></ul></dd>
+        <dt>含意</dt><dd>雇用主の立場では、最低賃金の引き上げを「人件費が上がる」という一点で受け止めがちですが、この研究はもう一段先を示します。引き上げに対して企業が最初に取る調整は、人を減らすことより時間を減らすことだ、という点です。シフトを削れば数字は合いますが、それは働く側の手取りが増えないことを意味し、定着の面では逆効果になります。人件費の圧力を時間の削減で吸収するのか、生産性の向上で吸収するのかは、数年後の人の残り方を分ける判断になります。</dd>
+        <dt>留意</dt><dd>分析の舞台は米国で、州ごとに水準の異なる制度を前提としています。全国一律に近い日本の仕組みや、地域別最低賃金の刻み方とは条件が違います。また、最低賃金研究は同じデータからでも研究者によって結論が割れてきた分野であり、この一本だけで判断すべきではありません。</dd>
+      </dl>
+      <a class="src" href="https://news.google.com/rss/articles/CBMiSkFVX3lxTE1iS2VlUmlYMnZ4MVNfdXJhZGpGa2FVZ2NKUFBDV1VtVVJJN3QxeFM2SWFFM0RuaFBEeU11LUNDQWdIVTNpSlRGM0ZR?oc=5" target="_blank" rel="noopener">NBER ↗</a>
+    </article></section>
+  <footer>
+    コンサルティングファーム・ビジネススクール・調査機関の19ソースから、
+    直近7日の公開分を収集し日本語に要約したもの。判断の前に各出典を確認してください。
+  </footer>
+</div></div>
+<script>
+(function(){
+  var KEY = "lsm-favs-v1";
+  function load(){ try { return JSON.parse(localStorage.getItem(KEY)) || []; }
+                   catch(e){ return []; } }
+  function save(v){ try { localStorage.setItem(KEY, JSON.stringify(v)); } catch(e){} }
+  function has(url){ return load().some(function(x){ return x.url === url; }); }
+  function paint(b){
+    var on = has(b.dataset.url);
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+    var ic = b.querySelector(".ic"), tx = b.querySelector(".tx");
+    if (ic) ic.textContent = on ? "\u2605" : "\u2606";
+    if (tx) tx.textContent = on ? "保存済み" : "あとで読む";
+    if (!ic && !tx) b.textContent = on ? "\u2605" : "\u2606";
+  }
+  function toggle(b){
+    var d = b.dataset, list = load(), i = list.findIndex(function(x){ return x.url === d.url; });
+    if (i >= 0) list.splice(i, 1);
+    else list.unshift({url:d.url, title:d.title||d.url, kind:d.kind||"", date:d.date||"",
+                       note:d.note||"", saved:new Date().toISOString().slice(0,10)});
+    save(list); paint(b);
+    if (window.renderFavs) window.renderFavs();
+  }
+  function wire(){
+    var bs = document.querySelectorAll("[data-fav]");
+    for (var i = 0; i < bs.length; i++){
+      (function(b){ paint(b); b.addEventListener("click", function(e){
+        e.preventDefault(); e.stopPropagation(); toggle(b); }); })(bs[i]);
+    }
+  }
+  window.favStore = {load:load, save:save, has:has};
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", wire);
+  else wire();
+})();
+</script>
+</body>
+</html>
