@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>今週のインサイト 2026-08-31</title>
+<style>
+  :root{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E; --accent-bg:#F5EFE3;
+    --sans: system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
+      --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E; --accent-bg:#F5EFE3;
+  }
+  :root[data-theme="dark"]{
+    --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
+    --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
+  }
+  /* Phone-first. Body text sits at 16px (never below -- iOS zooms on focus under 16px and
+     small type is the main complaint on a handset), the column is capped just above a
+     comfortable measure, and side padding stays generous so text never touches the edge. */
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0}
+  .wrap{background:var(--ground);color:var(--ink);font-family:var(--sans);
+    font-size:16px;line-height:1.9;-webkit-font-smoothing:antialiased;
+    padding:1.5rem 1.15rem 4rem;min-height:100vh}
+  .inner{max-width:34rem;margin:0 auto}
+  header{border-bottom:1px solid var(--line);padding-bottom:1.25rem;margin-bottom:1.5rem}
+  .eyebrow{font-size:.72rem;letter-spacing:.16em;color:var(--faint);
+    text-transform:uppercase;margin:0 0 .5rem}
+  h1{font-size:1.4rem;font-weight:700;letter-spacing:-.01em;line-height:1.45;
+    margin:0;text-wrap:balance}
+  .lede{font-size:1rem;color:var(--muted);margin:1.1rem 0 0;line-height:1.95}
+  .picks{display:flex;flex-direction:column;gap:1.15rem}
+  .pick{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.2rem 1.1rem;position:relative}
+  .n{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.1em;margin-bottom:.35rem}
+  .pick h2{font-size:1.12rem;font-weight:700;line-height:1.6;margin:0 0 .7rem;
+    letter-spacing:-.005em;text-wrap:balance}
+  /* No justify: on a narrow screen it opens rivers of white space between Japanese runs. */
+  .sum{font-size:1rem;color:var(--ink)}
+  .sum p{margin:0 0 .95rem}
+  .sum p:last-child{margin-bottom:0}
+  .sum .blist{list-style:none;margin:0 0 1rem;padding:0;display:flex;
+    flex-direction:column;gap:.5rem}
+  /* 本文中の小見出し: 長い解説を拾い読みできるようにする */
+  .sum .sh{font-size:.94rem;font-weight:700;color:var(--ink);margin:1.5rem 0 .55rem;
+    padding-left:.6rem;border-left:3px solid var(--accent);line-height:1.6}
+  .sum .sh:first-child{margin-top:0}
+  .sum .blist li{position:relative;padding-left:1.1rem;line-height:1.85}
+  .sum .blist li::before{content:"";position:absolute;left:.2rem;top:.75em;
+    width:.32rem;height:.32rem;border-radius:50%;background:var(--accent)}
+  /* 図解の崩れ防止: 長い語も枠内で折り返し、幅が足りなければ横スクロールさせる */
+  .fig *{overflow-wrap:anywhere;word-break:normal;min-width:0}
+  /* 図解: CSS で組む（SVGだと縮小して読めなくなる）。縦積みなので幅の狭い画面でも崩れない */
+  .fig{margin:.9rem 0 1rem;padding:.9rem .85rem;border:1px solid var(--line);
+    border-radius:12px;background:var(--ground)}
+  .fig-t{font-size:.76rem;font-weight:700;letter-spacing:.06em;color:var(--accent);
+    margin-bottom:.7rem}
+  .fig-c{font-size:.78rem;color:var(--muted);margin-top:.7rem;line-height:1.7}
+  .flow{display:flex;flex-direction:column;align-items:stretch;gap:.3rem}
+  .flow .step{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .7rem;text-align:center}
+  .flow .step b{display:block;font-size:.9rem;font-weight:700}
+  .flow .step span{display:block;font-size:.78rem;color:var(--muted);margin-top:.15rem;
+    line-height:1.6}
+  .flow .arr{text-align:center;color:var(--accent);font-size:.9rem;line-height:1}
+  /* 2x2 マトリクス: 経営フレームの定番。軸ラベルを外側に置いて象限を読ませる */
+  .mtx{display:flex;flex-direction:column;gap:.3rem}
+  .mtx .ylab{font-size:.72rem;color:var(--muted);text-align:center}
+  .mtx .grid{display:grid;grid-template-columns:1fr 1fr;gap:.35rem}
+  .mtx .mcell{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .6rem;min-height:3.6rem;display:flex;flex-direction:column;
+    justify-content:center}
+  .mtx .mcell.empty{background:transparent;border-style:dashed;opacity:.5}
+  .mtx .mcell b{font-size:.86rem;font-weight:700;line-height:1.5}
+  .mtx .mcell span{font-size:.76rem;color:var(--muted);margin-top:.2rem;line-height:1.55}
+  .mtx .xlabs{display:flex;justify-content:space-between;font-size:.72rem;
+    color:var(--muted);padding:0 .2rem}
+  /* 横棒: 研究の効果量・前後差を数字で見せる */
+  .bars{display:flex;flex-direction:column;gap:.5rem}
+  .brow{display:flex;flex-direction:column;gap:.2rem}
+  .blab{font-size:.84rem;font-weight:600}
+  .blab .bnote{font-weight:400;color:var(--muted);font-size:.76rem;margin-left:.4rem}
+  /* grid: the bar track takes the leftover width and the number never wraps under it.
+     A percentage width inside a flex row was being resolved against the wrong box, which is
+     what made the bars overflow on a phone. */
+  .btrack{display:grid;grid-template-columns:minmax(0,1fr) max-content;gap:.55rem;
+    align-items:center}
+  .bwrap{background:var(--line);border-radius:5px;height:1.35rem;overflow:hidden;width:100%}
+  .bbar{height:100%;background:var(--accent);border-radius:5px;opacity:.9}
+  .bval{font-size:.82rem;font-weight:700;color:var(--accent);
+    font-variant-numeric:tabular-nums}
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
+  .cmp .col{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .65rem}
+  .cmp .ch{font-size:.78rem;font-weight:700;color:var(--accent);margin-bottom:.4rem;
+    padding-bottom:.35rem;border-bottom:1px solid var(--line)}
+  .cmp ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.3rem}
+  .cmp li{font-size:.86rem;line-height:1.6;padding-left:.75rem;position:relative}
+  .cmp li::before{content:"・";position:absolute;left:0;color:var(--faint)}
+  .rel{display:flex;flex-direction:column;align-items:center;gap:.55rem}
+  .rel .hub{background:var(--accent);color:var(--card);border-radius:999px;
+    padding:.5rem 1.1rem;font-size:.9rem;font-weight:700}
+  .rel .sats{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem}
+  .rel .sat{background:var(--card);border:1px solid var(--line);border-radius:999px;
+    padding:.35rem .75rem;font-size:.84rem}
+  @media (max-width:380px){ .cmp{grid-template-columns:1fr} }
+  /* Tap target: a bare inline link is hard to hit on a phone, so give it real height. */
+  .src{display:inline-block;margin-top:1rem;font-size:.86rem;color:var(--muted);
+    text-decoration:none;border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .8rem;line-height:1.5;word-break:break-word}
+  .src:hover{color:var(--accent);border-color:var(--accent)}
+  /* 今週の論文: 定義リストで「問い／検証／結果／含意／留意」を固定の型に見せる */
+  .papers{margin-top:2.2rem}
+  .sec{font-size:.78rem;font-weight:700;letter-spacing:.14em;color:var(--accent);
+    margin:0 0 .9rem;padding-bottom:.5rem;border-bottom:1px solid var(--line)}
+  .paper{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.1rem 1.05rem;margin-bottom:1rem}
+  .paper h3{font-size:1.02rem;font-weight:700;line-height:1.6;margin:0 0 .3rem;
+    text-wrap:balance}
+  .paper .auth{font-size:.78rem;color:var(--faint);margin-bottom:.75rem}
+  .paper dl{margin:0;display:grid;grid-template-columns:max-content minmax(0,1fr);
+    gap:.5rem .8rem;align-items:start}
+  .paper dt{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.08em;
+    padding-top:.15rem;white-space:nowrap}
+  .paper dd{margin:0;font-size:.9rem;line-height:1.8;text-align:justify}
+  .paper .finds{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;
+    gap:.35rem}
+  .paper .finds li{position:relative;padding-left:1rem;line-height:1.75}
+  .paper .finds li::before{content:"";position:absolute;left:.2rem;top:.72em;width:.3rem;
+    height:.3rem;border-radius:50%;background:var(--accent)}
+  @media (max-width:420px){ .paper dl{grid-template-columns:1fr;gap:.15rem .8rem}
+    .paper dt{margin-top:.5rem} }
+  footer{margin-top:2.4rem;padding-top:1.1rem;border-top:1px solid var(--line);
+    font-size:.78rem;color:var(--faint);line-height:1.7}
+  a:focus-visible,.src:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+.fav{appearance:none;-webkit-appearance:none;cursor:pointer;display:inline-flex;
+  align-items:center;justify-content:center;gap:6px;min-width:44px;min-height:44px;
+  padding:0 12px;border-radius:999px;font:inherit;font-size:14px;font-weight:600;
+  background:var(--surface,#fff);color:var(--ink-mut,#6b7280);
+  border:1px solid var(--line,#e5e7eb);line-height:1;}
+.fav:hover{border-color:#f0b429;color:#b26b00;}
+.fav[aria-pressed="true"]{background:#fff8e6;border-color:#f0b429;color:#b26b00;}
+.fav .ic{font-size:16px;line-height:1;}
+.fav-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:14px 0 6px;}
+.fav-bar a.all{font-size:13.5px;color:var(--ink-mut,#6b7280);text-decoration:none;
+  min-height:44px;display:inline-flex;align-items:center;}
+.fav-bar a.all:hover{text-decoration:underline;}
+.fav-mini{appearance:none;-webkit-appearance:none;cursor:pointer;background:none;border:0;
+  padding:6px 8px;margin-left:2px;font-size:15px;line-height:1;color:#c3c8d0;
+  min-width:36px;min-height:36px;}
+.fav-mini[aria-pressed="true"]{color:#f0b429;}
+
+</style>
+</head>
+<body>
+<div class="wrap"><div class="inner">
+  <header>
+    <p class="eyebrow">Weekly Insight</p>
+    <h1>今週のインサイト <span style="color:var(--faint);font-weight:500">2026-08-31</span></h1>
+    <p class="lede">今週は、偶然とは思えないほど同じ方向を向いた論考が並びました。ひとつはAIの語られ方の変化です。去年までの中心は「何人分の仕事が消えるか」でしたが、今週の論考はそろって「どの判断を、どれだけ速く、どれだけ良くできるか」へ軸足を移しています。人を減らす話から、仕事の割り方を作り直す話へ移った、と言い換えてもいい。もうひとつは、感情がマネジメント論の中心に戻ってきたことです。マネジャーが多忙に逃げるのは能力ではなく不安の問題だ、悪い情報が上がってこないのは仕組みではなく沈黙のコストの問題だ——今週はこの手の指摘が複数の媒体で重なりました。三つめは、価値を「相手にどう見えているか」で測り直す議論です。自社の提供価値も、事業を増やすことの意味も、こちらの努力量ではなく相手の認識で決まるという話が、価格戦略とブランドの両面から出ています。読む順は、まず①の多忙の話から入るのをおすすめします。自分の時間の使い方を疑う準備ができたところで、②のAIと仕事の再設計、④の価値の見える化へ進むと、話が一本につながって読めるはずです。複数の事業をお持ちなら、⑦の「事業を増やすこと自体は強みではない」を最後に置くと収まりがよいと思います。</p>
+    <div class="fav-bar"><button class="fav" data-fav data-url="https://hacadr-cloud.github.io/weekly-insight/2026-08-31.html" data-title="週次インサイト 2026-08-31" data-kind="insight" data-date="2026-08-31" aria-pressed="false"><span class="ic">☆</span><span class="tx">あとで読む</span></button><a class="all" href="favorites.html">保存した記事を見る →</a></div>
+  </header>
+  <div class="picks">
+    <article class="pick">
+      <div class="n">1</div>
+      <h2>「忙しさ」は不安からの逃避——多忙なマネジャーの正体</h2>
+      <div class="fig"><div class="fig-t">マネジャーの4類型</div><div class="bars"><div class="brow"><div class="blab">注意散漫型<span class="bnote">意欲だけ高い</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:100.0%"></div></div><span class="bval">40%</span></div></div><div class="brow"><div class="blab">先延ばし型<span class="bnote">雑務を消化</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:75.0%"></div></div><span class="bval">30%</span></div></div><div class="brow"><div class="blab">離脱型<span class="bnote">諦めている</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:50.0%"></div></div><span class="bval">20%</span></div></div><div class="brow"><div class="blab">目的志向型<span class="bnote">意欲も焦点も</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:25.0%"></div></div><span class="bval">10%</span></div></div></div><div class="fig-c">棒が長いほど人数が多い。前に進めているのは一番下の10%だけ</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>管理職が忙しい。しかし忙しさの中身を測ると、成果につながらない作業が大半を占めている。</p><p>やっかいなのは、本人が怠けているわけではないことだ。誰よりも長く働き、誰よりも動いている。それでも事業は前に進まない。</p><p>この現象が長いあいだ解けなかったのは、多忙を「時間管理の失敗」として扱ってきたからだ。手帳の使い方や会議の削減で治そうとしてきた。実際には感情の問題だった、というのがこの論考の出発点である。</p><h3 class="sh">どう調べたか</h3><p>下敷きになっているのは、経営学者ブルッフとゴシャールによる古典的な調査だ。複数の大企業に所属するマネジャー約700人を対象に、10年近くにわたって行動を追跡している。</p><p>自己申告のアンケートだけではない。実際に何にどれだけ時間を使ったかを観察し、面談を重ねた。</p><p>分類の軸は2つだけだ。「エネルギー」——どれだけ強い意欲を持って仕事に臨んでいるか。「フォーカス」——注意を一点に絞れているか。この2軸で4つに分けた。</p><h3 class="sh">分かったこと</h3><ul class="blist"><li>意欲も集中もある「目的志向型」はわずか10%。残る9割は、忙しくても前に進んでいない</li><li>最も多いのが「注意散漫型」で40%。意欲は高いが焦点が定まらず、来た球を全部打ち返している</li><li>「先延ばし型」が30%。意欲も焦点も低く、締切のある雑務だけを確実に消化する</li><li>「離脱型」が20%。手続きは回すが、内心では変えられないと諦めている</li><li>目的志向型の10%に共通していたのは、能力の高さではなく「断る回数の多さ」だった</li></ul><h3 class="sh">なぜそうなるのか</h3><p>著者の説明はこうだ。重い仕事——人の評価、価格の見直し、赤字店舗をどうするかの判断——には必ず不安が伴う。答えの出ない状態に耐える時間が要る。</p><p>一方、メールの返信や資料の体裁直しは、すぐに「終わった」という感覚をくれる。しかも周囲から責められない。不安から逃げる手段として、これほど都合のいいものはない。</p><p>つまり多忙は症状であって原因ではない。原因は「決めきれない案件を抱えている不快さ」にある。だから時間管理の研修では治らないし、部下に権限を渡しても別の雑務で埋まるだけだ。</p><h3 class="sh">どういう場面の話か</h3><p>典型は、店長が一日中フロアに立っている状態だ。接客もするし在庫も見る。本人は最も働いている。だが「この店をこのまま続けるのか」という判断だけが半年先送りされている。</p><p>もうひとつは、複数の店を見る立場の人が全店の日報に目を通し、全部にコメントを返している状態。仕事をしている実感は最も強い。しかし日報を読む行為は、どの店に人を厚くするかという配分の決断を1ミリも前に進めない。</p><p>本人に「なぜそれを先にやるのか」と聞くと、たいてい「これは今日中に必要だから」と答える。その通りなのだが、今日中に必要な仕事は無限に湧いてくる。</p><h3 class="sh">別の見方</h3><p>反論もある。中小企業では、そもそも手を動かす人がいない。管理職が雑務をやらなければ店が回らない、という現実は確かにある。</p><p>この調査の対象は大企業のマネジャーであり、そのまま当てはめるのは乱暴だ。ただし著者の主張は「雑務をやるな」ではない。「雑務をやっている自分に安心していないか」を疑え、という話である。</p><h3 class="sh">例外と限界</h3><p>4分類の割合(10/40/30/20)は調査対象となった企業群の数字で、業種や規模が違えば動く。日本の中小企業で同じ比率が出る保証はない。</p><p>また、意欲と集中を外から正確に測るのは難しく、観察者の解釈が入る。数字そのものより、「忙しさの原因を感情に求めた」という視点の転換のほうが持ち帰る価値がある。</p><p>見分け方はひとつだけだ。過去1カ月で「先送りしている決断」を書き出して、それが3つ以上あるなら、今の忙しさは逃避の可能性が高い。</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14271" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">2</div>
+      <h2>AI導入は人を減らす話ではなく、仕事を割り直す話</h2>
+      <div class="fig"><div class="fig-t">入口の問いで結果が変わる</div><div class="cmp"><div class="col"><div class="ch">人を減らす発想</div><ul><li>役割ごと削る</li><li>残った人に負荷が寄る</li><li>例外処理が空白になる</li><li>一時的にコストだけ減る</li></ul></div><div class="col"><div class="ch">仕事を割り直す発想</div><ul><li>工程に分けて配る</li><li>下書きは機械・確認は人</li><li>新人ほど伸びる</li><li>件数と速度で回収する</li></ul></div></div><div class="fig-c">左右の同じ行を見比べる。同じAIでも入口の問いで結末が逆になる</div></div>
+      <div class="sum"><h3 class="sh">何が問題か</h3><p>AIの導入を検討すると、会議で最初に出る数字はたいてい「何人分の工数が浮くか」だ。稟議に載せられる数字が人件費しかないからである。</p><p>しかし入口をそこに置くと、その先の設計が全部引きずられる。役割ごと削る方向にしか話が進まなくなる。</p><p>筆者の主張は明快だ。役割を削る発想でAIを入れた組織は、小さくはなるが賢くはならない。人が抜けた分の判断が誰にも引き継がれず、うまくいっていた理由が分からなくなるからだ。</p><h3 class="sh">検証されていること</h3><p>この主張を支えている実験がふたつある。どちらも規模が大きく、条件がはっきりしている。</p><ul class="blist"><li>ブリニョルフソンらの研究では、カスタマーサポート担当5,179人に生成AIの支援ツールを段階的に配り、配った部署と未配布の部署を比べた。処理件数は全体で14%増。ただし内訳が重要で、経験の浅い層は34%増、逆に上位層はほぼ変化なしだった</li><li>コンサルティング会社の社員758人を対象にした実験では、AIを使った群は課題を12.2%多くこなし、25.1%速く、成果物の評価も約40%高かった。ところがAIが不得手な種類の課題では、AIを使った群のほうが正答率が19ポイント低かった</li></ul><h3 class="sh">分かったこと</h3><ul class="blist"><li>効果は「職種」ではなく「工程」に出る。同じ人の仕事でも、伸びる作業と何も変わらない作業がはっきり分かれる</li><li>効きやすいのは経験の浅い人。ベテランとの差が縮む方向に働く</li><li>AIが苦手な領域では、使うと逆に精度が落ちる。使い手が誤りに気づけないため</li><li>したがって「AIが下書きし、人が最終確認する」境界線をどこに引くかが、導入効果のほぼ全てを決める</li></ul><h3 class="sh">なぜそうなるのか</h3><p>人員削減を前提に置くと、削る対象は「役割」の単位になる。ところがAIが代替できるのは役割ではなく、その中の一部の作業だ。</p><p>役割ごと消すと、AIが代替できない部分——例外処理、判断、責任の引き受け——まで一緒に消える。残った人がそれを吸収するので、表向きの人数は減っても現場の負荷は増える。</p><p>逆に工程に割ってから配り直すと、人は「機械が下書きしたものを直す仕事」に移る。ここで新人の立ち上がりが速くなり、経験者は例外処理に集中できる。</p><h3 class="sh">どういう場面の話か</h3><p>携帯ショップの店頭を工程に割ってみる。来店予約の受付、料金プランの試算、契約書類の不備チェック、契約後の後追い連絡。このうち試算と不備チェックは機械が下書きしやすく、最終確認は人が持つべき領域だ。</p><p>美容室なら、カウンセリング記録の整形、再来店を促す文面の作成、指名の履歴の集計。ここも下書きは機械、判断は人という線が引ける。</p><p>重要なのは、どの工程でも「誰が最後に責任を持つか」を空白にしないことだ。空白にした瞬間、誤りが誰の目にも留まらず通過する。前述の実験で正答率が19ポイント落ちたのは、まさにこの状態である。</p><h3 class="sh">別の見方</h3><p>反論としては「結局は人件費が下がらなければ投資回収できない」という指摘がある。これは正しい。</p><p>ただし実験の数字は、処理件数や速度という別の出口も回収経路になりうることを示している。同じ人数で扱える件数が14%増えるなら、それは採用を1人見送れることと経済的には同じだ。</p><h3 class="sh">例外と限界</h3><p>ふたつの実験はいずれも、作業の成果が数えやすい仕事(問い合わせ対応、資料作成)を対象にしている。成果が数えにくい仕事に同じ効果が出るかは分からない。</p><p>また期間が短く、長期的に人の技能がどう変わるかは測れていない。新人が下書きの修正だけを続けた場合、5年後にベテランになれるのかという問いには、まだ誰も答えを持っていない。</p></div>
+      <a class="src" href="http://hbr.org/2026/08/ai-transformation-requires-redesigning-work-not-cutting-roles" target="_blank" rel="noopener">HBR ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">3</div>
+      <h2>部下が黙る職場では、数字そのものが信用できない</h2>
+      <div class="fig"><div class="fig-t">沈黙が効く経路</div><div class="flow"><div class="step"><b>悪い報告を歓迎</b><span>最初の一言で決まる</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>前提のズレが露出</b><span>数字の下地が見える</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>判断をやり直せる</b><span>手遅れになる前に</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>損失が小さく済む</b><span>失敗の規模が縮む</span></div></div><div class="fig-c">左から右へ。最初の一歩が無いと、後ろは何ひとつ起きない</div></div>
+      <div class="sum"><h3 class="sh">何が問題か</h3><p>心理的安全性は「働きやすさ」の話として語られてきた。だからコスト側の議論になりやすく、余裕のある会社の贅沢品と見なされる。</p><p>この論考はそこを組み替える。異論が出ない職場では、経営に上がってくる情報の質が落ちる。つまりこれは福利厚生ではなく、意思決定の精度の問題だ、という立て方をしている。</p><p>なぜこれまでうまく説明できなかったのか。沈黙のコストは「起きなかった損失」として現れるため、数字にならないからだ。上がってこなかった報告は、誰も数えられない。</p><h3 class="sh">どう調べられてきたか</h3><p>出発点はエドモンドソンの一連の研究だ。当初の狙いは「良いチームほどミスが少ないはずだ」の検証だった。</p><p>病院の看護単位を対象に、チーム評価とミスの報告件数を突き合わせたところ、結果は逆に出た。評価の高いチームほど報告件数が多い。追加調査で分かったのは、良いチームはミスが多いのではなく、報告できる状態にあるということだった。</p><p>その後、製造業の51チームを対象にした調査で「発言しても罰されないという共通認識」が学習行動を経由して業績につながることが示された。グーグルが自社の180チームを分析した際も、成果を分ける最大の要因として同じものが挙がっている。</p><h3 class="sh">分かったこと</h3><ul class="blist"><li>ミスの報告件数が少ない部署は、優秀なのではなく黙っている可能性がある。件数の少なさを評価指標にすると逆効果になる</li><li>効くのは制度ではなく、上位者の反応。悪い報告に対して最初にどう反応したかが、その後の報告量を決める</li><li>発言のしやすさはチーム単位で大きく異なる。同じ会社・同じ制度でも、上司が違えば別物になる</li><li>効果が出るのは「言えること」自体ではなく、言えたことで判断がやり直せる点にある</li></ul><h3 class="sh">なぜそうなるのか</h3><p>人は、発言によって自分が無能・厄介だと見られるリスクを常に計算している。リスクが高いと判断すれば黙る。これは性格ではなく合理的な計算だ。</p><p>そして黙る対象は、たいてい最も重要な情報である。「この販売目標は無理です」「この仕入れは在庫が残ります」——聞きたくないだろうと思われる情報から順に上がってこなくなる。</p><p>結果として、経営に届く数字は「上に出しても安全な数字」だけになる。財務の資料は精緻なのに、前提が現実とずれている状態がここで生まれる。</p><h3 class="sh">どういう場面の話か</h3><p>分かりやすいのは月次の会議だ。数字の説明だけが並び、質問が出ない会議は、うまくいっている証拠ではない。異論を出す価値がないと学習された結果であることが多い。</p><p>もうひとつは店舗からの報告だ。クレームの件数がある店だけ極端に少ないとき、疑うべきは「その店が優秀」ではなく「その店では報告が上がらない」ほうである。</p><p>実際に効くのは、宣言や研修ではなく反応の変更だ。悪い報告を持ってきた人に、最初の一言で「よく上げてくれた」と返すかどうか。この一言の有無で、次の報告が来るかが決まる。</p><h3 class="sh">別の見方</h3><p>批判もある。心理的安全性が甘さと混同され、成果への要求が下がるという指摘だ。エドモンドソン自身も、安全性と基準の高さは別の軸だと繰り返し述べている。</p><p>両方が高い状態が学習する組織であり、安全性だけが高いと居心地はいいが成果が出ない。ここを取り違えると、単に厳しさを失っただけの職場になる。</p><h3 class="sh">例外と限界</h3><p>研究の多くは病院・製造業・大企業のチームが対象で、少人数の店舗にそのまま当てはまるかは検証が薄い。オーナーと従業員の距離が近い環境では、そもそも力関係の非対称が大きく、大企業以上に発言が難しい可能性もある。</p><p>また、相関を示した研究が中心で、「安全性を高めたら業績が上がった」という因果の証明は限定的だ。順序が逆——業績が良いから発言しやすい——という説明も完全には否定できていない。</p></div>
+      <a class="src" href="https://www.imd.org/ibyimd/leadership/why-cfos-need-people-to-speak-up-the-business-case-for-psychological-safety/" target="_blank" rel="noopener">IMD ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">4</div>
+      <h2>顧客はあなたの価値に気づいていない——値決め前の作業</h2>
+      <div class="fig"><div class="fig-t">価値と認識のズレ</div><div class="mtx"><div class="ylab top">価値が大きい</div><div class="grid"><div class="mcell"><b>ただ働き</b><span>値引き要求を招く領域</span></div><div class="mcell"><b>値付けの根拠</b><span>価格を守れる領域</span></div><div class="mcell"><b>自己満足</b><span>やめてよい活動</span></div><div class="mcell"><b>当たり前</b><span>差別化にはならない</span></div></div><div class="ylab bot">価値が小さい</div><div class="xlabs"><span>顧客が気づかない</span><span>顧客が認識している</span></div></div><div class="fig-c">左上を右上へ動かすのが値決めの前工程。左下は削ってよい</div></div>
+      <div class="sum"><h3 class="sh">何が問題か</h3><p>値引きを求められる。競合と比べられる。多くの場合、原因は価格そのものではなく「こちらが提供している価値が相手に見えていないこと」にある。</p><p>見えていない価値は、価格の根拠にならない。それどころか、無料の付帯サービスとして期待され、こちらの負担だけが増える。</p><p>これが解けなかった理由は単純だ。売り手は自分がやっていることを全部知っているので、相手も分かっていると錯覚する。この錯覚は、当事者からは絶対に見えない。</p><h3 class="sh">どう考えるか</h3><p>下敷きになっているのは、アンダーソンらによる価値提案の分類だ。彼らは売り手の提案を3つの型に整理している。</p><ul class="blist"><li>「全てのメリット」型：自社ができることを列挙する。最も多いが、最も効かない。相手はどれが自分に関係あるか判断できない</li><li>「有利な相違点」型：競合との違いを挙げる。前より良いが、違いの数だけ並べても優先順位が伝わらない</li><li>「共鳴する焦点」型：相手にとって最も価値のある1〜2点に絞り、その金額を計算して見せる</li></ul><p>三つめが最も強いことは、複数の産業財メーカーでの実践から示されている。HBRで紹介された例では、あるメーカーが競合品との比較で年間およそ1万6000ドルの節約になることを算出して提示し、価格の高さを正当化した。</p><h3 class="sh">分かったこと</h3><ul class="blist"><li>顧客が実際に重視している差別化点は、たいてい1つか2つしかない。それ以外を並べると焦点がぼける</li><li>価値は「金額に換算した形」で示さないと認識されない。定性的な説明では値引き交渉を止められない</li><li>計算に使う数字は、自社の推定ではなく顧客側の実績値を使う。これをやると相手が数字を否定できなくなる</li><li>価値の明確化は営業トークではなく、営業プロセスに組み込む作業である。個人の腕前に任せると再現しない</li></ul><h3 class="sh">なぜそうなるのか</h3><p>買い手は、売り手が何をやっているかを見ていない。見ているのは自分の手間と支出だけだ。</p><p>こちらが夜間に在庫を調整していても、書類の不備を先回りして直していても、相手の視界には入らない。入らない以上、それは価格に反映されない。</p><p>逆に言えば、金額に換算して見せた瞬間に、同じ活動が価格の根拠に変わる。やる仕事の量は1ミリも変わらないのに、である。</p><h3 class="sh">どういう場面の話か</h3><p>家電量販店との取引を考えると分かりやすい。こちらが担っている作業——在庫の引き取り、繁忙期の応援、書類不備の手直し、クレームの一次対応——は、先方の担当者にとっては「あって当たり前」になっている。</p><p>ここで「昨年、当社が引き取った在庫は◯点、金額にして◯円」「応援に出た延べ人数は◯人日」と数えて出すと、交渉の性質が変わる。数えるまでは存在しないのと同じだからだ。</p><p>美容室でも同じ構図がある。カウンセリングに20分かけていることも、次回の提案を記録していることも、客からは見えていない。見せ方の問題であって、努力量の問題ではない。</p><h3 class="sh">別の見方</h3><p>反論としては、価値を数字で示すと「では、その分値引きしてほしい」と逆に使われるという指摘がある。実際に起きる。</p><p>対処は、価値の総額を示したうえで、そのうち価格に反映しているのは一部だと明示することだ。全部を請求していないという事実自体が、交渉の材料になる。</p><h3 class="sh">例外と限界</h3><p>この手法は法人取引を想定している。買い手側にコスト計算をする担当者がいることが前提だ。個人客の場合、金額換算の資料はかえって理屈っぽく響く。</p><p>また、価値の計算は相手の業務を知らないと作れない。取引の浅い相手には使えず、既存の主要取引先に絞って使う道具だと考えたほうがよい。</p></div>
+      <a class="src" href="http://hbr.org/2026/08/do-your-b2b-customers-see-the-value-you-deliver" target="_blank" rel="noopener">HBR ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">5</div>
+      <h2>「やっていい」と客が思うか——拡張の許可という資産</h2>
+      <div class="fig"><div class="fig-t">拡張が許される条件</div><div class="mtx"><div class="ylab top">顧客の許可あり</div><div class="grid"><div class="mcell"><b>期待先行</b><span>頼まれるが応えられない</span></div><div class="mcell"><b>本命</b><span>最も伸びる領域</span></div><div class="mcell"><b>門前払い</b><span>説明しても届かない</span></div><div class="mcell"><b>宝の持ち腐れ</b><span>できるのに任されない</span></div></div><div class="ylab bot">顧客の許可なし</div><div class="xlabs"><span>能力の適合が低い</span><span>能力の適合が高い</span></div></div><div class="fig-c">伸びるのは右上だけ。右下は伝え方、左上は撤退の検討</div></div>
+      <div class="sum"><h3 class="sh">何が問題か</h3><p>既存の店舗網や顧客基盤を使って、新しい商材を扱う。理屈の上では効率がいい。しかし実際には、うまくいく組み合わせと、まったく反応がない組み合わせがある。</p><p>従来の説明は「相乗効果があるかどうか」だった。だがこの説明では、能力的には問題ないのに売れないケースを説明できない。</p><p>この論考が持ち出すのが「アイデンティティの許可」という考え方だ。顧客が「この会社がそれをやるのは自然だ」と感じるかどうか。これは能力の問題ではなく、認識の問題である。</p><h3 class="sh">どう考えられてきたか</h3><p>ブランド拡張の研究は40年近く積み上がっている。アーカーとケラーの古典的研究では、拡張の成否を分けるのは主に2つの適合だと整理された。</p><ul class="blist"><li>製品カテゴリーの近さ(能力として自然か)</li><li>ブランドが持つイメージとの一致(顧客の感覚として自然か)</li></ul><p>一般に、新商材の投入は多くが失敗に終わる。既存ブランドを使えば成功率は上がるが、イメージが合わない拡張は、失敗するだけでなく元のブランドまで毀損することが繰り返し確認されている。</p><p>今回の論考は、この2つめの軸を現代の文脈で捉え直したものだ。顧客が「この会社らしい」と感じる範囲が、実は競争優位そのものだという主張である。</p><h3 class="sh">分かったこと</h3><ul class="blist"><li>拡張の可否を決めるのは、能力の適合よりも認識の適合であることが多い</li><li>「らしさ」の範囲は業種で決まらない。同じ携帯販売でも、店によって許される範囲が違う</li><li>許可の範囲は接客の積み重ねで動く。すぐには広がらないが、狭めるのは一瞬でできる</li><li>許可があって能力がない組み合わせが最も危険。頼まれて引き受け、応えられずに信用を失う</li></ul><h3 class="sh">なぜそうなるのか</h3><p>顧客が新しい提案を受け取るとき、最初に判断するのは商品の良し悪しではない。「この人がこれを勧めてくるのは何のためか」である。</p><p>動機が理解できる範囲なら聞く。理解できない範囲だと、良い商品でも「売りつけられている」と受け取る。</p><p>つまり許可の正体は、蓄積された動機への信頼だ。だから広告では動かせないし、値引きでも埋まらない。</p><h3 class="sh">どういう場面の話か</h3><p>携帯ショップの店頭で、電気やインターネット回線を勧めるのは比較的通る。「通信のことは分かる店」という認識の範囲内だからだ。</p><p>一方、同じ店頭で保険やリフォームを勧めると、能力の有無に関係なく反応が落ちる。客の側に「なぜこの店が」という疑問が先に立つ。</p><p>美容室で髪に関する物販が通るのも同じ構造だ。逆に、健康食品や不動産に広げた途端に空気が変わる、というのは多くの現場が経験している。ここで見るべきは商材の利益率ではなく、その店が客から何を任されているかである。</p><p>拡張を検討するときの実務的な手順は、社内で議論することではない。既存客に「うちがこれを扱ったらどう思うか」を数十人に聞くほうが早い。違和感の理由を語れるなら、その範囲は今は許されていない。</p><h3 class="sh">別の見方</h3><p>反論もある。許可は固定的ではなく、実績で作れるという立場だ。実際、家電量販店や通信キャリアは、時間をかけて許容範囲を大きく広げてきた。</p><p>ただしそれには相応の期間と投資が要る。中小規模の事業者が同じ速度で広げられるかは別問題で、順序としては「今ある許可を使い切る」ほうが先になる。</p><h3 class="sh">例外と限界</h3><p>この議論は、顧客との接触が繰り返しある業態を前提にしている。一回きりの取引では、そもそも認識が蓄積されない。</p><p>また「許可」を事前に正確に測る方法は確立していない。聞き取りは有効だが、客は聞かれれば何か答えるため、実際の購買と一致するとは限らない。判断材料のひとつとして使うのが妥当な距離感だ。</p></div>
+      <a class="src" href="https://news.google.com/rss/articles/CBMiowFBVV95cUxOcVVGMWk1clRQMFY1b2hOa1ZKTHlfVG9sWXoxSDZKYkFOeWJxeGdDVlRMTXdYcTRNT1dBRlBvbGhXbldlZzNTTUVocTVQYjVSa3Y1SmxEYXctQWhUTHRsdzFyMHdMVFlCRTdYUjdPNHJDanI0YXJKa1lRanVQRE1GdDRZVk51eXpfaWlGSkNTTUg0V1Q1WVdfcmRSY3h3QjJuSDlZ?oc=5" target="_blank" rel="noopener">Wharton ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">6</div>
+      <h2>AIの儲けは省人化ではなく「判断の配当」から出る</h2>
+      <div class="fig"><div class="fig-t">AIの価値の出どころ</div><div class="rel"><div class="hub">意思決定</div><div class="sats"><span class="sat">判断の速さ</span><span class="sat">判断の頻度</span><span class="sat">判断の精度</span><span class="sat">資産の稼働</span><span class="sat">見送りの発見</span></div></div><div class="fig-c">中心は判断。人件費の削減は周辺の一要素にすぎない</div></div>
+      <div class="sum"><h3 class="sh">何が問題か</h3><p>AIを入れた企業は増えたが、損益に効いたと答える企業は少ない。マッキンゼーの調査では、生成AIを導入した企業の8割超が「全社の利益に実質的な影響はない」と回答している。</p><p>導入率と成果が乖離している。この乖離をどう説明するかが、今の最大の論点だ。</p><p>この論考の答えは、価値の測り方が間違っているというものだ。人件費の削減だけを見ているから、実際に生まれている価値が帳簿に現れない。</p><h3 class="sh">どう整理しているか</h3><p>筆者らは、AIが価値を生む経路を3つに分けている。人の作業時間の削減はそのうちの1つにすぎない。</p><ul class="blist"><li>労働の代替：同じ作業をより少ない人数でやる。分かりやすいが、天井が低い</li><li>意思決定の改善：判断が速くなる、頻度が上がる、精度が上がる</li><li>資産の稼働：既に持っている設備・在庫・人員をより無駄なく使う</li></ul><p>2つめと3つめのほうが大きいというのが主張だ。理由は、労働の削減は「今かかっている費用」が上限になるのに対し、判断の改善には上限がないからである。</p><h3 class="sh">分かったこと</h3><ul class="blist"><li>大きな成果は、判断の「回数」が増えたところに出ている。月1回の見直しが週1回になると、意思決定の質より頻度が効く</li><li>見送られていた案件——検討する余裕がなくて捨てていた選択肢——を拾えるようになる効果が大きい</li><li>効果が出るのは、AIの出力が実際の行動に接続されている場合だけ。レポートが増えるだけでは何も変わらない</li><li>逆に、省人化だけを狙った導入は成果が出にくい。投資額が小さく、対象が限定されるため</li></ul><h3 class="sh">なぜそうなるのか</h3><p>多くの事業では、判断が遅いことによる損失が費用として計上されない。売り逃した機会、遅れた発注、放置された不採算——どれも帳簿には出てこない。</p><p>出てこないから改善対象にならない。人件費だけが見えているので、そこを削る話になる。</p><p>AIが本当に効くのは、この「見えていない損失」の側だ。だから効果を測るには、まず何が見えていないかを決める作業が要る。</p><h3 class="sh">どういう場面の話か</h3><p>具体的には、在庫と人員配置の判断だ。複数店舗を持つ事業では、どの店に何を置き、誰を配置するかを、たいてい月次か週次で決めている。</p><p>この頻度を上げると何が起きるか。判断の精度が同じでも、ズレている期間が短くなるぶん損失が減る。ここがAIの効きどころで、賢い判断より頻繁な判断のほうが効果が大きい場面は多い。</p><p>もうひとつは、検討されずに捨てられている選択肢だ。「この店の営業時間を変えたらどうなるか」を試算するには手間がかかるので、普段は誰もやらない。試算のコストが下がると、そもそも議題に上がる案件の数が増える。</p><h3 class="sh">別の見方</h3><p>反論はある。判断の質は測りにくく、「効果があった」と言い張りやすい。人件費削減のほうが検証可能だ、という指摘には一理ある。</p><p>対処としては、判断の速度そのものを指標にする方法がある。ある決定に要した日数を測れば、質を測らなくても改善は追える。</p><h3 class="sh">例外と限界</h3><p>この整理はコンサルティング会社による分析であり、対象は主に大企業の事例だ。判断の回数を増やす余地は、組織が大きいほど大きい。</p><p>小規模な事業では、そもそも判断が速い。オーナーが即決できる環境では、この経路から得られる伸びしろは相対的に小さい。持ち帰るべきは「省人化以外の出口を最初から数えておく」という設計の順序のほうだ。</p></div>
+      <a class="src" href="https://www.mckinsey.com/industries/industrials/our-insights/the-decision-dividend-how-ai-creates-economic-value" target="_blank" rel="noopener">McKinsey ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">7</div>
+      <h2>事業を増やしても強くならない——本社が生む優位の条件</h2>
+      <div class="fig"><div class="fig-t">多角化をめぐる通説と実証</div><div class="cmp"><div class="col"><div class="ch">よくある思い込み</div><ul><li>事業を増やせば安定する</li><li>相乗効果は自然に出る</li><li>本社は管理する場所</li><li>良い事業を買えばよい</li></ul></div><div class="col"><div class="ch">研究が示すこと</div><ul><li>数より持ち方が効く</li><li>接点を設計して初めて出る</li><li>本社は資源を配る場所</li><li>持ち方を決めるのが先</li></ul></div></div><div class="fig-c">左右の同じ行を見比べる。順序が逆だと投資が回収できない</div></div>
+      <div class="sum"><h3 class="sh">何が問題か</h3><p>複数の事業を持つこと自体は、強みではない。これがこの論考の出発点だ。</p><p>多角化した企業のほうが安定して見える。しかし研究の蓄積は、そう単純ではないことを示している。事業を並べただけの企業は、それぞれを独立に持っていた場合より価値が低くなる傾向がある。</p><p>従来の説明は「シナジー」だった。だがシナジーという言葉は、あるはずのものとして語られるだけで、どうすれば生まれるかを説明していない。ここが長く解けなかった。</p><h3 class="sh">どう調べられてきたか</h3><p>実証の蓄積は厚い。バーガーとオフェクの分析では、多角化した企業は事業ごとに単独評価した合計より13〜15%低く評価されていた。いわゆる多角化ディスカウントである。</p><p>一方、ルメルトの分類研究では、無関係な事業を並べた企業より、関連する事業に絞った企業のほうが収益性が高いことが示されている。</p><p>今回の論考は、この差を生むものを3つの要素の整合として整理する。</p><ul class="blist"><li>コーポレート・コンセプト：なぜこの組み合わせなのかという説明</li><li>事業ポートフォリオ：実際に持っている事業の集合</li><li>オペレーティング・モデル：本社が何をやり、事業に何を任せるかの分担</li></ul><p>この3つが噛み合ったときだけ優位が生まれる、という主張だ。</p><h3 class="sh">分かったこと</h3><ul class="blist"><li>事業の数と業績には安定した関係がない。関係があるのは「持ち方」のほう</li><li>相乗効果は放置しても出ない。人の異動、共通の仕入れ、顧客情報の共有など、接点を明示的に設計して初めて出る</li><li>本社の役割が「管理」に留まる場合、多角化は純粋なコストになる。本社は資源を配り直す機能を持たなければならない</li><li>良い事業を買っても、持ち方が決まっていなければ価値は増えない。順序としては持ち方の設計が先</li></ul><h3 class="sh">なぜそうなるのか</h3><p>事業が増えると、必ず調整コストが増える。経営者の注意も分散する。この負の効果は自動的に発生する。</p><p>一方、正の効果——共通のノウハウ、共通の人材、交渉力——は自動では発生しない。誰かが意図的に接続しない限り、事業は隣にあるだけで交わらない。</p><p>つまり多角化は、初期状態ではマイナスから始まる。設計によってプラスを積み上げて、初めて釣り合う。これが多角化ディスカウントの正体である。</p><h3 class="sh">どういう場面の話か</h3><p>通信販売の代理店と美容室と小売を持っている状態を考える。業種はばらばらだが、接続点はある。</p><ul class="blist"><li>立地と物件の目利き：どの業態でも使える共通の能力</li><li>店舗運営の型：シフト、教育、クレーム対応の手順</li><li>人材：接客経験者を業態間で異動させられるか</li><li>顧客との接点：一方の顧客をもう一方に案内できるか</li></ul><p>この4つのうち、実際に配線されているのはいくつか。配線されていないものは、持っていても価値を生んでいない。逆に言えば、事業を増やす前にやるべきは、今ある事業間の接続点を数えることだ。</p><p>本社機能を持たない規模でも同じである。オーナー自身が接続点であるなら、その注意をどこに配るかが操業モデルの設計にあたる。</p><h3 class="sh">別の見方</h3><p>反論として、多角化の主目的は優位ではなくリスク分散だ、という立場がある。単一事業では業界の変動を吸収できない、という論理だ。</p><p>これは中小企業では特に説得力がある。ただし分散が目的なら、収益性が下がることを織り込んで判断すべきで、「シナジーもある」と両取りを期待しない方が健全だ。</p><h3 class="sh">例外と限界</h3><p>引用した実証研究は主に上場企業を対象にしている。株式市場の評価が使えない非上場の中小企業に、ディスカウントの数値をそのまま当てはめることはできない。</p><p>また、オーナー企業では所有と経営が一致しているため、大企業で問題になる本社と事業の利害対立が起きにくい。その分、多角化の負の効果は小さい可能性がある。持ち帰るべきは数値ではなく、「接点を設計しない限り相乗効果は存在しない」という一点だ。</p></div>
+      <a class="src" href="https://www.imd.org/ibyimd/strategy/how-to-build-corporate-advantage-today/" target="_blank" rel="noopener">IMD ↗</a>
+    </article>
+  </div>
+  <section class="papers"><h2 class="sec">今週の論文</h2>
+    <article class="paper">
+      <h3>戦略対話が実行を「全員のもの」にする条件</h3>
+      <div class="auth">著者名不詳（California Management Review 2026年8月掲載）</div>
+      <dl>
+        <dt>問い</dt><dd>よく練られた戦略が実行されない。この現象は数十年にわたり指摘されてきたが、原因の特定は進んでいない。従来の説明は「伝達不足」であり、対策は資料の改善や説明会の増設だった。本論文はそこを疑う。実行が滞るのは戦略が伝わっていないからではなく、現場が戦略の内容に関与しておらず、自分の判断基準として持てていないからではないか、と問う。つまり問題は情報の流れではなく、対話の構造にあるという立て方をしている。</dd>
+        <dt>検証</dt><dd>実行の失敗を測った代表的な調査として、262社・30業種・7,600人のマネジャーを対象とした先行研究がある。そこでは、自社の上位5つの優先事項を1つでも挙げられた中間管理職は約55%にとどまり、部門をまたいだ約束が守られると答えた割合は9%だった。本論文はこの種の断絶を出発点に、複数企業での経営層と現場双方への聞き取りと会議の観察を組み合わせ、戦略が現場の判断に翻訳される過程を追っている。着目点は、対話の量ではなく「誰が問いを立てるか」である。上から答えを配る形式と、現場に問いを返す形式を対比して分析している。</dd>
+        <dt>結果</dt><dd><ul class="finds"><li>戦略の理解度は説明回数と相関しない。説明会を増やしても、現場が自分の言葉で言い換えられるようにはならない。翻訳の作業を本人がやらない限り定着しない。</li><li>断絶が最も大きいのは経営層と現場の間ではなく、部門と部門の間である。横方向の約束が守られないことが、実行の遅れの主要因として繰り返し現れる。</li><li>対話が機能するのは、現場が「やらない選択」を提示できる場合に限られる。何を捨てるかを言えない対話は、単なる了承の確認になる。</li><li>戦略を上位5項目に絞っている企業ほど、現場での再現度が高い。項目が増えるほど優先順位が現場で再解釈され、結果として何も優先されなくなる。</li><li>対話の効果は会議の頻度ではなく、決めたことが次回に持ち越される率で測れる。持ち越しが多い組織では、対話が実行に接続していない。</li></ul></dd>
+        <dt>含意</dt><dd>実務としてやることは3つに絞られる。第一に、優先事項を5つ以内に減らし、現場に自分の言葉で言い換えさせること。第二に、部門をまたぐ約束を口約束にせず、期限と担当を明示して記録すること。第三に、対話の場で「やらないこと」を必ず1つ決めること。説明の巧拙より、この3つの構造のほうが実行率を動かす。</dd>
+        <dt>留意</dt><dd>事例研究が中心で、対話の設計が実行率を上げたという因果は厳密には示されていない。うまくいっている企業ほど対話が成立しやすいという逆の説明も残る。また本稿は誌面の要旨に基づく整理であり、引用した7,600人の調査は別の先行研究の数値である点に注意されたい。</dd>
+      </dl>
+      <a class="src" href="https://news.google.com/rss/articles/CBMikwFBVV95cUxNZ1VsRjZZMDdhZFBuWmtvWlhBMTdZcllPWmRVOV9mbzB6OFFJUTF5dWU4cWRfUXpVQXFTQmZNNkQyWHIyWlU5dkNtOEhsS2RYTDRJNHFkMzNvOEJpbFJZejR6elhZYXNBbXRuVUxaSm4yUUdTQ09KaENaTkZsOWZjOXZuMk1mWEFELXRET0dxd3BPdWc?oc=5" target="_blank" rel="noopener">California Mgmt Review ↗</a>
+    </article>
+    <article class="paper">
+      <h3>AIと一緒に考えるとき、誰が戦略の責任を持つのか</h3>
+      <div class="auth">著者名不詳（California Management Review 2026年8月掲載）</div>
+      <dl>
+        <dt>問い</dt><dd>AIが戦略の検討そのものに関与し始めている。市場分析、選択肢の列挙、シナリオの比較——かつて経営企画が担っていた作業を機械が下書きする状況が生まれた。ここで問題になるのは精度ではなく統治である。誰がその推論を検証し、誰が結果に責任を持つのか。本論文は、AIを道具として管理する従来の枠組みでは足りず、企業の推論プロセスそのものを統治対象として設計し直す必要があると論じる。</dd>
+        <dt>検証</dt><dd>本論文は概念的な枠組みの提示が中心で、実験ではない。統治の設計要素として、入力データの出所、推論過程の可視性、人が介入する地点、決定の記録という4層を提示している。経験的な足場としては、AIの得手不得手が成果を分けることを示した先行実験が参照できる。コンサルタント758人を対象とした実験では、AIの適性範囲内の課題では処理量が12.2%増、所要時間が25.1%減、品質評価が約40%高かった一方、適性範囲外の課題では正答率が19ポイント低下した。この非対称性が、統治を必要とする理由の実証的根拠になっている。</dd>
+        <dt>結果</dt><dd><ul class="finds"><li>AIの推論は、範囲内では人を上回り、範囲外では人を下回る。しかも使い手はその境界を認識できない。境界の管理を個人の判断に委ねると必ず失敗する。</li><li>戦略の検討にAIを使うと、選択肢の生成は増えるが、選択肢の評価は改善しない。生成と評価を同じ仕組みに任せると、もっともらしい案が通りやすくなる。</li><li>推論の記録が残らない場合、後から「なぜその判断をしたか」を再構成できない。失敗から学ぶ経路そのものが失われる。</li><li>統治の要点は禁止ではなく、介入地点の設計にある。どの段階で人が必ず止めるかを事前に決めた組織のほうが、AIの利用範囲を広く取れている。</li><li>入力データの出所管理が最も軽視されている。前提データが古い・偏っている場合、推論の精度が高いほど誤りが強固になる。</li></ul></dd>
+        <dt>含意</dt><dd>小規模な組織でも取れる対応はある。AIに検討させた案件は、必ず「何を入力したか」と「どこで人が判断したか」を1枚の記録に残す。案の生成と案の評価は別の手順に分け、同じ場でやらない。そして、AIが不得手な領域——前例のない判断、人の評価、関係先との交渉——を先に列挙し、そこには使わないと決めておく。禁止事項を先に決めるほうが、利用範囲を広げやすい。</dd>
+        <dt>留意</dt><dd>概念枠組みが中心であり、提示された統治設計が実際に成果を改善したという検証はまだない。引用した758人の実験は別研究であり、本論文の主張を直接検証したものではない。技術の変化が速く、範囲外とされた領域が短期間で覆る可能性も高い。</dd>
+      </dl>
+      <a class="src" href="https://news.google.com/rss/articles/CBMipgFBVV95cUxOaXZiUm1jX2ZaVFlaR1d1ZVZFTUJoN0JIaWNpVEhJaVlCYWdvZUxpekIwei1wak10UldEVHBWVHBnOHJxN1V2cTNObmhuam1FaXhUblp6eGZRS1BlLUJXb3EyaVdEclhCTGxQSXMxazdvd2psZEhMM3JNNGowRXRWT1Vzb2FsVXVoUl9wTWEya0YxODJiNkp4TWVuQXlWX2FlYW1iUmdB?oc=5" target="_blank" rel="noopener">California Mgmt Review ↗</a>
+    </article>
+    <article class="paper">
+      <h3>店舗や施設の効率を一段階で測ると、複雑な現場が不当に低く出る</h3>
+      <div class="auth">著者名不詳（SSRN、2026年8月28日公開）</div>
+      <dl>
+        <dt>問い</dt><dd>複数の拠点を持つ組織は、拠点ごとの効率を比較したい。投入した資源に対してどれだけ産出したかを測るのが基本の考え方だ。しかし現実の運営は一段階では終わらない。受け入れ、処理、引き渡しと工程が連なり、工程ごとに難易度が違う。本論文は病院を対象に、全体を一段階の箱として測る従来手法と、工程に分けて測る手法を比較し、複雑さの高い現場が前者でどれだけ不当に評価されるかを問う。</dd>
+        <dt>検証</dt><dd>用いられているのは包絡分析法（DEA）と、その発展形であるネットワークDEAである。DEAは投入（人員・設備・費用）と産出（処理件数など）から相対効率を0〜1の値で算出し、1.0を効率的な境界（フロンティア）とする。この方法の弱点は、内部の工程をブラックボックスとして扱う点にある。ネットワークDEAは組織内部を複数の段階に分割し、段階ごとの効率と、段階間の受け渡しを別に評価する。本論文は同一の病院データに両手法を適用し、算出される効率値と順位がどの程度入れ替わるかを比較している。</dd>
+        <dt>結果</dt><dd><ul class="finds"><li>一段階のDEAでは、扱う症例の複雑さが高い施設ほど効率値が低く出る。投入が多くなる理由が測定に反映されないため、実力ではなく患者構成が評価に化ける。</li><li>工程に分けて測ると、順位が入れ替わる施設が現れる。全体では低評価でも、特定の工程では高い効率を示す施設が識別できる。</li><li>効率が悪化している原因が、工程そのものにあるのか工程間の受け渡しにあるのかを、分割して初めて切り分けられる。</li><li>評価の目的が「順位付け」なら一段階でも足りるが、「改善点の特定」が目的なら一段階の測定は使えない。どこを直せばよいかの情報が出てこない。</li><li>複雑さを補正しないまま拠点評価を続けると、難しい案件を避ける誘因が生まれる。測定方法が現場の行動を変えてしまう。</li></ul></dd>
+        <dt>含意</dt><dd>複数店舗の比較にそのまま応用できる論点がある。売上と人件費だけで店舗を並べると、立地条件や客層の難しさが実力の差として現れてしまう。改善のために測るなら、店舗を一つの箱として見ず、集客・接客・成約・再来店といった段階に分けて、段階ごとに比べたほうがよい。そして評価指標が現場の行動を変えることを前提に、難しい仕事を避ける誘因を生んでいないかを点検する必要がある。</dd>
+        <dt>留意</dt><dd>対象は病院であり、工程の分け方が明確な業種に有利な手法である。工程の境界が曖昧な小規模事業では、分割の仕方によって結果が動きやすい。またDEAは相対評価であり、比較対象の集団が変われば効率値も変わる。絶対的な良し悪しを示すものではない点に注意が要る。</dd>
+      </dl>
+      <a class="src" href="https://news.google.com/rss/articles/CBMia0FVX3lxTE5HTWlFeWxYQWM2Z1dYRXFYMWRVVDNYbER0ZjlUWDkya3RfZ1A2Sm0xMm5kb2FIcUhBNzdSUHo3Ujl2YlhZZUtlc1pIU2g5ZTNzNlpKVExwbkZqTHEtYzdnUVFaRTFOODdYOHdJ?oc=5" target="_blank" rel="noopener">SSRN ↗</a>
+    </article></section>
+  <footer>
+    コンサルティングファーム・ビジネススクール・調査機関の19ソースから、
+    直近7日の公開分を収集し日本語に要約したもの。判断の前に各出典を確認してください。
+  </footer>
+</div></div>
+<script>
+(function(){
+  var KEY = "lsm-favs-v1";
+  function load(){ try { return JSON.parse(localStorage.getItem(KEY)) || []; }
+                   catch(e){ return []; } }
+  function save(v){ try { localStorage.setItem(KEY, JSON.stringify(v)); } catch(e){} }
+  function has(url){ return load().some(function(x){ return x.url === url; }); }
+  function paint(b){
+    var on = has(b.dataset.url);
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+    var ic = b.querySelector(".ic"), tx = b.querySelector(".tx");
+    if (ic) ic.textContent = on ? "\u2605" : "\u2606";
+    if (tx) tx.textContent = on ? "保存済み" : "あとで読む";
+    if (!ic && !tx) b.textContent = on ? "\u2605" : "\u2606";
+  }
+  function toggle(b){
+    var d = b.dataset, list = load(), i = list.findIndex(function(x){ return x.url === d.url; });
+    if (i >= 0) list.splice(i, 1);
+    else list.unshift({url:d.url, title:d.title||d.url, kind:d.kind||"", date:d.date||"",
+                       note:d.note||"", saved:new Date().toISOString().slice(0,10)});
+    save(list); paint(b);
+    if (window.renderFavs) window.renderFavs();
+  }
+  function wire(){
+    var bs = document.querySelectorAll("[data-fav]");
+    for (var i = 0; i < bs.length; i++){
+      (function(b){ paint(b); b.addEventListener("click", function(e){
+        e.preventDefault(); e.stopPropagation(); toggle(b); }); })(bs[i]);
+    }
+  }
+  window.favStore = {load:load, save:save, has:has};
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", wire);
+  else wire();
+})();
+</script>
+</body>
+</html>
