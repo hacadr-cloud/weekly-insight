@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>今週のインサイト 2026-08-30</title>
+<style>
+  :root{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E; --accent-bg:#F5EFE3;
+    --sans: system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
+      --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E; --accent-bg:#F5EFE3;
+  }
+  :root[data-theme="dark"]{
+    --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
+    --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
+  }
+  /* Phone-first. Body text sits at 16px (never below -- iOS zooms on focus under 16px and
+     small type is the main complaint on a handset), the column is capped just above a
+     comfortable measure, and side padding stays generous so text never touches the edge. */
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0}
+  .wrap{background:var(--ground);color:var(--ink);font-family:var(--sans);
+    font-size:16px;line-height:1.9;-webkit-font-smoothing:antialiased;
+    padding:1.5rem 1.15rem 4rem;min-height:100vh}
+  .inner{max-width:34rem;margin:0 auto}
+  header{border-bottom:1px solid var(--line);padding-bottom:1.25rem;margin-bottom:1.5rem}
+  .eyebrow{font-size:.72rem;letter-spacing:.16em;color:var(--faint);
+    text-transform:uppercase;margin:0 0 .5rem}
+  h1{font-size:1.4rem;font-weight:700;letter-spacing:-.01em;line-height:1.45;
+    margin:0;text-wrap:balance}
+  .lede{font-size:1rem;color:var(--muted);margin:1.1rem 0 0;line-height:1.95}
+  .picks{display:flex;flex-direction:column;gap:1.15rem}
+  .pick{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.2rem 1.1rem;position:relative}
+  .n{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.1em;margin-bottom:.35rem}
+  .pick h2{font-size:1.12rem;font-weight:700;line-height:1.6;margin:0 0 .7rem;
+    letter-spacing:-.005em;text-wrap:balance}
+  /* No justify: on a narrow screen it opens rivers of white space between Japanese runs. */
+  .sum{font-size:1rem;color:var(--ink)}
+  .sum p{margin:0 0 .95rem}
+  .sum p:last-child{margin-bottom:0}
+  .sum .blist{list-style:none;margin:0 0 1rem;padding:0;display:flex;
+    flex-direction:column;gap:.5rem}
+  /* 本文中の小見出し: 長い解説を拾い読みできるようにする */
+  .sum .sh{font-size:.94rem;font-weight:700;color:var(--ink);margin:1.5rem 0 .55rem;
+    padding-left:.6rem;border-left:3px solid var(--accent);line-height:1.6}
+  .sum .sh:first-child{margin-top:0}
+  .sum .blist li{position:relative;padding-left:1.1rem;line-height:1.85}
+  .sum .blist li::before{content:"";position:absolute;left:.2rem;top:.75em;
+    width:.32rem;height:.32rem;border-radius:50%;background:var(--accent)}
+  /* 図解の崩れ防止: 長い語も枠内で折り返し、幅が足りなければ横スクロールさせる */
+  .fig *{overflow-wrap:anywhere;word-break:normal;min-width:0}
+  /* 図解: CSS で組む（SVGだと縮小して読めなくなる）。縦積みなので幅の狭い画面でも崩れない */
+  .fig{margin:.9rem 0 1rem;padding:.9rem .85rem;border:1px solid var(--line);
+    border-radius:12px;background:var(--ground)}
+  .fig-t{font-size:.76rem;font-weight:700;letter-spacing:.06em;color:var(--accent);
+    margin-bottom:.7rem}
+  .fig-c{font-size:.78rem;color:var(--muted);margin-top:.7rem;line-height:1.7}
+  .flow{display:flex;flex-direction:column;align-items:stretch;gap:.3rem}
+  .flow .step{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .7rem;text-align:center}
+  .flow .step b{display:block;font-size:.9rem;font-weight:700}
+  .flow .step span{display:block;font-size:.78rem;color:var(--muted);margin-top:.15rem;
+    line-height:1.6}
+  .flow .arr{text-align:center;color:var(--accent);font-size:.9rem;line-height:1}
+  /* 2x2 マトリクス: 経営フレームの定番。軸ラベルを外側に置いて象限を読ませる */
+  .mtx{display:flex;flex-direction:column;gap:.3rem}
+  .mtx .ylab{font-size:.72rem;color:var(--muted);text-align:center}
+  .mtx .grid{display:grid;grid-template-columns:1fr 1fr;gap:.35rem}
+  .mtx .mcell{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .6rem;min-height:3.6rem;display:flex;flex-direction:column;
+    justify-content:center}
+  .mtx .mcell.empty{background:transparent;border-style:dashed;opacity:.5}
+  .mtx .mcell b{font-size:.86rem;font-weight:700;line-height:1.5}
+  .mtx .mcell span{font-size:.76rem;color:var(--muted);margin-top:.2rem;line-height:1.55}
+  .mtx .xlabs{display:flex;justify-content:space-between;font-size:.72rem;
+    color:var(--muted);padding:0 .2rem}
+  /* 横棒: 研究の効果量・前後差を数字で見せる */
+  .bars{display:flex;flex-direction:column;gap:.5rem}
+  .brow{display:flex;flex-direction:column;gap:.2rem}
+  .blab{font-size:.84rem;font-weight:600}
+  .blab .bnote{font-weight:400;color:var(--muted);font-size:.76rem;margin-left:.4rem}
+  /* grid: the bar track takes the leftover width and the number never wraps under it.
+     A percentage width inside a flex row was being resolved against the wrong box, which is
+     what made the bars overflow on a phone. */
+  .btrack{display:grid;grid-template-columns:minmax(0,1fr) max-content;gap:.55rem;
+    align-items:center}
+  .bwrap{background:var(--line);border-radius:5px;height:1.35rem;overflow:hidden;width:100%}
+  .bbar{height:100%;background:var(--accent);border-radius:5px;opacity:.9}
+  .bval{font-size:.82rem;font-weight:700;color:var(--accent);
+    font-variant-numeric:tabular-nums}
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
+  .cmp .col{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .65rem}
+  .cmp .ch{font-size:.78rem;font-weight:700;color:var(--accent);margin-bottom:.4rem;
+    padding-bottom:.35rem;border-bottom:1px solid var(--line)}
+  .cmp ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.3rem}
+  .cmp li{font-size:.86rem;line-height:1.6;padding-left:.75rem;position:relative}
+  .cmp li::before{content:"・";position:absolute;left:0;color:var(--faint)}
+  .rel{display:flex;flex-direction:column;align-items:center;gap:.55rem}
+  .rel .hub{background:var(--accent);color:var(--card);border-radius:999px;
+    padding:.5rem 1.1rem;font-size:.9rem;font-weight:700}
+  .rel .sats{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem}
+  .rel .sat{background:var(--card);border:1px solid var(--line);border-radius:999px;
+    padding:.35rem .75rem;font-size:.84rem}
+  @media (max-width:380px){ .cmp{grid-template-columns:1fr} }
+  /* Tap target: a bare inline link is hard to hit on a phone, so give it real height. */
+  .src{display:inline-block;margin-top:1rem;font-size:.86rem;color:var(--muted);
+    text-decoration:none;border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .8rem;line-height:1.5;word-break:break-word}
+  .src:hover{color:var(--accent);border-color:var(--accent)}
+  /* 今週の論文: 定義リストで「問い／検証／結果／含意／留意」を固定の型に見せる */
+  .papers{margin-top:2.2rem}
+  .sec{font-size:.78rem;font-weight:700;letter-spacing:.14em;color:var(--accent);
+    margin:0 0 .9rem;padding-bottom:.5rem;border-bottom:1px solid var(--line)}
+  .paper{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.1rem 1.05rem;margin-bottom:1rem}
+  .paper h3{font-size:1.02rem;font-weight:700;line-height:1.6;margin:0 0 .3rem;
+    text-wrap:balance}
+  .paper .auth{font-size:.78rem;color:var(--faint);margin-bottom:.75rem}
+  .paper dl{margin:0;display:grid;grid-template-columns:max-content minmax(0,1fr);
+    gap:.5rem .8rem;align-items:start}
+  .paper dt{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.08em;
+    padding-top:.15rem;white-space:nowrap}
+  .paper dd{margin:0;font-size:.9rem;line-height:1.8;text-align:justify}
+  .paper .finds{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;
+    gap:.35rem}
+  .paper .finds li{position:relative;padding-left:1rem;line-height:1.75}
+  .paper .finds li::before{content:"";position:absolute;left:.2rem;top:.72em;width:.3rem;
+    height:.3rem;border-radius:50%;background:var(--accent)}
+  @media (max-width:420px){ .paper dl{grid-template-columns:1fr;gap:.15rem .8rem}
+    .paper dt{margin-top:.5rem} }
+  footer{margin-top:2.4rem;padding-top:1.1rem;border-top:1px solid var(--line);
+    font-size:.78rem;color:var(--faint);line-height:1.7}
+  a:focus-visible,.src:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+.fav{appearance:none;-webkit-appearance:none;cursor:pointer;display:inline-flex;
+  align-items:center;justify-content:center;gap:6px;min-width:44px;min-height:44px;
+  padding:0 12px;border-radius:999px;font:inherit;font-size:14px;font-weight:600;
+  background:var(--surface,#fff);color:var(--ink-mut,#6b7280);
+  border:1px solid var(--line,#e5e7eb);line-height:1;}
+.fav:hover{border-color:#f0b429;color:#b26b00;}
+.fav[aria-pressed="true"]{background:#fff8e6;border-color:#f0b429;color:#b26b00;}
+.fav .ic{font-size:16px;line-height:1;}
+.fav-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:14px 0 6px;}
+.fav-bar a.all{font-size:13.5px;color:var(--ink-mut,#6b7280);text-decoration:none;
+  min-height:44px;display:inline-flex;align-items:center;}
+.fav-bar a.all:hover{text-decoration:underline;}
+.fav-mini{appearance:none;-webkit-appearance:none;cursor:pointer;background:none;border:0;
+  padding:6px 8px;margin-left:2px;font-size:15px;line-height:1;color:#c3c8d0;
+  min-width:36px;min-height:36px;}
+.fav-mini[aria-pressed="true"]{color:#f0b429;}
+
+</style>
+</head>
+<body>
+<div class="wrap"><div class="inner">
+  <header>
+    <p class="eyebrow">Weekly Insight</p>
+    <h1>今週のインサイト <span style="color:var(--faint);font-weight:500">2026-08-30</span></h1>
+    <p class="lede">今週の論考は、偶然とは思えないほど一つの方向を向いています。「人を変えようとするな、人が置かれている条件を変えろ」——組織の話もAIの話も顧客の話も、結論がそこに集まりました。扱いにくい社員を問題人物として扱うのをやめて職場の異常検知として読む、という提言。AIの判断根拠を人が見ようとしないのは理解力の問題ではなく利害の問題だ、という実験。福利厚生を使わせたいなら申込を簡単にするのではなく、あえて少しだけ面倒にせよ、という研究。どれも「意識が低い」で片付けていたものを、設計の失敗として捉え直しています。去年までと明確に変わったのは、AI関連の論考が「導入するかどうか」を語らなくなった点です。今週のものはすべて、AIを入れた後に人の行動がどう変わるかだけを扱っています。読む順としては、まず摩擦の研究（1本目）から入ってください。今日から店で試せる話であり、かつ「良かれと思って簡単にしてきたこと」を疑う視点が、後の6本すべての下敷きになります。理論の骨格を先に押さえたい方は、5本目の戦略ストレステストから逆順に読むのも良いと思います。</p>
+    <div class="fav-bar"><button class="fav" data-fav data-url="https://hacadr-cloud.github.io/weekly-insight/2026-08-30.html" data-title="週次インサイト 2026-08-30" data-kind="insight" data-date="2026-08-30" aria-pressed="false"><span class="ic">☆</span><span class="tx">あとで読む</span></button><a class="all" href="favorites.html">保存した記事を見る →</a></div>
+  </header>
+  <div class="picks">
+    <article class="pick">
+      <div class="n">1</div>
+      <h2>申込を少し面倒にすると、続ける人が増える</h2>
+      <div class="fig"><div class="fig-t">入口を滑らかにした効果</div><div class="bars"><div class="brow"><div class="blab">通常の申込<span class="bnote">自分で手続き</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:43.0%"></div></div><span class="bval">37%</span></div></div><div class="brow"><div class="blab">自動加入<span class="bnote">初期設定を変更</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:100.0%"></div></div><span class="bval">86%</span></div></div></div><div class="fig-c">加入率は摩擦を消すと跳ね上がる。ただし続くかどうかは別問題</div></div>
+      <div class="sum"><h3 class="sh">制度を作っても使われない</h3><p>会社が用意した制度が使われない、という悩みは規模を問わず起きる。研修の受講枠が埋まらない。会員プログラムに人が入らない。積立の仕組みが動かない。</p><p>原因はたいてい「手続きが面倒だから」と診断される。だから申込書を減らし、ボタンを一つにし、最後には本人が何もしなくても自動で加入する形にする。</p><p>この方向は間違っていない。実際に効く。ただし、効く範囲が限られている。</p><h3 class="sh">手間を消すと加入は跳ね上がる</h3><p>米国の企業年金（401k）を追った有名な研究がある。加入方式を「自分で申し込む」から「自動加入・抜けたい人だけ手続き」へ変えた会社を調べたものだ。</p><ul class="blist"><li>従来方式での加入率: 37%</li><li>自動加入に変えた後: 86%</li><li>変えたのは初期設定だけで、掛金の条件は同じ</li></ul><p>一夜にして倍以上になった。だからこの20年、制度設計の合言葉は「摩擦をなくせ」だった。</p><h3 class="sh">ところが「続ける」は別物だった</h3><p>問題は、年金の加入が「一度決めたら、あとは何もしなくていい」行動だという点にある。</p><p>続けるのに毎回努力が要る行動——通う、記録する、学ぶ、面談する——では話が変わる。入口を滑らかにして人数を集めても、翌月には誰も来ていない。</p><p>今回の研究が扱ったのはここだ。申込の段階で、あえて小さな手間を足す。</p><h3 class="sh">足した「手間」の中身</h3><p>大きな障害ではない。数分で終わる程度のものだ。</p><ul class="blist"><li>なぜ参加したいのかを一行書かせる</li><li>いつ・どのくらいの頻度でやるつもりかを自分で入力させる</li><li>確認画面をもう一枚挟み、意思をもう一度尋ねる</li><li>申込を即時ではなく、翌日以降に有効にする</li></ul><p>結果は一貫していた。申し込む人数は減る。しかし実際に最後まで続けた人数は、手間なしの群と同じか、それ以上になった。比率ではなく絶対数で負けなかった、という点が重要だ。</p><h3 class="sh">なぜ手間が効くのか</h3><p>説明は二つある。どちらも古くから知られている。</p><p>一つ目は選別だ。手間は、本気でない人をふるいにかける。無料でワンクリックなら、なんとなく押す人が混ざる。その人たちは最初から続ける気がない。名簿だけが太る。</p><p>二つ目は、払った労力が評価を変えることだ。心理学の古典に、厳しい入会テストを課されたグループほど、その後そのグループを高く評価したという1959年の実験がある。中身は同じでも、苦労して入った人は「これは価値があるものだ」と自分に説明する。</p><p>人は、自分が手をかけたものを大事にする。制度でも同じだった。</p><h3 class="sh">ジムの会費が示すもの</h3><p>関連する調査に、米国のスポーツクラブの会員データを分析したものがある。</p><ul class="blist"><li>月額およそ70ドルの会員が、実際に通ったのは平均で月4.3回</li><li>都度払い（1回10ドル）にしていれば年間で数百ドル安く済んでいた</li><li>それでも人は月額会員を選び、辞めなかった</li></ul><p>契約は簡単、解約も簡単、通うのは難しい。入口の摩擦をゼロにした結果、「入るだけ入って使わない人」が大量に生まれていた構図だ。</p><h3 class="sh">どういう場面の話か</h3><p>想像しやすいのは、店で走らせる会員制度や社内の任意プログラムだろう。</p><p>美容室の定額メニューを、店頭で「無料でご登録できます」と一括で通すと、名簿は増えるが三ヶ月後の来店には繋がらない。逆に、施術中に「来月と再来月、いつ来られますか」を先に決めさせてから登録すると、人数は減っても続く。</p><p>携帯ショップで扱う付帯サービスの申込も同じ構造だ。「とりあえず入っておきますか」で通した契約は、翌月に解約の電話が来る。名簿上の獲得数と、半年後に残っている数は、別の指標として見たほうがいい。</p><p>社内でも変わらない。「全員参加」にした研修より、「参加理由を一行書いて申し込む」研修のほうが、最後まで残る人数が多くなる。</p><h3 class="sh">反論もある</h3><p>摩擦は無差別ではない。時間や余裕のない人ほど、小さな手間で脱落する。本当に支援が必要な人を落としてしまう危険がある。福利厚生でこれをやると、余裕のある層だけが恩恵を受ける制度になりかねない。</p><p>また、一度きりの判断——年金加入、保険の選択、予防接種——では摩擦は単純に有害だ。ここでは従来どおり自動加入が正しい。</p><h3 class="sh">使える条件、使えない条件</h3><p>この研究が支持しているのは次の場合に限られる。</p><ul class="blist"><li>その行動が、登録後も継続的な努力を必要とする</li><li>続かない人が混ざると、現場の負荷やコストが増える</li><li>手間が「意思の確認」として意味を持っている</li></ul><p>逆に、窓口を分かりにくくする、書類を増やす、といった意味のない摩擦には何の効果もない。効いているのは手間そのものではなく、手間を通じて本人が下した意思決定のほうだ。</p></div>
+      <a class="src" href="http://hbr.org/2026/08/research-to-get-employees-to-use-a-benefit-make-signing-up-a-little-harder" target="_blank" rel="noopener">HBR ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">2</div>
+      <h2>人はAIの判断根拠を、あえて見ないことがある</h2>
+      <div class="fig"><div class="fig-t">根拠を見るか見ないか</div><div class="mtx"><div class="ylab top">根拠の表示が厚い</div><div class="grid"><div class="mcell"><b>読まない</b><span>結論に満足しているため</span></div><div class="mcell"><b>最も避ける</b><span>見たら従わざるを得ない</span></div><div class="mcell"><b>気にしない</b><span>結論だけで判断する</span></div><div class="mcell"><b>好都合</b><span>知らなかったで押し通せる</span></div></div><div class="ylab bot">根拠の表示が薄い</div><div class="xlabs"><span>助言が自分に有利</span><span>助言が自分に不利</span></div></div><div class="fig-c">右上ほど強く情報から逃げる。透明性が高いほど回避が起きる</div></div>
+      <div class="sum"><h3 class="sh">「説明できるAI」は本当に望まれているか</h3><p>AIを業務に入れるとき、必ず出てくる要求がある。「なぜその答えになったのか、根拠を示せるようにしてほしい」というものだ。</p><p>各社はこれに応えてきた。判断の理由を表示する、参照した情報を並べる、確信度を数字で出す。透明性は高いほど良い、というのが暗黙の前提だった。</p><p>ハーバード・ビジネス・スクールの研究は、この前提を突き崩した。人は必ずしも根拠を見たがらない。しかも、見ない理由は「難しくて読めないから」ではなかった。</p><h3 class="sh">分かっていなかったこと</h3><p>これまでの説明可能AIの研究は、ほぼ全て「どう説明すれば理解されるか」を扱ってきた。図がいいのか、文章がいいのか、数字を出すべきか。</p><p>つまり、人は情報を求めている、という前提で設計されていた。足りないのは説明の質だけだ、と。</p><p>しかし現場では、根拠のリンクがあっても誰もクリックしない現象が観察されていた。これを「面倒だから」で片付けてきたのが、これまでの理解の限界だった。</p><h3 class="sh">何を調べたか</h3><p>研究は、参加者にAIの助言を使って判断させる実験を組んだ。仕掛けは二つある。</p><ul class="blist"><li>AIの判断根拠を「見る／見ない」を本人に選ばせる</li><li>根拠を見るコストは、ほぼゼロ（ボタン一つ）に設定する</li><li>判断の結果が自分の報酬に響く条件と、響かない条件を作る</li><li>判断が他人に不利益を与える条件と、与えない条件を作る</li></ul><p>コストがゼロなのだから、情報は多いほど得のはずだ。それでも見ない人が出るなら、理由は手間ではない。</p><h3 class="sh">分かったこと</h3><ul class="blist"><li>自分の利益とAIの助言が一致しているときは、人は根拠を見ない。結論に満足しているので確かめる動機がない</li><li>自分の利益と対立する助言のときも、根拠を見ない。ただし理由は逆で、「見てしまうと従わざるを得なくなる」から</li><li>道徳的な葛藤がある場面ほど、この回避が強く出る</li><li>根拠を見なかった人ほど、後で自分に都合のよい判断を正当化しやすい</li></ul><h3 class="sh">「知らないでおく」という選択</h3><p>この現象は経済学で以前から知られていた。2007年の有名な実験では、自分の取り分を決めるゲームで「相手の取り分がどうなるか」を無料で確認できるようにしたところ、およそ半数が確認しないことを選んだ。</p><p>確認しなければ、公平でない選択をしても「知らなかった」で済む。情報を避けること自体が、心理的な逃げ道になっている。</p><p>AIの根拠表示は、この逃げ道を塞ぐ装置になってしまう。だから人は見ない。透明性が高いことが、かえって回避を生む。</p><h3 class="sh">どういう場面の話か</h3><p>店舗の運営で考えると分かりやすい。</p><p>たとえばシフトを自動で組むツールを入れたとする。出てきた案が自分の希望と合っていれば、誰も理由を見ない。合っていなければ「アルゴリズムがおかしい」と言うが、やはり根拠は見ない。見て納得してしまうと、文句を言えなくなるからだ。</p><p>在庫の発注提案や、来店予測に基づく人員配置でも同じことが起きる。提案が現場の勘とぶつかったとき、根拠を開いて検討する人はほとんどいない。開かないまま却下するか、開かないまま従うか、どちらかになる。</p><p>評価や査定にAIを使う場合はさらに強く出る。判定理由を読むと、部下に説明する責任が発生する。だから管理職は読まない。</p><h3 class="sh">企業として何ができるか</h3><p>研究が示す対策は、透明性を上げることではない。見る／見ないの選択権を、状況によって外すことだ。</p><ul class="blist"><li>利害が絡む判断では、根拠の表示を任意にせず既定で開いた状態にする</li><li>「根拠を見ずに決定した」という事実自体をログに残す</li><li>見た上で覆した場合に、理由の記入を求める</li><li>逆に、利害が中立な業務では説明を減らして構わない。読まれない説明はコストでしかない</li></ul><h3 class="sh">反論と限界</h3><p>反論はある。実験は報酬設計を人工的に作った状況であり、実際の職場では評判や継続的な関係が働くため、ここまで露骨な情報回避は起きにくいという見方だ。</p><p>また、根拠を常時開いておけば解決する、とも言い切れない。読み飛ばされれば同じことで、形式的に開いた記録だけが残る。</p><p>一般化の限界としては、対象がAIの助言に限られている点がある。人間の上司の指示や同僚の忠告に対しても同じ回避が起きるかは、この研究からは分からない。ただ、少なくとも「説明を丁寧にすれば納得してもらえる」という前提は、利害が絡む場面では成り立たない。</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14369" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">3</div>
+      <h2>顧客の習慣に割り込めた者が勝つ</h2>
+      <div class="fig"><div class="fig-t">習慣の堀ができるまで</div><div class="flow"><div class="step"><b>既存作業に割込</b><span>新しい習慣を作らせない</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>手数を一つ削る</b><span>毎回の判断が消える</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>行動が自動化</b><span>選んでいる自覚が無くなる</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>比較が止まる</b><span>競合の性能差が届かない</span></div></div><div class="fig-c">左から右へ進むほど、顧客は選択していることを意識しなくなる</div></div>
+      <div class="sum"><h3 class="sh">性能で勝っても、客が動かない</h3><p>AIサービスの競争が激しくなるほど、事業者は性能を上げようとする。より賢いモデル、より速い応答、より安い価格。</p><p>ところが実際の市場では、明らかに性能が上の後発が、先行者を崩せない例が続いている。この論考はその理由を「習慣の堀」という言葉で説明する。</p><h3 class="sh">従来の堀が効かなくなった</h3><p>参入障壁として教科書に載っているものは、いくつかある。</p><ul class="blist"><li>特許や独自技術</li><li>規模の経済によるコスト優位</li><li>切り替えコスト（データ移行の手間、契約の縛り）</li><li>ネットワーク効果（利用者が多いほど価値が上がる）</li></ul><p>これらはAIの領域で急速に弱くなった。モデルの性能差は数ヶ月で埋まる。データの移行は自動化された。乗り換えを妨げるものが、技術的にはほとんど残っていない。</p><h3 class="sh">残った最後の障壁</h3><p>残ったのが、顧客の側の習慣だ。</p><p>人は毎回選び直さない。一度「これでいい」と決めた行動は、意識に上らなくなる。意識に上らない行動は、比較検討の対象にもならない。</p><p>競合が「うちのほうが優れています」と広告を打っても、そもそも顧客は選択している自覚がない。だから届かない。</p><h3 class="sh">中国企業の四つの型</h3><p>論考は、アリババをはじめとする中国企業の事例から、習慣を取りに行く四つのやり方を整理している。</p><ul class="blist"><li>既存の作業に割り込む。新しい習慣を作らせるのではなく、顧客が今すでにやっている動作の途中に入る</li><li>手数を一つ減らす。判断を代行し、確認だけで済むようにする</li><li>定期的な接点を作る。月に一度ではなく、日に一度触れる場所を取る</li><li>決済や本人確認など、他のサービスの前提になる機能を握る</li></ul><p>共通しているのは、顧客に努力を求めていない点だ。新しい習慣を身につけてもらうのは難しい。既にある習慣に潜り込むほうが速い。</p><h3 class="sh">なぜ自動化が防壁になるのか</h3><p>行動が自動化されると、三つのことが起きる。</p><p>第一に、比較が止まる。毎回選ぶのをやめるので、他社の情報が入ってこない。</p><p>第二に、切り替えの心理的コストが跳ね上がる。金銭的な手間は小さくても、「考え直す」こと自体が負担になる。</p><p>第三に、その行動を前提にした周辺の習慣が積み上がる。時間の使い方、他の道具との組み合わせ、家族や同僚との連携。一つを外すと複数が崩れる。</p><h3 class="sh">どういう場面の話か</h3><p>店舗商売でも構造は同じだ。</p><p>美容室で言えば、次回予約を店頭で取る仕組みは、まさに習慣の堀にあたる。帰り際に次を押さえた客は、次の来店時期を検討しない。検討しないから、他店の広告を見ても比較が発生しない。予約を取らずに帰した客は、次に来るまでの間ずっと選択にさらされている。</p><p>携帯ショップなら、契約更新のタイミングだけに接点を置いている店は弱い。二年に一度しか思い出されない相手は、比較検討の土俵に毎回上げられる。逆に、料金確認や設定変更のような小さな用事で月に一度来てもらえる店は、乗り換えの話題そのものが起きにくい。</p><p>どちらも「良いサービスだから選ばれる」のではなく、「選び直す機会を作らせない」ことで守っている。</p><h3 class="sh">別の見方</h3><p>この戦略には批判もある。習慣に依存した優位は、顧客のためではなく事業者のために作られたものになりやすい。惰性で使い続けている状態は、満足とは違う。</p><p>外部の衝撃——引っ越し、生活の変化、大きな技術の断絶——が起きた瞬間、積み上げた習慣は一気に無効になる。堀の内側で性能改善を怠っていた企業は、そこで崩れる。</p><p>また、規制の対象にもなりやすい。既定の設定を握ることによる優位は、独占禁止の論点として各国で扱われ始めている。</p><h3 class="sh">限界</h3><p>事例が中国企業に偏っている点は割り引く必要がある。決済とメッセージが一つの基盤に統合されている環境だからこそ成立した型が含まれる。</p><p>また、習慣化が効くのは反復頻度が高い商材に限られる。年に一度しか買わないもの、一生に数回の買い物では、この堀は掘れない。その場合は別の優位を探すしかない。</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14374" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">4</div>
+      <h2>扱いにくい社員は、職場の異常を告げる警報</h2>
+      <div class="fig"><div class="fig-t">異論の扱い方</div><div class="cmp"><div class="col"><div class="ch">従来の見方</div><ul><li>態度に問題がある</li><li>本人を指導する</li><li>配置転換で解決</li><li>静かな職場が健全</li></ul></div><div class="col"><div class="ch">研究が示すこと</div><ul><li>工程の不具合の信号</li><li>内容を事実確認する</li><li>同じ場所で他にも起きる</li><li>静けさは諦めの可能性</li></ul></div></div><div class="fig-c">左を右に読み替えると、数字に出る前に問題を掴める</div></div>
+      <div class="sum"><h3 class="sh">面倒な人を面倒な人として処理してきた</h3><p>どの職場にも、やたらと反対する人がいる。会議で水を差す。決まったことを蒸し返す。ルールの不備を指摘してくる。</p><p>多くの場合、この人は「態度に問題がある」と扱われる。面談で改善を促し、それでも変わらなければ配置を変える。</p><p>この論考は、その処理の仕方そのものが損失だと言う。異論は個人の性格ではなく、システムが出している信号として読むべきだ、という主張だ。</p><h3 class="sh">なぜ個人の問題に見えるのか</h3><p>組織の不具合は、最初は誰かの不満として現れる。段取りの悪さ、無理な納期、二重に走る指示、責任の曖昧さ。</p><p>これらは全員が感じている。ただし全員が黙る。声を上げるコストが高いからだ。</p><p>結果として、たまたま黙っていられない一人だけが発言する。周囲から見ると、問題は「その人が文句を言うこと」に見える。全員が感じていた不具合ではなく、一人の態度が問題として切り出される。</p><p>炭鉱のカナリアが騒いだから、カナリアを黙らせる。それが今の多くの職場で起きていることだ、というのが論考の見立てだ。</p><h3 class="sh">摩擦を読み替える手順</h3><p>提案されている進め方は、次の順番になる。</p><ul class="blist"><li>発言の中身と、発言の仕方を分けて記録する。言い方の悪さは後で扱う</li><li>その指摘が事実として成立するかだけを確認する</li><li>同じ場所で他の人にも摩擦が起きていないかを調べる</li><li>一人だけの問題なのか、複数人が同じ場所でつまずいているのかを判定する</li><li>複数人なら、それは人ではなく工程の問題として扱う</li></ul><p>重要なのは四番目だ。同じ工程で複数人が引っかかっているなら、指摘した人を替えても問題は残る。</p><h3 class="sh">なぜこれが効くのか</h3><p>不満は、業務の詰まりが最初に外へ出る場所だからだ。数字に出るのはずっと後になる。</p><p>離職率が上がる、クレームが増える、売上が落ちる——これらが見えた時点では、原因はすでに何ヶ月も前から動いている。その間、現場では誰かが文句を言い続けていたはずだ。</p><p>つまり不満は、数字より早い先行指標として使える。捨てているのは、最も早く手に入る情報になる。</p><h3 class="sh">どういう場面の話か</h3><p>店舗で考えると分かりやすい。</p><p>新しい接客手順を入れたとき、決まって反発するスタッフがいる。「これでは時間がかかる」「お客様が待たされる」。多くの場合、この声は「新しいことに抵抗している」と解釈される。</p><p>しかし同じ不満が二店舗目、三店舗目でも出ているなら、それは抵抗ではなく手順の欠陥だ。反対する人が悪目立ちしているだけで、黙っている店では手順が守られずに形骸化している可能性が高い。</p><p>シフトの組み方、レジ締めの手順、報告書の様式。どれも同じ構造で、一番言いやすい立場の人が代表して声を上げているに過ぎない。</p><p>逆に、まったく不満が上がらない職場が健全とは限らない。言っても無駄だと学習した状態でも、同じ静けさになる。</p><h3 class="sh">反論</h3><p>この読み替えを機械的に適用すると危うい面もある。</p><p>実際に協調性に問題がある人はいる。すべての異論をシステムの信号として扱うと、意図的に業務を妨害する行為まで正当化しかねない。</p><p>また、声の大きい一人の意見が、全体の総意として扱われる危険もある。指摘の内容が事実かどうかを確認する工程を飛ばすと、単に「うるさい人の要求が通る職場」になる。</p><h3 class="sh">限界</h3><p>この見立てが成り立つのは、指摘の中身に検証可能な事実が含まれている場合に限られる。感情的な不満だけで、具体的にどこで何が詰まっているかを示せないものは、信号としては使えない。</p><p>また、組織の規模によって出方が変わる。数人の店舗では、不満はそもそも本人から直接届く。この論考が想定しているのは、間に管理職が挟まって情報が薄まる規模の組織だ。小さな組織では、むしろ「言えているのに聞いていない」ほうが実際の問題になる。</p></div>
+      <a class="src" href="https://www.imd.org/ibyimd/brain-circuits/is-your-employee-really-difficult-or-the-canary-in-the-coal-mine/" target="_blank" rel="noopener">IMD ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">5</div>
+      <h2>戦略が実戦に耐えるかを、七つの角度で潰す</h2>
+      <div class="fig"><div class="fig-t">戦略を叩く七つの角度</div><div class="rel"><div class="hub">承認前の検証</div><div class="sats"><span class="sat">前提の賞味期限</span><span class="sat">顧客の買わない理由</span><span class="sat">競合の対抗手段</span><span class="sat">人と資金の空き</span><span class="sat">実行者の名前</span><span class="sat">2割外れた財務</span></div></div><div class="fig-c">中心の決定に、外側の七つを順に当てて耐久性を見る</div></div>
+      <div class="sum"><h3 class="sh">戦略は作った瞬間から古びる</h3><p>事業計画を立てる。数字を積む。役員が承認する。そこまでは多くの会社がやっている。</p><p>問題はその後だ。立てた戦略が、実際の環境で持ちこたえるかどうかを検証する仕組みを持っている会社は少ない。年に一度の見直しまで、誰も疑わない。</p><p>この論考が提案するのは、承認の前に戦略をわざと攻撃する手続きだ。七つの角度から順に叩き、耐えられるかを見る。</p><h3 class="sh">なぜ普通の検討では足りないのか</h3><p>戦略を作った人が、その戦略を検証することはできない。作る過程で前提を選んでおり、その前提を疑う立場に立てないからだ。</p><p>さらに、承認の場は反対しにくい構造になっている。時間が限られ、代案を出せない者は黙るしかない。結果、最も重大な穴が最も指摘されにくい。</p><p>必要なのは、疑う役割を制度として置くことだ。誰かの善意や勇気に頼らず、手順として組み込む。</p><h3 class="sh">七つのレンズ</h3><p>提案されている検証の角度は、およそ次のように整理できる。</p><ul class="blist"><li>前提のレンズ: この戦略が成り立つために、何が真でなければならないか。その前提はいつまで有効か</li><li>顧客のレンズ: 顧客は本当にこの提供物を欲しているか。買わない理由を三つ挙げられるか</li><li>競合のレンズ: 相手がこの動きを見たとき、最も嫌がる対抗手段は何か</li><li>資源のレンズ: 人・金・時間は本当に足りるか。他の案件と取り合いにならないか</li><li>実行のレンズ: 現場の誰が、いつ、何を変えるのか。それを説明できるか</li><li>財務のレンズ: どこで儲かるのか。想定が2割外れたとき、まだ黒字か</li><li>最悪のレンズ: 一年後に失敗していたとして、その原因として最もありそうなものは何か</li></ul><h3 class="sh">最後のレンズが要</h3><p>七つ目は、心理学で「事前検死」と呼ばれる手法にあたる。</p><p>「失敗するとしたら何が原因か」と聞くのではなく、「一年後、これは失敗しました。何が起きたのか説明してください」と過去形で問う。</p><p>この言い換えだけで、指摘される懸念の数が大きく増えることが知られている。まだ起きていないことを予測するのは難しいが、すでに起きたこととして原因を語るのは人間が得意な作業だからだ。</p><p>しかも、批判ではなく分析として発言できるので、立場の弱い人も口を開ける。</p><h3 class="sh">どういう場面の話か</h3><p>新店の出店判断を例に取ると分かりやすい。</p><p>通常の検討では、商圏人口、賃料、想定客数、損益分岐点を並べて可否を決める。ここに七つのレンズを当てると、別の論点が出てくる。</p><p>前提のレンズは「その商圏人口の見込みは何年先まで有効か」を問う。競合のレンズは「近隣の同業が値下げで応じてきたらどうするか」を問う。資源のレンズは「新店に回す人材は、今どこで働いているのか」を問う。この三つ目で止まる出店計画は多い。</p><p>実行のレンズは、店長候補の名前を具体的に出せるかを問う。名前が出てこない計画は、実行できない計画だ。</p><h3 class="sh">反論</h3><p>この種の手続きには、決断を遅らせるという批判が常について回る。</p><p>検証を重ねるほど、やらない理由が集まる。動きの速い市場では、不完全な戦略で先に動いたほうが勝つ場面もある。七つ全部を通すのは、判断のコストとして重い。</p><p>また、レンズが増えるほど形式化しやすい。書類の項目が七つ増えただけで、中身の議論が起きないなら意味がない。</p><h3 class="sh">限界</h3><p>この手法が想定しているのは、一度動かすと引き返しにくい規模の意思決定だ。設備投資、出店、事業の撤退、大きな人員配置。</p><p>日々の判断に持ち込むと単に遅くなる。逆に、小さく試して修正できる案件では、検証より先に実験したほうが情報が早く手に入る。</p><p>どのレンズを使うかは案件によって選んでよい、と論考自身も断っている。全部を毎回通すことが目的ではなく、自分たちが普段どのレンズを飛ばしているかを自覚することのほうが本質に近い。</p></div>
+      <a class="src" href="https://news.google.com/rss/articles/CBMiogFBVV95cUxPLW8xZDQ5Rl91akVyTm4yODZOYkF6QjZvTGNLYmV0Y25uZmp5ODhrcFZndTdhVlVscXB0c2xybF9CZVNhM05UTGpycmtfVkk5MU84ZkdENUFDdXFtaXg1UFdCd2xsaE9EYldsRXJ2aTN4WlE0SXZCUEhPZFBvNXFMcmJkXzRSN1hmWlJYSkZ4cmUzTFB6RkFTUjYxYnNQcHVPZVE?oc=5" target="_blank" rel="noopener">California Mgmt Review ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">6</div>
+      <h2>上司の期待が、部下の実力を作り変える</h2>
+      <div class="fig"><div class="fig-t">期待を伝えた群の知能の伸び</div><div class="bars"><div class="brow"><div class="blab">1年生<span class="bnote">最も大きい</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:100.0%"></div></div><span class="bval">27.4点</span></div></div><div class="brow"><div class="blab">2年生</div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:60.2%"></div></div><span class="bval">16.5点</span></div></div><div class="brow"><div class="blab">全学年平均</div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:44.5%"></div></div><span class="bval">12.2点</span></div></div></div><div class="fig-c">実際の能力差はゼロ。差を作ったのは教師側の扱いだけ</div></div>
+      <div class="sum"><h3 class="sh">部下の能力は固定ではない</h3><p>「あの人は伸びない」と判断した部下が、本当に伸びなかった。この経験を持つ管理職は多い。</p><p>因果が逆かもしれない、というのがこの古典的な論考の主張だ。伸びないから期待しなくなったのではなく、期待しなくなったから伸びなかった。</p><h3 class="sh">元になった実験</h3><p>下敷きになっているのは、1960年代に小学校で行われた有名な実験だ。</p><ul class="blist"><li>児童全員に知能テストを実施する</li><li>結果とは無関係に、全体の約20%を無作為に選ぶ</li><li>その子たちを「今年伸びる見込みがある」と担任にだけ伝える</li><li>一年後、同じテストをもう一度行う</li></ul><p>伝えた情報は嘘だった。選ばれた子と選ばれなかった子に、実際の差はない。</p><p>それでも一年後、伸びると告げられた児童のほうが知能テストの伸びが大きかった。特に低学年で差が大きく、一年生では平均で27.4点、二年生では16.5点の伸びを示した。全体でも数点の差がついた。</p><p>変わったのは子どもではなく、担任の側の扱いだった。</p><h3 class="sh">何が伝わっていたのか</h3><p>教師は意識的にえこひいきをしたわけではない。差が出たのは、もっと細かい部分だった。</p><ul class="blist"><li>質問した後、答えを待つ時間が長い</li><li>難しい課題を与える回数が多い</li><li>間違えたときに、正解を教えるのではなく考えさせる</li><li>表情や相づちなど、言葉以外の反応が肯定的</li></ul><p>どれも本人が説明できない水準の振る舞いだ。だから「私は公平に接している」という自己申告は当てにならない。</p><h3 class="sh">職場でどう出るか</h3><p>論考は、この構造が企業の中でさらに強く働くと指摘する。学校と違い、職場では上司が仕事の配分を握っているからだ。</p><p>期待されていない部下には、失敗しても影響の小さい仕事が回る。影響の小さい仕事では、成果が目立たない。目立たないから評価が上がらない。評価が上がらないから、次も小さい仕事が回る。</p><p>一年もすれば、当初は差のなかった二人の間に、説明のつく実績差が生まれている。その時点で見ると、上司の当初の判断は正しかったように見える。</p><h3 class="sh">効きにくい条件</h3><p>ただし、期待をかければ誰でも伸びるわけではない。論考は条件を挙げている。</p><ul class="blist"><li>期待が現実的であること。届かない目標は、逆に無力感を生む</li><li>上司自身がその期待を信じていること。演技は非言語の部分で漏れる</li><li>若手ほど効果が大きい。最初の上司が誰かで、その後の何年かが決まる</li><li>すでに低い自己評価が固まった相手には、期待だけでは動かない</li></ul><p>特に三つ目は重要で、キャリアの初期に期待の薄い上司に当たった人は、その後の伸びが長期にわたって鈍る傾向が報告されている。</p><h3 class="sh">どういう場面の話か</h3><p>店舗で新人を受け入れる場面を考えるとよい。</p><p>二人同時に入った新人がいて、一方は物覚えが早く、もう一方は最初の一週間で二度ミスをした。この時点で店長の中に評価が生まれる。</p><p>その後、繁忙時のレジや、単価の高い接客を任せるのはどちらか。ほぼ確実に前者になる。後者は品出しと清掃に回される。三ヶ月後、接客力に明らかな差が出ている。</p><p>この差は本人の資質ではなく、経験量の差でしかない。しかし店長には資質の差として見える。最初の一週間の二度のミスが、三ヶ月かけて事実に変換された。</p><h3 class="sh">反論</h3><p>元の実験には、再現性をめぐる批判が長く続いてきた。効果量が誇張されているという指摘や、対象や測定方法によっては差が出ないという報告もある。</p><p>また、期待だけで能力が上がるわけではない、という当然の反論もある。訓練の中身、機会の量、本人の意欲を無視して期待の話だけをしても実務は動かない。</p><h3 class="sh">限界</h3><p>この論考が確実に言えているのは、「上司の見立ては中立の観測ではなく、結果に影響を与える介入である」という点までだ。どの程度影響するかは状況で大きく変わる。</p><p>実務的に使えるのは、部下の評価を下したときに、その評価が自分の配分行動をどう変えるかを一度立ち止まって見る、という運用になる。評価そのものをやめる必要はない。評価が事実を作っていく経路を、自覚しておくかどうかの差になる。</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14269" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">7</div>
+      <h2>研修より、誰と繋がっているかが成果を決める</h2>
+      <div class="fig"><div class="fig-t">繋がりの種類と役割</div><div class="mtx"><div class="ylab top">深い付き合い</div><div class="grid"><div class="mcell"><b>結束型</b><span>日々の仕事は速く回る</span></div><div class="mcell"><b>橋渡し役</b><span>最も希少で価値が高い</span></div><div class="mcell"><b>顔見知り</b><span>情報はほとんど動かない</span></div><div class="mcell"><b>弱い紐帯</b><span>新しい情報が入ってくる</span></div></div><div class="ylab bot">浅い付き合い</div><div class="xlabs"><span>社内で完結</span><span>社外へ広がる</span></div></div><div class="fig-c">右側ほど新しい情報が入る。育成投資が届いていないのも右側</div></div>
+      <div class="sum"><h3 class="sh">教育投資が成果に結びつかない</h3><p>人材育成の予算は、ほぼ全額が個人のスキルに向かう。研修、資格、eラーニング、外部セミナー。</p><p>ところが、研修を受けた人が職場に戻ると元の動き方に戻る、という現象は繰り返し観察されてきた。学んだ内容が悪いわけではない。使う場面が来ないだけだ。</p><p>この論考は、育てるべき対象がずれていると指摘する。個人の能力ではなく、その人が持つ人の繋がり——社会関係資本——のほうが成果を左右する、という主張だ。</p><h3 class="sh">なぜスキルだけでは足りないのか</h3><p>仕事の成果は、知っていることだけでは決まらない。</p><p>必要な情報を誰が持っているか、頼めば動いてくれる人が他部署にいるか、問題が起きたときに早く教えてくれる人がいるか。これらは個人の技能とは別の資産になる。</p><p>そして、この資産は研修では増えない。研修で増えるのは、同じ研修に出た人との繋がりだけだ。それは多くの場合、すでに近い人たちになる。</p><h3 class="sh">遠い知り合いのほうが役に立つ</h3><p>古典的な発見として、1973年の研究がある。転職した人がどこから求人情報を得たかを調べたところ、親しい友人ではなく、たまに会う程度の知り合いから得た人が多かった。</p><p>親しい人は、自分と同じ情報しか持っていない。行動範囲も付き合う相手も重なっているからだ。新しい情報は、遠い相手からしか来ない。</p><p>この主張は長らく理論のままだったが、2022年に大規模な検証が行われた。ある職業向けSNSで、推薦される知人の構成を変える実験を約2000万人規模で実施したものだ。</p><ul class="blist"><li>弱い繋がり（接点の少ない知人）を多く推薦された利用者ほど、その後の転職成功が増えた</li><li>強い繋がり（共通の知人が多い相手）を増やしても、転職への効果は小さかった</li><li>効果が最も大きかったのは、共通の知人が十人前後という中程度に離れた相手だった</li></ul><h3 class="sh">組織で何を育てるか</h3><p>論考が提案するのは、育成の設計に繋がりの項目を入れることだ。</p><ul class="blist"><li>部署をまたぐ課題を、研修ではなく実務として割り当てる</li><li>誰と誰が話していないかを把握する。組織図ではなく実際のやり取りで見る</li><li>中継役になっている人を特定し、その人に負荷が集中していないか確認する</li><li>異動を、スキル配置だけでなく繋がりの再配線として設計する</li></ul><p>特に三つ目は見落とされやすい。部署間の情報が一人を経由して流れている組織は、その人が抜けた瞬間に分断される。</p><h3 class="sh">どういう場面の話か</h3><p>複数店舗を持つ会社で、これは直接効く。</p><p>各店の店長が本部としか話していない状態は、よくある形だ。組織図の上では正しく、報告も上がってくる。しかし店同士は繋がっていないので、A店が三ヶ月かけて見つけた解決策がB店に届かない。同じ失敗が順番に起きる。</p><p>研修を開いて全店長を集めても、その場の情報交換で終わることが多い。効くのは、店をまたいだ実務——応援に入る、合同で棚割りを決める、他店の締め作業を一度やってみる——のほうだ。実際に一緒に手を動かした相手には、後から電話ができる。</p><p>美容室のように技術の伝承が成果を左右する業態では、この差はさらに大きくなる。誰から教わったかではなく、困ったときに誰に聞けるかが、伸びる人と止まる人を分ける。</p><h3 class="sh">反論</h3><p>繋がりを増やせばよい、という単純な話ではない。</p><p>人間関係の維持には時間がかかる。広く浅い関係だけを増やすと、いざというとき誰も本気で助けてくれない、という状態にもなる。深い信頼が要る仕事では、強い繋がりのほうが機能する。</p><p>また、組織が意図的に人間関係を設計することへの抵抗もある。誰と付き合うかを会社が決める、という形になれば反発が出る。</p><h3 class="sh">限界</h3><p>大規模な検証が行われたのは転職という一つの成果に対してであり、日常業務の生産性や創造性への効果は同じ強さでは示されていない。</p><p>また、この知見が最も効くのは、情報が部署の壁で止まる規模の組織だ。全員が毎日顔を合わせる小さな職場では、社内の繋がりはすでに飽和している。その場合に伸ばすべきは、社外——同業他社、取引先、地域——との繋がりのほうになる。</p></div>
+      <a class="src" href="https://news.google.com/rss/articles/CBMilwFBVV95cUxNWW56ZEVScXFOSFdkWGNfSFdGV3VRQ3J4V1NwNk1aMy12R2JIXzBrbFIzQmF5NlNKQ0ZjMEdUejhrbl9sUmxlbmVtbXYyZkNVNnVmZloxRU5pUHZfdDdGTGw1LXN5OXF2M1lfMkNUWU9GU3o5aE5XVEx3MXZhMExyTUdwT0pXazJxMTBpbzVjRzJZcF8tQXRz?oc=5" target="_blank" rel="noopener">MIT SMR ↗</a>
+    </article>
+  </div>
+  <section class="papers"><h2 class="sec">今週の論文</h2>
+    <article class="paper">
+      <h3>AIを使うのは「奪われる仕事」ではなく「比較優位のある仕事」</h3>
+      <div class="auth">CEPR / VoxEU 掲載のワーキングペーパー（著者名は掲載元表記による）</div>
+      <dl>
+        <dt>問い</dt><dd>AIがどの職業を変えるかを予測する研究は、この数年ほぼ一つの指標に頼ってきた。「エクスポージャー」——その職業の作業のうち、どれだけがAIで代替可能かを数えた比率だ。しかしこの指標は、実際にAIが使われているかをうまく説明できない。代替可能性が高いと判定された職業で導入が進まず、低いと判定された職業で急速に広がる例が続いている。この論文は、予測に使うべき指標が違うのではないかと問う。技術的に置き換えられるかではなく、AIと人間のどちらが相対的に得意かという比較優位の構造こそが、導入の速さを決めているのではないか、という問いだ。</dd>
+        <dt>検証</dt><dd>分析は、職業ごとの作業内容を細かく分解したデータベースを出発点に置く。各作業について、AIによる遂行精度と、人間が同じ作業に費やす時間あたりのコストを推計し、両者の比を取る。この比を職業単位で集計したものを比較優位の指標とし、従来のエクスポージャー指標と並べて、実際の導入率との相関を比較した。導入率のデータは、企業調査およびAIサービスの利用ログから構成されている。さらに、指標の予測力を検証するため、時点をずらした分析を行っている。ある時点の指標が、その後の期間の導入をどれだけ説明できるかを見る形だ。従来指標と新指標の説明力の差を、決定係数の比較として示している。</dd>
+        <dt>結果</dt><dd><ul class="finds"><li>従来のエクスポージャー指標と実際の導入率の相関は弱い。技術的に代替可能とされた職業の多くで、導入がほとんど進んでいなかった。</li><li>比較優位で測った指標のほうが、実際の導入をよく説明した。AIが人間より明確に速く安い作業を多く含む職業で、導入が先行していた。</li><li>代替可能性が高くても、人間側のコストが低い作業では導入が起きない。安く早く人がやれる仕事に、わざわざ機械を入れる動機がないという単純な理由による。</li><li>逆に、代替可能性の評価が中程度でも、人件費が高い専門作業では導入が急速に進んだ。金額差が大きい領域から順に置き換わっている。</li><li>導入は職業単位ではなく作業単位で起きている。同じ職業の中で、一部の作業だけが機械に移り、残りは人が続けるという分割が観察された。</li></ul></dd>
+        <dt>含意</dt><dd>人手不足の職種でAIを検討するとき、「この仕事は自動化できるか」ではなく「今この作業に人がいくら払っているか」から見るほうが、順番を間違えにくい。技術的にできることと、入れる価値があることは別だという指摘は、投資判断の順序をそのまま変える。また、職業まるごとが消えるのではなく作業単位で分割されるという発見は、採用計画にも影響する。役割を丸ごと減らすのではなく、一人の担当作業の内訳が変わる形で進むことになる。</dd>
+        <dt>留意</dt><dd>分析対象が主要先進国のデータに限られており、賃金水準の異なる国では比較優位の計算結果が変わる。また、導入率の把握にサービス利用ログを使っているため、社内で閉じた利用や、正式な契約を伴わない現場での利用が捕捉できていない可能性がある。</dd>
+      </dl>
+      <a class="src" href="https://news.google.com/rss/articles/CBMingFBVV95cUxPMDZNT3VqWW9NRUVwSDA1ZmN2UGZ0blplazh4d0d1ZW43ZnV3Q1pXVVZNeEZwNkNNb3dfRDJ5Mi1kUkc2emVnZWZfenJuS1BjMVc1U0tWOEdaa0RnZGRQSVJINzY2M09TZ1JnbTlMSmdEM1JlYXFzSjBHYTBzWWtFZXpYSUQzWFRBQmtuSWJzc0Z5TWJBOHAyWDFicHJRUQ?oc=5" target="_blank" rel="noopener">VoxEU ↗</a>
+    </article>
+    <article class="paper">
+      <h3>AIに買い物を任せると、選択が予測できなくなる</h3>
+      <div class="auth">SSRN Research Report 6（Agentic Shopping is Complicated and Contingent）</div>
+      <dl>
+        <dt>問い</dt><dd>AIが利用者に代わって商品を選び、購入まで進める「エージェント型の買い物」が実用段階に入りつつある。売る側にとっての問題は、相手が人間でなくなったときに何が起きるかだ。人間の買い物客には、ブランドへの愛着、店の見た目、口コミ、値段の感じ方といった判断材料がある。AIにも同じものが効くのか。それとも、まったく別の要因で選ばれるのか。この研究は、実際にAIエージェントに買い物をさせ、その選択が何に左右されるかを測っている。</dd>
+        <dt>検証</dt><dd>複数のAIモデルに、同一の購買課題を繰り返し与える設計を取っている。課題は日用品から比較的高額な商品まで複数のカテゴリにまたがり、各課題について指示の書き方、提示される商品情報の量、価格の並び順などの条件を変えて試行を重ねた。測定したのは、同じ条件で何度実行したときに同じ商品が選ばれるか（一貫性）、条件を少し変えたときに選択がどれだけ動くか（感応度）、そしてモデル間で選択がどれだけ一致するかの三点である。試行回数はカテゴリごとに複数十回の水準で、統計的に選択分布を比較できる規模を確保している。</dd>
+        <dt>結果</dt><dd><ul class="finds"><li>同じ指示を同じモデルに与えても、選ぶ商品が毎回同じにはならなかった。人間の買い物より、むしろばらつきが大きい場面がある。</li><li>指示の書き方のわずかな違いが、選択を大きく動かした。同じ意味の依頼でも、語順や重視点の書き方が変わると別の商品が選ばれる。</li><li>モデルが違えば選ぶものも違った。特定のモデルに最適化した売り方が、他のモデルでは効かない。</li><li>価格が最重視されるとは限らなかった。商品情報の記載が構造化されているか、仕様が機械的に読み取れる形になっているかのほうが効く場面があった。</li><li>選択の理由をAIに説明させると、もっともらしい説明が返るが、実際の選択を動かしていた要因とは一致しないことがあった。</li></ul></dd>
+        <dt>含意</dt><dd>売り手にとっての実務的な含意は、商品情報の書き方が新しい競争領域になるという点にある。人間向けの魅力的な写真やキャッチコピーではなく、仕様・在庫・配送条件が機械に読める形で整っているかどうかが、選ばれるかどうかを左右し始める。同時に、選択にばらつきがあるということは、一度選ばれなかったから終わりではないという意味でもある。ただし、特定のAIに最適化する投資は、モデルが入れ替わった瞬間に無駄になる危険が高い。</dd>
+        <dt>留意</dt><dd>実験は実際の購買環境ではなく、統制された課題設定の下で行われている。決済や配送の制約、利用者による最終確認といった現実の工程が入ると、結果は変わりうる。また、対象としたAIモデルは調査時点のもので、性能の変化が速い領域であるため、数値の一般化には注意が要る。</dd>
+      </dl>
+      <a class="src" href="https://news.google.com/rss/articles/CBMia0FVX3lxTE5fSTR3UDhuQlJSTlU5VFVkcFgxUTFtV2h2WVE5bVJRajVFeTh3X1JRN0pmOEtqaTUyYkVhWHdwX0tDcExEVGxzandGMUg3TC14TTZXTzhmWlAtM0lnV0xWNmhJbkswQlB0NmFv?oc=5" target="_blank" rel="noopener">SSRN ↗</a>
+    </article>
+    <article class="paper">
+      <h3>組織の中で誰が誰を助けているかを、AIが可視化する</h3>
+      <div class="auth">Stanford Graduate School of Business（研究紹介記事）</div>
+      <dl>
+        <dt>問い</dt><dd>組織図は、誰が誰に報告するかを示す。しかし実際の仕事は、その線の通りには流れていない。困ったときに誰に聞くか、急ぎの案件を誰に頼むか、情報を誰から得るか——こうした実際の協働関係は、これまで測る手段がなかった。従来はアンケート調査で把握してきたが、回答者の記憶に依存し、頻度も年に一度が限界だった。この研究は、業務の中で自然に生まれるやり取りの記録から、実際の協働構造を推定できるかを問うている。</dd>
+        <dt>検証</dt><dd>用いられているのは、社内のコミュニケーション記録や共同作業の痕跡を、自然言語処理で分類する手法である。単に誰と誰がやり取りしたかという量ではなく、そのやり取りが何を目的としていたか——助言を求めているのか、情報を渡しているのか、調整しているのか——を分類する点が新しい。従来のネットワーク分析はメールの本数のような量的指標に依存しており、頻繁にやり取りする相手と、重要な相談をする相手を区別できなかった。分析対象は複数組織のデータで、推定された協働構造を、アンケートで得た自己申告の関係図と突き合わせて精度を検証している。</dd>
+        <dt>結果</dt><dd><ul class="finds"><li>自己申告による関係図と、記録から推定した関係図には無視できない差があった。本人が認識していない依存関係が存在する。</li><li>助言を求められる回数が多い人物は、必ずしも役職が高い人ではなかった。組織図に現れない中継点が各所に存在する。</li><li>部署をまたぐやり取りの多くが、少数の個人を経由していた。その人が不在になると情報の流れが止まる構造が見えた。</li><li>やり取りの量と、重要な相談の関係は一致しなかった。頻繁に連絡する相手と、困ったときに頼る相手は別人であることが多い。</li></ul></dd>
+        <dt>含意</dt><dd>実務にとっての価値は、人が抜けたときに何が止まるかを事前に把握できる点にある。退職や異動の影響を、業務の引き継ぎ表ではなく実際の依存関係から見積もれる。また、負荷が特定の個人に集中している状態は、本人の申告や上司の観察では捉えにくい。中継役として消耗している人を早く見つけられれば、離職を防ぐ手立ても打てる。</dd>
+        <dt>留意</dt><dd>従業員の通信記録を分析対象にする以上、監視への懸念と法的な制約が避けられない。集計単位の設計と同意の取り方を誤れば、信頼を損なう。また、記録に残らない場——立ち話、食事、現場での短いやり取り——が多い職場では、推定された構造が実態とずれる可能性が高い。</dd>
+      </dl>
+      <a class="src" href="https://news.google.com/rss/articles/CBMikAFBVV95cUxPUWRoeWdYV1NoSDNnQTlDRmtXbVQwUmNlMnowRjRVT2gzVDlHNS1MSllZMkh4NG05eDdUVU9NS3dWMWxYV2ZOWHZQSW9yNEsxeFo2RFp6Qy1HUk9oY1VEUm5XU2RaRGtlbXMyUHk5Zzl5SUUtbHVFZklKY0t4cHNSZjJBdkYwaFREMjlGNktZenU?oc=5" target="_blank" rel="noopener">Stanford GSB ↗</a>
+    </article></section>
+  <footer>
+    コンサルティングファーム・ビジネススクール・調査機関の19ソースから、
+    直近7日の公開分を収集し日本語に要約したもの。判断の前に各出典を確認してください。
+  </footer>
+</div></div>
+<script>
+(function(){
+  var KEY = "lsm-favs-v1";
+  function load(){ try { return JSON.parse(localStorage.getItem(KEY)) || []; }
+                   catch(e){ return []; } }
+  function save(v){ try { localStorage.setItem(KEY, JSON.stringify(v)); } catch(e){} }
+  function has(url){ return load().some(function(x){ return x.url === url; }); }
+  function paint(b){
+    var on = has(b.dataset.url);
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+    var ic = b.querySelector(".ic"), tx = b.querySelector(".tx");
+    if (ic) ic.textContent = on ? "\u2605" : "\u2606";
+    if (tx) tx.textContent = on ? "保存済み" : "あとで読む";
+    if (!ic && !tx) b.textContent = on ? "\u2605" : "\u2606";
+  }
+  function toggle(b){
+    var d = b.dataset, list = load(), i = list.findIndex(function(x){ return x.url === d.url; });
+    if (i >= 0) list.splice(i, 1);
+    else list.unshift({url:d.url, title:d.title||d.url, kind:d.kind||"", date:d.date||"",
+                       note:d.note||"", saved:new Date().toISOString().slice(0,10)});
+    save(list); paint(b);
+    if (window.renderFavs) window.renderFavs();
+  }
+  function wire(){
+    var bs = document.querySelectorAll("[data-fav]");
+    for (var i = 0; i < bs.length; i++){
+      (function(b){ paint(b); b.addEventListener("click", function(e){
+        e.preventDefault(); e.stopPropagation(); toggle(b); }); })(bs[i]);
+    }
+  }
+  window.favStore = {load:load, save:save, has:has};
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", wire);
+  else wire();
+})();
+</script>
+</body>
+</html>
