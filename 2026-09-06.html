@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>今週のインサイト 2026-09-06</title>
+<style>
+  :root{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E; --accent-bg:#F5EFE3;
+    --sans: system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
+      --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E; --accent-bg:#F5EFE3;
+  }
+  :root[data-theme="dark"]{
+    --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
+    --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
+  }
+  /* Phone-first. Body text sits at 16px (never below -- iOS zooms on focus under 16px and
+     small type is the main complaint on a handset), the column is capped just above a
+     comfortable measure, and side padding stays generous so text never touches the edge. */
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0}
+  .wrap{background:var(--ground);color:var(--ink);font-family:var(--sans);
+    font-size:16px;line-height:1.9;-webkit-font-smoothing:antialiased;
+    padding:1.5rem 1.15rem 4rem;min-height:100vh}
+  .inner{max-width:34rem;margin:0 auto}
+  header{border-bottom:1px solid var(--line);padding-bottom:1.25rem;margin-bottom:1.5rem}
+  .eyebrow{font-size:.72rem;letter-spacing:.16em;color:var(--faint);
+    text-transform:uppercase;margin:0 0 .5rem}
+  h1{font-size:1.4rem;font-weight:700;letter-spacing:-.01em;line-height:1.45;
+    margin:0;text-wrap:balance}
+  .lede{font-size:1rem;color:var(--muted);margin:1.1rem 0 0;line-height:1.95}
+  .picks{display:flex;flex-direction:column;gap:1.15rem}
+  .pick{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.2rem 1.1rem;position:relative}
+  .n{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.1em;margin-bottom:.35rem}
+  .pick h2{font-size:1.12rem;font-weight:700;line-height:1.6;margin:0 0 .7rem;
+    letter-spacing:-.005em;text-wrap:balance}
+  /* No justify: on a narrow screen it opens rivers of white space between Japanese runs. */
+  .sum{font-size:1rem;color:var(--ink)}
+  .sum p{margin:0 0 .95rem}
+  .sum p:last-child{margin-bottom:0}
+  .sum .blist{list-style:none;margin:0 0 1rem;padding:0;display:flex;
+    flex-direction:column;gap:.5rem}
+  /* 本文中の小見出し: 長い解説を拾い読みできるようにする */
+  .sum .sh{font-size:.94rem;font-weight:700;color:var(--ink);margin:1.5rem 0 .55rem;
+    padding-left:.6rem;border-left:3px solid var(--accent);line-height:1.6}
+  .sum .sh:first-child{margin-top:0}
+  .sum .blist li{position:relative;padding-left:1.1rem;line-height:1.85}
+  .sum .blist li::before{content:"";position:absolute;left:.2rem;top:.75em;
+    width:.32rem;height:.32rem;border-radius:50%;background:var(--accent)}
+  /* 図解の崩れ防止: 長い語も枠内で折り返し、幅が足りなければ横スクロールさせる */
+  .fig *{overflow-wrap:anywhere;word-break:normal;min-width:0}
+  /* 図解: CSS で組む（SVGだと縮小して読めなくなる）。縦積みなので幅の狭い画面でも崩れない */
+  .fig{margin:.9rem 0 1rem;padding:.9rem .85rem;border:1px solid var(--line);
+    border-radius:12px;background:var(--ground)}
+  .fig-t{font-size:.76rem;font-weight:700;letter-spacing:.06em;color:var(--accent);
+    margin-bottom:.7rem}
+  .fig-c{font-size:.78rem;color:var(--muted);margin-top:.7rem;line-height:1.7}
+  .flow{display:flex;flex-direction:column;align-items:stretch;gap:.3rem}
+  .flow .step{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .7rem;text-align:center}
+  .flow .step b{display:block;font-size:.9rem;font-weight:700}
+  .flow .step span{display:block;font-size:.78rem;color:var(--muted);margin-top:.15rem;
+    line-height:1.6}
+  .flow .arr{text-align:center;color:var(--accent);font-size:.9rem;line-height:1}
+  /* 2x2 マトリクス: 経営フレームの定番。軸ラベルを外側に置いて象限を読ませる */
+  .mtx{display:flex;flex-direction:column;gap:.3rem}
+  .mtx .ylab{font-size:.72rem;color:var(--muted);text-align:center}
+  .mtx .grid{display:grid;grid-template-columns:1fr 1fr;gap:.35rem}
+  .mtx .mcell{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .6rem;min-height:3.6rem;display:flex;flex-direction:column;
+    justify-content:center}
+  .mtx .mcell.empty{background:transparent;border-style:dashed;opacity:.5}
+  .mtx .mcell b{font-size:.86rem;font-weight:700;line-height:1.5}
+  .mtx .mcell span{font-size:.76rem;color:var(--muted);margin-top:.2rem;line-height:1.55}
+  .mtx .xlabs{display:flex;justify-content:space-between;font-size:.72rem;
+    color:var(--muted);padding:0 .2rem}
+  /* 横棒: 研究の効果量・前後差を数字で見せる */
+  .bars{display:flex;flex-direction:column;gap:.5rem}
+  .brow{display:flex;flex-direction:column;gap:.2rem}
+  .blab{font-size:.84rem;font-weight:600}
+  .blab .bnote{font-weight:400;color:var(--muted);font-size:.76rem;margin-left:.4rem}
+  /* grid: the bar track takes the leftover width and the number never wraps under it.
+     A percentage width inside a flex row was being resolved against the wrong box, which is
+     what made the bars overflow on a phone. */
+  .btrack{display:grid;grid-template-columns:minmax(0,1fr) max-content;gap:.55rem;
+    align-items:center}
+  .bwrap{background:var(--line);border-radius:5px;height:1.35rem;overflow:hidden;width:100%}
+  .bbar{height:100%;background:var(--accent);border-radius:5px;opacity:.9}
+  .bval{font-size:.82rem;font-weight:700;color:var(--accent);
+    font-variant-numeric:tabular-nums}
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
+  .cmp .col{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .65rem}
+  .cmp .ch{font-size:.78rem;font-weight:700;color:var(--accent);margin-bottom:.4rem;
+    padding-bottom:.35rem;border-bottom:1px solid var(--line)}
+  .cmp ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.3rem}
+  .cmp li{font-size:.86rem;line-height:1.6;padding-left:.75rem;position:relative}
+  .cmp li::before{content:"・";position:absolute;left:0;color:var(--faint)}
+  .rel{display:flex;flex-direction:column;align-items:center;gap:.55rem}
+  .rel .hub{background:var(--accent);color:var(--card);border-radius:999px;
+    padding:.5rem 1.1rem;font-size:.9rem;font-weight:700}
+  .rel .sats{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem}
+  .rel .sat{background:var(--card);border:1px solid var(--line);border-radius:999px;
+    padding:.35rem .75rem;font-size:.84rem}
+  @media (max-width:380px){ .cmp{grid-template-columns:1fr} }
+  /* Tap target: a bare inline link is hard to hit on a phone, so give it real height. */
+  .src{display:inline-block;margin-top:1rem;font-size:.86rem;color:var(--muted);
+    text-decoration:none;border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .8rem;line-height:1.5;word-break:break-word}
+  .src:hover{color:var(--accent);border-color:var(--accent)}
+  /* 今週の論文: 定義リストで「問い／検証／結果／含意／留意」を固定の型に見せる */
+  .papers{margin-top:2.2rem}
+  .sec{font-size:.78rem;font-weight:700;letter-spacing:.14em;color:var(--accent);
+    margin:0 0 .9rem;padding-bottom:.5rem;border-bottom:1px solid var(--line)}
+  .paper{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.1rem 1.05rem;margin-bottom:1rem}
+  .paper h3{font-size:1.02rem;font-weight:700;line-height:1.6;margin:0 0 .3rem;
+    text-wrap:balance}
+  .paper .auth{font-size:.78rem;color:var(--faint);margin-bottom:.75rem}
+  .paper dl{margin:0;display:grid;grid-template-columns:max-content minmax(0,1fr);
+    gap:.5rem .8rem;align-items:start}
+  .paper dt{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.08em;
+    padding-top:.15rem;white-space:nowrap}
+  .paper dd{margin:0;font-size:.9rem;line-height:1.8;text-align:justify}
+  .paper .finds{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;
+    gap:.35rem}
+  .paper .finds li{position:relative;padding-left:1rem;line-height:1.75}
+  .paper .finds li::before{content:"";position:absolute;left:.2rem;top:.72em;width:.3rem;
+    height:.3rem;border-radius:50%;background:var(--accent)}
+  @media (max-width:420px){ .paper dl{grid-template-columns:1fr;gap:.15rem .8rem}
+    .paper dt{margin-top:.5rem} }
+  footer{margin-top:2.4rem;padding-top:1.1rem;border-top:1px solid var(--line);
+    font-size:.78rem;color:var(--faint);line-height:1.7}
+  a:focus-visible,.src:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+.fav{appearance:none;-webkit-appearance:none;cursor:pointer;display:inline-flex;
+  align-items:center;justify-content:center;gap:6px;min-width:44px;min-height:44px;
+  padding:0 12px;border-radius:999px;font:inherit;font-size:14px;font-weight:600;
+  background:var(--surface,#fff);color:var(--ink-mut,#6b7280);
+  border:1px solid var(--line,#e5e7eb);line-height:1;}
+.fav:hover{border-color:#f0b429;color:#b26b00;}
+.fav[aria-pressed="true"]{background:#fff8e6;border-color:#f0b429;color:#b26b00;}
+.fav .ic{font-size:16px;line-height:1;}
+.fav-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:14px 0 6px;}
+.fav-bar a.all{font-size:13.5px;color:var(--ink-mut,#6b7280);text-decoration:none;
+  min-height:44px;display:inline-flex;align-items:center;}
+.fav-bar a.all:hover{text-decoration:underline;}
+.fav-mini{appearance:none;-webkit-appearance:none;cursor:pointer;background:none;border:0;
+  padding:6px 8px;margin-left:2px;font-size:15px;line-height:1;color:#c3c8d0;
+  min-width:36px;min-height:36px;}
+.fav-mini[aria-pressed="true"]{color:#f0b429;}
+
+</style>
+</head>
+<body>
+<div class="wrap"><div class="inner">
+  <header>
+    <p class="eyebrow">Weekly Insight</p>
+    <h1>今週のインサイト <span style="color:var(--faint);font-weight:500">2026-09-06</span></h1>
+    <p class="lede">今週の一覧を通して読むと、話題はばらけているのに、底に流れているものは一つでした。「決めた後どうなるか」を先に織り込んで決めよ、という発想です。価格の論考は、上げにくい商売ほど最初を高く置くべきだと言い、在庫の論考は、一度の欠品が客の次の一歩をどう変えるかを数字で示します。信頼の研究は、崩れる瞬間ではなく崩れた後の三か月を見ています。去年までのこの欄は「AIで何ができるか」の話が中心でしたが、今週は明らかに変わりました。AIを入れる前に、自社の判断基準を文章にできているか——道具の話が組織の話に降りてきています。読む順は、まず価格と在庫の二本をおすすめします。今日の店で効く話だからです。そのうえで、人と組織の三本（任せる経営・信頼の修復・予想外の質問）を続けて読むと、権限をどこまで渡すかという一本の線でつながって見えるはずです。AI関連の二本は最後に、腰を据えて。</p>
+    <div class="fav-bar"><button class="fav" data-fav data-url="https://hacadr-cloud.github.io/weekly-insight/2026-09-06.html" data-title="週次インサイト 2026-09-06" data-kind="insight" data-date="2026-09-06" aria-pressed="false"><span class="ic">☆</span><span class="tx">あとで読む</span></button><a class="all" href="favorites.html">保存した記事を見る →</a></div>
+  </header>
+  <div class="picks">
+    <article class="pick">
+      <div class="n">1</div>
+      <h2>値上げしにくい商売ほど、最初の価格を高く置く</h2>
+      <div class="fig"><div class="fig-t">初期価格の決まり方</div><div class="flow"><div class="step"><b>値上げが困難</b><span>客の反発・掲示・慣行で動かせない</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>将来に縛られる</b><span>今日の価格が数年間の上限になる</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>保険料を上乗せ</b><span>最適値より高めに設定して始める</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>割引で調整</b><span>下げるのは自由なので集客はこちらで</span></div></div><div class="fig-c">左から右へ、値上げの困難さが初期価格を押し上げていく</div></div>
+      <div class="sum"><h3 class="sh">何が問題だったのか</h3><p>価格の議論はたいてい「いくらなら売れるか」に集中する。だが実務で効いてくるのは、その価格を後から動かせるかどうかだ。</p><p>値下げはいつでもできる。翌日からでもできる。ところが値上げは、客の反発、掲示物、契約、業界の慣行に縛られて簡単には動かない。</p><p>この非対称は誰でも知っている。しかし「だから最初の価格をどうするか」まで踏み込んだ議論は少なかった。今日の最適価格を選ぶ発想のままだからだ。</p><h3 class="sh">論考の見立て</h3><p>IMDのこの論考が置く前提はシンプルだ。企業は価格を下げるのは自由だが、上げるのには強い抵抗がかかる。この一方通行の世界で、企業は最初の価格をどう決めるか。</p><p>答えは「高めに置く」。今日の最適値より少し高く始める。将来値上げできない状況に閉じ込められたときの保険として、あらかじめ余白を持たせておく。</p><p>重要なのは、これが競争の激しい市場でも成り立つと論じている点だ。競争があれば価格は最適水準に押し下げられるはず、という直感に反する。</p><h3 class="sh">分かったこと</h3><ul class="blist"><li>値上げの困難さが大きいほど、初期価格は高くなる。上乗せ分は「将来の硬直に対する保険料」に相当する</li><li>保険料の分だけ、開始直後は売上を取り逃す。それでも期間全体で見れば合理的になる</li><li>競争圧力があっても上乗せは消えない。競合も同じ制約を抱えているため、全員が少し高いところから始める</li><li>逆に、値上げが容易な商売（都度見積り、期間限定、相場連動）ではこの上乗せは不要になる</li></ul><h3 class="sh">なぜそうなるのか</h3><p>価格を低く始めると、その水準が客の頭の中の基準になる。基準ができてしまえば、後で上げるときの抵抗は価格差以上に大きくなる。</p><p>つまり安い初期価格は、売上を先食いする代わりに、将来の選択肢を売り払っている。上げられない価格は、実質的に契約と同じだ。</p><p>数字で言えばこういう感覚になる。適正価格が5,000円でも、二年間は上げられない前提なら5,300〜5,600円で始める。差額の300〜600円が保険料にあたる（これは考え方を示す例で、論考の実測値ではない）。</p><p>参考までに、別の実証研究では消費者向け商品の個別価格は平均して四〜七か月に一度しか改定されない。硬直は理論上の話ではなく、現場の常態だ。</p><h3 class="sh">どういう場面の話か</h3><p>分かりやすいのは、月額で継続課金する商品だ。携帯ショップで扱う保証サービスや周辺サービスの月額を、獲得を優先して低く置くと、後から上げるのは事実上できない。解約の説明コストが価格差に見合わないからだ。</p><p>美容室のメニュー価格も同じ構造にある。カット料金は一度決めると数年動かせない。一方でクーポンや平日割引という形で下げるのは自由にできる。</p><p>ならば、表の価格は将来の人件費上昇と材料費を織り込んだ水準に置き、集客は割引という「下げやすい道具」で調整するほうが、後で身動きが取れる。これが論考の実務的な含意になる。</p><h3 class="sh">反論・別の見方</h3><p>当然、反論はある。高く始めれば初期の客が集まらない。特に新規出店や新メニューの立ち上げでは、最初の数か月の来店数が事業の生死を分ける。</p><p>また、価格を高く置いて割引で埋める運用は、常時割引の状態を生みやすい。定価が形骸化すれば、結局は割引後価格が客の基準になり、上乗せは無意味になる。</p><p>この反論は正しい。論考の主張が効くのは、割引を期間限定・条件付きに留められる場合に限られる。</p><h3 class="sh">例外と限界</h3><p>これは価格の硬直性を前提にしたモデルの議論であり、特定の業界での実験結果ではない。値上げが比較的通りやすい商売、たとえば相場が公然と動く商材や、毎回見積りを出す仕事には当てはまらない。</p><p>また、上乗せ幅をどれだけ取るべきかは、値上げの困難さをどう見積もるかで変わる。ここは経営者の判断が残る部分で、公式で決まるものではない。</p></div>
+      <a class="src" href="https://www.imd.org/ibyimd/strategy/why-a-price-you-cant-raise-starts-high/" target="_blank" rel="noopener">IMD ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">2</div>
+      <h2>欠品した瞬間、客の3割は他店へ移っている</h2>
+      <div class="fig"><div class="fig-t">欠品時に客が取る行動</div><div class="bars"><div class="brow"><div class="blab">他店で買う<span class="bnote">客を失う</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:100.0%"></div></div><span class="bval">31%</span></div></div><div class="brow"><div class="blab">別ブランド<span class="bnote">店は守れる</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:83.9%"></div></div><span class="bval">26%</span></div></div><div class="brow"><div class="blab">別サイズ</div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:61.3%"></div></div><span class="bval">19%</span></div></div><div class="brow"><div class="blab">先延ばし</div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:48.4%"></div></div><span class="bval">15%</span></div></div><div class="brow"><div class="blab">買わない</div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:29.0%"></div></div><span class="bval">9%</span></div></div></div><div class="fig-c">最も高い31%だけが「店の外」に出ていく行動</div></div>
+      <div class="sum"><h3 class="sh">何が問題だったのか</h3><p>欠品は「その一個が売れなかった」損失として処理されがちだ。棚が空いていた、次の入荷で埋める、それで終わる。</p><p>しかし実際には、客はその場で別の行動を選ぶ。何を選ぶかによって、失うものが機会損失で済むか、客そのものを失うかが変わる。</p><p>この差を測っていない店が多い。だから欠品対策は「在庫を増やす」か「諦める」の二択になり、どこにいくら使うべきかが決められない。</p><h3 class="sh">どう調べたか</h3><p>この論考の土台になっているのは、世界規模で行われた欠品の実態調査だ。二十九か国、およそ七万一千人の買い物客を対象に、店頭で目的の商品が無かったときに何をしたかを直接聞いている。</p><p>測ったのは二つ。棚の欠品率そのものと、欠品に直面した客のその後の行動である。</p><h3 class="sh">分かったこと</h3><ul class="blist"><li>平均の欠品率は8.3%。二十品目のうち一つ以上が買えない計算になる</li><li>欠品に遭った客の31%は、他店で同じ商品を買う。店を離れる</li><li>26%は別ブランドに切り替える。メーカーは失うが、店は売上を保つ</li><li>19%は同じブランドの別サイズ・別容量を買う</li><li>15%は購入を先延ばしにし、9%は買うのをやめる</li><li>小売側の売上ロスはおよそ4%。粗利で考えると無視できない水準になる</li></ul><h3 class="sh">なぜそうなるのか</h3><p>鍵は31%という数字だ。この人たちは「今日は買えなかった」で終わらない。他の店に行き、そこで買えるという体験をする。</p><p>一度その体験をすると、次に同じ商品が必要になったとき、最初からその店を選ぶ確率が上がる。欠品は一回の販売機会ではなく、来店習慣そのものを削っている。</p><p>しかも店側からは見えない。レジを通らなかった客は、データのどこにも残らないからだ。欠品が甘く見積もられる根本の理由がここにある。</p><h3 class="sh">どういう場面の話か</h3><p>携帯ショップに置き換えると、扱いは端末本体だけの話ではない。人気色・人気容量の在庫、下取り機の受け入れ枠、ケースやフィルムといった同時購入品まで含まれる。</p><p>「本体はあるがケースが無い」という状態は、客からすれば買い物が完結しない状態だ。近隣の家電量販店に足を運べばそこで完結する。31%はそこで発生する。</p><p>美容室なら、指名スタッフの枠と店販商品がこれにあたる。予約が取れない日が続けば、客は別の店を試す。試して悪くなければ戻ってこない。</p><p>共通するのは、失うのが「その日の売上」ではなく「次の来店」だという点だ。</p><h3 class="sh">対策の優先順位</h3><p>この数字を踏まえると、対策の順番が決まる。全品目の在庫を厚くするのではなく、他店へ移られやすい品目だけを厚くすればよい。</p><p>判断軸は代替のしやすさだ。店内で代わりが利く商品は26%と19%の行動に流れ、店の売上は守られる。代わりが利かない指名買いの商品だけが31%を生む。</p><p>つまり、指名買いされる少数の品目に在庫を集中させ、それ以外は絞る。これが同じ在庫金額で欠品損失を最小化する形になる。</p><h3 class="sh">反論・別の見方</h3><p>在庫を厚くすれば当然コストが増える。廃棄、保管、資金の固定化が発生する。欠品率をゼロに近づける投資は、ある水準を超えると割に合わない。</p><p>また、この調査は日用消費財の店頭が中心で、単価の高い耐久財や予約制のサービスにそのまま当てはめられるわけではない。単価が高いほど客は待ってくれる傾向がある。</p><h3 class="sh">例外と限界</h3><p>調査は二〇〇〇年代前半のもので、当時はネット通販が今ほど選択肢になっていなかった。今なら「他店へ行く」の中にオンラインが含まれ、31%はむしろ上振れする可能性がある。</p><p>逆に、取り寄せの仕組みが整っていれば、その場で欠品でも客を逃さずに済む。数字をそのまま自店に当てはめるのではなく、自店の取り寄せ導線がどれだけ機能しているかで補正して読むべきだ。</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14410" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">3</div>
+      <h2>AI製の広告は、見分けられなくても成果が落ちる</h2>
+      <div class="fig"><div class="fig-t">見た目と成果は別物</div><div class="cmp"><div class="col"><div class="ch">これまでの前提</div><ul><li>AIっぽさが無ければ合格</li><li>気づかれなければ同等</li><li>見た目でレビューする</li></ul></div><div class="col"><div class="ch">調査が示したこと</div><ul><li>識別はほぼできない</li><li>それでも効果は低い</li><li>見た目は成果の代理にならない</li></ul></div></div><div class="fig-c">左の合格基準では右の差を検知できない</div></div>
+      <div class="sum"><h3 class="sh">何が問題だったのか</h3><p>広告制作にAIを使えばコストは下がる。ここに異論はない。問題は、下がったコストに見合うだけの成果が出ているかだ。</p><p>これまでの判断基準は「AIっぽさが出ていないか」だった。見て違和感がなければ合格、という運用である。制作物のレビューはたいていこの形をとる。</p><p>しかしこの基準には前提がある。客がAI製だと気づかなければ、反応も変わらないはずだ、という前提だ。そこが検証されていなかった。</p><h3 class="sh">どう調べたか</h3><p>HBRが紹介しているのは、米国の消費者およそ3,000人を対象にした調査だ。人間が作った広告とAIが生成した広告を見せ、二つのことを別々に測っている。</p><p>一つは識別できるかどうか。どちらがAI製かを当てられるか。もう一つは効果そのもの。広告への評価や購買意欲がどう動くか。</p><p>この二つを分けて測ったところが要点になる。従来は識別できないことをもって「同等」と結論づけていたが、両者は別の話だったからだ。</p><h3 class="sh">分かったこと</h3><ul class="blist"><li>消費者はAI製かどうかをほとんど見分けられなかった。見た目の水準は人間の制作物と区別がつかない</li><li>それにもかかわらず、AI生成広告の効果は人間制作のものより低かった</li><li>つまり「気づかれないこと」と「効くこと」は別の指標であり、前者で後者を代用できない</li><li>見た目の合格ラインを下げずにコストだけ下げられる、という期待は成立しない</li></ul><h3 class="sh">なぜそうなるのか</h3><p>著者らの説明はこうだ。AIは「それらしいもの」を安く大量に作れる。平均的に見て破綻のない、無難な仕上がりを高速に出す。</p><p>しかし広告が効くのは、平均から外れている部分による。具体的な観察、意外な角度、その商品でなければ言えない一言。無難さと効き目は違う方向を向いている。</p><p>消費者は意識の上では違いを言語化できない。それでも反応の総量は落ちる。この「言えないが反応しない」という状態が、識別テストをすり抜けてしまう。</p><h3 class="sh">どういう場面の話か</h3><p>店舗のチラシやSNS投稿を思い浮かべると分かりやすい。AIに書かせた投稿文は、読んで変ではない。誤字もない。だが保存もされず、来店にもつながらない。</p><p>担当者は「見た目は問題なかった」と報告する。実際その報告は正しい。問題は、見た目を合格基準にしていることのほうにある。</p><p>美容室のスタイル紹介文でも同じことが起きる。「柔らかい質感で小顔効果」という文は、AIでも人でも書ける。効くのは「この人の髪質だとここが膨らむので、こう切った」という具体である。</p><h3 class="sh">使い方の切り分け</h3><p>この結果はAIを使うなという話ではない。効きにくい領域と効く領域を分けろという話だ。</p><p>量が要る作業——投稿の下書き、複数パターンの生成、体裁の統一——ではAIの生産性が素直に出る。一方、その広告が刺さるかどうかを決める核の一言は、人が現場の観察から持ってくる必要がある。</p><p>運用としては、AIに骨格を作らせ、人が具体を一つ入れる。この分業なら、コストの利点を残したまま効果の低下を埋められる。</p><h3 class="sh">反論・別の見方</h3><p>反論もある。この調査は消費者に広告を見せて評価させる実験室型で、実際の売上を測ったものではない。評価が低くても購買が変わらない可能性は残る。</p><p>また、AIの生成品質は短期間で変わる。今日の結果が来年も同じとは限らない。プロンプトの作り込み次第で差が縮まるという主張にも一理ある。</p><h3 class="sh">例外と限界</h3><p>対象は米国の消費者であり、日本市場での反応がそのまま同じとは言えない。表現の慣習も、AI生成物への感情も国によって違う。</p><p>また、効果の差がどの程度の大きさかは、商材や媒体によって変わる。小さな差なら、コスト削減が上回る場面もあるだろう。判断すべきは「使うか否か」ではなく「どこまで任せるか」だ。</p></div>
+      <a class="src" href="http://hbr.org/2026/09/research-ai-generated-ads-perform-worse-than-human-made-ones-even-when-customers-cant-tell-them-apart" target="_blank" rel="noopener">HBR ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">4</div>
+      <h2>上司も部下も3人に1人、3カ月以内に信頼が下がる</h2>
+      <div class="fig"><div class="fig-t">揺らぎの後に何が起きるか</div><div class="mtx"><div class="ylab top">対話する</div><div class="grid"><div class="mcell"><b>すぐ戻る</b><span>議題に載れば数分で済む</span></div><div class="mcell"><b>修復できる</b><span>大きくても話せば回復しうる</span></div><div class="mcell"><b>静かな離反</b><span>最も多く最も見えない経路</span></div><div class="mcell"><b>関係の断絶</b><span>退職や指示不履行として表面化</span></div></div><div class="ylab bot">放置する</div><div class="xlabs"><span>小さな違和感</span><span>決定的な出来事</span></div></div><div class="fig-c">危険なのは右上ではなく左下。小さくて放置される領域</div></div>
+      <div class="sum"><h3 class="sh">何が問題だったのか</h3><p>信頼は、あると分かりにくく、無くなると全部に効いてくる。報連相が遅れる、悪い情報が上がらない、指示が形だけ実行される。</p><p>これまで信頼は「築くもの」として語られてきた。だが現場で起きているのは、築いた後に揺らぎ、それが放置される過程のほうだ。</p><p>揺らぎがどの頻度で起き、何をきっかけに起き、どうすれば戻るのか。ここが測られていなかった。</p><h3 class="sh">どう調べたか</h3><p>パーソル総合研究所が就業者を対象に行った調査である。上司側と部下側の双方に、直近の期間で相手への信頼が下がった経験があるかを聞いている。</p><p>注目すべきは期間の取り方だ。「これまでに」ではなく「3カ月以内に」と区切っている。頻度を測るための設計になっている。</p><h3 class="sh">分かったこと</h3><ul class="blist"><li>上司・部下ともに、およそ3人に1人が3カ月以内に相手への信頼低下を経験している</li><li>片側だけの現象ではない。部下が上司を、上司が部下を、ほぼ同じ割合で見限りかけている</li><li>3カ月という短い窓で3割に達するということは、信頼の揺らぎは例外事象ではなく常態に近い</li><li>揺らぎが起きたこと自体は、多くの場合その場では表面化しない。態度や発言量の変化として現れる</li></ul><h3 class="sh">なぜそうなるのか</h3><p>信頼が下がるきっかけは、たいてい小さい。約束した時間に来なかった、聞いたはずの話が伝わっていなかった、判断が前回と違った。</p><p>一つ一つは指摘するほどではない。だから指摘されない。指摘されないから相手は気づかず、同じことを繰り返す。</p><p>繰り返されると、相手の行動に対する解釈が変わる。同じ遅刻でも「忙しいのだろう」から「軽く見られている」に変わる。ここまで来ると、事実ではなく解釈が敵になる。</p><h3 class="sh">修復の分かれ目</h3><p>この調査が示唆する実務上の要点は、信頼の揺らぎそのものより「その後」にある。3割が揺らぐこと自体は避けられない。</p><p>分かれるのは、揺らいだ後に短い対話があったかどうかだ。対話があれば、大きな出来事でも関係は戻りうる。無ければ、小さな違和感でも静かに離れていく。</p><p>注意すべきは、小さな違和感のほうが放置されやすい点だ。大きな衝突は誰かが仲裁に入るが、小さなずれは誰の議題にもならない。</p><h3 class="sh">どういう場面の話か</h3><p>店舗運営で言えば、店長とスタッフの間で毎週のように起きている。シフトの希望が通らなかった、頼んだ発注が漏れていた、他のスタッフだけ声をかけられた。</p><p>どれも「言うほどのことではない」と本人が判断する。その判断が三回続くと、退職の相談は突然やってくるように見える。実際には三カ月前から進行していた。</p><p>複数店舗を持つ場合はさらに見えにくい。オーナーが店に行く頻度が月に一、二回なら、揺らぎの九割は目に入らないまま通り過ぎる。</p><p>実務的な打ち手は、面談の頻度を上げることではない。面談で「最近ひっかかったことはあるか」と直接聞く形に変えることだ。放置される小さな違和感を、議題に載せる仕組みがいる。</p><h3 class="sh">反論・別の見方</h3><p>反論としては、信頼低下の自己申告は測定として弱いという指摘がある。その日の機嫌や直近の出来事に引きずられやすい。</p><p>また、3割という数字が「多い」のかどうかは比較対象がないと判断できない。人間関係である以上、一定の揺らぎは正常な範囲かもしれない。</p><h3 class="sh">例外と限界</h3><p>調査は日本の就業者を対象にしたもので、業種や企業規模の構成によって数字は動く。小規模な店舗組織では、距離が近い分だけ揺らぎも修復も速い可能性がある。</p><p>また、相関を示すものであって、対話をすれば必ず戻るという因果を証明したものではない。戻る関係だから対話が成立した、という逆向きの解釈も否定できない。</p></div>
+      <a class="src" href="https://news.google.com/rss/articles/CBMia0FVX3lxTFBLN2liVU5Ta0otcEpzOFVIbm9LTDZYOVpqRnlfeXg3NENsR1Q5UVZjV2NJeWRQRG51U0VJMWljM0pNYVp6SDMwdkRLaThGQXZTdVA3T09oR1BzWXc3dUMwY0tla2UycHNhNnc0?oc=5" target="_blank" rel="noopener">パーソル総合研究所 ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">5</div>
+      <h2>任せる経営は仕組みで作る——アイリスオーヤマの実践</h2>
+      <div class="fig"><div class="fig-t">任せる経営の成立条件</div><div class="mtx"><div class="ylab top">範囲が明確</div><div class="grid"><div class="mcell"><b>停滞</b><span>上げても止まるので提案が消える</span></div><div class="mcell"><b>自律</b><span>提案と決裁が週単位で往復する</span></div><div class="mcell"><b>丸投げ</b><span>事故が起きてから範囲を作る</span></div><div class="mcell"><b>速いが硬い</b><span>決まるが範囲外に手が出ない</span></div></div><div class="ylab bot">範囲が曖昧</div><div class="xlabs"><span>決裁が遅い</span><span>その場で決まる</span></div></div><div class="fig-c">右上が目標。動かすべきはまず横軸（決裁の速さ）</div></div>
+      <div class="sum"><h3 class="sh">何が問題だったのか</h3><p>権限委譲は、宣言しただけでは成立しない。「任せた」と言った翌週に、現場が判断を上げてくるか、あるいは勝手に決めて事故を起こすか、どちらかになる。</p><p>難しいのは両立である。トップが速く決める組織は、現場が考えなくなる。現場に任せる組織は、全社の方向がばらける。</p><p>この二つを同時に成り立たせている例は多くない。アイリスオーヤマの大山健太郎氏へのインタビューは、そこを仕組みの側から語っている。</p><h3 class="sh">どう作ってきたか</h3><p>大山氏の経営者歴は半世紀以上に及ぶ。オイルショック、バブル崩壊、東日本大震災と、外部環境が一夜で変わる局面を繰り返し通過してきた。</p><p>中核にあるのが、毎週決まった曜日に開かれるプレゼン会議だ。各部門が新商品や施策を持ち込み、経営陣がその場で可否を決める。持ち帰りにしない。</p><p>もう一つが新製品比率という基準である。直近数年以内に出した新製品が売上の半分を占める状態を保つ。この数字が、現場が提案し続けざるを得ない圧力を作っている。</p><h3 class="sh">東日本大震災のとき何をしたか</h3><p>2011年、本社と工場が被災した。事業復旧と被災地支援を同時に進めながら、それまで手がけていなかった精米事業をゼロから立ち上げている。</p><p>復旧だけなら元に戻す話で終わる。新規事業を起こしたのは、被災地の雇用と農業の再建に継続的に関わる形を選んだからだ。</p><p>うつむいていた社員に何を語りかけたか、という部分がこのインタビューの主題になっている。号令ではなく、次にやることを具体的に示すことが、動きを戻す起点になった。</p><h3 class="sh">分かったこと</h3><ul class="blist"><li>権限委譲は「範囲を渡すこと」ではなく「決める場を定例化すること」で成立している</li><li>その場で決裁するから、現場は準備して持ち込む。持ち帰られる会議では準備の質が落ちる</li><li>新製品比率のような外形的な基準が、提案を続ける動機を制度として供給している</li><li>危機のときトップが出すべきは方針ではなく、明日の具体的な作業である</li></ul><h3 class="sh">なぜ効くのか</h3><p>仕組みの要点は、判断の速度をトップが担保し、判断の中身を現場が担う分業にある。</p><p>現場が案を作る。トップはその場で可否を出す。現場は結果を持って次の案を作る。この往復が週単位で回るので、任せることと統制することが矛盾しない。</p><p>逆に言えば、決裁が遅い組織では権限委譲は機能しない。上げても止まると学習すれば、現場は上げるのをやめる。委譲の敵は独裁ではなく、遅さである。</p><h3 class="sh">どういう場面の話か</h3><p>複数店舗を持つ小売やサービス業に置き換えると、争点は店長にどこまで渡すかになる。価格・在庫・シフト・販促のうち、どれを店長の裁量にするか。</p><p>このインタビューの示唆に従えば、範囲を細かく線引きするより先に、決める場を作るほうが効く。週に一度、店長が提案を持ち込み、その場で可否が出る場である。</p><p>提案が通れば店長は次も持ち込む。通らなくても理由がその場で分かれば、次の案の質が上がる。範囲は、この往復を続けるうちに自然に広がっていく。</p><h3 class="sh">反論・別の見方</h3><p>反論は明確にある。この方式は創業者の判断力に依存している。その場で決められるトップがいるから成り立つ仕組みで、後継者に引き継げるかは別の問題だ。</p><p>また、即決は誤りも即座に組織に流す。慎重さを要する投資判断まで同じ速度で処理すれば、事故の規模も大きくなる。</p><p>新製品比率のような数値基準にも副作用がある。新しさが目的化し、既存商品の改善が軽んじられる危険は常にある。</p><h3 class="sh">例外と限界</h3><p>一社の経営者の語りであり、統制された比較があるわけではない。成功した企業の説明は、後付けで整合的に見えるという偏りを免れない。</p><p>規模も違う。数千人規模のメーカーで機能した会議体を、十数人の組織にそのまま移植する必要はない。移植すべきは会議の形式ではなく、「その場で決める」という一点だ。</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14779" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">6</div>
+      <h2>予想外の質問が、用意された答えを崩す</h2>
+      <div class="fig"><div class="fig-t">なぜ本音が出るのか</div><div class="flow"><div class="step"><b>予想通りの問い</b><span>準備した型で答えが返る</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>台本を外す</b><span>模範解答が存在しない質問にする</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>その場で考える</b><span>型が使えず思考に切り替わる</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>判断基準が出る</b><span>何を重要と見ているかが露出する</span></div></div><div class="fig-c">左から右へ。効いているのは難易度ではなく予測不能さ</div></div>
+      <div class="sum"><h3 class="sh">何が問題だったのか</h3><p>面接でも面談でも商談でも、相手はたいてい答えを用意している。「志望動機は」「最近困っていることは」——聞かれると分かっている質問には、無難な答えが返る。</p><p>聞く側もそれを知っている。だから深掘りする。しかし深掘りは、用意された答えの延長線を辿るだけになりやすい。</p><p>必要なのは、相手が準備していない領域に入ることだ。ところが、それをどうやるかの方法論がなかった。</p><h3 class="sh">何を提案しているか</h3><p>HBRのこの記事が扱うのは、意図的に予想を外した質問——変化球の質問である。会話の台本を壊すことで、準備していない反応を引き出す。</p><p>例として挙がるのは、直球の言い換えではない質問だ。「うちの仕事で一番つまらなそうな部分はどこだと思うか」「この一年で自分の考えが変わったことは何か」といった、模範解答が存在しない問いになる。</p><p>狙いは相手を困らせることではない。台本が使えない状態で、その場で考えた言葉を出させることにある。</p><h3 class="sh">分かったこと</h3><ul class="blist"><li>予測できる質問には、準備された答えが返る。答えの内容は本人の実態をあまり反映しない</li><li>台本から外れた質問を受けると、相手はその場で考える。考えた内容には本人の判断基準が出る</li><li>引き出せるのは事実ではなく「考え方」である。何を重要だと思っているかが露出する</li><li>効果は質問の難しさではなく、予測不能さから来る。難問である必要はない</li></ul><h3 class="sh">なぜそうなるのか</h3><p>人は会話を型で処理している。この場ではこう聞かれ、こう答える、という型が先にある。型が働いている限り、出てくる言葉は本人のものではなく型のものだ。</p><p>型が使えない質問を受けると、処理をその場の思考に切り替えざるを得ない。このとき言葉を選ぶ基準として、その人が本当に持っている優先順位が使われる。</p><p>つまり変化球の質問が引き出すのは、隠していた事実ではない。隠すつもりもなく本人も意識していない、判断のクセである。</p><h3 class="sh">どういう場面の話か</h3><p>採用面接が最も分かりやすい。「頑張ります」で終わる面接を、「この店で働くとしたら、最初の一か月で一番きついのはどこだと思うか」に変える。答えの内容より、何を想像したかが見える。</p><p>退職面談でも効く。「不満は何か」と聞けば当たり障りのない答えが返る。「もしあなたが店長だったら、最初に変えることは何か」なら、具体が出る。</p><p>取引先との商談も同じだ。「今期の課題は」ではなく「うちに頼まなくても済むとしたら、どうやりますか」と聞く。本当の代替案が分かる。</p><p>美容室のカウンセリングにも応用できる。「どんな髪型にしますか」は選択肢の中から選ばせる質問だ。「今の髪で一番面倒なのはいつですか」なら、生活の中の困りごとが出てくる。</p><h3 class="sh">使い方の注意</h3><p>重要なのは、変化球を圧迫と取り違えないことだ。答えにくい質問と、答えを追い詰める質問は違う。</p><p>前者は考える余地を与える。後者は逃げ場を塞ぐ。後者を使えば、得られるのは本音ではなく防御になる。</p><p>実務上は、変化球は一回の会話に一つで足りる。連発すれば相手は警戒し、また別の型（警戒モードの型）に入ってしまう。</p><h3 class="sh">反論・別の見方</h3><p>反論としては、予想外の質問は準備の良い人を不当に低く評価するという指摘がある。とっさの応答が苦手なだけの人を、考えていない人と誤認する危険がある。</p><p>また、面接の場では立場の差が大きい。相手が緊張しているほど、変化球は単に混乱を生む。緊張を解いてから使わないと逆効果になる。</p><h3 class="sh">例外と限界</h3><p>この手法は情報を引き出すためのものであり、評価の基準を与えるものではない。出てきた答えをどう解釈するかは聞き手側の判断に委ねられ、そこに偏りが入る余地は残る。</p><p>また、同じ質問を繰り返し使えば予想可能になり、効果は失われる。使い回せる質問リストではなく、その場で作る態度が要る。</p></div>
+      <a class="src" href="http://hbr.org/2026/09/research-how-curveball-questions-can-surface-the-insight-youre-looking-for" target="_blank" rel="noopener">HBR ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">7</div>
+      <h2>AIに任せる前に、判断の基準を文章にする</h2>
+      <div class="fig"><div class="fig-t">判断の成文化</div><div class="rel"><div class="hub">判断の基準を書く</div><div class="sats"><span class="sat">暗黙知の抽出</span><span class="sat">リスク許容度</span><span class="sat">例外処理の定義</span><span class="sat">新人への伝達</span><span class="sat">AIへの委任</span><span class="sat">属人化の解消</span></div></div><div class="fig-c">中心の一手が、人への伝達とAIへの委任の両方を支える</div></div>
+      <div class="sum"><h3 class="sh">何が問題だったのか</h3><p>AIを入れても成果が出ない、という話が増えている。原因を技術の差に求めがちだが、この論考の見立ては違う。</p><p>分かれ目は、その組織が判断の基準を明文化できているかどうかにある。人間なら「まあこれは通す」「これは上に上げる」と暗黙に処理している部分だ。</p><p>人間同士なら暗黙のままで回る。長くいる人が空気で判断するからだ。AIには空気が読めない。基準が書かれていなければ、一貫した判断はできない。</p><h3 class="sh">何を提案しているか</h3><p>提案されているのは、判断の成文化を通じた三つの構造的な転換である。技術の導入ではなく、組織側の作り替えの話だ。</p><ul class="blist"><li>経験に基づく暗黙の判断を、条件と結論の形をした指針に書き換える</li><li>リスク許容度を明示する。どこまでなら現場で決めてよく、どこからは上げるのかを数値と条件で示す</li><li>例外処理を定義する。想定外が起きたときに何を止め、誰に渡すかを先に決めておく</li></ul><h3 class="sh">暗黙知をどう取り出すか</h3><p>難しいのは、当人が言語化できていないことだ。「経験でやっています」で止まる。この論考が示す抽出の方法は具体的である。</p><ul class="blist"><li>平均的な業務ではなく、例外事例から聞く。うまくいった話ではなく、判断に迷った場面を集める</li><li>「なぜそう決めたか」ではなく「どうだったら逆の判断をしたか」を聞く。境界線が出てくる</li><li>判断のログを残す。日々の決裁で、迷った案件だけ理由を一行書き足す</li></ul><p>迷った場面にこそ基準が現れる。迷わない場面はルール化済みだからだ。</p><h3 class="sh">なぜ効くのか</h3><p>書き出した基準は、AIに渡すためだけのものではない。人にも同じように効く。</p><p>新人が入ったとき、店舗が増えたとき、いま最も時間を食っているのは判断の伝達である。基準が文章になっていれば、そこが一気に軽くなる。</p><p>つまりこの作業はAI導入の準備であると同時に、属人化を外す作業そのものになる。導入しなかったとしても手元に資産が残る。</p><h3 class="sh">どういう場面の話か</h3><p>携帯ショップの店頭を考えると分かりやすい。返品を受けるか、値引きをどこまで認めるか、書類の不備をどう扱うか。ベテランは即答するが、根拠は書かれていない。</p><p>これを「購入から何日以内、開封の有無、過去の来店履歴」という条件の組み合わせに落とす。落とした瞬間、新人でも同じ判断ができ、AIにも渡せる。</p><p>美容室なら、予約の詰め方と再来店の見込みの扱いがこれにあたる。ベテランのスタッフは「この人はこの枠に入れないほうがいい」と分かっている。その判断が何を見ているのかを書き出す。</p><p>書き出してみると、基準がスタッフごとに食い違っていることが判明する場合が多い。この不一致の発見自体が、明文化の一番の収穫になることもある。</p><h3 class="sh">反論・別の見方</h3><p>反論はある。明文化は硬直を招く。書いた基準は例外を許さなくなり、現場の柔軟さを殺すという批判だ。</p><p>これは正しい懸念で、だからこそ例外処理の定義が三点目に置かれている。基準を書くことと、基準から外れる手順を用意することは対で扱う必要がある。</p><p>もう一つの反論は、暗黙知には本質的に言語化できない部分があるというものだ。この立場に立てば、書けるのは判断の一部にすぎない。</p><h3 class="sh">例外と限界</h3><p>この論考は方法論の提案であり、成果を測った実証研究ではない。三つの転換を実行した組織がどれだけ成果を上げたかという数字は示されていない。</p><p>また、明文化には相応の時間がかかる。少人数の組織では、基準を書く工数のほうが、判断を口頭で伝える工数を上回る場面もある。全業務ではなく、判断のばらつきが実害を生んでいる領域から始めるのが現実的だ。</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14391" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+  </div>
+  <section class="papers"><h2 class="sec">今週の論文</h2>
+    <article class="paper">
+      <h3>生成AIを使うと練習は伸び、試験の成績は落ちる</h3>
+      <div class="auth">VoxEU（CEPR）コラム。著者名は原文参照</div>
+      <dl>
+        <dt>問い</dt><dd>生成AIを学習に使わせると、成績は上がるのか下がるのか。これは教育の話に見えて、実は組織の話でもある。人が道具を使って作業をこなすとき、作業の出来が良くなることと、その人の能力が育つことは同じではないかもしれないからだ。従来の研究はAI利用中の作業成績を測ってきたが、道具を取り上げた後に何が残るかを測っていなかった。このコラムはその欠けていた部分、つまり「AIを外したときの実力」に焦点を当てている。</dd>
+        <dt>検証</dt><dd>中等教育の生徒を対象に、生成AIへのアクセスを与える群と与えない群を分けて比較する設計をとっている。基盤となっている代表的な実験では、高校生およそ1,000人を対象に数学の練習問題に取り組ませ、生成AIの利用可否をランダムに割り当てた。測定は二段階で行う。第一にAIを使いながらの練習問題の正答率、第二にAIを使えない条件での試験の成績である。この二段階に分けたことが設計の核心で、利用中の成績と学習の定着を切り離して観察できるようになっている。加えて、そのまま質問に答える形のAIと、答えを直接与えず誘導する形のAIを分けて比較している。</dd>
+        <dt>結果</dt><dd><ul class="finds"><li>AIを使いながらの練習では正答率が大きく向上した。代表的な実験では、素のチャット型AIを使った群の練習成績が対照群を約48%上回っている。作業中の見た目の成果は確かに良くなる。</li><li>ところがAIを使えない試験では、その群の成績は対照群を下回った。低下幅はおよそ17%と報告されている。練習で上がった分がそのまま消え、さらにマイナスに振れたことになる。</li><li>一方、答えを直接出さず誘導するように制約をかけたAIを使った群では、練習成績の伸びはさらに大きく（対照群比で約127%）、かつ試験成績の低下は観測されなかった。同じAIでも設計次第で結果が逆転する。</li><li>低下の主因は、生徒がAIの出力を検証せずに写す行動にあると解釈されている。答えが手に入ると、自分で解く過程が省略され、その過程こそが定着を生んでいた。</li><li>効果は一様ではない。もともとの学力が低い層ほど、AIに依存する度合いが高く、定着の低下も大きく出る傾向が示されている。</li></ul></dd>
+        <dt>含意</dt><dd>実務に置き換えると、これは新人教育の設計の話になる。AIを使わせれば、新人が出す成果物の質は今日から上がる。だがその新人が半年後にAI無しで判断できるかは別問題で、むしろ悪化しうる。分けるべきは道具の可否ではなく、道具の与え方だ。答えを出させるのではなく、考え方を返させる形で使わせる。実際、誘導型に制約したAIでは害が消えている。育成過程では、AIの出力をそのまま採用させず、必ず本人に理由を言わせる一手間が要る。</dd>
+        <dt>留意</dt><dd>対象は中等教育の生徒であり、既に判断力を持つ社会人にそのまま当てはまるとは限らない。測定期間も短く、長期的にどうなるかは分からない。また、AIの性能と使わせ方は急速に変わるため、数値そのものより「使用中の成果と定着は別物」という構造のほうを持ち帰るべきである。</dd>
+      </dl>
+      <a class="src" href="https://news.google.com/rss/articles/CBMihAFBVV95cUxPdmg3VjRzNkJYTEN6LWxFMlZvaHo2d2hVQ1BUUElRTkVvNDRkRnc2MlZQVFFCTW9PcUloUzhzdFNEVEJRbmxzQlFGdXFHb25vRGUzSEJZYU9JYlloRzBkWFN0MVgtR1J6YWFMWlhQWU5wRjhFM01IdzNwZERWTFVQTzNQUW8?oc=5" target="_blank" rel="noopener">VoxEU ↗</a>
+    </article>
+    <article class="paper">
+      <h3>人は他人のデータより、自分の負けから学んでしまう</h3>
+      <div class="auth">SSRN掲載ワーキングペーパー。著者名は原文参照</div>
+      <dl>
+        <dt>問い</dt><dd>人はどこから学ぶのか。誰にでも見える公開情報からか、それとも自分が実際に経験したことからか。この問いが実務にとって重要なのは、後者が偏っているからだ。自分の経験は標本数が少なく、たまたまの結果に強く引きずられる。それでも人はそちらを重く見る。この研究は、個人の為替取引という、公開情報が豊富で結果が即座に確定する場を使って、両者のどちらが行動を変えるのかを測っている。</dd>
+        <dt>検証</dt><dd>個人投資家の外国為替取引の実約定記録を用いた分析である。この設定を選ぶ理由は三つある。第一に、為替は誰でも同じ公開情報（経済指標、金利、報道）にアクセスできる。第二に、個々の取引の損益が明確に確定し、いつ何を経験したかが日時単位で分かる。第三に、同じ人が繰り返し取引するため、経験の蓄積と行動の変化を同一人物内で追跡できる。分析では、ある投資家が自分の取引で得た結果と、同時期に誰でも観測できた公開情報とを分け、その後の取引行動（頻度、規模、方向）がどちらにどれだけ反応するかを比較している。</dd>
+        <dt>結果</dt><dd><ul class="finds"><li>投資家の行動は、同じ内容を伝える公開情報よりも、自分自身の取引結果に強く反応する。客観的には同じ情報量でも、自分で経験したほうが重く扱われる。</li><li>反応は直近の経験に偏る。少し前の経験はすぐに割り引かれ、最後の数回の損益が次の判断を支配しやすい。</li><li>自己経験からの学習は速いが、標本数が少ないため誤った一般化を生みやすい。数回の結果から「この通貨は自分に合わない」といった規則が作られる。</li><li>公開情報は、それが自分の経験と一致したときにだけ強く効く。矛盾する公開情報は軽視される傾向がある。</li><li>結果として、経験からの学習は取引の成績改善には必ずしも結びつかない。学習は起きているが、学んだ内容が正しいとは限らない。</li></ul></dd>
+        <dt>含意</dt><dd>経営判断にそのまま重なる。自分の店で一度失敗した施策は、他店で成功しているデータを見せられても採用されにくい。逆に自分が成功した方法は、条件が違う店にも持ち込まれる。対策は単純で、判断の根拠が「自分の経験か、記録されたデータか」を明示的に分けて議論することだ。特に直近の失敗の直後は、判断が過剰に保守化していると疑ってよい。施策の可否は、経験した回数ではなく、母数を確認してから決める。</dd>
+        <dt>留意</dt><dd>対象は為替取引という特殊な場で、結果が即座に確定し損益が数値で出る。店舗運営のように結果の帰属が曖昧な領域で同じ強さの偏りが出るかは分からない。またこの要約はタイトルと公開情報に基づくもので、効果量などの詳細は原論文で確認してほしい。</dd>
+      </dl>
+      <a class="src" href="https://news.google.com/rss/articles/CBMia0FVX3lxTE9hYlFlUkpmZlk5czBMU2NKZHN1WW5yUnotOU1iTTlqS0FIQ2RZbTNKM0ZWX0d3ZTVQUnNJZWhtRUVoU1pVbGtDWVVJSkprX1pGSUxnbmF3MzYxbjhPVGVCa3JvQ0NXYjh2bXpV?oc=5" target="_blank" rel="noopener">SSRN ↗</a>
+    </article>
+    <article class="paper">
+      <h3>消費者は「注意を払わないこと」の代金を払っている</h3>
+      <div class="auth">University of Chicago Booth の研究（Chicago Booth Review 紹介）</div>
+      <dl>
+        <dt>問い</dt><dd>消費者は必ずしも最良の選択をしない。より安い代替があるのに気づかない、契約を見直さない、条件の違いを読まない。これは無知ではなく注意の欠如による。従来の経済学は情報が不足している状態を想定してきたが、現実には情報はあり、見られていないだけだ。この研究は、その注意の欠如が消費者にいくら負担させているのかを測ろうとしている。売り手の側から見れば、この負担は利益の源泉でもある。</dd>
+        <dt>検証</dt><dd>消費者が実際に支払った価格や選んだ条件と、同じ時点で選べたはずのより有利な選択肢とを突き合わせ、その差額を注意の欠如によるコストとして定量化する設計をとっている。焦点となるのは、選択肢が公開されており、探索コストも小さいにもかかわらず、有利な選択が取られていない場面である。分析では、注意を払った消費者と払わなかった消費者を分けるために、価格や条件が変化した時点の前後で行動がどう動いたかを比較する。注意が高まる出来事（通知、更新時期、価格の目立つ変化）の前後で差を取ることで、注意そのものの効果を切り出している。</dd>
+        <dt>結果</dt><dd><ul class="finds"><li>情報が公開され、探索の手間も小さい場面でも、相当数の消費者はより有利な選択肢に移らない。差額は継続的に支払われ続ける。</li><li>負担は一度きりではなく積み上がる。契約や定期購入のように自動更新される取引では、一回の不注意が長期の支払差につながる。</li><li>注意が高まるきっかけ（更新の通知、価格の目立つ提示）があると行動は変わる。つまり無関心ではなく、気づいていないだけである。</li><li>売り手側は、この注意の欠如を前提に価格や条件を設計できる。目立つ部分を安くし、目立たない部分で回収する構造が生まれる。</li><li>結果として、同じ商品に対して支払う金額が消費者間で大きく分散する。差を生んでいるのは交渉力ではなく注意の配分である。</li></ul></dd>
+        <dt>含意</dt><dd>売り手としても買い手としても効く。買い手としては、自社が払っている固定費（通信、保険、サブスクリプション、決済手数料）が、まさにこの注意の欠如の対象になっている。更新時期に一覧で見直す仕組みを作るだけで差額が回収できる。売り手としては、注意されない部分で回収する設計が短期的には利益を生むが、気づかれた時の反発は大きい。長期の関係を前提にする店舗商売では、注意されても説明できる価格構成にしておくほうが安全である。</dd>
+        <dt>留意</dt><dd>注意の欠如と、あえて手間をかけない合理的な選択とを完全には切り分けられない。手間をかけない判断が本人にとって合理的であるケースは残る。またこの要約は紹介記事と公開情報に基づくもので、対象商品や推定値の詳細は原論文で確認してほしい。</dd>
+      </dl>
+      <a class="src" href="https://news.google.com/rss/articles/CBMiigFBVV95cUxOc2loZ3dwQ0VtVXkyckRIQ293N3dINENRR2NYZ1FtTUp4aWpaSEhYeDJTY19FU0hDa3NWb0hXVElwcXJ2c0VOc1dUeHJKMnFCdTVCTGlKdV90SHdfTlN1eklBc1Y0c3pILUhwZlp2cHY5a2lGWUlTZ2tPWHU3Q0tkMEFxdHlBSmlSVGc?oc=5" target="_blank" rel="noopener">Chicago Booth ↗</a>
+    </article></section>
+  <footer>
+    コンサルティングファーム・ビジネススクール・調査機関の19ソースから、
+    直近7日の公開分を収集し日本語に要約したもの。判断の前に各出典を確認してください。
+  </footer>
+</div></div>
+<script>
+(function(){
+  var KEY = "lsm-favs-v1";
+  function load(){ try { return JSON.parse(localStorage.getItem(KEY)) || []; }
+                   catch(e){ return []; } }
+  function save(v){ try { localStorage.setItem(KEY, JSON.stringify(v)); } catch(e){} }
+  function has(url){ return load().some(function(x){ return x.url === url; }); }
+  function paint(b){
+    var on = has(b.dataset.url);
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+    var ic = b.querySelector(".ic"), tx = b.querySelector(".tx");
+    if (ic) ic.textContent = on ? "\u2605" : "\u2606";
+    if (tx) tx.textContent = on ? "保存済み" : "あとで読む";
+    if (!ic && !tx) b.textContent = on ? "\u2605" : "\u2606";
+  }
+  function toggle(b){
+    var d = b.dataset, list = load(), i = list.findIndex(function(x){ return x.url === d.url; });
+    if (i >= 0) list.splice(i, 1);
+    else list.unshift({url:d.url, title:d.title||d.url, kind:d.kind||"", date:d.date||"",
+                       note:d.note||"", saved:new Date().toISOString().slice(0,10)});
+    save(list); paint(b);
+    if (window.renderFavs) window.renderFavs();
+  }
+  function wire(){
+    var bs = document.querySelectorAll("[data-fav]");
+    for (var i = 0; i < bs.length; i++){
+      (function(b){ paint(b); b.addEventListener("click", function(e){
+        e.preventDefault(); e.stopPropagation(); toggle(b); }); })(bs[i]);
+    }
+  }
+  window.favStore = {load:load, save:save, has:has};
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", wire);
+  else wire();
+})();
+</script>
+</body>
+</html>
