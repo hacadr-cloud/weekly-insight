@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>今週のインサイト 2026-09-14</title>
+<style>
+  :root{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E; --accent-bg:#F5EFE3;
+    --sans: system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
+      --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E; --accent-bg:#F5EFE3;
+  }
+  :root[data-theme="dark"]{
+    --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
+    --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
+  }
+  /* Phone-first. Body text sits at 16px (never below -- iOS zooms on focus under 16px and
+     small type is the main complaint on a handset), the column is capped just above a
+     comfortable measure, and side padding stays generous so text never touches the edge. */
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0}
+  .wrap{background:var(--ground);color:var(--ink);font-family:var(--sans);
+    font-size:16px;line-height:1.9;-webkit-font-smoothing:antialiased;
+    padding:1.5rem 1.15rem 4rem;min-height:100vh}
+  .inner{max-width:34rem;margin:0 auto}
+  header{border-bottom:1px solid var(--line);padding-bottom:1.25rem;margin-bottom:1.5rem}
+  .eyebrow{font-size:.72rem;letter-spacing:.16em;color:var(--faint);
+    text-transform:uppercase;margin:0 0 .5rem}
+  h1{font-size:1.4rem;font-weight:700;letter-spacing:-.01em;line-height:1.45;
+    margin:0;text-wrap:balance}
+  .lede{font-size:1rem;color:var(--muted);margin:1.1rem 0 0;line-height:1.95}
+  .picks{display:flex;flex-direction:column;gap:1.15rem}
+  .pick{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.2rem 1.1rem;position:relative}
+  .n{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.1em;margin-bottom:.35rem}
+  .pick h2{font-size:1.12rem;font-weight:700;line-height:1.6;margin:0 0 .7rem;
+    letter-spacing:-.005em;text-wrap:balance}
+  /* No justify: on a narrow screen it opens rivers of white space between Japanese runs. */
+  .sum{font-size:1rem;color:var(--ink)}
+  .sum p{margin:0 0 .95rem}
+  .sum p:last-child{margin-bottom:0}
+  .sum .blist{list-style:none;margin:0 0 1rem;padding:0;display:flex;
+    flex-direction:column;gap:.5rem}
+  /* 本文中の小見出し: 長い解説を拾い読みできるようにする */
+  .sum .sh{font-size:.94rem;font-weight:700;color:var(--ink);margin:1.5rem 0 .55rem;
+    padding-left:.6rem;border-left:3px solid var(--accent);line-height:1.6}
+  .sum .sh:first-child{margin-top:0}
+  .sum .blist li{position:relative;padding-left:1.1rem;line-height:1.85}
+  .sum .blist li::before{content:"";position:absolute;left:.2rem;top:.75em;
+    width:.32rem;height:.32rem;border-radius:50%;background:var(--accent)}
+  /* 図解の崩れ防止: 長い語も枠内で折り返し、幅が足りなければ横スクロールさせる */
+  .fig *{overflow-wrap:anywhere;word-break:normal;min-width:0}
+  /* 図解: CSS で組む（SVGだと縮小して読めなくなる）。縦積みなので幅の狭い画面でも崩れない */
+  .fig{margin:.9rem 0 1rem;padding:.9rem .85rem;border:1px solid var(--line);
+    border-radius:12px;background:var(--ground)}
+  .fig-t{font-size:.76rem;font-weight:700;letter-spacing:.06em;color:var(--accent);
+    margin-bottom:.7rem}
+  .fig-c{font-size:.78rem;color:var(--muted);margin-top:.7rem;line-height:1.7}
+  .flow{display:flex;flex-direction:column;align-items:stretch;gap:.3rem}
+  .flow .step{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .7rem;text-align:center}
+  .flow .step b{display:block;font-size:.9rem;font-weight:700}
+  .flow .step span{display:block;font-size:.78rem;color:var(--muted);margin-top:.15rem;
+    line-height:1.6}
+  .flow .arr{text-align:center;color:var(--accent);font-size:.9rem;line-height:1}
+  /* 2x2 マトリクス: 経営フレームの定番。軸ラベルを外側に置いて象限を読ませる */
+  .mtx{display:flex;flex-direction:column;gap:.3rem}
+  .mtx .ylab{font-size:.72rem;color:var(--muted);text-align:center}
+  .mtx .grid{display:grid;grid-template-columns:1fr 1fr;gap:.35rem}
+  .mtx .mcell{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .6rem;min-height:3.6rem;display:flex;flex-direction:column;
+    justify-content:center}
+  .mtx .mcell.empty{background:transparent;border-style:dashed;opacity:.5}
+  .mtx .mcell b{font-size:.86rem;font-weight:700;line-height:1.5}
+  .mtx .mcell span{font-size:.76rem;color:var(--muted);margin-top:.2rem;line-height:1.55}
+  .mtx .xlabs{display:flex;justify-content:space-between;font-size:.72rem;
+    color:var(--muted);padding:0 .2rem}
+  /* 横棒: 研究の効果量・前後差を数字で見せる */
+  .bars{display:flex;flex-direction:column;gap:.5rem}
+  .brow{display:flex;flex-direction:column;gap:.2rem}
+  .blab{font-size:.84rem;font-weight:600}
+  .blab .bnote{font-weight:400;color:var(--muted);font-size:.76rem;margin-left:.4rem}
+  /* grid: the bar track takes the leftover width and the number never wraps under it.
+     A percentage width inside a flex row was being resolved against the wrong box, which is
+     what made the bars overflow on a phone. */
+  .btrack{display:grid;grid-template-columns:minmax(0,1fr) max-content;gap:.55rem;
+    align-items:center}
+  .bwrap{background:var(--line);border-radius:5px;height:1.35rem;overflow:hidden;width:100%}
+  .bbar{height:100%;background:var(--accent);border-radius:5px;opacity:.9}
+  .bval{font-size:.82rem;font-weight:700;color:var(--accent);
+    font-variant-numeric:tabular-nums}
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
+  .cmp .col{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .65rem}
+  .cmp .ch{font-size:.78rem;font-weight:700;color:var(--accent);margin-bottom:.4rem;
+    padding-bottom:.35rem;border-bottom:1px solid var(--line)}
+  .cmp ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.3rem}
+  .cmp li{font-size:.86rem;line-height:1.6;padding-left:.75rem;position:relative}
+  .cmp li::before{content:"・";position:absolute;left:0;color:var(--faint)}
+  .rel{display:flex;flex-direction:column;align-items:center;gap:.55rem}
+  .rel .hub{background:var(--accent);color:var(--card);border-radius:999px;
+    padding:.5rem 1.1rem;font-size:.9rem;font-weight:700}
+  .rel .sats{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem}
+  .rel .sat{background:var(--card);border:1px solid var(--line);border-radius:999px;
+    padding:.35rem .75rem;font-size:.84rem}
+  @media (max-width:380px){ .cmp{grid-template-columns:1fr} }
+  /* Tap target: a bare inline link is hard to hit on a phone, so give it real height. */
+  .src{display:inline-block;margin-top:1rem;font-size:.86rem;color:var(--muted);
+    text-decoration:none;border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .8rem;line-height:1.5;word-break:break-word}
+  .src:hover{color:var(--accent);border-color:var(--accent)}
+  /* 今週の論文: 定義リストで「問い／検証／結果／含意／留意」を固定の型に見せる */
+  .papers{margin-top:2.2rem}
+  .sec{font-size:.78rem;font-weight:700;letter-spacing:.14em;color:var(--accent);
+    margin:0 0 .9rem;padding-bottom:.5rem;border-bottom:1px solid var(--line)}
+  .paper{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.1rem 1.05rem;margin-bottom:1rem}
+  .paper h3{font-size:1.02rem;font-weight:700;line-height:1.6;margin:0 0 .3rem;
+    text-wrap:balance}
+  .paper .auth{font-size:.78rem;color:var(--faint);margin-bottom:.75rem}
+  .paper dl{margin:0;display:grid;grid-template-columns:max-content minmax(0,1fr);
+    gap:.5rem .8rem;align-items:start}
+  .paper dt{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.08em;
+    padding-top:.15rem;white-space:nowrap}
+  .paper dd{margin:0;font-size:.9rem;line-height:1.8;text-align:justify}
+  .paper .finds{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;
+    gap:.35rem}
+  .paper .finds li{position:relative;padding-left:1rem;line-height:1.75}
+  .paper .finds li::before{content:"";position:absolute;left:.2rem;top:.72em;width:.3rem;
+    height:.3rem;border-radius:50%;background:var(--accent)}
+  @media (max-width:420px){ .paper dl{grid-template-columns:1fr;gap:.15rem .8rem}
+    .paper dt{margin-top:.5rem} }
+  footer{margin-top:2.4rem;padding-top:1.1rem;border-top:1px solid var(--line);
+    font-size:.78rem;color:var(--faint);line-height:1.7}
+  a:focus-visible,.src:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+.fav{appearance:none;-webkit-appearance:none;cursor:pointer;display:inline-flex;
+  align-items:center;justify-content:center;gap:6px;min-width:44px;min-height:44px;
+  padding:0 12px;border-radius:999px;font:inherit;font-size:14px;font-weight:600;
+  background:var(--surface,#fff);color:var(--ink-mut,#6b7280);
+  border:1px solid var(--line,#e5e7eb);line-height:1;}
+.fav:hover{border-color:#f0b429;color:#b26b00;}
+.fav[aria-pressed="true"]{background:#fff8e6;border-color:#f0b429;color:#b26b00;}
+.fav .ic{font-size:16px;line-height:1;}
+.fav-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:14px 0 6px;}
+.fav-bar a.all{font-size:13.5px;color:var(--ink-mut,#6b7280);text-decoration:none;
+  min-height:44px;display:inline-flex;align-items:center;}
+.fav-bar a.all:hover{text-decoration:underline;}
+.fav-mini{appearance:none;-webkit-appearance:none;cursor:pointer;background:none;border:0;
+  padding:6px 8px;margin-left:2px;font-size:15px;line-height:1;color:#c3c8d0;
+  min-width:36px;min-height:36px;}
+.fav-mini[aria-pressed="true"]{color:#f0b429;}
+
+</style>
+</head>
+<body>
+<div class="wrap"><div class="inner">
+  <header>
+    <p class="eyebrow">Weekly Insight</p>
+    <h1>今週のインサイト <span style="color:var(--faint);font-weight:500">2026-09-14</span></h1>
+    <p class="lede">今週の論考には、はっきりした共通点があります。AIを入れる前に、人と仕事の側を先に見直せ、という点です。昨年までの議論は「AIで何ができるか」が中心でした。今年は「AIを入れると何が失われるか」に移っています。人が黙って担ってきた判断が消えること、任せきりで腕が落ちること、そして過信と不信の両方が問題として浮かんでいます。読む順は、暗黙の業務の話から始めてください。次に腕が落ちる話、信頼の話と進み、最後にAI面接の実験論文を読むと、一本の筋としてつながります。後半のリスキリング、戦略の実行、予算、チームの4本は、AIに限らない人と組織の基本を見直す材料です。なお今週は原文の全文を確認できず、公開された要旨と、出典を示した関連研究をもとに書いた回があります。細かな数字は本文で断っている範囲にとどめてください。</p>
+    <div class="fav-bar"><button class="fav" data-fav data-url="https://hacadr-cloud.github.io/weekly-insight/2026-09-14.html" data-title="週次インサイト 2026-09-14" data-kind="insight" data-date="2026-09-14" aria-pressed="false"><span class="ic">☆</span><span class="tx">あとで読む</span></button><a class="all" href="favorites.html">保存した記事を見る →</a></div>
+  </header>
+  <div class="picks">
+    <article class="pick">
+      <div class="n">1</div>
+      <h2>AIに任せると消える「人が黙って担ってきた判断」</h2>
+      <div class="fig"><div class="fig-t">AIに渡せる業務の見分け方</div><div class="mtx"><div class="ylab top">異変察知の必要が高い</div><div class="grid"><div class="mcell"><b>AI＋人の監視</b><span>処理は任せ違和感は人が拾う</span></div><div class="mcell"><b>人に残す</b><span>判断の中身がまだ見えていない</span></div><div class="mcell"><b>AIに全面委任</b><span>消える判断がほぼない</span></div><div class="mcell"><b>可視化して委任</b><span>聞き取りで手順化してから渡す</span></div></div><div class="ylab bot">異変察知の必要が低い</div><div class="xlabs"><span>手順が明文化済み</span><span>暗黙のまま</span></div></div><div class="fig-c">右上に行くほど、AIに渡すと失うものが大きい（編集部の整理）</div></div>
+      <div class="sum"><h3 class="sh">正確なAIが損失を招く逆説</h3><p>AIエージェントに業務を任せると、決まった手順は人より速く正確に片付きます。それでも大きな損失につながることがある。本稿が指摘するのは、この逆説です。</p><p>原因は、マニュアルに書かれていない仕事にあります。人は手順をこなしながら「いつもと違う」という違和感を拾い、上に一声かけ、自分の裁量で処理を止めてきました。こうした判断は、職務記述書のどこにも載っていません。</p><p>著者はこれを「隠れた業務のレイヤー」と呼びます。自動化で手順だけを移すと、このレイヤーは丸ごと消えます。しかも、消えたことに誰も気づきません。問題が表に出るのは損失が起きた後です。</p><h3 class="sh">なぜこれまで見えなかったのか</h3><p>隠れたレイヤーがうまく働いている間は、何も起きていないように見えます。事故が起きなかった日は記録に残りません。だから業務分析をしても、手順の一覧には出てこないのです。</p><p>AIの導入は、図らずもこの層をあぶり出します。人を外して初めて「実はあの人が止めていた」と分かるからです。本稿はそこで、導入前に暗黙の組織構造を見える形にし、AIと人の分担を設計し直すよう求めています。</p><h3 class="sh">人が無意識に担ってきた仕事</h3><p>本稿の問題意識に沿って整理すると、隠れた業務には次のような種類があります。</p><ul class="blist"><li>予兆に気づく：数字は規定内でも、相手の様子がおかしいと感じ取る</li><li>例外で止める：ルール通りに処理すると問題になる案件を、その場で保留にする</li><li>横に一声かける：担当外でも「念のため」と関係者に伝える</li><li>順番を決める：同時に来た依頼のうち、どれを先にするかを状況で判断する</li></ul><p>どれも「処理した記録」ではなく「処理しなかった記録」として残るか、まったく残らないかのどちらかです。そこが見落とされる理由です。</p><h3 class="sh">手順に落とすとこうなる</h3><p>本稿の考え方を実務の手順に置き換えると、次の流れになります。</p><ul class="blist"><li>ベテランに「ルール通りに処理しなかった例」を具体的に聞き出す</li><li>その判断が、どの手順のどの時点で入っていたかを地図にする</li><li>手順ごとに、止める権限を誰が持っていたかを確かめる</li><li>AIに渡す部分と、人に残す部分を分ける</li><li>AIの出力に「違和感を拾う係」を人として付ける</li></ul><p>携帯ショップで考えてみます。契約内容のチェックをAIに任せれば、書類の不備は確実に見つかります。しかしベテランの店員は、高齢のお客様の受け答えから「ご家族に確認してからにしましょう」と止めてきたかもしれません。この判断はチェック項目にはありません。</p><p>美容室の予約をAIに任せる場合も同じです。常連客が急に予約間隔を空け始めたとき、受付の人は不満の兆しとして店長に伝えていたかもしれません。予約システムは、その変化を「空き枠」としか扱いません。</p><h3 class="sh">反論と限界</h3><p>反対の見方もあります。隠れた判断の多くは、ただの属人化や非効率にすぎないという立場です。すべてを掘り起こすと手間ばかりかかり、AI導入の利点を食い潰すおそれがあります。異常の検知そのものは、偏りの少ないAIのほうが得意な場面もあります。</p><p>本稿は手法の提案で、効果を数字で検証した研究ではありません。規模の大きい組織を念頭に置いた議論でもあります。少人数の店舗では、隠れた判断が数人に集中しているぶん、聞き取りは短時間で済むはずです。</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14376" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">2</div>
+      <h2>定型業務をAIに任せると、専門家の腕が落ちる</h2>
+      <div class="fig"><div class="fig-t">AIに慣れた後の発見率</div><div class="bars"><div class="brow"><div class="blab">AI導入前（AIなし）</div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:100.0%"></div></div><span class="bval">28.4%</span></div></div><div class="brow"><div class="blab">AI導入後（AIなし）<span class="bnote">約2割低下</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:78.9%"></div></div><span class="bval">22.4%</span></div></div></div><div class="fig-c">AIを使い慣れた後にAIなしで検査すると、見つけられる割合が下がった（ポーランドの内視鏡研究）</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>AIに単純作業を任せれば、人はもっと高度な仕事に集中できる。多くの企業がそう考えてAIを導入しています。この前提に疑問を投げたのが、カリフォルニア大学バークレー校ハース経営大学院のファーナム・モヘビ氏の研究です。</p><p>主張はこうです。定型業務をAIに任せ続けると、専門家としての判断力そのものがすり減っていく。この研究計画は、テキサスA&amp;M大学メイズ経営大学院のAI博士論文計画コンテストで賞を受けました。</p><p>この問題が見えにくいのは、腕が落ちても当面の成果は落ちないからです。AIが補っている間は、数字の上ではむしろ良くなります。弱さが表に出るのは、AIが止まったとき、あるいはAIが間違えたときです。</p><h3 class="sh">別の研究が示した実際の数字</h3><p>受賞研究の詳しい結果はまだ公表前です。ただ、同じ現象を実データで捉えた研究がすでにあります。2025年に医学誌ランセットの消化器分野の姉妹誌に載った、ポーランドの内視鏡検査の研究です。</p><p>4つの医療機関で、AIの補助を導入する前と後を比べました。注目したのは、AIを使わずに行った検査で、医師が前がん病変を見つけられた割合です。</p><ul class="blist"><li>AI導入前、AIなしの検査での発見率：約28.4％</li><li>AI導入後、AIなしの検査での発見率：約22.4％</li><li>差は約6ポイントで、発見率が2割ほど下がった計算</li></ul><p>AIを使い慣れた医師ほど、AIがないと見逃しが増えていたわけです。</p><h3 class="sh">なぜ腕が落ちるのか</h3><p>定型業務は、退屈な作業であると同時に訓練の場でもあります。同じ種類の判断を何百回と繰り返すことで、人は「いつもと違う」を見分ける目を育ててきました。AIがその反復を引き受けると、目を鍛える機会が消えます。</p><p>この現象は古くから知られています。1983年に心理学者リサンヌ・ベインブリッジが「自動化の皮肉」と名付けました。自動化が進むほど、人は異常時にしか出番がなくなります。そのときに必要な腕が、普段使わないせいで衰えているという矛盾です。</p><h3 class="sh">店舗ではどう起きるか</h3><p>携帯ショップで、料金プランの提案をAIに任せたとします。新人はAIの提案を読み上げるだけで接客が回ります。しかし、なぜそのプランが合うのかを自分で組み立てた経験がありません。AIが対応していない例外的な相談が来たとき、答えられなくなります。</p><p>美容室でも同じことが起こりえます。カウンセリングの聞き取りや薬剤の配合をツールに頼り切ると、若手が髪質を見て判断する経験が減ります。店長が不在の日に、判断できる人がいなくなるかもしれません。</p><p>対策としては、次のような工夫が考えられます。</p><ul class="blist"><li>新人の一定期間は、AIを使わずに判断させる</li><li>AIの答えを見る前に、自分の答えを先に書かせる</li><li>定期的に、AIなしで対応する日や練習問題を設ける</li></ul><h3 class="sh">反論と限界</h3><p>反対の立場もあります。電卓で暗算力が落ちても誰も困らないように、AIが常に使えるなら人の腕は要らないという考えです。AIの精度が人を上回り続けるなら、この見方にも一理あります。</p><p>受賞したのは研究計画の段階で、結論はまだ出ていません。内視鏡の研究も一つの国の一分野で、観察研究のため別の要因が混じっている可能性があります。どの職種でどれだけ腕が落ちるかは、これから検証が必要です。</p></div>
+      <a class="src" href="https://newsroom.haas.berkeley.edu/haas-doctoral-student-wins-ai-dissertation-award-for-research-on-the-erosion-of-professional-judgment/" target="_blank" rel="noopener">Berkeley Haas ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">3</div>
+      <h2>AIの「できないこと」を明示すると社内で使われる</h2>
+      <div class="fig"><div class="fig-t">信頼と実力のずれ</div><div class="mtx"><div class="ylab top">人の信頼が高い</div><div class="grid"><div class="mcell"><b>過信</b><span>間違いを素通しして事故</span></div><div class="mcell"><b>適切な活用</b><span>任せる範囲で効果が出る</span></div><div class="mcell"><b>妥当な警戒</b><span>使わないのが正しい</span></div><div class="mcell"><b>宝の持ち腐れ</b><span>実力があるのに使われない</span></div></div><div class="ylab bot">人の信頼が低い</div><div class="xlabs"><span>AIの実力が低い</span><span>AIの実力が高い</span></div></div><div class="fig-c">左上と右下がずれの失敗。限界と能力を両方伝えると対角線に寄る</div></div>
+      <div class="sum"><h3 class="sh">導入しても使われないAI</h3><p>AIエージェントを導入しても、現場で使われなければ効果は出ません。ハーバード・ビジネス・レビューの本稿は、この壁を越える鍵を「信頼」に求めています。</p><p>要旨によれば、研究から分かったのは次の点です。組織がエージェントの能力だけでなく、限界まではっきり伝えたとき、利用が進む。「何でもできる」と売り込むより、「これはできない」と言うほうが使われるということです。</p><p>直感には反します。導入する側はつい長所を強調したくなるからです。しかしそれが逆効果になる理由は、これまでの研究で説明がつきます。</p><h3 class="sh">人は機械の失敗に厳しい</h3><p>ペンシルベニア大学のディートフォースト氏らは、2015年に「アルゴリズム回避」と呼ばれる現象を報告しました。人は、アルゴリズムが一度間違えるのを見ると、同じ程度に間違える人間よりも強く信頼を失うというものです。</p><p>過度な期待を持たせて導入すると、最初の失敗で一気に見放されます。一方、限界を先に知っていれば、失敗は「想定内」になります。信頼が壊れにくくなるのです。</p><p>同じ研究者らの2018年の研究では、もう一つの発見がありました。アルゴリズムの出力を人が少しだけ修正できるようにすると、利用が大きく増えたのです。自分に最後の決定権があると感じられることが、使う気持ちを支えます。</p><h3 class="sh">信頼は高ければよいのではない</h3><p>目指すべきは「ちょうどよい信頼」です。人の信頼とAIの実力がずれると、次の2種類の失敗が起きます。</p><ul class="blist"><li>過信：実力以上に信じ、AIの間違いをそのまま通してしまう</li><li>不信：実力があるのに疑い、使わずに手作業を続ける</li></ul><p>能力と限界を両方伝えることは、この2つのずれを同時に小さくします。できる範囲では安心して任せ、苦手な範囲では人が確かめる。使い分けの線を、現場の人が自分で引けるようになります。</p><h3 class="sh">現場で伝えるべきこと</h3><p>携帯ショップで、料金シミュレーションや問い合わせ対応をAIに任せる場面を考えます。「AIなら全部分かる」と伝えると、店員は答えをそのままお客様に伝えます。キャンペーンの改定が反映されていなければ、誤案内になります。</p><p>伝え方を変えるなら、次のような形になります。</p><ul class="blist"><li>得意なこと：標準的な料金比較、よくある質問への回答</li><li>苦手なこと：直近に変わった割引条件、例外的な契約状況</li><li>人が確かめること：金額の最終確認、お客様固有の事情</li><li>修正の仕方：おかしいと思ったら店員が上書きしてよいと明言する</li></ul><p>美容室の予約や問い合わせのチャットでも同じです。「メニューの案内は得意だが、髪の状態に関する相談には答えない」と、スタッフにも客にも示しておきます。</p><h3 class="sh">別の見方と限界</h3><p>限界を強調しすぎると、そもそも使われなくなるという懸念もあります。「間違えることがある」とだけ伝えると、不信の側に振れかねません。できることと、確かめ方をセットで伝えるのが要点です。</p><p>本稿の要旨からは、研究の対象や規模は分かりません。AIの実力が急速に変わる時期には、一度伝えた限界がすぐ古くなります。能力と限界の説明は、定期的に更新する必要があります。</p></div>
+      <a class="src" href="http://hbr.org/2026/09/to-adopt-ai-at-scale-employees-need-to-trust-agents" target="_blank" rel="noopener">HBR ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">4</div>
+      <h2>給料を上げても人が学び直さない理由は「自分らしさ」</h2>
+      <div class="fig"><div class="fig-t">人を動かす鍵の違い</div><div class="cmp"><div class="col"><div class="ch">従来の常識</div><ul><li>収入が上がれば人は移る</li><li>講座を用意すれば受ける</li><li>抵抗は情報不足のせい</li></ul></div><div class="col"><div class="ch">本稿が示すこと</div><ul><li>自分を失う不安が先に立つ</li><li>なれる自分を示すと動く</li><li>抵抗は自分らしさを守る反応</li></ul></div></div><div class="fig-c">左は条件で動かす発想、右は自分の姿で動かす発想</div></div>
+      <div class="sum"><h3 class="sh">待遇を示しても動かない</h3><p>AIの普及で、仕事の中身は急速に変わっています。企業も国も、リスキリングの講座を用意してきました。ところが受講率は伸びていません。学び直せば収入が上がると示しても、人は動かないのです。</p><p>本稿はこの理由を、イタリアでの調査をもとに説明しています。結論は、仕事が単なる収入源ではないということです。仕事は、その人のアイデンティティや社会での役割と深く結びついています。</p><p>経済学の素朴な見方では、人は収入の高いほうへ移るはずです。しかし実際には、「今の自分でなくなる」ことへの抵抗が、収入の差を上回ってしまう。これが本稿の言う「職業アイデンティティの壁」です。</p><h3 class="sh">何が人を引き止めるのか</h3><p>職業アイデンティティとは、「自分は何者か」を仕事で説明する感覚です。長く同じ仕事をするほど、この感覚は強くなります。本稿の議論に沿って整理すると、人が失うのを恐れるものは次のようなものです。</p><ul class="blist"><li>積み上げた技能と、それによる周囲からの評価</li><li>「○○の人」として家族や地域に認められている立場</li><li>同じ職業の仲間とのつながり</li><li>新しい仕事で、また初心者として扱われることへの気恥ずかしさ</li></ul><p>給料の上乗せは、これらのどれも埋め合わせません。むしろ「お金のために自分を捨てろ」と言われているように受け取られることさえあります。</p><h3 class="sh">動かすには「なれる自分」を示す</h3><p>本稿の処方は明快です。待遇改善だけでなく、新しい仕事で「どういう自分になれるか」を示すことです。人は収入より先に、移った後の自分の姿を思い描けるかを気にしています。</p><p>この考え方は、組織行動学のハーミニア・イバーラ教授が以前から唱えてきた説とも重なります。キャリアの転換は、考えてから動くのではない。小さく試しながら「新しい自分」を少しずつ確かめる過程だ、というものです。</p><h3 class="sh">店舗の場面に置き換える</h3><p>携帯ショップの販売員に、スマホの使い方相談やデジタル手続きの支援といった新しい役割を担ってほしいとします。「手当を付ける」だけでは、販売で実績を上げてきた人ほど乗り気になりません。販売のプロという自分を手放すことになるからです。</p><p>本稿の方向に沿えば、施策は次のようになります。</p><ul class="blist"><li>新しい役割に、誇れる名前と明確な専門性を与える</li><li>これまでの接客経験が、新しい仕事の土台になると具体的に語る</li><li>すでに移った先輩の姿を見せ、「あの人のようになれる」と思わせる</li><li>いきなり配置転換せず、週に数時間から試せるようにする</li><li>一人ではなく、同僚と一緒に移れるようにする</li></ul><p>美容室でも、スタイリストに物販や頭皮ケアの専門担当を広げてもらう場面で同じことが言えます。「売上のため」ではなく「髪と頭皮の相談役として頼られる人になる」と語るほうが届きます。</p><h3 class="sh">反論と限界</h3><p>反対の見方もあります。受講が進まないのは、講座の質が低い、時間が取れない、成果が本当に収入に結びつかないといった実務的な理由だという立場です。アイデンティティを持ち出すのは、制度の欠陥から目をそらすことになりかねません。</p><p>調査はイタリアのものです。雇用慣行や職業への誇りの持ち方は国によって違います。日本では職種より会社への帰属意識が強い層も多く、そのまま当てはまるとは限りません。要旨から調査の規模や数値は確認できていない点にも注意が必要です。</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14438" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">5</div>
+      <h2>戦略は立て方より、現場の行動に変える力で決まる</h2>
+      <div class="fig"><div class="fig-t">決定が成果になる道筋</div><div class="flow"><div class="step"><b>意思決定</b><span>何に賭けるかを決める</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>適材適所</b><span>要の仕事にできる人を置く</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>資源配分</b><span>お金と時間を実際に移す</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>行動計画</b><span>誰がいつ何をするか決める</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>見直し</b><span>短い周期で配分を変える</span></div></div><div class="fig-c">左から順に途切れると、戦略は掛け声で終わる</div></div>
+      <div class="sum"><h3 class="sh">良い戦略が成果にならない</h3><p>技術の変化、顧客の価値観の変化、AIの普及で、競争は激しくなっています。それにもかかわらず、企業の戦略の質は下がっていると本稿は指摘します。立派な戦略を作っても、成果につながらないのです。</p><p>本稿の主張は、成否を分けるのは策定する力ではなく実行する力だということです。著者はこれを「モビライゼーション」と呼びます。意思決定を、現場の人の具体的な行動に変える力のことです。</p><p>この問題が解けにくかったのは、戦略づくりと実行が別の仕事として扱われてきたからです。経営陣が計画を作り、現場に降ろしたら終わり。その間の「つなぎ」を誰も担っていませんでした。</p><h3 class="sh">実行力を形づくる3つの要素</h3><p>本稿は、意思決定を実行につなげる要素として次の3つを挙げています。</p><ul class="blist"><li>適材適所：戦略の要となる仕事に、それができる人を充てる</li><li>資源配分：戦略に合わせて、お金と人の時間を実際に移す</li><li>具体的な行動計画：誰がいつまでに何をするかまで落とす</li></ul><p>どれか一つでも欠けると、戦略は掛け声で終わります。特に資源配分は、口では重点と言いながら前年と同じ配分のまま、ということが起きやすい部分です。</p><h3 class="sh">経営陣が取るべき行動</h3><p>本稿は経営陣が実践すべき3つの行動を示しています。要旨で明示されているのは、認知バイアスの克服と、常時稼働型の体制づくりです。</p><p>認知バイアスとは、判断を曇らせる思い込みです。資源配分でよく起きるのは次のようなものです。</p><ul class="blist"><li>前年の配分を基準にして、少しだけ増減させる</li><li>すでにお金を使った事業を、損を認めたくなくて続ける</li><li>声の大きい部門や、成功体験のある事業に資源が集まる</li></ul><p>常時稼働型の体制とは、年に一度の計画会議で決めて終わりにしない仕組みです。決定、実行、見直しを短い周期で回し続けます。環境の変化が速い今、年一回の計画では現場の状況に追いつけません。</p><h3 class="sh">店舗経営に置き換えると</h3><p>複数の地域に店舗を持つ会社が「来期は光回線とでんきのセット販売を伸ばす」と決めたとします。戦略としては明確です。しかし、次のようなことが起きがちです。</p><p>店長の配置は去年のまま。セット販売が得意な人は別の店にいる。店舗の人員計画は端末販売の件数で組まれていて、説明に時間がかかる商材に時間を割けない。行動計画は「意識して提案する」で止まっている。</p><p>モビライゼーションの考え方で直すなら、得意な人を重点店に動かし、1件あたりの接客時間を見込んだ人員を組み、週ごとに提案件数と成約を見て配分を変えます。決めたことが、人と時間の動きに表れて初めて実行です。</p><h3 class="sh">別の見方と限界</h3><p>戦略と実行を分けて考えること自体への批判もあります。優れた戦略とは、もともと実行できる形で作られているはずだ、という立場です。実行の失敗の多くは、戦略が曖昧だったことの裏返しだとも言えます。</p><p>本稿は大企業の事例をもとにしており、効果を数字で比べた研究ではありません。少人数の会社では、経営者自身が配置も配分も決めるため、つなぎの問題は小さいかもしれません。逆に、経営者の思い込みがそのまま配分に出やすい面もあります。</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14437" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">6</div>
+      <h2>「予算」をやめる――財務の費目で管理する矛盾</h2>
+      <div class="fig"><div class="fig-t">予算の2つの作り方</div><div class="cmp"><div class="col"><div class="ch">財務会計の費目</div><ul><li>人件費・家賃・広告費</li><li>出ていき方で分ける</li><li>上限を守る枠</li><li>削る判断ができない</li></ul></div><div class="col"><div class="ch">管理会計の区分</div><ul><li>変動費と固定費</li><li>事業・店舗・顧客別</li><li>投資か維持か</li><li>増やす判断もできる</li></ul></div></div><div class="fig-c">右の分け方にすると、支出と成果が結びつく</div></div>
+      <div class="sum"><h3 class="sh">予算は矛盾だらけ</h3><p>多くの会社が毎年予算を立てています。本稿は、その予算が矛盾を抱えていると指摘します。本来は経営管理のための数字なのに、決算書のための分類で作られているからです。</p><p>会計には2つの種類があります。一つは財務会計で、税務署や銀行など外部に報告するための会計です。もう一つは管理会計で、経営者が判断に使うための会計です。予算は本来、管理会計の考え方で作るべきものです。</p><p>ところが実際の予算表は、人件費、地代家賃、広告宣伝費といった決算書の費目で並んでいます。これでは、どの支出がどの成果につながったのかが見えません。本稿はこれを「ちぐはぐ」と表現しています。</p><h3 class="sh">費目で管理すると何が困るか</h3><p>決算書の費目は、お金の出ていき方の分類です。経営の判断に要る分類とは違います。管理会計でよく使う分け方と比べると、違いがはっきりします。</p><ul class="blist"><li>売上に比例して増える費用か、売上に関係なく出ていく費用か</li><li>どの事業、どの店舗、どの顧客層のための支出か</li><li>将来の売上を作るための投資か、今の営業を維持するための支出か</li></ul><p>「広告宣伝費を月いくらまで」と決めても、新規客を取るための広告なのか、既存客を呼び戻すためなのかが分かりません。削るべきかどうかの判断ができないのです。</p><h3 class="sh">言葉が人を後ろ向きにする</h3><p>本稿のもう一つの論点は、「予算」という言葉の響きです。予算と聞くと、使ってよい上限、守らなければならない枠を思い浮かべます。管理されている気分になり、前向きな発想が出にくくなります。</p><p>そこで本稿は、いっそ言葉を変えてはどうかと提案しています。たとえば「計画」や「資源の配分」と呼べば、枠を守る話から、何に賭けるかを決める話に変わります。</p><p>この問題意識は、欧州で1990年代末から広がった「脱予算経営」の運動とも通じます。固定した年間予算をやめ、状況に応じて資源を配り直す考え方で、スウェーデンの銀行などが実践例として知られています。</p><h3 class="sh">美容室と携帯ショップの例</h3><p>美容室で「広告宣伝費は月20万円」と決めている場合を考えます。管理会計で見るなら、問うべきは総額ではありません。新規客1人を得るのにいくらかかったか、その客が何回来店したかです。1人あたりの獲得費用が見合っていれば、枠を超えて増やすのが正しい判断になります。</p><p>携帯ショップなら、店舗ごとの人件費を一つの数字で見るより、次のように分けたほうが判断に使えます。</p><ul class="blist"><li>販売件数に連動して動く部分（歩合、繁忙期の応援）</li><li>件数に関係なく出ていく部分（固定の配置人数）</li><li>新しい商材を売れるようにするための研修時間</li></ul><p>こう分けておけば、「件数が落ちたから人を減らす」のか「研修への投資だから維持する」のかを区別して議論できます。</p><h3 class="sh">反論と限界</h3><p>言葉を変えても中身は変わらない、という批判は当然ありえます。呼び名だけ変えて、実態は前年踏襲の枠のままという会社も多いでしょう。本稿の提案は、分類の作り直しとセットでなければ意味がありません。</p><p>また、資金繰りに余裕のない中小企業では、支出の上限を守る「枠」としての予算も必要です。前向きな配分の議論と、使いすぎを防ぐ歯止めは、両方を持つべきものです。本稿は論考であり、効果を検証した研究ではない点にも留意してください。</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14414" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">7</div>
+      <h2>「集団」を「チーム」に変える段階別マネジメント</h2>
+      <div class="fig"><div class="fig-t">チームが育つ4段階</div><div class="flow"><div class="step"><b>形成期</b><span>遠慮し合う。目的を示す</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>混乱期</b><span>意見が衝突。表に出させる</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>統一期</b><span>ルールが固まる。任せ始める</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>機能期</b><span>自律的に動く。支援に回る</span></div></div><div class="fig-c">段階が進むほど、リーダーは指示から支援へ役割を移す</div></div>
+      <div class="sum"><h3 class="sh">チームと集団は違う</h3><p>職場には人が集まっています。しかし、人が集まっているだけではチームとは言えません。本稿は、グロービスのMBA教科書の改訂版から、チームが機能する条件をおさらいする内容です。</p><p>経営学でよく引かれる定義は、コンサルタントのカッツェンバックとスミスが1993年に示したものです。チームとは、補い合う技能を持つ少人数が、共通の目的と目標に責任を分かち合う集まりだとされます。</p><p>集団とチームの違いを整理すると、次のようになります。</p><ul class="blist"><li>成果：集団は個人の成果の足し算、チームは協力で足し算以上を狙う</li><li>責任：集団は自分の担当だけ、チームは全体の結果に互いに責任を持つ</li><li>技能：集団は似た人の集まりでもよい、チームは違う技能の組み合わせが要る</li><li>目的：集団は各自の目標、チームは全員が共有する一つの目的</li></ul><h3 class="sh">チームは段階を踏んで育つ</h3><p>チームは作った瞬間から機能するわけではありません。心理学者タックマンが1965年に示した段階モデルが、今も基本として使われています。</p><p>最初は形成期です。メンバーは互いに遠慮し、様子をうかがいます。次の混乱期では、やり方や役割をめぐって意見がぶつかります。ここを越えると統一期に入り、ルールや役割が固まります。最後の機能期で、チームは自律的に成果を出せるようになります。</p><p>大事なのは、混乱期を避けて通れないという点です。対立を嫌って表面だけ仲良くしていると、チームは統一期に進めません。</p><h3 class="sh">段階ごとにリーダーの役割を変える</h3><p>段階が違えば、リーダーがすべきことも変わります。</p><ul class="blist"><li>形成期：目的と一人ひとりの役割を、はっきり言葉にして示す</li><li>混乱期：対立を隠さず表に出させ、話し合いで決着をつける</li><li>統一期：決まったルールを守らせつつ、判断を少しずつ任せる</li><li>機能期：細かく口を出さず、障害を取り除く支援に回る</li></ul><p>チームがうまくいかないとき、リーダーが段階に合わない関わり方をしていることがよくあります。機能期のチームに細かく指示すればやる気を削ぎます。形成期のチームを放任すれば迷走します。</p><p>チーム研究の第一人者ハックマンも、成果を左右するのはメンバーの性格より条件の整え方だと述べました。明確な方向、適切な構成、支える環境、そして要所での指導です。</p><h3 class="sh">店舗での場面</h3><p>携帯ショップの新店を立ち上げる場面を考えます。各店から集めたスタッフは、それぞれ前の店のやり方を持ち込みます。最初の数週間、接客の手順や声かけの仕方で揉めるのは自然なことです。店長がそれを「雰囲気が悪い」と抑え込むより、話し合って店のやり方を一つに決めさせるほうが早く機能します。</p><p>美容室で店長が交代したときも、チームは形成期に戻ります。前の店長の時代にうまく回っていたからといって、新しい店長がいきなり任せきりにすると、スタッフは誰の判断に従えばいいか分からなくなります。</p><h3 class="sh">限界</h3><p>タックマンのモデルは分かりやすい反面、実際のチームは段階を行き来します。メンバーが一人入れ替わるだけで、混乱期に逆戻りすることもあります。段階はきれいな一方通行ではなく、目安として使うのが適切です。</p><p>また、すべての仕事にチームが必要なわけではありません。個人の力量で完結する仕事なら、集団として個別に管理したほうが効率的な場合もあります。</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14818" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+  </div>
+  <section class="papers"><h2 class="sec">今週の論文</h2>
+    <article class="paper">
+      <h3>AIの音声面接で採用も定着も増えた――7万人規模の実験</h3>
+      <div class="auth">Brian Jabarian, Luca Henkel</div>
+      <dl>
+        <dt>問い</dt><dd>AIエージェントは、人から判断に必要な情報を引き出す道具として使えるのか。本研究はこれを採用面接で確かめました。面接は、応募者の話を聞き、次に進めるかを判断する材料を集める仕事です。AIに置き換えると応募者が離れる、あるいは質の悪い情報しか取れないという懸念があります。一方で、人の面接官は疲れや好みで質問がばらつきます。どちらが上回るかは、実際の採用現場で比べなければ分かりませんでした。</dd>
+        <dt>検証</dt><dd>大量採用を行う人材会社と組み、フィリピンで米国企業向けのカスタマーサービス職の採用を対象にしました。応募者を無作為に3つの群に分けました。人の採用担当者が面接する群、AIの音声エージェントが面接する群、どちらで受けるかを応募者が選べる群です。初版で報告された規模は約7万件の面接です。合否の最終判断はどの群でも人の担当者が行い、内定、入社、入社後30日時点の在籍までを追跡しました。本稿は改訂版で、数値は初版から更新されている可能性があります。</dd>
+        <dt>結果</dt><dd><ul class="finds"><li>AIが面接した群は、人が面接した群より内定が約12％多く出ました。面接の質が下がって合格が甘くなったのではなく、判断材料が増えた結果と著者は解釈しています。</li><li>入社に至った人も約18％多くなりました。内定から入社までの途中で辞退する人が減ったことを示しています。</li><li>入社後30日時点の定着率も約17％高くなりました。採用の数が増えただけでなく、職場に合う人を選べていたことになります。</li><li>応募者に選ばせた群では、約78％がAIの面接を選びました。AI面接は応募者に嫌われるという懸念は、この職種では当てはまりませんでした。</li><li>AIの面接は、決められた項目を漏れなく聞く点で人より安定していました。応募者側が面接で差別的な扱いを受けたと感じる度合いも低かったと報告されています。</li></ul></dd>
+        <dt>含意</dt><dd>人手不足の中で、面接の担当者を確保できないことが採用の上限になっている企業は多いはずです。この研究は、一次面接をAIに任せても、採用数と定着の両方が改善しうることを示しました。要点は、AIに合否を決めさせず、情報を集める役に限定し、判断は人が行った点です。質問を標準化し、全員から同じ材料を集めることが、担当者の勘に頼る面接より良い判断につながった可能性があります。</dd>
+        <dt>留意</dt><dd>対象は英語で行う定型的なカスタマーサービス職で、応募者が大量にいる環境です。少人数の採用や、人柄や技術を見る職種で同じ効果が出るかは分かりません。数値は初版の報告に基づいており、改訂版の最終的な値とは異なる場合があります。</dd>
+      </dl>
+      <a class="src" href="https://arxiv.org/abs/2607.28222" target="_blank" rel="noopener">arXiv econ.GN ↗</a>
+    </article></section>
+  <footer>
+    コンサルティングファーム・ビジネススクール・調査機関の19ソースから、
+    直近7日の公開分を収集し日本語に要約したもの。判断の前に各出典を確認してください。
+  </footer>
+</div></div>
+<script>
+(function(){
+  var KEY = "lsm-favs-v1";
+  function load(){ try { return JSON.parse(localStorage.getItem(KEY)) || []; }
+                   catch(e){ return []; } }
+  function save(v){ try { localStorage.setItem(KEY, JSON.stringify(v)); } catch(e){} }
+  function has(url){ return load().some(function(x){ return x.url === url; }); }
+  function paint(b){
+    var on = has(b.dataset.url);
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+    var ic = b.querySelector(".ic"), tx = b.querySelector(".tx");
+    if (ic) ic.textContent = on ? "\u2605" : "\u2606";
+    if (tx) tx.textContent = on ? "保存済み" : "あとで読む";
+    if (!ic && !tx) b.textContent = on ? "\u2605" : "\u2606";
+  }
+  function toggle(b){
+    var d = b.dataset, list = load(), i = list.findIndex(function(x){ return x.url === d.url; });
+    if (i >= 0) list.splice(i, 1);
+    else list.unshift({url:d.url, title:d.title||d.url, kind:d.kind||"", date:d.date||"",
+                       note:d.note||"", saved:new Date().toISOString().slice(0,10)});
+    save(list); paint(b);
+    if (window.renderFavs) window.renderFavs();
+  }
+  function wire(){
+    var bs = document.querySelectorAll("[data-fav]");
+    for (var i = 0; i < bs.length; i++){
+      (function(b){ paint(b); b.addEventListener("click", function(e){
+        e.preventDefault(); e.stopPropagation(); toggle(b); }); })(bs[i]);
+    }
+  }
+  window.favStore = {load:load, save:save, has:has};
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", wire);
+  else wire();
+})();
+</script>
+</body>
+</html>
