@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>今週のインサイト 2026-09-16</title>
+<style>
+  :root{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E; --accent-bg:#F5EFE3;
+    --sans: system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
+      --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E; --accent-bg:#F5EFE3;
+  }
+  :root[data-theme="dark"]{
+    --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
+    --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
+  }
+  /* Phone-first. Body text sits at 16px (never below -- iOS zooms on focus under 16px and
+     small type is the main complaint on a handset), the column is capped just above a
+     comfortable measure, and side padding stays generous so text never touches the edge. */
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0}
+  .wrap{background:var(--ground);color:var(--ink);font-family:var(--sans);
+    font-size:16px;line-height:1.9;-webkit-font-smoothing:antialiased;
+    padding:1.5rem 1.15rem 4rem;min-height:100vh}
+  .inner{max-width:34rem;margin:0 auto}
+  header{border-bottom:1px solid var(--line);padding-bottom:1.25rem;margin-bottom:1.5rem}
+  .eyebrow{font-size:.72rem;letter-spacing:.16em;color:var(--faint);
+    text-transform:uppercase;margin:0 0 .5rem}
+  h1{font-size:1.4rem;font-weight:700;letter-spacing:-.01em;line-height:1.45;
+    margin:0;text-wrap:balance}
+  .lede{font-size:1rem;color:var(--muted);margin:1.1rem 0 0;line-height:1.95}
+  .picks{display:flex;flex-direction:column;gap:1.15rem}
+  .pick{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.2rem 1.1rem;position:relative}
+  .n{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.1em;margin-bottom:.35rem}
+  .pick h2{font-size:1.12rem;font-weight:700;line-height:1.6;margin:0 0 .7rem;
+    letter-spacing:-.005em;text-wrap:balance}
+  /* No justify: on a narrow screen it opens rivers of white space between Japanese runs. */
+  .sum{font-size:1rem;color:var(--ink)}
+  .sum p{margin:0 0 .95rem}
+  .sum p:last-child{margin-bottom:0}
+  .sum .blist{list-style:none;margin:0 0 1rem;padding:0;display:flex;
+    flex-direction:column;gap:.5rem}
+  /* 本文中の小見出し: 長い解説を拾い読みできるようにする */
+  .sum .sh{font-size:.94rem;font-weight:700;color:var(--ink);margin:1.5rem 0 .55rem;
+    padding-left:.6rem;border-left:3px solid var(--accent);line-height:1.6}
+  .sum .sh:first-child{margin-top:0}
+  .sum .blist li{position:relative;padding-left:1.1rem;line-height:1.85}
+  .sum .blist li::before{content:"";position:absolute;left:.2rem;top:.75em;
+    width:.32rem;height:.32rem;border-radius:50%;background:var(--accent)}
+  /* 図解の崩れ防止: 長い語も枠内で折り返し、幅が足りなければ横スクロールさせる */
+  .fig *{overflow-wrap:anywhere;word-break:normal;min-width:0}
+  /* 図解: CSS で組む（SVGだと縮小して読めなくなる）。縦積みなので幅の狭い画面でも崩れない */
+  .fig{margin:.9rem 0 1rem;padding:.9rem .85rem;border:1px solid var(--line);
+    border-radius:12px;background:var(--ground)}
+  .fig-t{font-size:.76rem;font-weight:700;letter-spacing:.06em;color:var(--accent);
+    margin-bottom:.7rem}
+  .fig-c{font-size:.78rem;color:var(--muted);margin-top:.7rem;line-height:1.7}
+  .flow{display:flex;flex-direction:column;align-items:stretch;gap:.3rem}
+  .flow .step{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .7rem;text-align:center}
+  .flow .step b{display:block;font-size:.9rem;font-weight:700}
+  .flow .step span{display:block;font-size:.78rem;color:var(--muted);margin-top:.15rem;
+    line-height:1.6}
+  .flow .arr{text-align:center;color:var(--accent);font-size:.9rem;line-height:1}
+  /* 2x2 マトリクス: 経営フレームの定番。軸ラベルを外側に置いて象限を読ませる */
+  .mtx{display:flex;flex-direction:column;gap:.3rem}
+  .mtx .ylab{font-size:.72rem;color:var(--muted);text-align:center}
+  .mtx .grid{display:grid;grid-template-columns:1fr 1fr;gap:.35rem}
+  .mtx .mcell{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .6rem;min-height:3.6rem;display:flex;flex-direction:column;
+    justify-content:center}
+  .mtx .mcell.empty{background:transparent;border-style:dashed;opacity:.5}
+  .mtx .mcell b{font-size:.86rem;font-weight:700;line-height:1.5}
+  .mtx .mcell span{font-size:.76rem;color:var(--muted);margin-top:.2rem;line-height:1.55}
+  .mtx .xlabs{display:flex;justify-content:space-between;font-size:.72rem;
+    color:var(--muted);padding:0 .2rem}
+  /* 横棒: 研究の効果量・前後差を数字で見せる */
+  .bars{display:flex;flex-direction:column;gap:.5rem}
+  .brow{display:flex;flex-direction:column;gap:.2rem}
+  .blab{font-size:.84rem;font-weight:600}
+  .blab .bnote{font-weight:400;color:var(--muted);font-size:.76rem;margin-left:.4rem}
+  /* grid: the bar track takes the leftover width and the number never wraps under it.
+     A percentage width inside a flex row was being resolved against the wrong box, which is
+     what made the bars overflow on a phone. */
+  .btrack{display:grid;grid-template-columns:minmax(0,1fr) max-content;gap:.55rem;
+    align-items:center}
+  .bwrap{background:var(--line);border-radius:5px;height:1.35rem;overflow:hidden;width:100%}
+  .bbar{height:100%;background:var(--accent);border-radius:5px;opacity:.9}
+  .bval{font-size:.82rem;font-weight:700;color:var(--accent);
+    font-variant-numeric:tabular-nums}
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
+  .cmp .col{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .65rem}
+  .cmp .ch{font-size:.78rem;font-weight:700;color:var(--accent);margin-bottom:.4rem;
+    padding-bottom:.35rem;border-bottom:1px solid var(--line)}
+  .cmp ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.3rem}
+  .cmp li{font-size:.86rem;line-height:1.6;padding-left:.75rem;position:relative}
+  .cmp li::before{content:"・";position:absolute;left:0;color:var(--faint)}
+  .rel{display:flex;flex-direction:column;align-items:center;gap:.55rem}
+  .rel .hub{background:var(--accent);color:var(--card);border-radius:999px;
+    padding:.5rem 1.1rem;font-size:.9rem;font-weight:700}
+  .rel .sats{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem}
+  .rel .sat{background:var(--card);border:1px solid var(--line);border-radius:999px;
+    padding:.35rem .75rem;font-size:.84rem}
+  @media (max-width:380px){ .cmp{grid-template-columns:1fr} }
+  /* Tap target: a bare inline link is hard to hit on a phone, so give it real height. */
+  .src{display:inline-block;margin-top:1rem;font-size:.86rem;color:var(--muted);
+    text-decoration:none;border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .8rem;line-height:1.5;word-break:break-word}
+  .src:hover{color:var(--accent);border-color:var(--accent)}
+  /* 今週の論文: 定義リストで「問い／検証／結果／含意／留意」を固定の型に見せる */
+  .papers{margin-top:2.2rem}
+  .sec{font-size:.78rem;font-weight:700;letter-spacing:.14em;color:var(--accent);
+    margin:0 0 .9rem;padding-bottom:.5rem;border-bottom:1px solid var(--line)}
+  .paper{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.1rem 1.05rem;margin-bottom:1rem}
+  .paper h3{font-size:1.02rem;font-weight:700;line-height:1.6;margin:0 0 .3rem;
+    text-wrap:balance}
+  .paper .auth{font-size:.78rem;color:var(--faint);margin-bottom:.75rem}
+  .paper dl{margin:0;display:grid;grid-template-columns:max-content minmax(0,1fr);
+    gap:.5rem .8rem;align-items:start}
+  .paper dt{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.08em;
+    padding-top:.15rem;white-space:nowrap}
+  .paper dd{margin:0;font-size:.9rem;line-height:1.8;text-align:justify}
+  .paper .finds{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;
+    gap:.35rem}
+  .paper .finds li{position:relative;padding-left:1rem;line-height:1.75}
+  .paper .finds li::before{content:"";position:absolute;left:.2rem;top:.72em;width:.3rem;
+    height:.3rem;border-radius:50%;background:var(--accent)}
+  @media (max-width:420px){ .paper dl{grid-template-columns:1fr;gap:.15rem .8rem}
+    .paper dt{margin-top:.5rem} }
+  footer{margin-top:2.4rem;padding-top:1.1rem;border-top:1px solid var(--line);
+    font-size:.78rem;color:var(--faint);line-height:1.7}
+  a:focus-visible,.src:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+.fav{appearance:none;-webkit-appearance:none;cursor:pointer;display:inline-flex;
+  align-items:center;justify-content:center;gap:6px;min-width:44px;min-height:44px;
+  padding:0 12px;border-radius:999px;font:inherit;font-size:14px;font-weight:600;
+  background:var(--surface,#fff);color:var(--ink-mut,#6b7280);
+  border:1px solid var(--line,#e5e7eb);line-height:1;}
+.fav:hover{border-color:#f0b429;color:#b26b00;}
+.fav[aria-pressed="true"]{background:#fff8e6;border-color:#f0b429;color:#b26b00;}
+.fav .ic{font-size:16px;line-height:1;}
+.fav-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:14px 0 6px;}
+.fav-bar a.all{font-size:13.5px;color:var(--ink-mut,#6b7280);text-decoration:none;
+  min-height:44px;display:inline-flex;align-items:center;}
+.fav-bar a.all:hover{text-decoration:underline;}
+.fav-mini{appearance:none;-webkit-appearance:none;cursor:pointer;background:none;border:0;
+  padding:6px 8px;margin-left:2px;font-size:15px;line-height:1;color:#c3c8d0;
+  min-width:36px;min-height:36px;}
+.fav-mini[aria-pressed="true"]{color:#f0b429;}
+
+</style>
+</head>
+<body>
+<div class="wrap"><div class="inner">
+  <header>
+    <p class="eyebrow">Weekly Insight</p>
+    <h1>今週のインサイト <span style="color:var(--faint);font-weight:500">2026-09-16</span></h1>
+    <p class="lede">今週の論考を通して見えるのは、「人の力をどう保ち、どう引き出すか」という一本の問いです。ウォートン校は、AIに頼りすぎると自分で考える力が削られる危険を論じました。HBRとINSEADは、上司の自己評価のずれや職場の冗談の扱いなど、リーダー自身の振る舞いを見直す研究を取り上げています。去年までのAI論は「どれだけ速く、安くなるか」が中心でした。今年は「使う人の判断力が残るか」に重心が移っています。人材の面では、「転職の多い人は避ける」「働きぶりは上司が管理する」という通説を、データで問い直す議論が並びました。今週は要旨しか手に入らない論考が多かったため、同じ問いを実験やデータで確かめた代表的な研究の数字で補っています。どの数字がどの研究のものかは本文に書きました。読む順は、まずAI依存の話で「答えを渡すか、ヒントを渡すか」の違いを押さえるのがおすすめです。次に上司の自己評価のずれ、冗談の分かれ目と進むと、リーダーの振る舞いの話として一続きに読めます。最後に採用と同僚の力の2本を読むと、店舗の人の配置を考える材料になります。</p>
+    <div class="fav-bar"><button class="fav" data-fav data-url="https://hacadr-cloud.github.io/weekly-insight/2026-09-16.html" data-title="週次インサイト 2026-09-16" data-kind="insight" data-date="2026-09-16" aria-pressed="false"><span class="ic">☆</span><span class="tx">あとで読む</span></button><a class="all" href="favorites.html">保存した記事を見る →</a></div>
+  </header>
+  <div class="picks">
+    <article class="pick">
+      <div class="n">1</div>
+      <h2>AIに頼るほど「自分で考える力」が落ちる条件と防ぎ方</h2>
+      <div class="fig"><div class="fig-t">AIなし試験の成績</div><div class="bars"><div class="brow"><div class="blab">AI不使用</div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:100.0%"></div></div><span class="bval">100（AI不使用=100）</span></div></div><div class="brow"><div class="blab">答え型AI<span class="bnote">17%低下</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:83.0%"></div></div><span class="bval">83（AI不使用=100）</span></div></div><div class="brow"><div class="blab">ヒント型AI<span class="bnote">目立つ差なし</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:100.0%"></div></div><span class="bval">100（AI不使用=100）</span></div></div></div><div class="fig-c">答えを直接くれるAIの群だけが、AIを外すと成績を落とした</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>ウォートン校の論考は、AIへの過度な依存が「エージェンシー」を少しずつ弱めていく危険を問うています。エージェンシーとは、自分で考え、選び、その結果に責任を持つ力のことです。便利さと引き換えに何を失うのか、という問いです。</p><p>これまでこの問題は印象論で語られがちでした。「AIを使うと頭が鈍る」も「AIで賢くなる」も、検証なしに言われてきました。ここ2年ほどで、実験とデータでこの問いを確かめる研究がようやく揃ってきています。</p><p>以下では、論考のテーマに直結する代表的な検証を整理します。個別の数値は論考の本文ではなく、これらの先行研究のものです。</p><h3 class="sh">どう調べられてきたか</h3><ul class="blist"><li>高校生の実験（ペンシルベニア大学ウォートン校の研究者ら）：トルコの高校で約1000人の生徒が数学を演習した。AIなし、答えをそのまま聞けるAI、ヒントだけ出す家庭教師型AIの3群を比べ、その後AIなしの試験を受けさせた。</li><li>コンサルタントの実験（ハーバード大学・BCGなど）：BCGのコンサルタント758人に、AIが得意な課題と苦手な課題を割り当て、AIあり・なしで成果を比べた。</li><li>知識労働者の調査（マイクロソフト研究所など）：319人から、仕事でAIを使った具体例を936件集め、どんなときに頭を使わなくなるかを分析した。</li><li>脳波の実験（MIT）：54人に作文をさせ、AIを使う群と使わない群で脳の活動と記憶を比べた。</li></ul><h3 class="sh">分かったこと</h3><ul class="blist"><li>答えを直接くれるAIを使った生徒は、演習の成績が48%上がった。だがAIを外した試験では、AIを使わなかった生徒より17%低かった。</li><li>ヒントだけ出す家庭教師型AIでは、演習の成績が127%改善した。試験の成績に目立った低下は見られなかった。</li><li>コンサルタントは、AIが得意な課題では処理件数が12.2%増え、作業が25.1%速くなり、品質も40%以上高まった。</li><li>一方、AIが苦手な課題では、AIを使った人のほうが正答率が19ポイント低かった。</li><li>「AIの答えを信頼している人」ほど、自分で批判的に考える労力が減っていた。逆に、自分の力に自信がある人ほどAIの答えを吟味していた。</li><li>MITの実験では、AIで作文した人の8割超が、書いた直後の自分の文章を1文も引用できなかった。</li></ul><h3 class="sh">なぜそうなるのか</h3><p>共通する仕組みは「考える工程の外注」です。答えにたどり着くまでの試行錯誤が力を育てます。AIが先に答えを出すと、その工程が丸ごと抜けてしまいます。</p><p>もう一つは「もっともらしさ」の罠です。AIは間違えるときも、自信のある文章で答えます。AIが苦手な課題でも人はそれを信じ、自分で判断するのをやめてしまいます。コンサルタントの正答率が下がったのは、このためだと説明されています。</p><h3 class="sh">現場の場面に置き換えると</h3><p>たとえば新人スタッフが、料金プランの比較や接客の言い回しを毎回AIに作らせるとします。最初の数週間は応対が上手に見えます。ところが、想定外の質問を受けてAIに頼れない場面になると、自分の言葉が出てきません。高校生の実験でいう「演習」と「試験」の差がこれにあたります。</p><p>研究から読み取れる防ぎ方は次のとおりです。</p><ul class="blist"><li>AIには「答え」ではなく「ヒント」や「確認の問い」を出させる設定にする</li><li>先に自分の案を書かせてから、AIの答えと比べさせる</li><li>AIが苦手な領域（最新の社内ルール、個別のお客様の事情）をはっきり示し、そこでは使わせない</li></ul><h3 class="sh">別の見方と限界</h3><p>反論もあります。電卓や検索エンジンも同じ心配を呼びましたが、人は浮いた時間でより高度な仕事に移った、という立場です。考える作業の一部を手放すのが合理的な場面は確かにあります。</p><p>限界もあります。高校生の実験は数学の学習が対象で、仕事の技能にそのまま当てはまるとは限りません。MITの実験は54人と小規模で、査読前に公表されたものです。知識労働者の調査は相関を見ただけで、因果までは言えません。</p><p>それでも「答えを直接もらう使い方をしていると、AIが使えない場面で弱くなる」という方向は、複数の研究で一致しています。</p></div>
+      <a class="src" href="https://news.google.com/rss/articles/CBMikAFBVV95cUxQWnpPQ1p2WUYzMFd6YnI1bEk2Vk5uR2FZS1lRaHNOWFpWNi1xLUwzVWJYY1JhM3BsNTVUMEVvNnNpVy03SWNVcW1IRWJUdUlDMzRCb2ZpZU9zNHRXZjA0cl9NWGxVbU1uOVFtU0dmT2NTZUZLS0ZfNGhHTWxIRzkyQ2NQVjdxNjdvSHdXQ3lDamM?oc=5" target="_blank" rel="noopener">Wharton ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">2</div>
+      <h2>「自分は協調的」と思う上司ほど部下の評価とずれる理由</h2>
+      <div class="fig"><div class="fig-t">評価の一致度</div><div class="bars"><div class="brow"><div class="blab">本人×上司</div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:56.5%"></div></div><span class="bval">0.35相関</span></div></div><div class="brow"><div class="blab">本人×同僚</div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:58.1%"></div></div><span class="bval">0.36相関</span></div></div><div class="brow"><div class="blab">上司×同僚</div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:100.0%"></div></div><span class="bval">0.62相関</span></div></div></div><div class="fig-c">数値が高いほど評価が一致する。本人の評価だけが周囲とずれている</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>HBRの論考は、「自分はチームプレーヤーだ」と考えるリーダーと、その部下の見方のずれを取り上げています。会話を独占する、細かく口を出す。本人は協力しているつもりでも、部下にはそう見えていません。</p><p>同じ週にDIAMONDハーバード・ビジネス・レビューも「昇進と共に諫言は減っていく」という論考で、立場が上がるほど率直な助言が届かなくなる問題を扱いました。ダイヤモンド・オンラインの「自己評価が高すぎる人」の記事も、根は同じです。</p><p>この問題が解けにくいのは、ずれている本人にはそのずれが見えないからです。部下が上司に「話しすぎです」と言うことはまずありません。見えない問題は直せません。</p><h3 class="sh">どう調べられてきたか</h3><p>自己評価と他人からの評価のずれは、組織心理学で長く測られてきました。以下の数値は各論考ではなく、次の代表的な研究のものです。</p><ul class="blist"><li>360度評価の統合分析（ハリスとシャウブルック、1988年）：本人・上司・同僚の評価がどれだけ一致するかを、多数の研究から集計した。</li><li>自己認識の研究：組織心理学者ターシャ・ユーリックのチームが数千人規模の調査を行い、自分を正しく把握できている人の割合を測った。</li><li>権力の実験：心理学者ガリンスキーらが、「権力がある」状態を思い出させた人とそうでない人を比べ、他人の視点に立てるかを調べた。</li></ul><h3 class="sh">分かったこと</h3><ul class="blist"><li>本人と上司の評価の相関は0.35程度、本人と同僚の相関も0.36程度にとどまった。</li><li>一方、上司と同僚の評価どうしの相関は0.62で、はるかによく一致した。周りの人どうしは見方が似ているのに、本人だけが違う。</li><li>ユーリックの調査では、95%の人が「自分は自己認識できている」と答えた。実際にできていたのは10〜15%だった。</li><li>経験を積み、権限が増えても、自己認識は正確にならなかった。むしろ過信が強まる傾向があった。</li><li>自分の額にアルファベットのEを書く課題では、権力を意識させた人は、相手から読めない向きに書く割合が約3倍に増えた。</li></ul><h3 class="sh">なぜそうなるのか</h3><p>理由は3つに整理できます。</p><ul class="blist"><li>情報が減る：立場が上がると、部下は評価や人事を気にして率直に言わなくなる。</li><li>意図で自分を測る：本人は「良かれと思って」という自分の意図を知っている。部下が見ているのは行動だけだ。</li><li>権力が視野を狭める：決める立場にいると、相手がどう受け取るかを想像する必要が減る。</li></ul><p>会話の独占も細かい指示も、本人の意図は「助けたい」「早く片付けたい」です。しかし部下は「任せてもらえない」「自分の意見は要らない」という合図として受け取ります。</p><h3 class="sh">現場の場面に置き換えると</h3><p>複数の店舗を回るオーナーが、店長会議で最初から最後まで話し続けたとします。本人は方針を丁寧に伝えたつもりです。店長たちはうなずいて帰り、現場で聞いた不安を次の会議でも口にしません。問題が表に出るのは、数字が崩れてからです。</p><p>DHBRの論考が勧める自問と、上の研究を合わせると、打てる手は次のとおりです。</p><ul class="blist"><li>会議で自分が話した時間を、一度実際に測ってみる</li><li>「私のやり方で、やりにくいことを1つ挙げてほしい」と匿名で聞く</li><li>上の立場の人だけでなく、部下・同僚・社外から意見を集める（ユーリックの研究では、自己認識が正確な人ほど、いろいろな方向から批判的な意見を求めていた）</li></ul><h3 class="sh">別の見方と限界</h3><p>反論として、他人の評価がいつも正しいとは限りません。部下の評価には好き嫌いや利害が混ざります。厳しく指導する上司が、短期的に低く評価されることもあります。</p><p>また、相関の数字は1980年代までの研究をまとめたもので、職種や文化によって幅があります。率直な指摘が出にくい日本の職場ではずれがもっと大きい可能性もありますが、それを直接測った数字ではありません。確かに言えるのは、「本人の自己評価だけでは、協調的かどうかは判断できない」ということです。</p></div>
+      <a class="src" href="http://hbr.org/2026/09/you-think-youre-a-good-collaborator-do-the-people-you-manage-agree" target="_blank" rel="noopener">HBR ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">3</div>
+      <h2>リーダーの冗談は評価を上げるか下げるか——研究が示す分かれ目</h2>
+      <div class="fig"><div class="fig-t">冗談が評価に変わる流れ</div><div class="flow"><div class="step"><b>冗談を言う</b><span>外すリスクを取る発言</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>自信の印象</b><span>立場に自信ありと読まれる</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>適切さの審査</b><span>題材と矛先を見られる</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>地位が上下する</b><span>適切なら上がり不適切なら下がる</span></div></div><div class="fig-c">左から順に評価が進む。最後の分かれ目は受けたかより適切だったか</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>HBRは「冗談を言う前に考えるべきこと」を研究をもとに論じました。INSEADも同じ週に「リーダーは笑ってよいのか」を問うています。職場のユーモアは、場を和ませる武器にも、信頼を失う原因にもなります。</p><p>問題は、どちらに転ぶかが事前に分かりにくいことです。「ユーモアは大事」という経営者は昔から多くいます。米国の経営者737人への調査では、98%がユーモアのある候補者を好み、84%がユーモアのある人のほうが良い仕事をすると答えました。ただしそれは、冗談がうまくいった場合の話です。</p><h3 class="sh">どう調べられてきたか</h3><p>以下の実験の中身と数値は、各論考ではなく次の代表的な研究のものです。</p><ul class="blist"><li>冗談と地位の実験（ウォートン校とハーバード大学の研究者、2017年）：いくつもの実験で、冗談を言う人、言わない人、不適切な冗談を言う人を用意した。周囲がその人の「自信」「有能さ」「地位」をどう評価するかを比べた。</li><li>性別による違いの研究（エバンスら、2019年）：同じ冗談入りのプレゼンを、男性が話す設定と女性が話す設定で見せ、評価を比べた。</li><li>自虐的なユーモアの研究：上司が自分を笑いのネタにしたとき、部下からの評価がどう変わるかを調べた。</li></ul><h3 class="sh">分かったこと</h3><ul class="blist"><li>うまく受けた冗談は、言った人への「自信がある」「有能だ」という評価を高め、地位を押し上げた。</li><li>冗談を言うこと自体が、「自分の立場に自信がある」という合図として受け取られた。</li><li>一方、不適切な冗談は、自信がある印象は残っても有能さの評価を下げ、結果として地位を落とした。</li><li>同じ冗談入りのプレゼンでも、男性の発表者は評価が上がり、女性の発表者は「真剣さに欠ける」と受け取られて評価が下がる傾向があった。</li><li>上司の軽い自虐は、部下が感じる親しみや信頼を高める傾向があった。</li></ul><h3 class="sh">なぜそうなるのか</h3><p>冗談は小さな賭けです。場の空気を読み、外すリスクを取って口に出します。周囲はそれを「この人は自分の立場に自信がある」と読み取ります。</p><p>同時に、冗談は「場のルールを分かっているか」を試すテストにもなります。不適切な冗談は、状況を読む力が甘いという印象として記憶に残ります。有能さの評価が下がるのはそのためです。</p><p>性別で差が出る理由について、著者らは次のように説明しています。同じ行動でも、「リーダーらしさ」への周囲の期待に合うかどうかで受け取り方が変わる、というものです。</p><h3 class="sh">分かれ目を場面で考える</h3><p>店長が朝礼で、前の日のミスを題材に軽い冗談を言う場面を考えます。</p><ul class="blist"><li>自分のミスを笑いにする：緊張がほぐれ、部下もミスを報告しやすくなる。</li><li>特定のスタッフのミスを笑いにする：本人は恥をかき、他のスタッフは「次は自分だ」と身構える。</li><li>容姿・年齢・出身地をネタにする：その場で笑いが起きても、不適切だったという印象が後まで残る。</li></ul><p>同じ「冗談」でも、矛先が自分か他人かで結果は逆になります。</p><p>もう一つ注意したいのは、上司の冗談には部下が笑うしかないことです。受けたように見えても、本当に受けたとは限りません。</p><h3 class="sh">別の見方と限界</h3><p>「職場に冗談は要らない。真面目さこそが信頼を生む」という立場もあります。特にお客様の前やクレーム対応の最中の冗談は、実験の条件よりはるかに損失が大きくなります。</p><p>実験の多くは米国の参加者で行われており、何が「適切」かの線引きは文化によって違います。上下関係の強い日本の職場では、上司の冗談に部下が気を遣う度合いも大きいと考えられます。</p><p>研究から一般化して言えるのはここまでです。冗談の効果は、受けたかどうかよりも、適切だったかどうかで決まります。</p></div>
+      <a class="src" href="http://hbr.org/2026/09/leaders-dont-let-your-jokes-fall-flat" target="_blank" rel="noopener">HBR ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">4</div>
+      <h2>転職を繰り返す人は採用で避けるべきか——適応力という強み</h2>
+      <div class="fig"><div class="fig-t">転職歴の見方</div><div class="cmp"><div class="col"><div class="ch">従来の見方</div><ul><li>転職が多い人はすぐ辞める</li><li>信頼性に欠ける</li><li>書類の段階で落とす</li></ul></div><div class="col"><div class="ch">研究が示すこと</div><ul><li>回数で定着は予測しにくい</li><li>新しい環境への適応が速い</li><li>成果が本人に付くかを見る</li></ul></div></div><div class="fig-c">左の通説を、右の検証結果と照らして読む</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>DIAMONDハーバード・ビジネス・レビューの論考は、採用で長く「危険信号」とされてきた転職歴の多さ（ジョブホッピング）を見直しています。すぐ辞める、信頼できない。その心配は本当にデータで裏付けられているのか、という問いです。</p><p>この見方が変わらなかったのは、採用する側が「すぐ辞めた人」の記憶を強く覚えているからでもあります。転職の多い人を採らなかったことで逃した機会は、目に見えません。</p><h3 class="sh">どう調べたか</h3><p>論考は、ヘッジファンドのファンドマネジャーの採用データを使った研究を紹介しています。ファンドマネジャーは、運用成績という客観的な数字で成果が測れます。そのため、転職歴の多い人が移籍後どれだけ早く成果を出すかを比べやすい職種です。</p><p>手に入る要旨には、この研究の対象人数や効果の大きさは示されていません。以下の数値は、転職と成果の関係を調べた別の代表的な研究のものです。</p><ul class="blist"><li>採用分析企業エボルブの分析：米国のコールセンターなど時給で働く職種の大量の採用データを使い、過去の転職回数から採用後の勤続期間を予測できるかを調べた。</li><li>ハーバード・ビジネス・スクールのグロイスバーグの研究：投資銀行のスターアナリスト約1000人を1988年から1996年まで追い、移籍の前後で成績がどう変わるかを調べた。</li></ul><h3 class="sh">分かったこと</h3><ul class="blist"><li>論考が紹介する研究では、転職歴の多いマネジャーほど、異なる組織や文化に素早くなじみ、早く戦力になる傾向があった。</li><li>何度も新しい職場に入った経験が、「新しい環境での立ち上がり方」という技能として身についている、と論考は説明する。</li><li>エボルブの分析では、過去の転職回数から、採用後にどれだけ長く働くかはほとんど予測できなかった。</li><li>一方グロイスバーグの研究では、スターアナリストは移籍すると成績が落ち、回復に数年かかった。</li><li>ただし、チームごと移籍した人や、社外との関係を自分で築いていた人は、成績の落ち込みが小さかった。</li></ul><h3 class="sh">なぜ見方が分かれるのか</h3><p>2つの研究は矛盾して見えますが、見ている能力が違います。</p><ul class="blist"><li>適応力：新しい職場のルールを読み、人間関係を作り、早く仕事を回す力。転職の経験で鍛えられる。</li><li>持ち運べない力：前の会社のブランド・仕組み・同僚の支えに乗って出していた成果。移籍すると失われる。</li></ul><p>転職回数の多さは、前者の証拠になりえます。反対に、1社で大きな成果を出した人ほど、後者に頼っていた可能性があります。</p><p>2つを合わせると、見るべきは「転職の回数」ではありません。「成果のうちどれだけが本人の力によるものか」です。</p><h3 class="sh">採用の場面に置き換えると</h3><p>3年で4社を経験した販売経験者が、携帯ショップの面接に来たとします。これまでなら書類の段階で落としていたかもしれません。しかし店舗運営では、店ごとに客層もスタッフの顔ぶれも違います。いろいろな現場に素早くなじめる力は、それ自体が価値になります。</p><p>面接で確かめたいのは、回数ではなく中身です。</p><ul class="blist"><li>それぞれの職場で、入ってから一人で仕事を回せるまで何週間かかったか</li><li>辞めた理由が「逃げ」だったのか「次の目的」があったのか</li><li>前の職場の成果のうち、会社の仕組みではなく本人の工夫によるものは何か</li></ul><p>こうした人は立ち上がりが速いと考えられます。入社直後から現場を任せる配置のほうが、強みを活かしやすくなります。</p><h3 class="sh">別の見方と限界</h3><p>反論として、転職の多さが対人トラブルや飽きっぽさの表れであるケースは現実にあります。平均で見てリスクが小さくても、一人ひとりの見極めは欠かせません。</p><p>限界も大きい研究です。ファンドマネジャーは、成果が数字で見えて個人の裁量が大きい、特殊な職種です。チームで接客し、定着が売上に直結する店舗の仕事にそのまま当てはまるかは分かりません。</p><p>エボルブの分析も、米国の時給で働く職種が対象です。転職が一般的でない日本の雇用慣行では、転職歴の持つ意味が違う可能性があります。</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14661" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">5</div>
+      <h2>上司の管理より「同僚の目」が働きぶりを変える仕組み</h2>
+      <div class="fig"><div class="fig-t">同僚の目が効く流れ</div><div class="flow"><div class="step"><b>同じシフトで働く</b><span>働きぶりが互いに見える</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>評判を意識する</b><span>迷惑をかけたくない</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>上司不在でも努力</b><span>見張りなしで効き続ける</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>ペースが揃う</b><span>上にも下にも揃う点に注意</span></div></div><div class="fig-c">左から右へ効果が進む。最後はペースが下に揃う場合もある</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>「やり抜く力（グリット）」の提唱者として知られる心理学者アンジェラ・ダックワースが、今週の取材で「同僚どうしで責任を持ち合うほうが、管理よりいつも効く」と語りました。ニューヨーカー誌も「グリットだけでは足りない」という見出しで、本人の意志の力に頼る考え方の限界を取り上げています。</p><p>経営の現場では長く、働きぶりを上げる手段は「上司の管理」と「本人のやる気」の2つだと考えられてきました。しかし上司はいつも現場にいられるわけではなく、やる気は日によって揺れます。第3の手段である「同僚」は、効果が測りにくいため後回しにされてきました。</p><h3 class="sh">どう調べられてきたか</h3><p>以下の数値はダックワースの取材記事ではなく、同僚の影響を測った代表的な研究のものです。</p><ul class="blist"><li>スーパーのレジ係の研究（マスとモレッティ、2009年）：米国の大手スーパーチェーンで、レジ係一人ひとりの処理速度を10分単位の記録で追った。同じ時間帯に誰がシフトに入っていたかで、速度がどう変わるかを比べた。</li><li>封筒詰めの実験（ファルクとイキーノ、2006年）：単純作業で、1人で作業する場合と、同じ部屋で2人で作業する場合の作業量を比べた。</li><li>果物農場の研究（バンディエラら）：英国の農場で、友人の隣で働いたときの摘み取り量の変化を調べた。</li><li>自己制御の研究（ダックワースら、2016年）：意志の力で誘惑に耐える方法と、状況そのものを変える方法の効果を、それまでの研究から整理した。</li></ul><h3 class="sh">分かったこと</h3><ul class="blist"><li>仕事の速い同僚がシフトに入ると、周りのレジ係も速くなった。同僚の平均的な速さが10%上がると、本人の速さは約1.7%上がった。</li><li>この効果は、速い同僚から自分の働きぶりが「見られる」位置にいるときに出た。自分から相手が見えるだけで、相手からは見られない位置では、効果はほとんどなかった。</li><li>封筒詰めでは、2人で作業すると作業量が増えた。特に、もともと作業の遅い人ほど伸びが大きかった。</li><li>一方、果物農場では、自分より遅い友人の隣にいると、速い人がペースを落とした。同僚の目は、上にも下にもペースを揃える。</li><li>自己制御の研究では、その場で我慢するより、誘惑が生まれにくい状況を先に作るほうが効果的だと整理された。</li></ul><h3 class="sh">なぜそうなるのか</h3><p>上司の目は評価や処分と結び付くため、「見られているときだけ頑張る」行動を生みやすくなります。上司がいなくなれば元に戻ります。</p><p>同僚の目は、毎日一緒に働く相手からの評判と結び付きます。「あの人に迷惑をかけたくない」「サボっていると思われたくない」という気持ちは、上司がいない時間にも働きます。</p><p>ダックワースの言う「意志より状況」の考え方でいえば、同僚がいること自体が、努力しやすい状況をつくっています。</p><h3 class="sh">店舗の場面に置き換えると</h3><p>携帯ショップや美容室は、店長が一日中見張っていられる職場ではありません。複数の店舗を持つオーナーなら、なおさらです。研究から考えられる打ち手は次のとおりです。</p><ul class="blist"><li>シフトの組み方：速くて丁寧なスタッフを、新人の働きぶりが見える位置に置く（新人から見えるだけの位置では効きにくい）</li><li>数字の共有：個人の成績を上から評価するだけでなく、チームの中で互いの進み具合が見える形にする</li><li>約束の相手：目標を上司に報告させるだけでなく、同僚どうしで宣言し合う場を作る</li></ul><p>反対に、ベテランが遅い新人にペースを合わせてしまうことも起こりえます。スタッフの仲が良い店ほど、この「下に揃う」力に注意が要ります。</p><h3 class="sh">別の見方と限界</h3><p>反論として、同僚の圧力は同調圧力やいじめに変わる危険があります。責任の持ち合いが「できない人を責める文化」になれば、離職を招きます。その場合の上司の役割は、同僚どうしの指摘が人格攻撃にならないよう線を引くことです。</p><p>限界として、レジ打ちや封筒詰めは成果が数えやすい単純作業です。接客の質や技術のように、互いの成果が見えにくい仕事では、同僚の目が効きにくい可能性があります。</p><p>「同僚は管理にいつも勝る」は取材での強い言い方で、どの研究もそこまでは示していません。</p></div>
+      <a class="src" href="https://news.google.com/rss/articles/CBMilgFBVV95cUxOcUlleDVqZEZJYmp2Z0RxSmRJc3RtNmYzZWZxU3RFZ2V3SXpMbG80UHZwd1p0TXZnYWs1WnNZZGlCQ3l1ZEhuQTh3MVBmSjRiYjZzM19ZVmFHd25mZ3FCdGttbl90RmJJWjA5bTl1bDJOQXJva2NrVlhaZTRYSm5FVXM2eFM2ZTlYUVlLQXoxQnNwaFZNa3c?oc=5" target="_blank" rel="noopener">学者(米3) ↗</a>
+    </article>
+  </div>
+  
+  <footer>
+    コンサルティングファーム・ビジネススクール・調査機関の19ソースから、
+    直近7日の公開分を収集し日本語に要約したもの。判断の前に各出典を確認してください。
+  </footer>
+</div></div>
+<script>
+(function(){
+  var KEY = "lsm-favs-v1";
+  function load(){ try { return JSON.parse(localStorage.getItem(KEY)) || []; }
+                   catch(e){ return []; } }
+  function save(v){ try { localStorage.setItem(KEY, JSON.stringify(v)); } catch(e){} }
+  function has(url){ return load().some(function(x){ return x.url === url; }); }
+  function paint(b){
+    var on = has(b.dataset.url);
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+    var ic = b.querySelector(".ic"), tx = b.querySelector(".tx");
+    if (ic) ic.textContent = on ? "\u2605" : "\u2606";
+    if (tx) tx.textContent = on ? "保存済み" : "あとで読む";
+    if (!ic && !tx) b.textContent = on ? "\u2605" : "\u2606";
+  }
+  function toggle(b){
+    var d = b.dataset, list = load(), i = list.findIndex(function(x){ return x.url === d.url; });
+    if (i >= 0) list.splice(i, 1);
+    else list.unshift({url:d.url, title:d.title||d.url, kind:d.kind||"", date:d.date||"",
+                       note:d.note||"", saved:new Date().toISOString().slice(0,10)});
+    save(list); paint(b);
+    if (window.renderFavs) window.renderFavs();
+  }
+  function wire(){
+    var bs = document.querySelectorAll("[data-fav]");
+    for (var i = 0; i < bs.length; i++){
+      (function(b){ paint(b); b.addEventListener("click", function(e){
+        e.preventDefault(); e.stopPropagation(); toggle(b); }); })(bs[i]);
+    }
+  }
+  window.favStore = {load:load, save:save, has:has};
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", wire);
+  else wire();
+})();
+</script>
+</body>
+</html>
