@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>今週のインサイト 2026-09-23</title>
+<style>
+  :root{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E; --accent-bg:#F5EFE3;
+    --sans: system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
+      --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E; --accent-bg:#F5EFE3;
+  }
+  :root[data-theme="dark"]{
+    --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
+    --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
+  }
+  /* Phone-first. Body text sits at 16px (never below -- iOS zooms on focus under 16px and
+     small type is the main complaint on a handset), the column is capped just above a
+     comfortable measure, and side padding stays generous so text never touches the edge. */
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0}
+  .wrap{background:var(--ground);color:var(--ink);font-family:var(--sans);
+    font-size:16px;line-height:1.9;-webkit-font-smoothing:antialiased;
+    padding:1.5rem 1.15rem 4rem;min-height:100vh}
+  .inner{max-width:34rem;margin:0 auto}
+  header{border-bottom:1px solid var(--line);padding-bottom:1.25rem;margin-bottom:1.5rem}
+  .eyebrow{font-size:.72rem;letter-spacing:.16em;color:var(--faint);
+    text-transform:uppercase;margin:0 0 .5rem}
+  h1{font-size:1.4rem;font-weight:700;letter-spacing:-.01em;line-height:1.45;
+    margin:0;text-wrap:balance}
+  .lede{font-size:1rem;color:var(--muted);margin:1.1rem 0 0;line-height:1.95}
+  .picks{display:flex;flex-direction:column;gap:1.15rem}
+  .pick{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.2rem 1.1rem;position:relative}
+  .n{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.1em;margin-bottom:.35rem}
+  .pick h2{font-size:1.12rem;font-weight:700;line-height:1.6;margin:0 0 .7rem;
+    letter-spacing:-.005em;text-wrap:balance}
+  /* No justify: on a narrow screen it opens rivers of white space between Japanese runs. */
+  .sum{font-size:1rem;color:var(--ink)}
+  .sum p{margin:0 0 .95rem}
+  .sum p:last-child{margin-bottom:0}
+  .sum .blist{list-style:none;margin:0 0 1rem;padding:0;display:flex;
+    flex-direction:column;gap:.5rem}
+  /* 本文中の小見出し: 長い解説を拾い読みできるようにする */
+  .sum .sh{font-size:.94rem;font-weight:700;color:var(--ink);margin:1.5rem 0 .55rem;
+    padding-left:.6rem;border-left:3px solid var(--accent);line-height:1.6}
+  .sum .sh:first-child{margin-top:0}
+  .sum .blist li{position:relative;padding-left:1.1rem;line-height:1.85}
+  .sum .blist li::before{content:"";position:absolute;left:.2rem;top:.75em;
+    width:.32rem;height:.32rem;border-radius:50%;background:var(--accent)}
+  /* 図解の崩れ防止: 長い語も枠内で折り返し、幅が足りなければ横スクロールさせる */
+  .fig *{overflow-wrap:anywhere;word-break:normal;min-width:0}
+  /* 図解: CSS で組む（SVGだと縮小して読めなくなる）。縦積みなので幅の狭い画面でも崩れない */
+  .fig{margin:.9rem 0 1rem;padding:.9rem .85rem;border:1px solid var(--line);
+    border-radius:12px;background:var(--ground)}
+  .fig-t{font-size:.76rem;font-weight:700;letter-spacing:.06em;color:var(--accent);
+    margin-bottom:.7rem}
+  .fig-c{font-size:.78rem;color:var(--muted);margin-top:.7rem;line-height:1.7}
+  .flow{display:flex;flex-direction:column;align-items:stretch;gap:.3rem}
+  .flow .step{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .7rem;text-align:center}
+  .flow .step b{display:block;font-size:.9rem;font-weight:700}
+  .flow .step span{display:block;font-size:.78rem;color:var(--muted);margin-top:.15rem;
+    line-height:1.6}
+  .flow .arr{text-align:center;color:var(--accent);font-size:.9rem;line-height:1}
+  /* 2x2 マトリクス: 経営フレームの定番。軸ラベルを外側に置いて象限を読ませる */
+  .mtx{display:flex;flex-direction:column;gap:.3rem}
+  .mtx .ylab{font-size:.72rem;color:var(--muted);text-align:center}
+  .mtx .grid{display:grid;grid-template-columns:1fr 1fr;gap:.35rem}
+  .mtx .mcell{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .6rem;min-height:3.6rem;display:flex;flex-direction:column;
+    justify-content:center}
+  .mtx .mcell.empty{background:transparent;border-style:dashed;opacity:.5}
+  .mtx .mcell b{font-size:.86rem;font-weight:700;line-height:1.5}
+  .mtx .mcell span{font-size:.76rem;color:var(--muted);margin-top:.2rem;line-height:1.55}
+  .mtx .xlabs{display:flex;justify-content:space-between;font-size:.72rem;
+    color:var(--muted);padding:0 .2rem}
+  /* 横棒: 研究の効果量・前後差を数字で見せる */
+  .bars{display:flex;flex-direction:column;gap:.5rem}
+  .brow{display:flex;flex-direction:column;gap:.2rem}
+  .blab{font-size:.84rem;font-weight:600}
+  .blab .bnote{font-weight:400;color:var(--muted);font-size:.76rem;margin-left:.4rem}
+  /* grid: the bar track takes the leftover width and the number never wraps under it.
+     A percentage width inside a flex row was being resolved against the wrong box, which is
+     what made the bars overflow on a phone. */
+  .btrack{display:grid;grid-template-columns:minmax(0,1fr) max-content;gap:.55rem;
+    align-items:center}
+  .bwrap{background:var(--line);border-radius:5px;height:1.35rem;overflow:hidden;width:100%}
+  .bbar{height:100%;background:var(--accent);border-radius:5px;opacity:.9}
+  .bval{font-size:.82rem;font-weight:700;color:var(--accent);
+    font-variant-numeric:tabular-nums}
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
+  .cmp .col{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .65rem}
+  .cmp .ch{font-size:.78rem;font-weight:700;color:var(--accent);margin-bottom:.4rem;
+    padding-bottom:.35rem;border-bottom:1px solid var(--line)}
+  .cmp ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.3rem}
+  .cmp li{font-size:.86rem;line-height:1.6;padding-left:.75rem;position:relative}
+  .cmp li::before{content:"・";position:absolute;left:0;color:var(--faint)}
+  .rel{display:flex;flex-direction:column;align-items:center;gap:.55rem}
+  .rel .hub{background:var(--accent);color:var(--card);border-radius:999px;
+    padding:.5rem 1.1rem;font-size:.9rem;font-weight:700}
+  .rel .sats{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem}
+  .rel .sat{background:var(--card);border:1px solid var(--line);border-radius:999px;
+    padding:.35rem .75rem;font-size:.84rem}
+  @media (max-width:380px){ .cmp{grid-template-columns:1fr} }
+  /* Tap target: a bare inline link is hard to hit on a phone, so give it real height. */
+  .src{display:inline-block;margin-top:1rem;font-size:.86rem;color:var(--muted);
+    text-decoration:none;border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .8rem;line-height:1.5;word-break:break-word}
+  .src:hover{color:var(--accent);border-color:var(--accent)}
+  /* 今週の論文: 定義リストで「問い／検証／結果／含意／留意」を固定の型に見せる */
+  .papers{margin-top:2.2rem}
+  .sec{font-size:.78rem;font-weight:700;letter-spacing:.14em;color:var(--accent);
+    margin:0 0 .9rem;padding-bottom:.5rem;border-bottom:1px solid var(--line)}
+  .paper{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.1rem 1.05rem;margin-bottom:1rem}
+  .paper h3{font-size:1.02rem;font-weight:700;line-height:1.6;margin:0 0 .3rem;
+    text-wrap:balance}
+  .paper .auth{font-size:.78rem;color:var(--faint);margin-bottom:.75rem}
+  .paper dl{margin:0;display:grid;grid-template-columns:max-content minmax(0,1fr);
+    gap:.5rem .8rem;align-items:start}
+  .paper dt{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.08em;
+    padding-top:.15rem;white-space:nowrap}
+  .paper dd{margin:0;font-size:.9rem;line-height:1.8;text-align:justify}
+  .paper .finds{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;
+    gap:.35rem}
+  .paper .finds li{position:relative;padding-left:1rem;line-height:1.75}
+  .paper .finds li::before{content:"";position:absolute;left:.2rem;top:.72em;width:.3rem;
+    height:.3rem;border-radius:50%;background:var(--accent)}
+  @media (max-width:420px){ .paper dl{grid-template-columns:1fr;gap:.15rem .8rem}
+    .paper dt{margin-top:.5rem} }
+  footer{margin-top:2.4rem;padding-top:1.1rem;border-top:1px solid var(--line);
+    font-size:.78rem;color:var(--faint);line-height:1.7}
+  a:focus-visible,.src:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+.fav{appearance:none;-webkit-appearance:none;cursor:pointer;display:inline-flex;
+  align-items:center;justify-content:center;gap:6px;min-width:44px;min-height:44px;
+  padding:0 12px;border-radius:999px;font:inherit;font-size:14px;font-weight:600;
+  background:var(--surface,#fff);color:var(--ink-mut,#6b7280);
+  border:1px solid var(--line,#e5e7eb);line-height:1;}
+.fav:hover{border-color:#f0b429;color:#b26b00;}
+.fav[aria-pressed="true"]{background:#fff8e6;border-color:#f0b429;color:#b26b00;}
+.fav .ic{font-size:16px;line-height:1;}
+.fav-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:14px 0 6px;}
+.fav-bar a.all{font-size:13.5px;color:var(--ink-mut,#6b7280);text-decoration:none;
+  min-height:44px;display:inline-flex;align-items:center;}
+.fav-bar a.all:hover{text-decoration:underline;}
+.fav-mini{appearance:none;-webkit-appearance:none;cursor:pointer;background:none;border:0;
+  padding:6px 8px;margin-left:2px;font-size:15px;line-height:1;color:#c3c8d0;
+  min-width:36px;min-height:36px;}
+.fav-mini[aria-pressed="true"]{color:#f0b429;}
+
+</style>
+</head>
+<body>
+<div class="wrap"><div class="inner">
+  <header>
+    <p class="eyebrow">Weekly Insight</p>
+    <h1>今週のインサイト <span style="color:var(--faint);font-weight:500">2026-09-23</span></h1>
+    <p class="lede">今週の一覧を通して読むと、ひとつの言葉が何度も顔を出します。「見えているか」です。従業員に株を渡しても、自分の一手が会社の数字のどこに効くのかが見えなければ定着率は動かない。価格も同じで、後から上げられないと分かっている売り手は、最初から高く置いて身を守ります。仕事が多すぎる職場の処方箋も「減らす」ではなく「誰が何を決めるかを組み替える」でした。去年までと変わったのは、AIの扱いです。「入れるか入れないか」「研修をどうするか」という話は影を潜め、代わりに「道具を誰の手に渡すか」「顧客接点の粗さがどれだけ速く広まるか」という、権限と可視性の話に移りました。専門性そのものの価値が下がったという主張も、今週は複数の筋から出ています。読む順としては、まず現場の報酬と業務量の二本（持株とキャパシティ）を。ここが一番すぐ手を動かせます。そのあと価格の二本を続けて読むと、値付けの考え方が一段変わります。最後に専門性とブランドの話を、腰を据えて。</p>
+    <div class="fav-bar"><button class="fav" data-fav data-url="https://hacadr-cloud.github.io/weekly-insight/2026-09-23.html" data-title="週次インサイト 2026-09-23" data-kind="insight" data-date="2026-09-23" aria-pressed="false"><span class="ic">☆</span><span class="tx">あとで読む</span></button><a class="all" href="favorites.html">保存した記事を見る →</a></div>
+  </header>
+  <div class="picks">
+    <article class="pick">
+      <div class="n">1</div>
+      <h2>持株や分配は「自分の一手が効く」と見えて初めて人を留める</h2>
+      <div class="fig"><div class="fig-t">分配が効く条件</div><div class="cmp"><div class="col"><div class="ch">よくある考え</div><ul><li>金額を増やせば効く</li><li>制度を入れれば当事者意識</li><li>効かないのはただ乗り</li></ul></div><div class="col"><div class="ch">研究が示すこと</div><ul><li>金額では動かない</li><li>効くのは結びつきの可視化</li><li>差は拠点の説明力</li></ul></div></div><div class="fig-c">右の条件が欠けると左の投資は返ってこない</div></div>
+      <div class="sum"><h3 class="sh">何が問題だったのか</h3><p>従業員に株や利益の分け前を渡せば当事者意識が育ち、辞めなくなる。この考えは古くからあります。実際、制度としては珍しくありません。</p><p>ところが現場の行動はたいして変わらない、という報告が繰り返されてきました。経済学の教科書はこれを「ただ乗り」で説明します。全体の利益に自分一人の頑張りが及ぼす影響はごく小さい。だから真面目にやる動機にならない、という理屈です。</p><p>ただ、この説明では説明しきれない事実がありました。同じ制度を入れていても、効く職場と効かない職場がある。制度の設計だけでは差が出ない理由が分からなかったのです。</p><h3 class="sh">どう調べたか</h3><p>研究チームが選んだのは、米国南部にある一社です。規模は次の通り。</p><ul class="blist"><li>拠点数は12</li><li>従業員は292人</li><li>従業員持株制度は全社一律。拠点ごとに条件を変えていない</li></ul><p>この「制度が同じ」という点が肝でした。制度のある会社とない会社を比べると、見えてくるのは制度の有無だけです。同じ制度の中で拠点差を見れば、制度以外の何が効いているのかが浮かび上がります。</p><p>調べたのは主に定着率です。誰が辞め、誰が残ったか。そして残った人と辞めた人で、自分の仕事と会社の業績との結びつきをどう認識していたかを突き合わせました。</p><h3 class="sh">分かったこと</h3><ul class="blist"><li>株を持っていること自体は、定着をほとんど押し上げなかった。金額の多寡でもなかった</li><li>効いたのは、自分の日々の仕事が会社の利益のどこに効くのかを説明できる人だけだった</li><li>その結びつきが見えている人ほど、制度の恩恵が定着に変換されていた</li><li>逆に、見えていない人にとって持株は「年に一度届く紙」に近く、行動には結びつかなかった</li><li>拠点ごとの差は、制度の差ではなく、この見え方をつくれた管理者がいるかどうかの差だった</li></ul><h3 class="sh">なぜそうなるのか</h3><p>著者の説明は、人は「抽象的な所有」では動かない、というものです。自分の持ち分が0.1%であろうと、その0.1%と今日の行動のあいだに道筋が引けていれば、人はその道筋のほうに反応します。</p><p>逆に道筋が引けていないと、株は給与の付け足しになります。付け足しは、もらった瞬間にうれしいだけで、明日の行動を変えません。ただ乗り問題は起きているのではなく、そもそも「乗る舟」が見えていないのです。</p><h3 class="sh">どういう場面の話か</h3><p>複数店舗を持ち、店長以下の入れ替わりに悩んでいる会社を思い浮かべてください。決算賞与や利益分配を入れたのに、辞める人は辞める。この研究が言うのは、その原因は金額ではないかもしれない、ということです。</p><p>例えば店舗の粗利がどう積み上がるのか、値引きを一件通すと最終的な分配がどれだけ減るのか、在庫の回転が遅れると何が起きるのか。こうした「自分の一手から分配まで」の一本の線を、月次で数字として見せている拠点とそうでない拠点では、同じ制度が別物として働きます。</p><h3 class="sh">反論と限界</h3><p>反論もあります。見えているから残ったのではなく、もともと会社に愛着があり長く残るつもりの人が、結びつきを理解する努力をしただけではないか、という因果の向きの問題です。この研究は一社の観察が中心なので、この疑いを完全には消せません。</p><p>対象は米国南部の一社、292人。業種構成も一つです。日本の中小企業にそのまま当てはめるには慎重さが要ります。ただ「制度を入れたのに効かない」と感じているなら、金額を増やす前に見え方を疑う、という順序は試す価値があります。</p></div>
+      <a class="src" href="http://hbr.org/2026/09/equity-can-motivate-frontline-employees-if-they-see-their-impact-on-the-bottom-line" target="_blank" rel="noopener">HBR ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">2</div>
+      <h2>支払いの痛みはどこから来るのか——払い方が需要を決める</h2>
+      <div class="fig"><div class="fig-t">払い方と痛み</div><div class="mtx"><div class="ylab top">消費とずれる</div><div class="grid"><div class="mcell"><b>先払い現金</b><span>痛みは一度、あとは軽い</span></div><div class="mcell"><b>回数券・定額</b><span>痛みが最も小さい</span></div><div class="mcell"><b>都度現金</b><span>使うたびに抑制がかかる</span></div><div class="mcell"><b>毎月明細</b><span>痛みを毎月作り直す</span></div></div><div class="ylab bot">消費と同時</div><div class="xlabs"><span>支払いが見える</span><span>支払いが見えない</span></div></div><div class="fig-c">右上ほど使われやすく、左下ほど利用が抑えられる</div></div>
+      <div class="sum"><h3 class="sh">何が問題だったのか</h3><p>同じ一万円でも、支払い方によって痛みの強さが変わります。現金で数えて渡すときと、登録済みのカードで自動的に落ちるときでは、感じ方がまるで違う。これは誰でも体感していることです。</p><p>ところが多くの会社は、価格そのものにばかり手をかけ、払い方の設計を後回しにします。値引きの議論は何時間もするのに、決済手段や請求のタイミングは「業者の標準」に任せてしまう。</p><p>この論考は、その痛み——支払いの痛みと呼ばれる現象——がどこから生まれるのかを整理します。値段の絶対額ではなく、払う行為の構造が痛みを決めているという話です。</p><h3 class="sh">痛みを決める四つの要素</h3><ul class="blist"><li>目に見えるか。現金は見える。自動引き落としは見えない</li><li>時点が消費とずれているか。先払いは痛みが消費前に終わり、後払いは消費のあとに痛みが来る</li><li>一件ずつか、まとめてか。都度払いは回数分だけ痛み、定額はまとめて一回</li><li>自分が決めた感覚があるか。選んで払うほど痛みは軽くなる</li></ul><h3 class="sh">なぜそうなるのか</h3><p>痛みの正体は、支払いに注意が向いた回数と強さです。人はお金を失うこと自体より、失う瞬間を意識させられることに反応します。</p><p>だから先払いは有利です。ホテルや旅行の前払い、回数券、サブスクリプションは、消費の最中に支払いの意識が立ち上がらない。結果として、同じ金額でも満足度が高く出ます。</p><p>逆に、消費の直後に一件ずつ請求が来る形は痛みが最大化します。使うたびに小さく刺さるので、利用が抑制されます。</p><h3 class="sh">どういう場面の話か</h3><p>美容室で考えてみます。施術後にレジで都度払いするのと、年間のメンテナンス会員費を先にまとめて払うのとでは、来店頻度が変わります。後者は来店のたびに財布を開かないので、行くこと自体のハードルが下がる。</p><p>携帯ショップの店頭も同じ構造です。端末代金を一括で払う瞬間は痛みの塊になりますが、通信料に溶け込ませると痛みが見えなくなる。逆に、オプションを一件ずつ明細に立てて毎月見せる形は、毎月痛みを再生産します。解約の引き金は多くの場合、金額ではなく明細を見た瞬間です。</p><p>小売なら、レジ前の少額追加商品が典型です。カードで通す客と現金の客では、追加購入率が体感で変わります。</p><h3 class="sh">痛みを消せばいいのか</h3><p>ここで慎重になるべき点があります。痛みは必ずしも敵ではありません。</p><p>痛みが完全に消えると、顧客は使った実感を失います。実感がないまま請求だけ積み上がると、あるとき明細を見て一気に解約する。いわゆる「知らないうちに払っていた」という感覚は、信頼を強く損ないます。</p><p>痛みをゼロにするのではなく、消費の実感と支払いの実感のズレを大きくしすぎない。これが著者の立場です。</p><h3 class="sh">反論と限界</h3><p>反論としては、痛みを弱める設計は過剰消費を誘うという批判があります。消費者保護の立場からは、見えない支払いは望ましくないとされます。実際、複数の国でサブスクリプションの解約導線に規制が入りつつあります。</p><p>また、この分野の知見の多くは実験室と欧米の消費者を対象にしています。現金志向が根強い層や、高齢の顧客が多い商圏では効き方が違う可能性があります。自店の客層で、都度払いと前払いの両方を並行して走らせて比べるのが、いちばん確実です。</p></div>
+      <a class="src" href="https://news.google.com/rss/articles/CBMihAFBVV95cUxQcEltWlhKVE90TUpycmF1eXFLTDBZd2o1TTRUOVlWUFZIQkozU1dBQm9aRVRTRXNsOWxDQ2l4THhrUnVxeHdTUy12dHJuVnFqZ0o5NHljWkJTNXJvM191M2xDczRfcGs0a3hCdktrajVJcVhHbk5OdXA2ejB6VkxlRGtlWEQ?oc=5" target="_blank" rel="noopener">INSEAD ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">3</div>
+      <h2>後から上げられない価格は、最初から高く置かれる</h2>
+      <div class="fig"><div class="fig-t">高値で始まる理由</div><div class="flow"><div class="step"><b>値上げは通らない</b><span>顧客の参照価格が固まる</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>将来の余地を失う</b><span>原価上昇を転嫁できない</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>初値に保険を乗せる</b><span>不確実性のぶん厚くする</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>立ち上がらない</b><span>試されず商品が育たない</span></div></div><div class="fig-c">左の制約が右端の機会損失まで一直線につながる</div></div>
+      <div class="sum"><h3 class="sh">何が問題だったのか</h3><p>価格は下げるのは簡単で、上げるのが難しい。これは日本の中小企業なら誰でも知っている感覚です。一度下げた価格を元に戻そうとすると、常連ほど強く反発します。</p><p>では、その非対称性は何を引き起こすか。従来の議論は「だから値下げは慎重に」で終わっていました。この論考が扱うのは、その先です。上げにくいと分かっている売り手は、最初の値付けの段階で行動を変える。</p><h3 class="sh">何が起きるのか</h3><p>将来の値上げが実質的に封じられていると、今日の価格は保険の役割を負わされます。原価が上がったとき、需要が予想より強かったとき、後から取り返せない。ならば最初から余裕を乗せておく。</p><p>これが「上げられない価格は高く始まる」という現象です。売り手が強欲だからではありません。将来の硬直を織り込んだ、合理的な自己防衛です。</p><h3 class="sh">三つの帰結</h3><ul class="blist"><li>初期価格が本来より高くなる。参入時点で顧客を取りこぼす</li><li>需要が読めない新商品ほど上乗せが厚くなる。不確実性が価格に転嫁される</li><li>結果として、売り手も買い手も損をする。高い価格で機会を失い、買い手は買えない</li></ul><h3 class="sh">なぜそうなるのか</h3><p>価格の上げにくさは、契約や規制で固定されている場合もあれば、顧客の期待という形で固定されている場合もあります。後者のほうが厄介です。</p><p>明文化されていないのに、顧客の頭の中には「この店はこの値段」という基準が刻まれている。参照価格と呼ばれるものです。これを上回る請求は、金額の大小と関係なく不当に感じられます。</p><p>だから売り手は、参照価格を低く固定してしまう行為——つまり最初の安売り——を恐れます。恐れた結果、最初から高くする。</p><h3 class="sh">どういう場面の話か</h3><p>美容室の新メニューを考えてみてください。トリートメントを導入するとき、最初に三千円で出すと、その三千円が顧客の頭に基準として固まります。原価が上がっても六千円には動かせない。だから最初から五千円で出す、という判断になる。</p><p>この判断は正しいのですが、副作用があります。五千円では試してもらえず、そもそもメニューが育たない。上げられないことを前提にした値付けが、立ち上がりを潰してしまう。</p><p>携帯ショップの周辺商材や、小売の定番品でも同じことが起きます。特に「一度セールをやった商品は、セール価格が平常価格になる」という経験を持つ会社ほど、新商品の初値を高く置きがちです。</p><h3 class="sh">対処の方向</h3><p>著者が示すのは、値上げの余地をあらかじめ作っておくという考え方です。</p><ul class="blist"><li>期間を切った導入価格として出し、終了日を最初に告げる</li><li>価格ではなく内容量や付帯サービスで調整幅を持たせる</li><li>同じメニューに等級を作り、上の等級を後から足す</li></ul><p>いずれも「上げる」ではなく「戻す」「選び直してもらう」形にして、参照価格が固まるのを避ける手です。</p><h3 class="sh">反論と限界</h3><p>反論もあります。導入価格を多用すると、顧客は常に割引を待つようになる。家電量販店との取引を持つ会社なら実感があるはずです。割引の常態化は、参照価格を下げるという意味では最悪の手です。</p><p>また、この議論は値上げが本当に封じられている市場を前提にしています。インフレが定着し、値上げが社会的に受け入れられている局面では、非対称性そのものが弱まります。自社の商材で、直近に値上げを通せたか通せなかったかを確かめてから使う枠組みです。</p></div>
+      <a class="src" href="https://www.imd.org/ibyimd/spanish-articles/por-que-un-precio-que-no-puedes-subir-empieza-siendo-alto/" target="_blank" rel="noopener">IMD ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">4</div>
+      <h2>専門家であることが、かえって判断を鈍らせるとき</h2>
+      <div class="fig"><div class="fig-t">熟練が効く条件</div><div class="cmp"><div class="col"><div class="ch">前提が安定している</div><ul><li>熟練の判断が最も速い</li><li>省略が武器になる</li><li>新人は勝てない</li></ul></div><div class="col"><div class="ch">前提が変わった</div><ul><li>古い枠に当てはめる</li><li>ずれを例外と処理</li><li>確信だけ高いまま</li></ul></div></div><div class="fig-c">同じ熟練が、右の列では逆向きに働く</div></div>
+      <div class="sum"><h3 class="sh">何が問題だったのか</h3><p>経験を積むほど判断がよくなる。これは常識です。実際、多くの領域で熟練は成果を押し上げます。</p><p>ところが同じ熟練が、特定の条件下では足を引っ張ります。その条件とは、前提が変わったときです。専門家は変化を認識するのが遅れ、しかも自分の遅れに気づきにくい。</p><p>この論考が扱うのは、その仕組みです。専門性が邪魔になるのは、知識が古いからではありません。知識を疑う機会が減るからです。</p><h3 class="sh">どう調べられてきたか</h3><p>この領域の研究は、専門家と非専門家に同じ判断課題を与え、途中で環境のルールをこっそり変えるという設計を取ります。</p><ul class="blist"><li>前半は従来のルールどおりに進む。専門家の成績が圧倒的に良い</li><li>途中でルールが変わる。ここから成績が逆転する</li><li>専門家は自分の判断への確信度を下げない。非専門家は下げる</li></ul><p>逆転の幅は課題によって異なりますが、方向はおおむね一貫しています。確信度が高いまま成績だけが落ちるのが特徴です。</p><h3 class="sh">分かったこと</h3><ul class="blist"><li>専門家は新しい情報を、自分の既存の枠に当てはめて解釈する</li><li>枠に合わない情報は、例外や雑音として処理されやすい</li><li>確信の強さは正しさと相関しない。むしろ変化局面では逆相関になる</li><li>助言を受け入れる度合いが、専門性とともに下がる</li><li>影響が大きいのは、その領域で長く成功してきた人ほど</li></ul><h3 class="sh">なぜそうなるのか</h3><p>専門性とは、要するに省略の技術です。いちいち考えなくても答えが出るように、判断の道筋を固めたものが熟練です。</p><p>省略できるからこそ速く正確に処理できる。だが省略されている部分は、意識に上りません。前提が変わったとき、その前提はもう「考える対象」ではなくなっている。これが気づきの遅れを生みます。</p><h3 class="sh">どういう場面の話か</h3><p>二十年店舗を見てきた人ほど、来店客の動きから判断を下すのが速い。その速さは大きな資産です。</p><p>しかし来店の意味そのものが変わっているとき——たとえば来店前にオンラインで比較を終えている客が多数派になったとき——過去の型はそのまま誤答になります。「このくらいの反応なら決まる」という肌感覚が、来店の質が変わったことによってずれていく。</p><p>厄介なのは、外れたときに「今日の客は冷やかしが多い」と解釈してしまうことです。枠が保たれ、例外として処理される。これが半年続くと、数字にしか現れません。</p><h3 class="sh">どうすればいいのか</h3><p>提案されているのは、専門性を捨てることではありません。疑いを制度として埋め込むことです。</p><ul class="blist"><li>判断の前に、自分の予測を数字で書き留めておく。あとで照合する</li><li>その領域の新人に「なぜそうするのか」を説明させ、説明できない前提を洗い出す</li><li>外れた予測の記録を残す。当たった記録より価値がある</li></ul><h3 class="sh">反論と限界</h3><p>反論としては、こうした知見が実験環境で作られていることが挙げられます。ルールが急に変わる状況を人工的に作っているので、現実より変化が唐突です。現実の環境変化はもっと緩やかで、専門家も少しずつ適応します。</p><p>また、専門性が有害になるのは変化局面に限られます。安定した領域では熟練の優位は圧倒的です。この話を一般化して「経験は役に立たない」と読むのは完全な誤読です。変化しているのかどうかを先に判定することが、実は一番難しい部分です。</p></div>
+      <a class="src" href="https://news.google.com/rss/articles/CBMikAFBVV95cUxOTWR2MFRjR0ZROWdLSGdja3NaQTBUaDdvMjJZeFlyLW1TSlFCLWNtVXd4Q3pyMXdNcnNTc25VMnZpaFIwb0FhMXpINTRkSV94YWZvaC1qSzFBb1d3NXNCN0VQSlQzRWcwdmVSaHpucWQzdHRvTWxMdmxTQlQ4OGN0ZmlFNzA4dnhkc0tCQW92cmg?oc=5" target="_blank" rel="noopener">Chicago Booth ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">5</div>
+      <h2>仕事が多すぎる時、減らすより「組み替えて渡す」が効く</h2>
+      <div class="fig"><div class="fig-t">仕事と決定権</div><div class="mtx"><div class="ylab top">仕事量が過多</div><div class="grid"><div class="mcell"><b>待ちが常態</b><span>量は足りるのに流れない</span></div><div class="mcell"><b>回る状態</b><span>目指す位置</span></div><div class="mcell"><b>最悪</b><span>中断と待ちが重なる</span></div><div class="mcell"><b>消耗するが進む</b><span>次は採用で解く</span></div></div><div class="ylab bot">仕事量は適正</div><div class="xlabs"><span>決定権は上</span><span>決定権は担当</span></div></div><div class="fig-c">右へ動かすのが先、上へ動かすのは後</div></div>
+      <div class="sum"><h3 class="sh">何が問題だったのか</h3><p>チームの処理量を超える仕事が来ている。管理者の標準的な対応は二つです。人を増やすか、仕事を削るか。</p><p>どちらも、たいていは使えません。人は簡単に増えないし、削れる仕事は既に削り終わっている。残っているのは「どれも必要」と言われる仕事ばかりです。</p><p>この論考は、その行き詰まりの前提を疑います。過負荷の正体は仕事の総量ではなく、仕事の配られ方と決め方にあるという見立てです。</p><h3 class="sh">過負荷を作る三つの構造</h3><ul class="blist"><li>判断が一点に集まっている。作業は分散しているのに、承認だけが管理者に集中する</li><li>仕事の切り方が人に合っていない。得意でない人に回り、時間だけが余計にかかる</li><li>中断が多い。一件あたりの所要時間ではなく、切り替えの回数が時間を食う</li></ul><p>この三つは、総量を減らしても解消しません。むしろ総量が減った分だけ、同じ構造で回り続けます。</p><h3 class="sh">何をするのか</h3><p>提案されている手順は、量に触る前に配置に触るというものです。</p><ul class="blist"><li>今ある仕事を、誰が決めて誰が手を動かすかで分類し直す</li><li>管理者が承認している項目を洗い出し、金額や影響の閾値を決めて下に渡す</li><li>一人が一日に切り替える作業の種類を数え、種類を減らす方向に束ね直す</li><li>「やめる」ではなく「基準を作って自動で決まるようにする」を優先する</li></ul><h3 class="sh">なぜそうなるのか</h3><p>人が過負荷を感じる主因は、作業時間より待ち時間と責任の宙づりだと著者は説明します。</p><p>自分では決められない案件を抱えていると、その案件は終わるまで頭の中に居座り続けます。十件抱えていれば十件分の注意が常時消費される。実際の作業量が同じでも、決定権がある場合とない場合で負荷感がまるで違うのはこのためです。</p><p>だから権限を渡すと、渡した分の作業が減らなくても負荷は下がります。逆に、仕事だけ渡して決定権を渡さないと、負荷は移動せず増えます。</p><h3 class="sh">どういう場面の話か</h3><p>店舗運営で考えると分かりやすい。値引きの可否、返品の受付、シフトの交代、備品の発注。これらが全部オーナーや店長の承認待ちになっている店は少なくありません。</p><p>一件あたりは数分です。しかし一日に二十件来れば、スタッフは二十回手を止めて待ち、管理者は二十回中断されます。実作業は一時間でも、失われる時間はその数倍になる。</p><p>ここで効くのは「金額三千円までは担当判断、それ以上は店長」といった閾値です。仕事の量は一件も減っていませんが、待ちと中断が消えます。美容室の指名変更や、量販店店頭での即断が要る場面でも同じです。</p><h3 class="sh">反論と限界</h3><p>反論は明確です。権限を渡せば判断の質は下がる。実際、下がります。</p><p>重要なのは、下がった分のコストと、待ちと中断で失っている時間を比べることです。多くの場合、閾値以下の案件では前者のほうが小さい。ただしこれは案件の性質によります。一件の誤判断が信用問題になる領域——契約内容や個人情報の扱い——では、この計算は成り立ちません。</p><p>また、この処方箋は本当に人手が足りない状況には効きません。配置を変えても物理的に手が足りないなら、答えは採用です。組み替えで解ける過負荷かどうかを、先に見極める必要があります。</p></div>
+      <a class="src" href="http://hbr.org/2026/09/what-to-do-when-theres-too-much-work" target="_blank" rel="noopener">HBR ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">6</div>
+      <h2>AIが顧客接点の粗さを拡散する——貯まる「ブランド負債」</h2>
+      <div class="fig"><div class="fig-t">ブランド負債の構成</div><div class="rel"><div class="hub">ブランド負債</div><div class="sats"><span class="sat">約束と実態のずれ</span><span class="sat">窓口ごとの不一致</span><span class="sat">データ利用の不信</span><span class="sat">人に届かない</span><span class="sat">記録が外に出る</span></div></div><div class="fig-c">中心は五つの要素の合計で貯まっていく</div></div>
+      <div class="sum"><h3 class="sh">何が問題だったのか</h3><p>顧客対応の小さな不備は、これまで局所的な出来事でした。一人の客が不満を持ち、その場で処理されるか、口コミが数人に届くか。</p><p>AIが接点に入ると、この前提が崩れます。同じ応対ロジックが全顧客に同時に適用され、同じ誤りが同時に再生産される。人が対応していた頃は個人差で薄まっていたものが、そのまま全量に効きます。</p><p>筆者らはこれを「ブランド負債」と呼びます。借金と同じで、貯まっていることに気づかず、返済を迫られる瞬間に一気に効く。</p><h3 class="sh">どう調べたか</h3><p>調査対象は60社。ブランド負債の蓄積度合いを測り、中長期の業績と突き合わせています。</p><p>結果として、ブランド負債が少ない企業ほど、同業他社を上回る高業績を収める確率が高いことが確認されました。この関係は単年ではなく、中長期で見たときに現れます。</p><h3 class="sh">四つの負債</h3><p>筆者らは負債を四種類に分けています。</p><ul class="blist"><li>約束と実態のずれ。広告や説明で言っていることが現場で実行されていない</li><li>一貫性の欠如。窓口ごと、チャネルごとに答えが違う</li><li>データの扱いへの不信。同意なく使われている、追跡されているという感覚</li><li>対応の非人間性。困っている客が人にたどり着けない</li></ul><h3 class="sh">なぜAIが加速させるのか</h3><p>三つの経路があります。</p><p>第一に、速度です。人の応対なら一日十件で露見する問題が、自動応対では一時間で千件に及びます。</p><p>第二に、均質性です。人は相手を見て調整しますが、AIは同じ判断を繰り返す。誤った判断も同じように繰り返されます。</p><p>第三に、可視性です。AIとのやり取りは記録され、そのまま画面写真として外に出ます。人同士のやり取りより証拠が残りやすい。</p><h3 class="sh">どういう場面の話か</h3><p>携帯ショップの窓口を思い浮かべてください。契約内容の説明を自動応答に任せた場合、説明の一行が不正確だと、その不正確さが全件に載ります。</p><p>人の説明なら、ベテランが言い直し、新人が補い、誤りは分散して薄まります。自動化するとその緩衝がなくなる。つまり自動化は、接点の質を平均化するのではなく、最も再現性の高い一つの型に固定する行為です。型が良ければ一気に良くなり、悪ければ一気に悪くなります。</p><p>美容室の予約や来店前の問い合わせでも同じです。予約の取り違えが人為ミスなら一件ですが、ロジックの誤りなら全件になります。</p><h3 class="sh">五つの管理法</h3><ul class="blist"><li>負債を四分類で棚卸しし、金額ではなく件数と再現性で測る</li><li>自動応対のログを定期的に抜き取り、人が読む</li><li>例外経路を必ず残す。人に届く道を塞がない</li><li>約束の文言と現場の実行を突き合わせる定例を置く</li><li>負債の指標を業績指標と同じ会議で扱う</li></ul><h3 class="sh">反論と限界</h3><p>反論としては、因果の向きの問題があります。業績が良い会社に余力があるから接点を丁寧に保てる、という順序も十分あり得ます。60社の相関からは切り分けきれません。</p><p>また対象は一定規模以上の企業です。数店舗規模では、そもそも接点のほとんどが人であり、負債の蓄積速度が違います。ただし自動応答や予約システムを入れた時点で、同じ構造が小さく再現されます。入れる前に例外経路を決めておく、という一点だけでも持ち帰る価値があります。</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14582" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">7</div>
+      <h2>不祥事の本当の代金は罰金ではなく、辞めていく人材</h2>
+      <div class="fig"><div class="fig-t">不祥事のコスト内訳</div><div class="bars"><div class="brow"><div class="blab">罰金・課徴金<span class="bnote">数字で見える</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:100.0%"></div></div><span class="bval">50%</span></div></div><div class="brow"><div class="blab">人材の損失<span class="bnote">帳簿に出ない</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:100.0%"></div></div><span class="bval">50%</span></div></div></div><div class="fig-c">見えている部分は全体の半分にすぎない</div></div>
+      <div class="sum"><h3 class="sh">何が問題だったのか</h3><p>企業の不祥事のコストは、これまで罰金や課徴金で測られてきました。数字が公表され、比較しやすいからです。</p><p>しかし現場の感覚では、罰金より痛いものがあります。人が辞める。採れなくなる。この損失は決算書のどこにも現れません。</p><p>この研究は、そこを測ろうとしたものです。</p><h3 class="sh">どう調べたか</h3><p>対象は米国の大手上場企業735社。不祥事の発生と、その後の人材の動きを突き合わせています。</p><p>測っているのは主に三つです。</p><ul class="blist"><li>不祥事の後、どれだけの人が離職したか</li><li>採用の応募がどう変化したか</li><li>辞めた人と残った人で、能力や実績に差があったか</li></ul><p>結論を先に言うと、規制当局が科す罰金は、実際に発生しているコストのおよそ半分にすぎません。残りの半分が人材面の損失です。</p><h3 class="sh">分かったこと</h3><ul class="blist"><li>罰金として見えている損失は、全体のおよそ半分</li><li>不祥事の後、離職が増える。増え方は不祥事の種類によって差がある</li><li>辞めるのは平均的な社員ではなく、実績の高い社員から。外に選択肢がある人ほど先に動く</li><li>採用側でも影響が出る。応募者の質が下がる形で現れやすい</li><li>影響は発生年だけでなく、その後数年にわたって続く</li></ul><h3 class="sh">なぜそうなるのか</h3><p>著者の説明は、雇用は契約であると同時に評判の交換でもある、というものです。</p><p>人は会社に所属することで、自分の経歴に会社の名前を書き込みます。その名前の価値が落ちれば、自分の経歴の価値も落ちる。だから有能な人ほど早く離れる。移れる先があるからです。</p><p>残るのは、移る先を持たない人になります。これが二段目の損失です。不祥事そのものより、人材構成が静かに入れ替わることのほうが、長期的には効きます。</p><h3 class="sh">どういう場面の話か</h3><p>上場企業の話に見えますが、構造は中小企業のほうが鋭く出ます。</p><p>地域で複数店舗を持つ会社を考えてください。一店舗で接客上の問題が表沙汰になったとき、罰金は発生しないかもしれません。しかし地元の労働市場は狭い。「あの会社」という評判は、求人媒体よりはるかに速く伝わります。</p><p>影響が出るのは応募数だけではありません。既に働いている優秀なスタッフが、身内や友人から「大丈夫なのか」と聞かれる。その問いに答えられないと、転職を考え始めます。沖縄や福岡のように同業の距離が近い商圏では、この経路が特に速い。</p><h3 class="sh">反論と限界</h3><p>反論としては、離職が増えたのは不祥事そのものではなく、不祥事を起こすような経営体質が元々あったからだ、という見方があります。因果の切り分けは容易ではありません。</p><p>また対象は米国の大手735社であり、労働市場の流動性が日本とは大きく違います。日本では転職コストが高い分、離職の形ではなく士気の低下という見えにくい形で出る可能性があります。それでも「罰金だけを見ていると損失の半分を見落とす」という指摘は、規模を問わず当てはまります。</p></div>
+      <a class="src" href="http://hbr.org/2026/09/research-the-true-cost-of-corporate-scandals-talent" target="_blank" rel="noopener">HBR ↗</a>
+    </article>
+  </div>
+  <section class="papers"><h2 class="sec">今週の論文</h2>
+    <article class="paper">
+      <h3>優先料金は二段階より三段階のほうが、全員の得になる</h3>
+      <div class="auth">arXiv:2609.22652v1（econ.GN／要旨に著者名の記載なし）</div>
+      <dl>
+        <dt>問い</dt><dd>混雑する場では、誰かのサービス水準を上げると他の人の水準が下がります。優先レーン、優先入場、即日対応といった優先料金はこのトレードオフの上に成り立っています。従来の設計は二段階、つまり通常と優先の二本立てが標準でした。この論文が問うのは、その二段階が本当に最適なのかという点です。支払い意思も待ち時間の苦痛も顧客ごとに違うのに、二本の枠に押し込むことで、誰も得をしていない領域が生まれているのではないか。そこを理論的に検証しています。</dd>
+        <dt>検証</dt><dd>手法は理論モデルです。顧客の類型が連続的に分布している状況を想定し、サービス品質が総量制約を持つ——つまり一部の品質を上げると平均品質が下がる——という条件を置きます。そのうえで、価格の段数を2とした場合と3とした場合で、全顧客の効用がどう変化するかを比較します。判定基準はパレート改善です。つまり「誰一人として損をせず、少なくとも一人が得をする」という厳しい条件を満たすかどうかを見ます。段数を増やせば誰かが必ず損をする、という直感が成り立たない条件を特定する形で議論が組まれています。</dd>
+        <dt>結果</dt><dd><ul class="finds"><li>二段階から三段階へ増やすことで、パレート改善が成立する条件が存在します。つまり既存の二区分の顧客を誰も悪化させずに、新しい中間層の満足を上げられます。</li><li>改善の源泉は、中間の顧客の分離です。二段階では、優先を買うほどではないが通常では不満という層が、通常側に押し込まれていました。</li><li>三段階目は新規の需要を作るのではなく、既存の需要の押し込みを解きます。そのため総量制約を大きく崩さずに効用を増やせます。</li><li>四段階以上に増やしても、追加の改善幅は急速に小さくなります。段数を増やすほど良いという話ではありません。</li><li>効果が大きいのは、顧客の異質性が高い場合です。全員が似た選好を持つ市場では、二段階と三段階の差はほとんど出ません。</li></ul></dd>
+        <dt>含意</dt><dd>価格の段数は、値上げでも値下げでもない第三の変数だということです。一律料金に優先オプションを足した二段階で止まっている商売は少なくありません。そこに中間の等級を一つ置くだけで、既存客の条件を変えずに売上と満足の両方を動かせる可能性があります。重要なのは、中間を作る目的が上位への誘導ではなく、通常側に押し込まれている層の解放だという点です。上位へ引き上げるための撒き餌として中間を作ると、この論文が示す改善は起きません。</dd>
+        <dt>留意</dt><dd>理論モデルであり、実データによる検証はありません。顧客が自分の選好を正しく理解し、段階の違いを理解したうえで選ぶことが前提になっています。実際には選択肢が三つに増えると決定が難しくなり、選択回避が起きることが行動経済学では知られており、その効果はモデルに入っていません。</dd>
+      </dl>
+      <a class="src" href="https://arxiv.org/abs/2609.22652" target="_blank" rel="noopener">arXiv econ.GN ↗</a>
+    </article>
+    <article class="paper">
+      <h3>採用にAIを使うと、同じ人が全社から同時に落とされる</h3>
+      <div class="auth">arXiv:2609.22169v1（econ.GN／cross-list）</div>
+      <dl>
+        <dt>問い</dt><dd>採用選考に大規模言語モデルを使う企業が急速に増えています。個々のモデルの偏りについては既に多くの研究がありますが、この論文が問うのはもっと構造的な問題です。多数の企業が似たモデルを使うと、偏りが相関します。一社が落とすだけなら候補者は別の会社に受かりますが、全社が同じ基準で落とせば、その候補者はどこにも受かりません。論文はこれを単一文化的な偏りと呼び、個別企業の公平性が保たれていても社会全体の排除率が跳ね上がる可能性を検証しています。</dd>
+        <dt>検証</dt><dd>検証は、複数の広く使われている言語モデルに同一の応募書類群を評価させ、その判定の相関構造を測る形で行われます。応募者の属性を体系的に入れ替えた合成の履歴書を大量に用意し、各モデルの合否判定を集計します。ポイントは、一つのモデル内での偏りの大きさではなく、モデル間で判定が一致する度合いを測ることです。そのうえで、独立した人間の採用担当者が判断した場合を基準として、企業がすべて独立に判断する世界と、相関したモデルを共有する世界で、ある候補者が全社から落とされる確率がどう変わるかをシミュレーションしています。</dd>
+        <dt>結果</dt><dd><ul class="finds"><li>複数のモデルの判定は強く相関します。異なる事業者のモデルでも、学習データと学習手法が似ているため、同じ候補者を同じように低く評価する傾向が出ます。</li><li>一社あたりの偏りの大きさが同じでも、判定が相関していると、全社から排除される候補者の割合は大きく上昇します。排除は個別の差別ではなく、システムの効果として現れます。</li><li>影響を最も受けるのは、履歴書の書き方が標準から外れている候補者です。経歴の中断、非典型的な学歴や職歴の順序などが不利に働きます。</li><li>各社が個別に公平性検査を行っても、この問題は検出されません。検査は一社内の比較で行われるため、社会全体の重複した排除は見えないからです。</li><li>モデルを多様化する、あるいは判定の一部を人に戻すと排除率は下がります。ただし精度との交換になります。</li></ul></dd>
+        <dt>含意</dt><dd>採用にAIを使う際、検討すべきは「このツールは公平か」ではなく「他社と同じツールを使っていないか」です。この視点は中小企業にこそ重要です。大手と同じ市販サービスを使うと、大手が落とした候補者を自社も同じ理由で落とすことになります。逆に言えば、標準的でない経歴の人を拾える設計にしておくと、労働市場で他社が取りこぼしている層を取れます。人手不足の商圏では、これは公平性の話であると同時に採用競争力の話です。</dd>
+        <dt>留意</dt><dd>合成した履歴書による実験であり、実際の採用判断ではありません。現実の選考では面接や紹介が併用され、モデルの判定が最終決定になるとは限りません。またモデルの世代交代が速く、測定された相関構造が数か月後にも成り立つ保証はありません。</dd>
+      </dl>
+      <a class="src" href="https://arxiv.org/abs/2609.22169" target="_blank" rel="noopener">arXiv econ.GN ↗</a>
+    </article>
+    <article class="paper">
+      <h3>組織の非効率は、配置のずれより仕組みそのものに宿る</h3>
+      <div class="auth">arXiv:2609.23744v1（econ.GN）</div>
+      <dl>
+        <dt>問い</dt><dd>企業は組織内部の仕組みに巨額を投じています。評価制度、ガバナンス、業績測定、分析基盤、そして繰り返される組織再編。これらはすべて、資源が適切な場所に配られていない状態——配分の非効率——を直すための投資として正当化されてきました。しかし投資の割に成果が出ないという観察が繰り返されています。この論文は、非効率には二種類あるのではないかと問います。配置を直せば消えるものと、組織の構造そのものに由来して配置をいくら直しても残るものです。</dd>
+        <dt>検証</dt><dd>論文は、非効率を構造的なものと配分的なものに分解する枠組みを提示し、組織形態の異なる設定を横断して比較します。配分の非効率とは、与えられた構造のもとで資源が最適な使い手に届いていない状態を指します。構造の非効率とは、構造そのものが達成可能な上限を下げている状態を指します。この二つを分離したうえで、評価制度や業績測定といった内部投資が、どちらの非効率に働きかけているのかを検討します。組織設定ごとに両者の比率を推定し、内部投資の収益率がなぜ設定によって大きく違うのかを説明する形を取ります。</dd>
+        <dt>結果</dt><dd><ul class="finds"><li>多くの組織で、非効率の相当部分は配分ではなく構造に由来します。この部分は、誰に何を割り当てるかをいくら最適化しても減りません。</li><li>評価制度や業績測定といった内部投資は、主に配分の非効率に効きます。構造の非効率には届かないため、投資の見かけの収益率が低く出ます。</li><li>組織再編を繰り返す企業ほど、配分の改善を繰り返していることになります。構造が変わっていなければ、再編の効果は一時的です。</li><li>構造の非効率が大きい設定では、測定と分析を精緻にするほど、改善幅に対する費用が悪化します。測ることで直らないものを測り続けることになります。</li><li>逆に配分の非効率が支配的な設定では、同じ投資が高い収益率を示します。設定の見極めが投資判断そのものになります。</li></ul></dd>
+        <dt>含意</dt><dd>制度をいじっても業績が動かないとき、制度の出来が悪いのではなく、直そうとしている対象が違う可能性があります。評価表を作り替える、KPIを増やす、担当を入れ替える——これらはすべて配分への介入です。効かないなら、店舗の数や商圏の重なり、取引条件、事業そのものの形といった構造側を疑うべきだという示唆になります。組織再編を短い周期で繰り返している会社には、特に刺さる指摘です。</dd>
+        <dt>留意</dt><dd>概念的な枠組みが中心で、二つの非効率を実務でどう切り分けるかの具体的な手順は示されていません。また構造の非効率とされたものが、実際には観測できていない配分の問題である可能性を排除しきれません。自社に当てはめる際は、分類そのものが主観的になりやすい点に注意が要ります。</dd>
+      </dl>
+      <a class="src" href="https://arxiv.org/abs/2609.23744" target="_blank" rel="noopener">arXiv econ.GN ↗</a>
+    </article></section>
+  <footer>
+    コンサルティングファーム・ビジネススクール・調査機関の19ソースから、
+    直近7日の公開分を収集し日本語に要約したもの。判断の前に各出典を確認してください。
+  </footer>
+</div></div>
+<script>
+(function(){
+  var KEY = "lsm-favs-v1";
+  function load(){ try { return JSON.parse(localStorage.getItem(KEY)) || []; }
+                   catch(e){ return []; } }
+  function save(v){ try { localStorage.setItem(KEY, JSON.stringify(v)); } catch(e){} }
+  function has(url){ return load().some(function(x){ return x.url === url; }); }
+  function paint(b){
+    var on = has(b.dataset.url);
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+    var ic = b.querySelector(".ic"), tx = b.querySelector(".tx");
+    if (ic) ic.textContent = on ? "\u2605" : "\u2606";
+    if (tx) tx.textContent = on ? "保存済み" : "あとで読む";
+    if (!ic && !tx) b.textContent = on ? "\u2605" : "\u2606";
+  }
+  function toggle(b){
+    var d = b.dataset, list = load(), i = list.findIndex(function(x){ return x.url === d.url; });
+    if (i >= 0) list.splice(i, 1);
+    else list.unshift({url:d.url, title:d.title||d.url, kind:d.kind||"", date:d.date||"",
+                       note:d.note||"", saved:new Date().toISOString().slice(0,10)});
+    save(list); paint(b);
+    if (window.renderFavs) window.renderFavs();
+  }
+  function wire(){
+    var bs = document.querySelectorAll("[data-fav]");
+    for (var i = 0; i < bs.length; i++){
+      (function(b){ paint(b); b.addEventListener("click", function(e){
+        e.preventDefault(); e.stopPropagation(); toggle(b); }); })(bs[i]);
+    }
+  }
+  window.favStore = {load:load, save:save, has:has};
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", wire);
+  else wire();
+})();
+</script>
+</body>
+</html>
