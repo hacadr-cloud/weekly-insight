@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>今週のインサイト 2026-09-27</title>
+<style>
+  :root{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E; --accent-bg:#F5EFE3;
+    --sans: system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
+      --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E; --accent-bg:#F5EFE3;
+  }
+  :root[data-theme="dark"]{
+    --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
+    --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
+  }
+  /* Phone-first. Body text sits at 16px (never below -- iOS zooms on focus under 16px and
+     small type is the main complaint on a handset), the column is capped just above a
+     comfortable measure, and side padding stays generous so text never touches the edge. */
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0}
+  .wrap{background:var(--ground);color:var(--ink);font-family:var(--sans);
+    font-size:16px;line-height:1.9;-webkit-font-smoothing:antialiased;
+    padding:1.5rem 1.15rem 4rem;min-height:100vh}
+  .inner{max-width:34rem;margin:0 auto}
+  header{border-bottom:1px solid var(--line);padding-bottom:1.25rem;margin-bottom:1.5rem}
+  .eyebrow{font-size:.72rem;letter-spacing:.16em;color:var(--faint);
+    text-transform:uppercase;margin:0 0 .5rem}
+  h1{font-size:1.4rem;font-weight:700;letter-spacing:-.01em;line-height:1.45;
+    margin:0;text-wrap:balance}
+  .lede{font-size:1rem;color:var(--muted);margin:1.1rem 0 0;line-height:1.95}
+  .picks{display:flex;flex-direction:column;gap:1.15rem}
+  .pick{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.2rem 1.1rem;position:relative}
+  .n{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.1em;margin-bottom:.35rem}
+  .pick h2{font-size:1.12rem;font-weight:700;line-height:1.6;margin:0 0 .7rem;
+    letter-spacing:-.005em;text-wrap:balance}
+  /* No justify: on a narrow screen it opens rivers of white space between Japanese runs. */
+  .sum{font-size:1rem;color:var(--ink)}
+  .sum p{margin:0 0 .95rem}
+  .sum p:last-child{margin-bottom:0}
+  .sum .blist{list-style:none;margin:0 0 1rem;padding:0;display:flex;
+    flex-direction:column;gap:.5rem}
+  /* 本文中の小見出し: 長い解説を拾い読みできるようにする */
+  .sum .sh{font-size:.94rem;font-weight:700;color:var(--ink);margin:1.5rem 0 .55rem;
+    padding-left:.6rem;border-left:3px solid var(--accent);line-height:1.6}
+  .sum .sh:first-child{margin-top:0}
+  .sum .blist li{position:relative;padding-left:1.1rem;line-height:1.85}
+  .sum .blist li::before{content:"";position:absolute;left:.2rem;top:.75em;
+    width:.32rem;height:.32rem;border-radius:50%;background:var(--accent)}
+  /* 図解の崩れ防止: 長い語も枠内で折り返し、幅が足りなければ横スクロールさせる */
+  .fig *{overflow-wrap:anywhere;word-break:normal;min-width:0}
+  /* 図解: CSS で組む（SVGだと縮小して読めなくなる）。縦積みなので幅の狭い画面でも崩れない */
+  .fig{margin:.9rem 0 1rem;padding:.9rem .85rem;border:1px solid var(--line);
+    border-radius:12px;background:var(--ground)}
+  .fig-t{font-size:.76rem;font-weight:700;letter-spacing:.06em;color:var(--accent);
+    margin-bottom:.7rem}
+  .fig-c{font-size:.78rem;color:var(--muted);margin-top:.7rem;line-height:1.7}
+  .flow{display:flex;flex-direction:column;align-items:stretch;gap:.3rem}
+  .flow .step{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .7rem;text-align:center}
+  .flow .step b{display:block;font-size:.9rem;font-weight:700}
+  .flow .step span{display:block;font-size:.78rem;color:var(--muted);margin-top:.15rem;
+    line-height:1.6}
+  .flow .arr{text-align:center;color:var(--accent);font-size:.9rem;line-height:1}
+  /* 2x2 マトリクス: 経営フレームの定番。軸ラベルを外側に置いて象限を読ませる */
+  .mtx{display:flex;flex-direction:column;gap:.3rem}
+  .mtx .ylab{font-size:.72rem;color:var(--muted);text-align:center}
+  .mtx .grid{display:grid;grid-template-columns:1fr 1fr;gap:.35rem}
+  .mtx .mcell{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .6rem;min-height:3.6rem;display:flex;flex-direction:column;
+    justify-content:center}
+  .mtx .mcell.empty{background:transparent;border-style:dashed;opacity:.5}
+  .mtx .mcell b{font-size:.86rem;font-weight:700;line-height:1.5}
+  .mtx .mcell span{font-size:.76rem;color:var(--muted);margin-top:.2rem;line-height:1.55}
+  .mtx .xlabs{display:flex;justify-content:space-between;font-size:.72rem;
+    color:var(--muted);padding:0 .2rem}
+  /* 横棒: 研究の効果量・前後差を数字で見せる */
+  .bars{display:flex;flex-direction:column;gap:.5rem}
+  .brow{display:flex;flex-direction:column;gap:.2rem}
+  .blab{font-size:.84rem;font-weight:600}
+  .blab .bnote{font-weight:400;color:var(--muted);font-size:.76rem;margin-left:.4rem}
+  /* grid: the bar track takes the leftover width and the number never wraps under it.
+     A percentage width inside a flex row was being resolved against the wrong box, which is
+     what made the bars overflow on a phone. */
+  .btrack{display:grid;grid-template-columns:minmax(0,1fr) max-content;gap:.55rem;
+    align-items:center}
+  .bwrap{background:var(--line);border-radius:5px;height:1.35rem;overflow:hidden;width:100%}
+  .bbar{height:100%;background:var(--accent);border-radius:5px;opacity:.9}
+  .bval{font-size:.82rem;font-weight:700;color:var(--accent);
+    font-variant-numeric:tabular-nums}
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
+  .cmp .col{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .65rem}
+  .cmp .ch{font-size:.78rem;font-weight:700;color:var(--accent);margin-bottom:.4rem;
+    padding-bottom:.35rem;border-bottom:1px solid var(--line)}
+  .cmp ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.3rem}
+  .cmp li{font-size:.86rem;line-height:1.6;padding-left:.75rem;position:relative}
+  .cmp li::before{content:"・";position:absolute;left:0;color:var(--faint)}
+  .rel{display:flex;flex-direction:column;align-items:center;gap:.55rem}
+  .rel .hub{background:var(--accent);color:var(--card);border-radius:999px;
+    padding:.5rem 1.1rem;font-size:.9rem;font-weight:700}
+  .rel .sats{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem}
+  .rel .sat{background:var(--card);border:1px solid var(--line);border-radius:999px;
+    padding:.35rem .75rem;font-size:.84rem}
+  @media (max-width:380px){ .cmp{grid-template-columns:1fr} }
+  /* Tap target: a bare inline link is hard to hit on a phone, so give it real height. */
+  .src{display:inline-block;margin-top:1rem;font-size:.86rem;color:var(--muted);
+    text-decoration:none;border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .8rem;line-height:1.5;word-break:break-word}
+  .src:hover{color:var(--accent);border-color:var(--accent)}
+  /* 今週の論文: 定義リストで「問い／検証／結果／含意／留意」を固定の型に見せる */
+  .papers{margin-top:2.2rem}
+  .sec{font-size:.78rem;font-weight:700;letter-spacing:.14em;color:var(--accent);
+    margin:0 0 .9rem;padding-bottom:.5rem;border-bottom:1px solid var(--line)}
+  .paper{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.1rem 1.05rem;margin-bottom:1rem}
+  .paper h3{font-size:1.02rem;font-weight:700;line-height:1.6;margin:0 0 .3rem;
+    text-wrap:balance}
+  .paper .auth{font-size:.78rem;color:var(--faint);margin-bottom:.75rem}
+  .paper dl{margin:0;display:grid;grid-template-columns:max-content minmax(0,1fr);
+    gap:.5rem .8rem;align-items:start}
+  .paper dt{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.08em;
+    padding-top:.15rem;white-space:nowrap}
+  .paper dd{margin:0;font-size:.9rem;line-height:1.8;text-align:justify}
+  .paper .finds{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;
+    gap:.35rem}
+  .paper .finds li{position:relative;padding-left:1rem;line-height:1.75}
+  .paper .finds li::before{content:"";position:absolute;left:.2rem;top:.72em;width:.3rem;
+    height:.3rem;border-radius:50%;background:var(--accent)}
+  @media (max-width:420px){ .paper dl{grid-template-columns:1fr;gap:.15rem .8rem}
+    .paper dt{margin-top:.5rem} }
+  footer{margin-top:2.4rem;padding-top:1.1rem;border-top:1px solid var(--line);
+    font-size:.78rem;color:var(--faint);line-height:1.7}
+  a:focus-visible,.src:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+.fav{appearance:none;-webkit-appearance:none;cursor:pointer;display:inline-flex;
+  align-items:center;justify-content:center;gap:6px;min-width:44px;min-height:44px;
+  padding:0 12px;border-radius:999px;font:inherit;font-size:14px;font-weight:600;
+  background:var(--surface,#fff);color:var(--ink-mut,#6b7280);
+  border:1px solid var(--line,#e5e7eb);line-height:1;}
+.fav:hover{border-color:#f0b429;color:#b26b00;}
+.fav[aria-pressed="true"]{background:#fff8e6;border-color:#f0b429;color:#b26b00;}
+.fav .ic{font-size:16px;line-height:1;}
+.fav-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:14px 0 6px;}
+.fav-bar a.all{font-size:13.5px;color:var(--ink-mut,#6b7280);text-decoration:none;
+  min-height:44px;display:inline-flex;align-items:center;}
+.fav-bar a.all:hover{text-decoration:underline;}
+.fav-mini{appearance:none;-webkit-appearance:none;cursor:pointer;background:none;border:0;
+  padding:6px 8px;margin-left:2px;font-size:15px;line-height:1;color:#c3c8d0;
+  min-width:36px;min-height:36px;}
+.fav-mini[aria-pressed="true"]{color:#f0b429;}
+
+</style>
+</head>
+<body>
+<div class="wrap"><div class="inner">
+  <header>
+    <p class="eyebrow">Weekly Insight</p>
+    <h1>今週のインサイト <span style="color:var(--faint);font-weight:500">2026-09-27</span></h1>
+    <p class="lede">今週もお疲れさまでした。今週の論考に共通するのは、「人は何を恐れて、本当のことを言わなくなるのか」という問いです。AIの提案を現場が覆す理由、社長のもとに悪い報告が届かない理由、話し方で昇進の機会が変わる理由。どれも、制度や道具の出来よりも、使う人が負うリスクの方に原因がありました。去年までのAI論は「どう導入するか」が中心でした。今年は「導入したのに使われない理由」を人の側から解く論考が増えています。価格では、値上げと品質の手抜きのどちらを選ぶかという、いま多くの経営者が迷う問題に答えが出ています。古典からは、エマソンの着実経営と、「何かで劣る勇気」という選択の枠組みが載りました。読む順としては、まず値上げの話で価格の判断を固めてください。次にAIを覆す現場とCEOに届かない声の2本を続けて読むと、社内の沈黙の構造が見えてきます。最後に「劣る勇気」とエマソンを読むと、来期の計画づくりの土台になります。</p>
+    <div class="fav-bar"><button class="fav" data-fav data-url="https://hacadr-cloud.github.io/weekly-insight/2026-09-27.html" data-title="週次インサイト 2026-09-27" data-kind="insight" data-date="2026-09-27" aria-pressed="false"><span class="ic">☆</span><span class="tx">あとで読む</span></button><a class="all" href="favorites.html">保存した記事を見る →</a></div>
+  </header>
+  <div class="picks">
+    <article class="pick">
+      <div class="n">1</div>
+      <h2>品質を黙って落とすより、値上げの方が客を失わない</h2>
+      <div class="fig"><div class="fig-t">コスト増への対応4型</div><div class="mtx"><div class="ylab top">告知する</div><div class="grid"><div class="mcell"><b>仕様変更を告知</b><span>廉価版として出せば可</span></div><div class="mcell"><b>説明つき値上げ</b><span>最も信頼を保ちやすい</span></div><div class="mcell"><b>品質の手抜き</b><span>発覚すると信頼を失う</span></div><div class="mcell"><b>黙った値上げ</b><span>反発は出るが短期</span></div></div><div class="ylab bot">告知しない</div><div class="xlabs"><span>客に見えない</span><span>客に見える</span></div></div><div class="fig-c">左下ほど客を失う危険が大きく、右上ほど安全</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>原材料費や人件費が上がると、経営者の選択肢はおおむね3つに絞られます。値上げする。量を減らす。品質を落とす。</p><p>このうち品質を落とす方法は、値札が変わりません。そのため一番穏便に見えます。HBRの今回の論考は、この直感が逆だと指摘しています。</p><h3 class="sh">論考の主張</h3><p>要旨は明快です。消費者は値上げも内容量の減少も、ある程度は受け入れます。しかし、見えないところで品質を削られたと気付くと、信頼を失って離れていきます。</p><p>違いを分けるのは、変化が「見えるかどうか」と「知らされたかどうか」です。</p><ul class="blist"><li>値上げ：見える。客は納得するか、しないかをその場で選べる</li><li>量の削減：気付かれにくいが、表示で確かめられる</li><li>品質の手抜き：客は買った後で気付く。そして「だまされた」と感じる</li></ul><h3 class="sh">なぜそうなるのか</h3><p>値上げは取引条件の変更です。客は不満を持っても、自分で判断して買っています。</p><p>品質の手抜きは違います。客から見ると、約束を一方的に破られたことになります。人は損をしたことより、裏切られたことに強く反応します。その感情は、その商品だけでなく店や会社全体への評価に広がります。</p><p>もう一つの理由は、手抜きが見つかる時期です。値上げの反発はすぐ出て、すぐ落ち着きます。品質の手抜きは、しばらく経ってから口コミやリピート率の低下として出ます。気付いた時には、原因を突き止めにくくなっています。</p><h3 class="sh">具体的な場面</h3><p>美容室で考えてみます。薬剤代が上がったとします。カラー剤やトリートメントを安いものに切り替えれば、メニュー価格は据え置けます。</p><p>しかし常連客は、仕上がりや持ちの違いに気付きます。「最近ここ、前ほど良くない」と感じた客は、理由を言わずに来なくなります。値上げの告知なら、少なくとも客は判断の機会を与えられています。</p><p>店舗の接客でも同じです。人手が足りないとき、説明の時間を削ったり、手続き後の確認を省いたりしがちです。これも見えない品質の低下です。料金は変わらなくても、客は後から「雑に扱われた」と気付きます。</p><h3 class="sh">反論と限界</h3><p>反論もあります。価格に非常に敏感な客層では、値上げした瞬間に競合へ移られます。品質の差がほとんど分からない商品なら、仕様を変えても誰も気付きません。</p><p>また、品質を変えること自体が悪いわけではありません。問題は隠すことです。仕様を変えたときに、そのことを伝え、価格を下げた廉価版として出すなら、裏切りにはなりません。</p><p>判断の材料としては次の問いが使えます。この変更を客に説明できるか。説明できないなら、それは値上げより高くつく選択です。</p></div>
+      <a class="src" href="http://hbr.org/2026/09/when-raising-prices-is-better-than-cutting-quality" target="_blank" rel="noopener">HBR ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">2</div>
+      <h2>社員がAIの提案を覆すのは抵抗ではなく自己防衛</h2>
+      <div class="fig"><div class="fig-t">AIが覆される流れ</div><div class="flow"><div class="step"><b>AIが提案</b><span>根拠は本人に説明しにくい</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>失敗時の責任</b><span>従った人が責められる</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>自分で判断</b><span>説明できる道を選ぶ</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>利用が形だけに</b><span>覆した理由が残らない</span></div></div><div class="fig-c">左から右へ、評価の仕組みが自己防衛を生む</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>AIを入れたのに、現場が提案どおりに動かない。多くの会社で起きていることです。</p><p>経営者はこれを「変化への抵抗」や「AIへの不信」と受け取りがちです。そこで研修をしたり、精度の高さを説明したりします。HBRの今回の論考は、この見立て自体が違うと言います。社員がAIを覆すのは抵抗ではなく、自分の身を守るためだというのです。</p><h3 class="sh">背景にある研究</h3><p>人は、機械の判断が一度でも外れるのを見ると、人間の判断より厳しく評価しがちです。これは「アルゴリズム嫌悪」と呼ばれ、以前から研究されてきました。</p><p>今回の論考はそこから一歩進めています。問題は社員の気持ちではなく、失敗したときに誰が責められるかという組織の仕組みにある、という見方です。</p><h3 class="sh">分かったこと</h3><p>社員が置かれている状況を整理すると、次のようになります。</p><ul class="blist"><li>AIに従って当たった：評価はAIのもの。自分の手柄にならない</li><li>AIに従って外れた：「なぜ鵜呑みにしたのか」と責められる</li><li>自分で判断して外れた：「現場の判断だった」と説明できる</li><li>自分で判断して当たった：自分の手柄になる</li></ul><p>この表を見れば、覆す方が合理的です。AIに従うと、失敗したときの責任だけが残るからです。</p><h3 class="sh">なぜそうなるのか</h3><p>評価制度の多くは、結果に加えて「判断の過程を説明できるか」を見ます。AIの提案は、なぜそうなったかを本人が説明しにくいものです。</p><p>説明できない判断で失敗するのは、社員にとって最悪の事態です。そこで、自分の言葉で説明できる判断を選びます。これは怠けでも頑固さでもありません。今の評価の仕組みに対する、まっとうな反応です。</p><h3 class="sh">具体的な場面</h3><p>携帯販売の店舗で、AIが来店客ごとに提案する料金プランや端末を出すとします。スタッフは経験から「このお客さんには別のプランが合う」と感じ、AIの提案を使いません。</p><p>このとき店長がやりがちなのは、AIの利用率を目標にすることです。すると表向きの利用率は上がります。しかしスタッフは、自分で決めた後にAIの画面を開くだけになります。</p><p>効くのは責任の扱いを変えることです。たとえば次のような手当てがあります。</p><ul class="blist"><li>AIに従って外れた場合は個人の失点にしないと明言する</li><li>覆した場合は理由を一言だけ残してもらい、責めずに集める</li><li>覆した理由を月に一度見直し、AIの設定や使い方に反映する</li></ul><p>覆した理由は、AIの弱点を示す貴重なデータになります。</p><h3 class="sh">反論と限界</h3><p>現場の直感がAIより正しい場面も当然あります。覆すことをすべて悪とみなすと、今度は誤った提案が素通りします。</p><p>また、AIの精度が本当に低い段階では、覆す社員の方が正しいのです。自己防衛か、正当な判断かを見分けるには、覆した後の結果を記録するしかありません。記録がないまま「使え」と言うことが、この問題の出発点です。</p></div>
+      <a class="src" href="http://hbr.org/2026/09/why-your-employees-override-ai" target="_blank" rel="noopener">HBR ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">3</div>
+      <h2>社長に本音が届かないのは「率直さの代償」が高いから</h2>
+      <div class="fig"><div class="fig-t">率直さの代償</div><div class="rel"><div class="hub">部下が黙る理由</div><div class="sats"><span class="sat">機嫌を損ねる</span><span class="sat">能力を疑われる</span><span class="sat">仕事が増える</span><span class="sat">同僚の目</span><span class="sat">反応の記憶</span></div></div><div class="fig-c">周りの要素が重いほど、窓口を増やしても声は出ない</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>経営者の多くは「うちは何でも言える会社だ」と思っています。目安箱を置き、面談をし、「遠慮なく言ってくれ」と伝えています。</p><p>それでも悪い知らせは遅れて届きます。あるいは届きません。IMDの今回の論考は、その原因を仕組みの不足ではなく、関係のあり方に求めています。</p><h3 class="sh">論考の主張</h3><p>中心にある考え方は「率直さの代償」です。部下が社長に本当のことを言うとき、部下の側には目に見えないコストがかかります。</p><ul class="blist"><li>社長の機嫌を損ねるかもしれない</li><li>「できない人」と思われるかもしれない</li><li>言った後に自分が担当させられるかもしれない</li><li>同僚から「告げ口」と見られるかもしれない</li></ul><p>このコストが、言うことで得られるものを上回れば、人は黙ります。窓口をいくら増やしても、コストが下がらなければ声は出てきません。</p><h3 class="sh">なぜ窓口では解決しないのか</h3><p>論考の要点は「フィードバックは経路ではなく関係だ」ということです。</p><p>面談の場を設けても、話す相手が同じ社長なら、部下の計算は変わりません。むしろ場を設けたことで、社長は「聞いている」と思い込みます。これで状況はさらに見えにくくなります。</p><p>立場が上がるほど、この問題は深刻になります。周りの人にとって、社長に逆らうコストが最も高いからです。結果として、トップほど現場の実態を知らない状態が生まれます。</p><h3 class="sh">具体的な場面</h3><p>複数の店舗を持つ会社で、社長が店舗を回るとします。店長は「特に問題ありません」と答えます。実際には、スタッフの退職が続いていたり、取引先との関係がこじれていたりします。</p><p>店長が黙るのは、問題を報告すると「管理ができていない」と見られると考えるからです。この場合、代償を下げる手立てとしては次のようなものが考えられます。</p><ul class="blist"><li>悪い知らせを最初に持ってきた人を、はっきりと評価する</li><li>報告を受けた瞬間の反応を変える。まず「言ってくれて助かった」と返す</li><li>問題の報告と責任の追及を、別の日・別の場に分ける</li><li>社長が先に自分の失敗を話す</li></ul><p>特に大事なのは、報告を受けた直後の反応です。一度でも叱責で返すと、その記憶が長く残ります。</p><h3 class="sh">反論と限界</h3><p>何でも言える組織が常に良いとは限りません。不満や愚痴ばかりが上がってきて、判断が遅くなることもあります。</p><p>また、代償を下げるには時間がかかります。社長が一度態度を変えただけでは、部下は信じません。数か月から年単位で同じ反応を続けて、ようやく声が変わり始めます。</p><p>自分の会社で確かめる方法は単純です。最近、悪い知らせを誰かが自分から持ってきたのはいつか。思い出せないなら、代償が高すぎる状態です。</p></div>
+      <a class="src" href="https://www.imd.org/ibyimd/leadership/what-ceos-dont-hear-and-why-it-matters/" target="_blank" rel="noopener">IMD ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">4</div>
+      <h2>話し方の「なじみ」が昇進の機会を左右している</h2>
+      <div class="fig"><div class="fig-t">評価の思い込みと実態</div><div class="cmp"><div class="col"><div class="ch">経営者の思い込み</div><ul><li>能力で選んでいる</li><li>話が分かる人が優秀</li><li>悪意がなければ公平</li></ul></div><div class="col"><div class="ch">研究が示すこと</div><ul><li>なじみの話し方を好む</li><li>分かりやすさ≠能力</li><li>無意識でも偏りは出る</li></ul></div></div><div class="fig-c">左の前提を右に置き換えて評価基準を見直す</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>昇進や抜擢を決めるとき、経営者は能力と実績で判断しているつもりです。しかしHBRで紹介された研究は、そこに別の要素が紛れ込んでいると指摘します。</p><p>それは話し方です。言葉遣い、なまり、話す速さ、身ぶり。リーダーは、自分になじみのある話し方をする社員を、知らないうちに高く評価しがちだというのです。</p><h3 class="sh">研究の視点</h3><p>この研究が問題にしているのは、意図的な差別ではありません。評価する側に悪意がなくても起きる偏りです。</p><p>人は、自分と似た話し方をする相手を「分かりやすい」「話が通じる」と感じます。この感覚は、そのまま「頭が良い」「任せられる」という判断に置き換わりがちです。</p><h3 class="sh">分かったこと</h3><p>論考の要旨から、偏りが入り込む場面は次のように整理できます。</p><ul class="blist"><li>会議での発言：なじみのある話し方の人の意見が通りやすい</li><li>面談や評価：話しやすい相手ほど、評価が甘くなる</li><li>抜擢の候補選び：「この人なら安心」という感覚が先に立つ</li><li>顧客対応の配置：前に出す人が、話し方で偏る</li></ul><p>一つひとつは小さな差です。しかし機会の差は積み重なります。数年たつと、経験の差として固定されてしまいます。</p><h3 class="sh">なぜそうなるのか</h3><p>話し方は、その人の出身地や育った環境、最初に働いた職場を映します。リーダーが自分と似た経歴の人を好むと、話し方がその目印として働きます。</p><p>もう一つは、評価の基準があいまいなことです。「リーダーシップがある」「コミュニケーション力が高い」といった基準は、何を見るかが決まっていません。決まっていないところに、話し方の印象が入り込みます。</p><h3 class="sh">具体的な場面</h3><p>沖縄と福岡に拠点がある会社を考えます。本部の幹部が福岡出身者中心だとします。沖縄の店舗の優秀なスタッフは、話し方や間の取り方が違うだけで、会議で存在感が薄く見えることがあります。</p><p>逆もあります。地元の言葉で話すスタッフが、地元のお客さまから強く信頼されていることがあります。その力は、本部の会議では見えません。</p><p>対策としては、次のようなものが考えられます。</p><ul class="blist"><li>評価の基準を行動と成果で書き出す。「話が分かりやすい」は基準にしない</li><li>昇進の判断は複数の人で行い、出身の違う評価者を入れる</li><li>会議では発言の順番を決め、声の大きさで決まらないようにする</li></ul><h3 class="sh">反論と限界</h3><p>接客業では、話し方そのものが仕事の成果に直結します。お客さまに伝わる話し方ができるかは、正当な評価項目です。</p><p>問題は、仕事に必要な伝える力と、単に自分になじみがあるかどうかを混同することです。自社の評価で確かめるには、昇進した人の顔ぶれを見て、出身や前職が偏っていないかを振り返るのが早道です。</p></div>
+      <a class="src" href="http://hbr.org/2026/09/research-how-speech-patterns-shape-opportunity-at-work" target="_blank" rel="noopener">HBR ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">5</div>
+      <h2>変革の壁は社員ではなく、手本を示さないトップにある</h2>
+      <div class="fig"><div class="fig-t">トップの3つの自己テスト</div><div class="flow"><div class="step"><b>標語を捨てる</b><span>言葉でなく行動で示す</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>古い仕組みに挑む</b><span>評価・承認・会議を変える</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>賭けに身を置く</b><span>最初の失敗を引き受ける</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>社員が動く</b><span>行動のずれが消える</span></div></div><div class="fig-c">左から順に満たすほど、社員の「抵抗」は消えていく</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>「社員は変化を嫌う」。変革がうまくいかないとき、経営者がよく口にする説明です。</p><p>DHBRの今回の論考は、この説明を真っ向から否定します。それは変革に失敗したリーダーの言い訳にすぎないというのです。本当の足かせは、自分で行動を変えないトップにあると指摘します。</p><h3 class="sh">論考の中身</h3><p>論考はシンガポールのDBS銀行などの例を挙げています。DBSは、古い体質の銀行から、デジタルに強い組織への転換を進めたことで知られます。</p><p>そこで効いたのは、社員向けの掛け声ではなく、トップ自身の振る舞いの変化でした。論考はこれを、リーダーが自分に問うべき3つの質問にまとめています。</p><ul class="blist"><li>言葉だけの標語を捨て、自分の行動で示しているか</li><li>変革を妨げる古い管理の仕組みに、自分から手を付けているか</li><li>結果が読めない賭けに、自分の身を置いているか</li></ul><h3 class="sh">なぜトップの行動が効くのか</h3><p>社員は、社長の言葉より行動を見ています。「挑戦しよう」と言いながら、失敗した人を叱る。「数字より顧客」と言いながら、会議では数字しか聞かない。このずれを、社員は正確に読み取ります。</p><p>ずれがあると、社員は言葉ではなく行動に合わせます。それが外から見ると「抵抗」に見えるのです。</p><p>2つ目の質問も重要です。評価制度、承認の手順、会議の進め方。古い管理の仕組みが残ったままだと、社員が新しいやり方をしても報われません。仕組みを変えられるのはトップだけです。</p><h3 class="sh">具体的な場面</h3><p>たとえば店舗でAIやデジタル受付を使う方針を出したとします。ところが社長自身は、報告を紙やExcelで求め続けている。これでは店長は、新しい道具を「本部向けの飾り」と受け取ります。</p><p>美容室で予約や顧客管理を新しい仕組みに移すときも同じです。オーナーが自分では画面を開かず、スタッフに任せきりにすれば、使い方は定着しません。</p><p>3つ目の質問は一番重いものです。変革には、うまくいくか分からない決断が伴います。社長が安全な位置に立ったまま、社員にだけ挑戦を求めると、社員は動きません。社長が自分で最初の失敗を引き受けることが、合図になります。</p><h3 class="sh">反論と限界</h3><p>社員の抵抗がまったくないわけではありません。雇用や収入が脅かされる変革では、社員の反発は当然です。そこをトップの姿勢だけで片付けることはできません。</p><p>また、DBSのような大企業の例を、そのまま中小企業に当てはめることもできません。ただ、規模が小さいほど社長の行動は社員に直接見えます。その意味では、この論考の指摘は中小企業の方がよく当てはまるとも言えます。</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14581" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">6</div>
+      <h2>何かで劣る勇気が、強みを伸ばす余力を生む</h2>
+      <div class="fig"><div class="fig-t">資源を配る場所</div><div class="mtx"><div class="ylab top">自社が勝る</div><div class="grid"><div class="mcell"><b>過剰投資</b><span>削って強みへ回す</span></div><div class="mcell"><b>勝ち所</b><span>ここに資源を集中</span></div><div class="mcell"><b>あえて劣る</b><span>浮いた資源を回す</span></div><div class="mcell"><b>危険地帯</b><span>最優先で立て直す</span></div></div><div class="ylab bot">自社が劣る</div><div class="xlabs"><span>顧客が軽視</span><span>顧客が重視</span></div></div><div class="fig-c">左上と左下の資源を右上に寄せるのが基本の動き</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>多くの経営者は、どの項目でも平均以上を目指します。価格も、品質も、接客も、立地も、営業時間も。</p><p>ハーバード・ビジネス・スクールのフランシス・フライらは、この発想そのものが凡庸さを生むと言います。HBRのポッドキャスト「Fixable」で改めて語られたのは、「何かで悪くあれ」という考え方です。</p><h3 class="sh">考え方の中身</h3><p>フライらは著書『ハーバード・ビジネス・スクールが教える顧客サービス戦略』の中で、この考え方を詳しく論じています。</p><p>出発点は、経営資源には限りがあるという当たり前の事実です。人も時間もお金も有限です。全部で平均以上を狙うと、資源が薄く散らばります。その結果、どこでも「悪くはないが、選ぶ理由もない」店になります。</p><p>そこで、次の手順で考えます。</p><ul class="blist"><li>顧客が何を最も重視しているかを順位づけする</li><li>上位の項目で、突き抜けて良くなることを決める</li><li>顧客があまり気にしない項目では、あえて劣ることを決める</li><li>劣る部分で浮いた資源を、上位の項目に回す</li></ul><h3 class="sh">なぜそれで勝てるのか</h3><p>フライらが挙げた例に、アメリカのコマース銀行があります。この銀行は営業時間を大幅に延ばし、週末も開けました。一方で、預金金利は他行より低く抑えました。</p><p>金利を最優先する客は来ません。しかし、平日に銀行へ行けない客には、他に選択肢がありません。劣る部分があるからこそ、良い部分に資源を集中でき、それが選ばれる理由になりました。</p><p>ポイントは、劣ることを「仕方なく」ではなく「意図して」決めることです。意図して決めれば、その分を強みに回せます。</p><h3 class="sh">具体的な場面</h3><p>美容室で考えます。駅前の一等地、豊富なメニュー、低価格、手厚い接客。全部をそろえるのは無理です。</p><p>たとえば、立地は二等地にして家賃を抑える。メニューはカットとカラーに絞る。その分、スタイリストの技術研修と、一人ひとりにかける時間を厚くする。この店は「近くて何でもある店」を求める客には選ばれません。しかし「仕上がりで選ぶ客」には強く選ばれます。</p><p>携帯販売の店舗でも同じ考え方が使えます。すべての客に同じ時間をかけるのか。手続きの速さで勝つのか、相談の深さで勝つのか。どちらかに寄せると、店の特徴がはっきりします。</p><h3 class="sh">反論と限界</h3><p>劣る部分が、顧客にとって「最低限これだけは」という条件だと失敗します。清潔さや安全、約束の時間を守ることは、劣ってよい項目ではありません。</p><p>また、顧客の優先順位は変わります。数年前に気にされていなかった項目が、今は重視されていることもあります。劣る項目を決めたら、定期的に顧客の声で見直す必要があります。</p></div>
+      <a class="src" href="http://hbr.org/podcast/2026/09/dare-to-be-bad-at-something-from-fixable" target="_blank" rel="noopener">HBR ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">7</div>
+      <h2>エマソン34年連続増益を支えた計画とコスト削減の原則</h2>
+      <div class="fig"><div class="fig-t">一般的な会社とエマソン</div><div class="cmp"><div class="col"><div class="ch">よくあるやり方</div><ul><li>不況時だけコスト削減</li><li>計画は数字の合意</li><li>好調時は点検が緩む</li></ul></div><div class="col"><div class="ch">エマソンの原則</div><ul><li>毎年必ずコスト削減</li><li>計画は前提を問う議論</li><li>好不調で厳しさ不変</li></ul></div></div><div class="fig-c">右の列を毎年くり返すことが連続増益の土台だった</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>毎年利益を伸ばし続けるのは、どんな会社にとっても難しいことです。景気の波、競合の出現、技術の変化。どこかで必ずつまずきます。</p><p>米国の電機メーカー、エマソン・エレクトリックは1950年代半ばから34年連続で増益、35年連続で増配を続けました。DHBRが今回再掲したのは、当時の会長兼CEOチャールズ・ナイトが1992年に書いた論文です。この論文は同年のマッキンゼー賞を受けています。</p><h3 class="sh">エマソンのやり方</h3><p>ナイトが挙げた原則は2つです。</p><ul class="blist"><li>継続的なコスト削減を、毎年の当たり前の仕事にすること</li><li>開かれた計画づくりを、経営の中心に置くこと</li></ul><p>どちらも目新しい言葉ではありません。エマソンの特徴は、それを例外なく、毎年同じ厳しさで続けたことにあります。</p><h3 class="sh">コスト削減を「行事」にしない</h3><p>多くの会社では、コスト削減は業績が悪い時の非常手段です。エマソンは違いました。業績が良い年も悪い年も、コスト削減の計画を立て、実行しました。</p><p>目指したのは、競合より低いコストで作れる状態を保つことです。値上げに頼らずに利益を守るには、自分でコストを下げ続けるしかありません。</p><p>これは、コスト削減を痛みではなく習慣にする考え方です。習慣になっていれば、不況が来ても慌てて人を減らす必要がありません。</p><h3 class="sh">計画づくりを本気の議論の場にする</h3><p>もう一つの柱は計画の会議です。エマソンでは、各事業の責任者が経営陣と計画を詰める場を毎年設けていました。</p><p>この会議の特徴は、率直な議論です。数字の辻褄合わせではなく、前提そのものを問い直します。市場はどう動くのか。競合は何をしてくるのか。本当にその数字を達成できるのか。</p><p>厳しい議論を毎年くぐることで、事業の責任者は自分の計画に責任を持つようになります。経営陣も、各事業の実態を数字の裏まで知ることになります。</p><h3 class="sh">具体的な場面</h3><p>中小企業に置き換えると、たとえば年に一度、店舗ごとに店長と来期の計画を詰める場をつくることです。</p><p>その場で問うのは次のようなことです。</p><ul class="blist"><li>今年のコストのうち、来年下げられるものは何か</li><li>売上の見込みの前提は何か。外れたら何が起きるか</li><li>去年の計画と実績の差は、なぜ生まれたのか</li></ul><p>大事なのは、業績が良い店舗でも同じ厳しさで行うことです。良い時に緩めると、悪くなった時に打つ手がなくなります。</p><h3 class="sh">反論と限界</h3><p>エマソンの事業内容は、この論文の頃から大きく変わっています。コスト削減を重ねる経営は、大きな技術転換や新しい市場への挑戦には向かないという批判もあります。着実さが、変化への鈍さにつながる危険です。</p><p>また、連続増益という目標が、無理な数字づくりを招くこともあります。この論文から学ぶべきは記録そのものではなく、コストと計画を毎年同じ手順で見直す規律の方です。</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/11584" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+  </div>
+  
+  <footer>
+    コンサルティングファーム・ビジネススクール・調査機関の19ソースから、
+    直近7日の公開分を収集し日本語に要約したもの。判断の前に各出典を確認してください。
+  </footer>
+</div></div>
+<script>
+(function(){
+  var KEY = "lsm-favs-v1";
+  function load(){ try { return JSON.parse(localStorage.getItem(KEY)) || []; }
+                   catch(e){ return []; } }
+  function save(v){ try { localStorage.setItem(KEY, JSON.stringify(v)); } catch(e){} }
+  function has(url){ return load().some(function(x){ return x.url === url; }); }
+  function paint(b){
+    var on = has(b.dataset.url);
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+    var ic = b.querySelector(".ic"), tx = b.querySelector(".tx");
+    if (ic) ic.textContent = on ? "\u2605" : "\u2606";
+    if (tx) tx.textContent = on ? "保存済み" : "あとで読む";
+    if (!ic && !tx) b.textContent = on ? "\u2605" : "\u2606";
+  }
+  function toggle(b){
+    var d = b.dataset, list = load(), i = list.findIndex(function(x){ return x.url === d.url; });
+    if (i >= 0) list.splice(i, 1);
+    else list.unshift({url:d.url, title:d.title||d.url, kind:d.kind||"", date:d.date||"",
+                       note:d.note||"", saved:new Date().toISOString().slice(0,10)});
+    save(list); paint(b);
+    if (window.renderFavs) window.renderFavs();
+  }
+  function wire(){
+    var bs = document.querySelectorAll("[data-fav]");
+    for (var i = 0; i < bs.length; i++){
+      (function(b){ paint(b); b.addEventListener("click", function(e){
+        e.preventDefault(); e.stopPropagation(); toggle(b); }); })(bs[i]);
+    }
+  }
+  window.favStore = {load:load, save:save, has:has};
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", wire);
+  else wire();
+})();
+</script>
+</body>
+</html>
