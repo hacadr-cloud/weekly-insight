@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>今週のインサイト 2026-09-30</title>
+<style>
+  :root{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E; --accent-bg:#F5EFE3;
+    --sans: system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
+      --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E; --accent-bg:#F5EFE3;
+  }
+  :root[data-theme="dark"]{
+    --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
+    --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
+  }
+  /* Phone-first. Body text sits at 16px (never below -- iOS zooms on focus under 16px and
+     small type is the main complaint on a handset), the column is capped just above a
+     comfortable measure, and side padding stays generous so text never touches the edge. */
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0}
+  .wrap{background:var(--ground);color:var(--ink);font-family:var(--sans);
+    font-size:16px;line-height:1.9;-webkit-font-smoothing:antialiased;
+    padding:1.5rem 1.15rem 4rem;min-height:100vh}
+  .inner{max-width:34rem;margin:0 auto}
+  header{border-bottom:1px solid var(--line);padding-bottom:1.25rem;margin-bottom:1.5rem}
+  .eyebrow{font-size:.72rem;letter-spacing:.16em;color:var(--faint);
+    text-transform:uppercase;margin:0 0 .5rem}
+  h1{font-size:1.4rem;font-weight:700;letter-spacing:-.01em;line-height:1.45;
+    margin:0;text-wrap:balance}
+  .lede{font-size:1rem;color:var(--muted);margin:1.1rem 0 0;line-height:1.95}
+  .picks{display:flex;flex-direction:column;gap:1.15rem}
+  .pick{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.2rem 1.1rem;position:relative}
+  .n{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.1em;margin-bottom:.35rem}
+  .pick h2{font-size:1.12rem;font-weight:700;line-height:1.6;margin:0 0 .7rem;
+    letter-spacing:-.005em;text-wrap:balance}
+  /* No justify: on a narrow screen it opens rivers of white space between Japanese runs. */
+  .sum{font-size:1rem;color:var(--ink)}
+  .sum p{margin:0 0 .95rem}
+  .sum p:last-child{margin-bottom:0}
+  .sum .blist{list-style:none;margin:0 0 1rem;padding:0;display:flex;
+    flex-direction:column;gap:.5rem}
+  /* 本文中の小見出し: 長い解説を拾い読みできるようにする */
+  .sum .sh{font-size:.94rem;font-weight:700;color:var(--ink);margin:1.5rem 0 .55rem;
+    padding-left:.6rem;border-left:3px solid var(--accent);line-height:1.6}
+  .sum .sh:first-child{margin-top:0}
+  .sum .blist li{position:relative;padding-left:1.1rem;line-height:1.85}
+  .sum .blist li::before{content:"";position:absolute;left:.2rem;top:.75em;
+    width:.32rem;height:.32rem;border-radius:50%;background:var(--accent)}
+  /* 図解の崩れ防止: 長い語も枠内で折り返し、幅が足りなければ横スクロールさせる */
+  .fig *{overflow-wrap:anywhere;word-break:normal;min-width:0}
+  /* 図解: CSS で組む（SVGだと縮小して読めなくなる）。縦積みなので幅の狭い画面でも崩れない */
+  .fig{margin:.9rem 0 1rem;padding:.9rem .85rem;border:1px solid var(--line);
+    border-radius:12px;background:var(--ground)}
+  .fig-t{font-size:.76rem;font-weight:700;letter-spacing:.06em;color:var(--accent);
+    margin-bottom:.7rem}
+  .fig-c{font-size:.78rem;color:var(--muted);margin-top:.7rem;line-height:1.7}
+  .flow{display:flex;flex-direction:column;align-items:stretch;gap:.3rem}
+  .flow .step{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .7rem;text-align:center}
+  .flow .step b{display:block;font-size:.9rem;font-weight:700}
+  .flow .step span{display:block;font-size:.78rem;color:var(--muted);margin-top:.15rem;
+    line-height:1.6}
+  .flow .arr{text-align:center;color:var(--accent);font-size:.9rem;line-height:1}
+  /* 2x2 マトリクス: 経営フレームの定番。軸ラベルを外側に置いて象限を読ませる */
+  .mtx{display:flex;flex-direction:column;gap:.3rem}
+  .mtx .ylab{font-size:.72rem;color:var(--muted);text-align:center}
+  .mtx .grid{display:grid;grid-template-columns:1fr 1fr;gap:.35rem}
+  .mtx .mcell{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .6rem;min-height:3.6rem;display:flex;flex-direction:column;
+    justify-content:center}
+  .mtx .mcell.empty{background:transparent;border-style:dashed;opacity:.5}
+  .mtx .mcell b{font-size:.86rem;font-weight:700;line-height:1.5}
+  .mtx .mcell span{font-size:.76rem;color:var(--muted);margin-top:.2rem;line-height:1.55}
+  .mtx .xlabs{display:flex;justify-content:space-between;font-size:.72rem;
+    color:var(--muted);padding:0 .2rem}
+  /* 横棒: 研究の効果量・前後差を数字で見せる */
+  .bars{display:flex;flex-direction:column;gap:.5rem}
+  .brow{display:flex;flex-direction:column;gap:.2rem}
+  .blab{font-size:.84rem;font-weight:600}
+  .blab .bnote{font-weight:400;color:var(--muted);font-size:.76rem;margin-left:.4rem}
+  /* grid: the bar track takes the leftover width and the number never wraps under it.
+     A percentage width inside a flex row was being resolved against the wrong box, which is
+     what made the bars overflow on a phone. */
+  .btrack{display:grid;grid-template-columns:minmax(0,1fr) max-content;gap:.55rem;
+    align-items:center}
+  .bwrap{background:var(--line);border-radius:5px;height:1.35rem;overflow:hidden;width:100%}
+  .bbar{height:100%;background:var(--accent);border-radius:5px;opacity:.9}
+  .bval{font-size:.82rem;font-weight:700;color:var(--accent);
+    font-variant-numeric:tabular-nums}
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
+  .cmp .col{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .65rem}
+  .cmp .ch{font-size:.78rem;font-weight:700;color:var(--accent);margin-bottom:.4rem;
+    padding-bottom:.35rem;border-bottom:1px solid var(--line)}
+  .cmp ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.3rem}
+  .cmp li{font-size:.86rem;line-height:1.6;padding-left:.75rem;position:relative}
+  .cmp li::before{content:"・";position:absolute;left:0;color:var(--faint)}
+  .rel{display:flex;flex-direction:column;align-items:center;gap:.55rem}
+  .rel .hub{background:var(--accent);color:var(--card);border-radius:999px;
+    padding:.5rem 1.1rem;font-size:.9rem;font-weight:700}
+  .rel .sats{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem}
+  .rel .sat{background:var(--card);border:1px solid var(--line);border-radius:999px;
+    padding:.35rem .75rem;font-size:.84rem}
+  @media (max-width:380px){ .cmp{grid-template-columns:1fr} }
+  /* Tap target: a bare inline link is hard to hit on a phone, so give it real height. */
+  .src{display:inline-block;margin-top:1rem;font-size:.86rem;color:var(--muted);
+    text-decoration:none;border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .8rem;line-height:1.5;word-break:break-word}
+  .src:hover{color:var(--accent);border-color:var(--accent)}
+  /* 今週の論文: 定義リストで「問い／検証／結果／含意／留意」を固定の型に見せる */
+  .papers{margin-top:2.2rem}
+  .sec{font-size:.78rem;font-weight:700;letter-spacing:.14em;color:var(--accent);
+    margin:0 0 .9rem;padding-bottom:.5rem;border-bottom:1px solid var(--line)}
+  .paper{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.1rem 1.05rem;margin-bottom:1rem}
+  .paper h3{font-size:1.02rem;font-weight:700;line-height:1.6;margin:0 0 .3rem;
+    text-wrap:balance}
+  .paper .auth{font-size:.78rem;color:var(--faint);margin-bottom:.75rem}
+  .paper dl{margin:0;display:grid;grid-template-columns:max-content minmax(0,1fr);
+    gap:.5rem .8rem;align-items:start}
+  .paper dt{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.08em;
+    padding-top:.15rem;white-space:nowrap}
+  .paper dd{margin:0;font-size:.9rem;line-height:1.8;text-align:justify}
+  .paper .finds{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;
+    gap:.35rem}
+  .paper .finds li{position:relative;padding-left:1rem;line-height:1.75}
+  .paper .finds li::before{content:"";position:absolute;left:.2rem;top:.72em;width:.3rem;
+    height:.3rem;border-radius:50%;background:var(--accent)}
+  @media (max-width:420px){ .paper dl{grid-template-columns:1fr;gap:.15rem .8rem}
+    .paper dt{margin-top:.5rem} }
+  footer{margin-top:2.4rem;padding-top:1.1rem;border-top:1px solid var(--line);
+    font-size:.78rem;color:var(--faint);line-height:1.7}
+  a:focus-visible,.src:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+.fav{appearance:none;-webkit-appearance:none;cursor:pointer;display:inline-flex;
+  align-items:center;justify-content:center;gap:6px;min-width:44px;min-height:44px;
+  padding:0 12px;border-radius:999px;font:inherit;font-size:14px;font-weight:600;
+  background:var(--surface,#fff);color:var(--ink-mut,#6b7280);
+  border:1px solid var(--line,#e5e7eb);line-height:1;}
+.fav:hover{border-color:#f0b429;color:#b26b00;}
+.fav[aria-pressed="true"]{background:#fff8e6;border-color:#f0b429;color:#b26b00;}
+.fav .ic{font-size:16px;line-height:1;}
+.fav-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:14px 0 6px;}
+.fav-bar a.all{font-size:13.5px;color:var(--ink-mut,#6b7280);text-decoration:none;
+  min-height:44px;display:inline-flex;align-items:center;}
+.fav-bar a.all:hover{text-decoration:underline;}
+.fav-mini{appearance:none;-webkit-appearance:none;cursor:pointer;background:none;border:0;
+  padding:6px 8px;margin-left:2px;font-size:15px;line-height:1;color:#c3c8d0;
+  min-width:36px;min-height:36px;}
+.fav-mini[aria-pressed="true"]{color:#f0b429;}
+
+</style>
+</head>
+<body>
+<div class="wrap"><div class="inner">
+  <header>
+    <p class="eyebrow">Weekly Insight</p>
+    <h1>今週のインサイト <span style="color:var(--faint);font-weight:500">2026-09-30</span></h1>
+    <p class="lede">今週もお疲れさまです。今週の論考でいちばん多かった話題は、やはりAIでした。ただ、中身は去年までと変わってきています。「AIで何ができるか」から「AIが入った後、人と組織をどう動かすか」に重心が移りました。そのため今回は、AI関連の市場予測や投資の話はあえて外しています。選んだのは、人・組織・価格・戦略の手法として来年も使えるものです。まず読んでほしいのは、セット販売が効く理由を解いた論考と、「全部で勝とうとしない」戦略論の2本です。どちらも携帯の料金プランや美容室のメニュー設計に、そのまま当てはめられます。次に、最低賃金が上がったとき会社の中で何が起きるかを示した研究と、昇進をためらう部下の見方を読むと、店長の育て方を考える材料がそろいます。最後に、変化を脅威と感じる組織の心理、職場の「みんなが知っている」の作り方、同調を破る少数派の役割の3本を読んでください。どれも、店舗を増やすときに必ずぶつかる壁の話です。</p>
+    <div class="fav-bar"><button class="fav" data-fav data-url="https://hacadr-cloud.github.io/weekly-insight/2026-09-30.html" data-title="週次インサイト 2026-09-30" data-kind="insight" data-date="2026-09-30" aria-pressed="false"><span class="ic">☆</span><span class="tx">あとで読む</span></button><a class="all" href="favorites.html">保存した記事を見る →</a></div>
+  </header>
+  <div class="picks">
+    <article class="pick">
+      <div class="n">1</div>
+      <h2>企業がセット販売を選ばせる本当の理由</h2>
+      <div class="fig"><div class="fig-t">セット販売の見方</div><div class="cmp"><div class="col"><div class="ch">よくある見方</div><ul><li>余り物を売る手段</li><li>客に不要な物を買わせる</li><li>安売りの一種</li></ul></div><div class="col"><div class="ch">研究が示すこと</div><ul><li>好みの差を合計で均す</li><li>単品を残すと利益が高い</li><li>選ぶ手間を減らす価値</li></ul></div></div><div class="fig-c">右列が、セット販売が効く仕組みの説明</div></div>
+      <div class="sum"><h3 class="sh">何が問題だったのか</h3><p>スマホと回線、カットとトリートメント。企業はよく「セットで買うと得」という売り方をします。客の側から見ると、欲しくない物まで買わされている気がします。</p><p>それでもセット販売がなくならないのはなぜか。シカゴ大学ブースの論考は、この疑問を経済学の研究から説明しています。単なる「抱き合わせで在庫を売りたい」という話ではない、というのが出発点です。</p><h3 class="sh">どう考えるのか</h3><p>鍵になるのは、客によって「いくら払ってよいか」の感じ方がバラバラだという点です。経済学では1960〜70年代から研究されてきたテーマです（スティグラー、アダムズとイエレンの古典的研究）。</p><p>単純な数字で考えます（説明のための例です）。</p><ul class="blist"><li>客Aはカットに5,000円、トリートメントに2,000円まで払ってよい</li><li>客Bはカットに3,000円、トリートメントに4,000円まで払ってよい</li><li>2人とも、合計ではちょうど7,000円まで払ってよい</li></ul><p>別々に値段を付けると、どちらの品目でも片方の客を逃すか、安く売るしかありません。セットで7,000円にすると、2人とも買い、取りこぼしが消えます。</p><h3 class="sh">分かったこと</h3><p>研究から分かっているのは次のことです。</p><ul class="blist"><li>払ってよい額が品目ごとにばらつき、しかも客ごとに逆向きにずれているほど、セットの効果が大きい</li><li>品目が増えるほど、合計額のばらつきは平均に近づく。そのため値段を付けやすくなる</li><li>セットだけで売る（純粋バンドル）より、単品も残す（混合バンドル）ほうが利益が高い場面が多い</li><li>単品の値段を高めに置くと、セットが「得」に見える。単品は比較の物差しの役も担う</li></ul><h3 class="sh">なぜそうなるのか</h3><p>企業は、客一人ひとりが払ってよい額を知りません。セットにすると、客の好みの違いが合計の中で打ち消し合います。その結果、読みにくい客の気持ちが読みやすくなります。</p><p>もう一つは選ぶ手間です。品目が多いと、客は比べるのに疲れます。「このセットでいい」と決めやすい形を示すと、それ自体が価値になります。</p><h3 class="sh">具体的な場面</h3><p>携帯販売なら、端末・回線・光回線・でんきのセット割がまさにこの構造です。どれにいくら払ってよいかは客ごとに違います。それでも合計では納得する水準があるわけです。</p><p>美容室なら、カット単品を残したうえで「カット＋カラー＋トリートメント」の組み合わせを置くのが、混合バンドルの形です。単品をなくすと、カットだけの客が離れます。</p><h3 class="sh">反論と限界</h3><p>一方で、セットは「要らない物を買わされた」という不満を生みます。特に、解約しにくいセットや、単品の値段がつり上げてあるセットは信頼を削ります。通信業界のセット割が規制を受けてきたのも、この面があるからです。</p><p>また、客の好みが似通っている市場ではセットの効果は小さくなります。常連ばかりの店で全員が同じ組み合わせを頼むなら、わざわざセットにする意味は薄いということです。</p><p>判断の目安は、「客ごとに重視する品目が違うか」と「単品を残しているか」の2点です。</p></div>
+      <a class="src" href="https://news.google.com/rss/articles/CBMikAFBVV95cUxNeFpVbTM5bklXSmpJeWxZRlpOeXctcjJuV2ZBZHAxbkQ4MVZoR1ZaZFJySS00X21tejJqaU5xemdwM1BCUTl3ZXRUbVdGdFRCeFZXV0s0SHpoaF9TZG1GblY0WEVmMW9WdmRHSDU3SldRSVpwZVpYZ1R6MURjVERkdnZOMXNXV1ZqcFBFSjdiYlA?oc=5" target="_blank" rel="noopener">Chicago Booth ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">2</div>
+      <h2>強い戦略は「どこでも勝とう」としない</h2>
+      <div class="fig"><div class="fig-t">何を捨て何を取るか</div><div class="mtx"><div class="ylab top">自社が強い</div><div class="grid"><div class="mcell"><b>過剰投資</b><span>予算を他へ回す</span></div><div class="mcell"><b>勝ち所</b><span>ここで突き抜ける</span></div><div class="mcell"><b>捨てる</b><span>客に説明して割り切る</span></div><div class="mcell"><b>要改善</b><span>最低限まで引き上げる</span></div></div><div class="ylab bot">自社が弱い</div><div class="xlabs"><span>客の重視度が低い</span><span>客の重視度が高い</span></div></div><div class="fig-c">右上に資源を集め、左側は割り切る</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>多くの会社は、客に言われたことを全部良くしようとします。価格も、品揃えも、接客も、立地もです。結果として、どれも平均点で目立たない店になります。</p><p>ハーバード・ビジネス・スクールの論考は、ここに正面から反対します。「最良の戦略は、わざと負ける場所を決めている」という主張です。フランシス・フライらが『Uncommon Service』で「うまくいくには、わざと下手になれ」と説いた考え方に連なります。</p><h3 class="sh">どう調べてきたか</h3><p>この系譜の研究は、サービス業の事例を数多く比較してきました。取り上げられるのは、客の評価が高いのに利益も高い会社です。そうした会社の共通点を探しました。</p><p>共通していたのは、客が評価する項目を並べたとき、はっきりと「捨てた項目」があることです。例として有名なのは次のような会社です。</p><ul class="blist"><li>格安航空会社: 座席指定や機内食を捨て、定時運航と低価格に集中</li><li>会員制の大型店: 品数と接客を捨て、まとめ買いの安さに集中</li><li>高級ホテル: 価格の手頃さを捨て、細やかな対応に集中</li></ul><h3 class="sh">分かったこと</h3><ul class="blist"><li>客は全項目で満点を求めていない。自分が重視する2〜3項目で突き抜けていれば、ほかの弱点を許す</li><li>資源は有限なので、全部で平均以上を狙うと、どこも平均にしかならない</li><li>捨てた項目を客に説明し、納得してもらえる会社ほど長く勝つ</li><li>「何を捨てたか」は競合がまねしにくい。まねると自社の客を失うからだ</li></ul><h3 class="sh">なぜそうなるのか</h3><p>強みと弱みは表裏一体です。安さを極めるには人手を減らす必要があり、手厚い接客とは両立しません。ここで両方を取りに行くと、コストが膨らみ、どちらも中途半端になります。</p><p>逆に、捨てると決めた項目にかけていた予算と人を、勝つ項目に回せます。これが、弱点を持つ会社のほうが強くなる理由です。</p><h3 class="sh">具体的な場面</h3><p>美容室なら、「予約なしで15分以内に案内」を取るのか、「一人の担当が90分かけて向き合う」を取るのか、という選択です。両方を約束すると、席も人も足りなくなります。</p><p>携帯ショップでも、「手続きが速い店」と「じっくり相談できる店」は別物です。どちらで勝つかを店ごとに決めると、スタッフの動き方と評価の仕方も決まります。</p><h3 class="sh">反論と限界</h3><p>捨てた項目があまりに基本的だと、客はそもそも来ません。清潔さや安全、法令順守は「捨ててよい項目」には入りません。</p><p>また、キャリアの代理店のように本部が評価項目を決める業態では、自由に捨てられる範囲は限られます。その場合は、本部の必須項目は守ったうえで、残りの項目で何を取りに行くかを選ぶことになります。</p></div>
+      <a class="src" href="https://news.google.com/rss/articles/CBMinAFBVV95cUxNYVFWWWRXNkNtdkJvNGRNZEg1cUluRElNQVdFX3NBa29Pc0Z6UUxWQ1dxeGVhc0ZtN09iZ2VDYUFBdU9GYUt5TkFEZFZzM3U0M1AwRDFVeWhTVGFocnZlWEZVaWM2M0VYcndULXV5d0M2OUpxeHN6dFc0UEtwT0Y1bmVBQ010ODhwMFBnMExveWVOT3U4VDN6NEtBb3g?oc=5" target="_blank" rel="noopener">学者(米3) ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">3</div>
+      <h2>最低賃金の引上げは会社の中身を作り変える</h2>
+      <div class="fig"><div class="fig-t">会社の中で起きる順番</div><div class="flow"><div class="step"><b>賃金の引上げ</b><span>人の1時間が高くなる</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>仕事の見直し</b><span>割に合わない作業を洗い出す</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>置き換え・投資</b><span>機械やシステムに移す</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>生産性の上昇</b><span>人は価値の高い仕事へ</span></div></div><div class="fig-c">左から右へ、会社が吸収していく流れ</div></div>
+      <div class="sum"><h3 class="sh">何が問題だったのか</h3><p>最低賃金が上がると雇用が減るのか。この問いは経済学で何十年も争われてきました。ただ、議論は「雇用が減るか減らないか」の一点に集中しがちでした。</p><p>VoxEUの論考は視点を変えます。最低賃金が上がったとき、会社の内側で何が起きるのか。人の配置、機械への投資、仕事のやり方がどう変わるのかを見ています。</p><h3 class="sh">どう調べたか</h3><p>この分野の研究は、企業ごとのデータを使って比べます。最低賃金で働く人が多い会社と、少ない会社を並べます。そのうえで、引上げの前後で何が変わったかを追います。</p><p>代表的な先行研究には次のようなものがあります。</p><ul class="blist"><li>ハンガリーで2001年に最低賃金が約6割引き上げられた事例（ハラストシとリンドナーの研究）</li><li>英国で1999年に全国最低賃金が導入された事例</li><li>中国の地域ごとの最低賃金の違いを使った研究</li></ul><h3 class="sh">分かったこと</h3><p>この系譜の研究から見えてきたのは、次のような動きです。</p><ul class="blist"><li>雇用が大きく減るより、会社がやり方を変えて吸収する例が多い</li><li>生産性の低い仕事や工程が削られ、1人当たりの生産性が上がる</li><li>機械やシステムへの投資が増える。人手に頼っていた作業が置き換わる</li><li>価格にも一部転嫁される。とくに地域の客を相手にするサービス業で起きやすい</li><li>一方で、生産性の低い会社は市場から退出しやすくなる</li></ul><h3 class="sh">なぜそうなるのか</h3><p>賃金が上がると、人の1時間の値段が上がります。これまで「人にやらせたほうが安い」と判断していた作業が、割に合わなくなります。</p><p>そこで会社は、誰に何をやらせるかを見直します。単純な作業は機械に移すか、やめる。人には、価値の高い仕事を集める。結果として、会社全体の生産性が底上げされます。</p><h3 class="sh">具体的な場面</h3><p>店舗ビジネスでは、受付・会計・在庫の数え直しなどが見直しの対象になりやすい仕事です。セルフ受付や予約システムを入れる判断は、最低賃金が上がるほど割に合うようになります。</p><p>沖縄や福岡のように最低賃金の上げ幅が大きい地域では、「人を減らすか」ではなく「人に何をさせるか」を先に考えるのが、研究の示す順番です。</p><h3 class="sh">反論と限界</h3><p>雇用への悪影響を強く見る研究も残っています。とくに、若年層や経験の浅い人の採用が減るという指摘は根強くあります。</p><p>また、会社全体の生産性が上がっても、それは弱い会社の退出によるものかもしれません。個々の小さな会社が生き残れるかどうかは、投資に回せる資金があるかに左右されます。</p></div>
+      <a class="src" href="https://news.google.com/rss/articles/CBMilwFBVV95cUxOOEwtcmk4S0M0NWtERGR6VFVVTU00aHpGQzNfVURaUGRoRFBQcWk4TnZJcExMdTZyWFhmTWJyVHMzTlBDTEk2aklPX2JiUUFWeDdVNGFuamQ2bGg4WUxtTWxuRXFxSGZqNXhGNXdoazNCZ2szcTFQOUh4LW42TzBTT09PdEo2cFVmVG9HNTNGbFlXWXQzLWp3?oc=5" target="_blank" rel="noopener">VoxEU ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">4</div>
+      <h2>昇進をためらう部下は未熟か成熟か</h2>
+      <div class="fig"><div class="fig-t">手を挙げる人の見分け方</div><div class="mtx"><div class="ylab top">意欲が高い</div><div class="grid"><div class="mcell"><b>熱意先行</b><span>中身を伝えてから判断</span></div><div class="mcell"><b>即戦力</b><span>任せて支える</span></div><div class="mcell"><b>見送り</b><span>今の役割で活かす</span></div><div class="mcell"><b>慎重型</b><span>不安を解けば伸びる</span></div></div><div class="ylab bot">意欲が低い</div><div class="xlabs"><span>役割の理解が浅い</span><span>役割の理解が深い</span></div></div><div class="fig-c">右下のためらう人は、支援で化けることがある</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>「店長をやってみないか」と声をかけて、断られる。あるいは「まだ自信がない」と言われる。経営者はこれを意欲の不足と受け取りがちです。</p><p>HBRの論考は、この見方に疑問を投げかけます。見出しは「熱意を準備ができている証と取り違えるな。ためらいを野心の欠如と取り違えるな」です。</p><h3 class="sh">どう考えるのか</h3><p>リーダーシップの研究では、昔から「なりたがる人」と「向いている人」はずれることが知られています。自信が強い人ほど選ばれやすいのに、自信と実力の相関は弱いという知見です。</p><p>ためらいには、少なくとも次のような種類があります。</p><ul class="blist"><li>役割の重さを正しく理解しているから、慎重になっている</li><li>今の仕事や家庭との両立に具体的な不安がある</li><li>自分の実力をそもそも低く見積もっている</li><li>本当に人をまとめる仕事に関心がない</li></ul><h3 class="sh">分かったこと</h3><p>論考が示す判断の目安は次のとおりです。</p><ul class="blist"><li>ためらいの理由を具体的に言える人は、役割を理解している証拠であることが多い</li><li>「何が不安か」を聞くと、支援で解決できる不安と、本人の志向の問題とが分けられる</li><li>熱意だけで手を挙げる人は、仕事の中身を知らないまま引き受けている場合がある</li><li>本人が関心を持たないなら、無理に上げないほうが本人にも組織にも良い</li></ul><h3 class="sh">なぜそうなるのか</h3><p>管理職の仕事は、それまでの仕事と中身が大きく変わります。自分で売る・切る仕事から、人を動かす仕事に変わります。</p><p>この変化を想像できる人ほど、慎重になります。逆に、今の仕事の延長だと思っている人ほど、気軽に手を挙げます。ためらいは、変化の大きさを分かっているサインでもあるのです。</p><h3 class="sh">具体的な場面</h3><p>美容室で、指名の多いスタイリストに店長を打診する場面を考えます。本人が「お客様を持てなくなるのが不安」と言うなら、それは解決できる不安です。担当を一部残す、期間を区切って試す、などの手が打てます。</p><p>携帯ショップで、販売成績の高いスタッフが「数字の管理が苦手」と言う場合も同じです。何が苦手かを分解すれば、教えられることと本人に合わないことが分かれます。</p><h3 class="sh">反論と限界</h3><p>もちろん、ためらいが本当に準備不足の表れである場合もあります。慎重さを成熟と決めつけると、打たれ弱い人に重い役を任せる危険があります。</p><p>また、昇進を断ると評価が下がる職場では、本音のためらいが表に出にくくなります。まずは断っても不利にならないと伝えることが、正しく見極める前提になります。</p></div>
+      <a class="src" href="http://hbr.org/2026/09/is-reluctance-to-step-into-leadership-a-sign-of-maturity-or-a-red-flag" target="_blank" rel="noopener">HBR ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">5</div>
+      <h2>外向でも内向でもない「オトロバート」の役割</h2>
+      <div class="fig"><div class="fig-t">三つの人物像</div><div class="cmp"><div class="col"><div class="ch">外向型</div><ul><li>集団で元気になる</li><li>場を盛り上げる</li><li>合意づくりが得意</li></ul></div><div class="col"><div class="ch">内向型</div><ul><li>一人で力を蓄える</li><li>深く考える</li><li>集団には属する</li></ul></div><div class="col"><div class="ch">オトロバート</div><ul><li>集団に染まらない</li><li>前提を疑う</li><li>集団思考を破る</li></ul></div></div><div class="fig-c">右列が、2分類では見落とされてきた人</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>チームの人を「外向型」と「内向型」に分ける見方は広く知られています。ただ、この2分類ではうまく説明できない人がいます。どの集団にも完全には染まらない人です。</p><p>IMDの論考は、精神科医ラミ・カミンスキーが提唱した「オトロバート（otrovert）」という考え方を紹介しています。ラテン語系の「他の」に由来する言葉で、集団の外側に立つ人を指します。</p><h3 class="sh">どういう人か</h3><p>オトロバートは、人付き合いが苦手なわけではありません。一対一なら深く付き合えます。ただ、集団の一員になりきる感覚が持てません。</p><p>特徴として挙げられているのは次の点です。</p><ul class="blist"><li>集団の空気やノリに乗り切れず、一歩引いて見ている</li><li>「みんながそう言うから」で判断しない</li><li>当たり前とされている前提に、素朴な疑問を投げる</li><li>一対一の関係は深いが、大人数の場では疲れやすい</li></ul><h3 class="sh">分かったこと</h3><p>論考が示すチームにとっての価値は次のとおりです。</p><ul class="blist"><li>集団で同じ方向に流れる「集団思考」を破る役を担える</li><li>内側の人が見落とす問題点に気づきやすい</li><li>反対意見を出すことへの心理的な抵抗が小さい</li><li>ただし、組織はこうした人を「協調性がない」と評価しがちで、力を活かしきれていない</li></ul><h3 class="sh">なぜそうなるのか</h3><p>集団に強く属している人ほど、仲間と違う意見を出すことに抵抗を感じます。関係を壊したくないからです。その結果、会議はまとまりやすいのに、判断の誤りに気づきにくくなります。</p><p>オトロバートは、もともと集団への帰属にこだわりが薄い人です。だから、周りに合わせるための遠慮が働きにくい。これが「見えないものが見える」理由だと説明されています。</p><h3 class="sh">具体的な場面</h3><p>店長会議で新しい施策がすんなり決まりかけたとき、「それ、お客様から見て本当に得ですか」と一人だけ聞く人がいる。多くの組織では、そういう人は面倒な人と扱われます。</p><p>論考の立場からすると、その人を会議から外すのではなく、意見を出す役として正式に位置づけるほうがよい。飲み会や全体行事への参加度で評価を下げないことも大事です。</p><h3 class="sh">反論と限界</h3><p>オトロバートは新しい概念で、性格検査として確立したものではありません。研究の蓄積はまだ浅く、当てはまる人の割合も分かっていません。</p><p>また、何にでも異を唱える人と、本当に大事な点を突く人は別物です。役割を与えるなら、指摘の中身で評価する仕組みが要ります。</p></div>
+      <a class="src" href="https://www.imd.org/ibyimd/brain-circuits/neither-extrovert-nor-introvert-why-every-team-needs-an-otrovert/" target="_blank" rel="noopener">IMD ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">6</div>
+      <h2>職場の「みんなが知っている」をどう作るか</h2>
+      <div class="fig"><div class="fig-t">共通知識ができる流れ</div><div class="flow"><div class="step"><b>同じ場で聞く</b><span>全員が同時に受け取る</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>互いに確認</b><span>みんなも聞いたと分かる</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>守る見込み</b><span>他の人もやると信じる</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>一斉に動く</b><span>指示なしで揃う</span></div></div><div class="fig-c">一斉送信では2番目の段階が抜けやすい</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>出社や集合の意味が問い直されています。資料はオンラインで共有できるのに、なぜ集まるのか。リクルートワークス研究所の論考は、「共通知識」という考え方から答えています。</p><p>共通知識とは、単に全員が知っていることではありません。「全員が知っていることを、全員が知っている」状態のことです。この違いが、職場の動き方を大きく変えます。</p><h3 class="sh">どう考えるのか</h3><p>この考え方は、政治学者マイケル・チュウの『儀式と調整』などで知られる理論に基づいています。人が協力して動けるかどうかは、情報の量だけでなく、情報の「共有のされ方」で決まるという理論です。</p><p>違いを整理すると次のようになります。</p><ul class="blist"><li>個別の知識: 一人ひとりは知っているが、他の人も知っているかは分からない</li><li>共有知識: 全員が知っているが、互いに確かめ合っていない</li><li>共通知識: 全員が知っていて、全員がそれを分かっている</li></ul><h3 class="sh">分かったこと</h3><p>論考が示すのは次のような点です。</p><ul class="blist"><li>メールやチャットで一斉に送っても、共通知識にはなりにくい。誰が読んだか分からないからだ</li><li>全員が同じ場で同じ話を聞くと、「みんなも聞いた」という確信が生まれる</li><li>共通知識がある職場では、指示がなくても人が同じ方向に動きやすい</li><li>逆に共通知識がないと、「自分だけやっても損」と考えて誰も動かなくなる</li></ul><h3 class="sh">なぜそうなるのか</h3><p>新しいルールを守るかどうかは、他の人も守るかどうかに左右されます。自分だけ守ると損をする場面が多いからです。</p><p>全員が同じ場で聞いたという事実は、「他の人もこれを知っている、だから守るだろう」という見込みを生みます。この見込みが、協力の土台になります。朝礼や全体会議の本当の役割は、情報を伝えることより、この見込みを作ることにあるのです。</p><h3 class="sh">具体的な場面</h3><p>複数店舗で新しい接客ルールを始めるとき、本部からチャットで通知するだけでは、店ごとに守り方がばらつきます。「他の店は本当にやっているのか」が分からないからです。</p><p>全店長が同じ会議で説明を聞き、その場で質問し合うと、「全店でやる」ことが共通知識になります。沖縄と福岡のように拠点が離れていても、同時にオンラインでつなぎ、顔を見ながら確認するだけで効果は変わります。</p><h3 class="sh">反論と限界</h3><p>集まることにはコストがかかります。移動時間や営業時間の制約がある店舗業では、頻繁に全員を集めるのは現実的ではありません。</p><p>また、共通知識は大事な決まりごとに絞るべきです。何でも全体会議で伝えると、場の重みが薄れ、かえって共通知識が作りにくくなります。</p></div>
+      <a class="src" href="https://news.google.com/rss/articles/CBMif0FVX3lxTE5hSjU3U24tUjJLc0pqRDg3cFExeUsyU2xHcVdWcTlkbTJtazNTc251UUczcjc3TzYyQlNBZV9lWHgyMnRmQkt1TVZtaGk4Q2ZaSUVNaGJJeXItTV92YUJSZGZzOGdYQk9nNTNjY1VObFRwa1B5aGtKYWlhMXBBQTA?oc=5" target="_blank" rel="noopener">リクルートワークス研究所 ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">7</div>
+      <h2>変化を脅威と感じる組織をどう率いるか</h2>
+      <div class="fig"><div class="fig-t">変革の成否の割合</div><div class="bars"><div class="brow"><div class="blab">目標を達成<span class="bnote">推計</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:42.9%"></div></div><span class="bval">30%</span></div></div><div class="brow"><div class="blab">未達・失敗<span class="bnote">推計</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:100.0%"></div></div><span class="bval">70%</span></div></div></div><div class="fig-c">失敗側の多くに「恐れ」が関わると論考は見る</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>組織改革の多くは、期待した成果を出せずに終わります。マッキンゼーは以前から、大規模な変革の成功率はおよそ3割にとどまると指摘してきました。</p><p>今回の論考は、失敗の大きな原因として「恐れ」に焦点を当てています。変化は、働く人にとって脅威に映ります。そのことを理解しない経営者は、自分で変革を壊してしまう、という主張です。</p><h3 class="sh">どう考えるのか</h3><p>組織心理の研究には「脅威・硬直」という古典的な理論があります（ストーら、1981年）。人や組織は脅威を感じると、視野が狭まり、慣れたやり方にしがみつくという理論です。</p><p>脅威を感じた組織では、次のようなことが起きます。</p><ul class="blist"><li>情報を集める範囲が狭くなる。悪い知らせが上がらなくなる</li><li>決定が上に集中し、現場の工夫が止まる</li><li>これまでのやり方を強めることで、不安を打ち消そうとする</li><li>新しい挑戦を避け、失敗しない行動を選ぶ</li></ul><h3 class="sh">分かったこと</h3><p>論考が示す、恐れを和らげる手立ては次のとおりです。</p><ul class="blist"><li>変化の理由を、会社の都合ではなく、働く人にとっての意味で説明する</li><li>何が変わり、何が変わらないのかをはっきり示す</li><li>最初は小さく試し、うまくいった例を見せる</li><li>経営者が自分の不安も率直に語り、恐れを口にしてよい空気を作る</li></ul><h3 class="sh">なぜそうなるのか</h3><p>人は、得をする見込みより、失う恐れのほうを強く感じます。変化で自分の役割や技能が要らなくなるかもしれない、と感じた瞬間、防御の姿勢に入ります。</p><p>この状態で「前向きに挑戦しよう」と呼びかけても届きません。まず恐れを小さくしないと、頭が新しいことを考える余裕を持てないのです。</p><h3 class="sh">具体的な場面</h3><p>店舗にAIの受付や自動の見積もりを入れる場面を考えます。スタッフは「自分の仕事がなくなるのでは」と感じます。ここで効率化の数字だけを示すと、抵抗は強まります。</p><p>代わりに、「受付の手間が減った分、お客様との相談に時間を使ってほしい」と役割の行き先を示す。まず1店舗で試し、その店のスタッフに体験を話してもらう。こうした順番が、論考の勧めるやり方です。</p><h3 class="sh">反論と限界</h3><p>恐れに配慮しすぎると、変革の速度が落ちます。競合が先に動く場面では、ある程度の緊張感を保つことも必要だという見方があります。</p><p>また、成功率3割という数字には、何を成功とするかの定義で揺れがあります。数字そのものより、「脅威を感じると組織は硬くなる」という仕組みを押さえることが大切です。</p></div>
+      <a class="src" href="https://www.mckinsey.com/capabilities/people-and-organization/our-insights/leading-when-change-feels-threatening" target="_blank" rel="noopener">McKinsey ↗</a>
+    </article>
+  </div>
+  <section class="papers"><h2 class="sec">今週の論文</h2>
+    <article class="paper">
+      <h3>噂話の多い職場では成績の水増しが増える</h3>
+      <div class="auth">Sabra Khajehnejad, Stefan Linder, Nicolai J. Foss</div>
+      <dl>
+        <dt>問い</dt><dd>職場の噂話は、人の働き方にどう影響するのか。この研究は、噂話が多い環境では、人が自分の成績を実際よりよく見せようとするのではないかと問いました。噂話は評判を左右します。そのため、評判を守るための不正な操作を招くおそれがあります。管理会計の世界では、成績の数字が正しく報告されることが組織運営の前提です。そのため、この問題は重要です。</dd>
+        <dt>検証</dt><dd>会計学の学術誌『Contemporary Accounting Research』に掲載された研究です。噂話が多い環境と少ない環境を比べ、成績の報告をどう操作するかを検証しています。加えて、周囲の目に合わせて振る舞いを変える傾向（自己モニタリング特性）を測り、その強さで反応が違うかを調べています。対象者の数や実験の具体的な条件は、今回入力された情報からは確認できません。原文での確認が必要です。</dd>
+        <dt>結果</dt><dd><ul class="finds"><li>噂話が多い環境ほど、成績を実際よりよく見せる操作が増える傾向が示されています。評判を気にする圧力が、数字の水増しにつながるという筋書きです。</li><li>この影響は誰にでも同じように出るわけではありません。周囲の目に合わせて振る舞いを変える傾向が強い人ほど、操作に走りやすいとされています。</li><li>逆に、周囲の評価をあまり気にしない人では、噂話の多さによる影響は小さくなります。個人の性格によって、同じ職場でも反応が分かれるということです。</li><li>噂話は非公式な情報の流れであり、制度で直接は止めにくいものです。そのため、評価制度の設計側で工夫する必要があると著者らは示唆しています。</li></ul></dd>
+        <dt>含意</dt><dd>店舗ごとの販売成績や指名数を競わせる職場では、噂話が評判の圧力を強めます。その結果、数字を盛る行動が起きやすくなります。対策として、自己申告の数字だけで評価しないことが挙げられます。システムの記録と照合する仕組みを持つことも有効です。数字の見栄えを裏で比べ合う空気を放置しないことも、不正を防ぐ手立てになります。</dd>
+        <dt>留意</dt><dd>実験や調査の場面が、実際の職場の噂話をどこまで再現できているかには限界があります。また、今回の要約は題名と掲載誌の情報に基づいており、効果の大きさは原文で確かめる必要があります。</dd>
+      </dl>
+      <a class="src" href="https://doi.org/10.1111/1911-3846.70074" target="_blank" rel="noopener">論文5 ↗</a>
+    </article>
+    <article class="paper">
+      <h3>組織の立ち直る力は「今」への注意から生まれる</h3>
+      <div class="auth">Aureliu Sindila, Nicolai J. Foss, Xueyong Zhan</div>
+      <dl>
+        <dt>問い</dt><dd>危機に強い組織は何が違うのか。これまでの研究は、事前の計画や備えを重視してきました。しかし、想定外の危機では計画が役に立たないことも多くあります。この研究は、目の前で起きていることに注意を向ける力が、組織の立ち直る力（レジリエンス）を支えるのではないかと問いました。</dd>
+        <dt>検証</dt><dd>『Journal of Business Research』に掲載された研究です。組織が危機にどう対応したかを、「現在」への向き合い方に注目して分析しています。過去の経験や将来の計画だけでなく、その場での状況把握や即興の判断が、回復にどう効いたかを整理しています。分析の対象となった組織の数や期間は、今回入力された情報からは確認できません。原文での確認が必要です。</dd>
+        <dt>結果</dt><dd><ul class="finds"><li>危機のさなかで立ち直る力を左右するのは、事前の計画の精密さだけではないと示されています。起きていることを正確に捉え、その場で判断を変える力が重要だとされています。</li><li>「今」に注意を向ける組織は、想定と違う事態に早く気づきます。計画に固執する組織より、修正が速くなるという筋書きです。</li><li>この力は個人の資質だけで決まるわけではありません。現場の情報がすぐ上がる仕組みや、判断を現場に任せる権限の配り方にも左右されます。</li><li>計画と即興は対立するものではなく、組み合わせて使うものだと位置づけられています。</li></ul></dd>
+        <dt>含意</dt><dd>台風や停電、システム障害といった突発事態では、マニュアル通りに動けない場面が必ずあります。店長が現場の状況を見てその場で判断できる権限と、状況を本部にすぐ伝える経路の両方を用意しておくことが、立ち直る速さを決めます。計画づくりに加えて、判断を任せる範囲を平時に決めておくことが実務上の要点です。</dd>
+        <dt>留意</dt><dd>概念を整理する性格の強い研究であり、効果の大きさを数値で示したものかどうかは原文で確認が必要です。業種や危機の種類によって、即興の判断がどこまで有効かは変わる可能性があります。</dd>
+      </dl>
+      <a class="src" href="https://doi.org/10.1016/j.jbusres.2026.116541" target="_blank" rel="noopener">論文5 ↗</a>
+    </article>
+    <article class="paper">
+      <h3>AIは新卒の雇用から先に削っている</h3>
+      <div class="auth">National Bureau of Economic Research ワーキングペーパー</div>
+      <dl>
+        <dt>問い</dt><dd>生成AIは、どの働き手の雇用に最初に影響するのか。AIが仕事を奪うかどうかの議論は多いものの、実際の雇用データで確かめた研究はまだ少数です。この研究は、大学を出たばかりの若い働き手に注目しました。経験の浅い人が担う定型的な仕事ほど、AIに置き換えられやすいのではないかという問いです。</dd>
+        <dt>検証</dt><dd>全米経済研究所（NBER）のワーキングペーパーです。AIの影響を受けやすい職種と受けにくい職種で、新卒者の雇用がどう変わったかを比べています。生成AIが広まった2022年末以降の変化を追う設計です。同じテーマの先行研究（スタンフォード大学のブリニョルフソンらの2025年の研究）は、給与計算会社の数百万人規模のデータを使っていました。その研究では、AIの影響を受けやすい職種で22〜25歳の雇用が相対的に約13%減っていました。今回の論文の標本規模と推計値は、原文での確認が必要です。</dd>
+        <dt>結果</dt><dd><ul class="finds"><li>AIの影響を受けやすい職種では、新卒者の雇用の伸びが鈍っていることが示されています。影響は経験の浅い層に先に表れています。</li><li>同じ職種でも、経験を積んだ働き手の雇用は大きく減っていません。AIは、教科書的な知識で足りる仕事から置き換えていると解釈されています。</li><li>AIが人の仕事を補う使われ方をしている職種では、若手への悪影響は小さいとされています。置き換えか補助かで結果が分かれます。</li><li>影響はまだ初期段階です。今後、ほかの層に広がるかどうかは分かっていません。</li></ul></dd>
+        <dt>含意</dt><dd>若手に定型業務を任せながら育てる、という従来の育成の道筋が細くなるおそれがあります。受付や書類作成など、新人が最初に覚える仕事がAIに移ると、経験を積む場が減ります。AIを入れる際には、若手が接客や判断の経験を積める場を意図して残す必要があります。</dd>
+        <dt>留意</dt><dd>米国の大卒者のデータであり、日本の店舗業にそのまま当てはまるとは限りません。また、景気や金利の変化による採用抑制と、AIの影響とを完全には切り分けられていない可能性があります。</dd>
+      </dl>
+      <a class="src" href="https://news.google.com/rss/articles/CBMiSkFVX3lxTFBVR1ZoMmltdDhMUXc4RENrYzVRMGJKYl92QXc4TDNvMGozOE5BUkFoeG5pZEYyMnkyTXN2eGlLN1lNQ21lNU1JbXhB?oc=5" target="_blank" rel="noopener">NBER ↗</a>
+    </article></section>
+  <footer>
+    コンサルティングファーム・ビジネススクール・調査機関の19ソースから、
+    直近7日の公開分を収集し日本語に要約したもの。判断の前に各出典を確認してください。
+  </footer>
+</div></div>
+<script>
+(function(){
+  var KEY = "lsm-favs-v1";
+  function load(){ try { return JSON.parse(localStorage.getItem(KEY)) || []; }
+                   catch(e){ return []; } }
+  function save(v){ try { localStorage.setItem(KEY, JSON.stringify(v)); } catch(e){} }
+  function has(url){ return load().some(function(x){ return x.url === url; }); }
+  function paint(b){
+    var on = has(b.dataset.url);
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+    var ic = b.querySelector(".ic"), tx = b.querySelector(".tx");
+    if (ic) ic.textContent = on ? "\u2605" : "\u2606";
+    if (tx) tx.textContent = on ? "保存済み" : "あとで読む";
+    if (!ic && !tx) b.textContent = on ? "\u2605" : "\u2606";
+  }
+  function toggle(b){
+    var d = b.dataset, list = load(), i = list.findIndex(function(x){ return x.url === d.url; });
+    if (i >= 0) list.splice(i, 1);
+    else list.unshift({url:d.url, title:d.title||d.url, kind:d.kind||"", date:d.date||"",
+                       note:d.note||"", saved:new Date().toISOString().slice(0,10)});
+    save(list); paint(b);
+    if (window.renderFavs) window.renderFavs();
+  }
+  function wire(){
+    var bs = document.querySelectorAll("[data-fav]");
+    for (var i = 0; i < bs.length; i++){
+      (function(b){ paint(b); b.addEventListener("click", function(e){
+        e.preventDefault(); e.stopPropagation(); toggle(b); }); })(bs[i]);
+    }
+  }
+  window.favStore = {load:load, save:save, has:has};
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", wire);
+  else wire();
+})();
+</script>
+</body>
+</html>
