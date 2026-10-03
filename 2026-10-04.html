@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>今週のインサイト 2026-10-04</title>
+<style>
+  :root{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E; --accent-bg:#F5EFE3;
+    --sans: system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
+      --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E; --accent-bg:#F5EFE3;
+  }
+  :root[data-theme="dark"]{
+    --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
+    --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
+  }
+  /* Phone-first. Body text sits at 16px (never below -- iOS zooms on focus under 16px and
+     small type is the main complaint on a handset), the column is capped just above a
+     comfortable measure, and side padding stays generous so text never touches the edge. */
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0}
+  .wrap{background:var(--ground);color:var(--ink);font-family:var(--sans);
+    font-size:16px;line-height:1.9;-webkit-font-smoothing:antialiased;
+    padding:1.5rem 1.15rem 4rem;min-height:100vh}
+  .inner{max-width:34rem;margin:0 auto}
+  header{border-bottom:1px solid var(--line);padding-bottom:1.25rem;margin-bottom:1.5rem}
+  .eyebrow{font-size:.72rem;letter-spacing:.16em;color:var(--faint);
+    text-transform:uppercase;margin:0 0 .5rem}
+  h1{font-size:1.4rem;font-weight:700;letter-spacing:-.01em;line-height:1.45;
+    margin:0;text-wrap:balance}
+  .lede{font-size:1rem;color:var(--muted);margin:1.1rem 0 0;line-height:1.95}
+  .picks{display:flex;flex-direction:column;gap:1.15rem}
+  .pick{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.2rem 1.1rem;position:relative}
+  .n{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.1em;margin-bottom:.35rem}
+  .pick h2{font-size:1.12rem;font-weight:700;line-height:1.6;margin:0 0 .7rem;
+    letter-spacing:-.005em;text-wrap:balance}
+  /* No justify: on a narrow screen it opens rivers of white space between Japanese runs. */
+  .sum{font-size:1rem;color:var(--ink)}
+  .sum p{margin:0 0 .95rem}
+  .sum p:last-child{margin-bottom:0}
+  .sum .blist{list-style:none;margin:0 0 1rem;padding:0;display:flex;
+    flex-direction:column;gap:.5rem}
+  /* 本文中の小見出し: 長い解説を拾い読みできるようにする */
+  .sum .sh{font-size:.94rem;font-weight:700;color:var(--ink);margin:1.5rem 0 .55rem;
+    padding-left:.6rem;border-left:3px solid var(--accent);line-height:1.6}
+  .sum .sh:first-child{margin-top:0}
+  .sum .blist li{position:relative;padding-left:1.1rem;line-height:1.85}
+  .sum .blist li::before{content:"";position:absolute;left:.2rem;top:.75em;
+    width:.32rem;height:.32rem;border-radius:50%;background:var(--accent)}
+  /* 図解の崩れ防止: 長い語も枠内で折り返し、幅が足りなければ横スクロールさせる */
+  .fig *{overflow-wrap:anywhere;word-break:normal;min-width:0}
+  /* 図解: CSS で組む（SVGだと縮小して読めなくなる）。縦積みなので幅の狭い画面でも崩れない */
+  .fig{margin:.9rem 0 1rem;padding:.9rem .85rem;border:1px solid var(--line);
+    border-radius:12px;background:var(--ground)}
+  .fig-t{font-size:.76rem;font-weight:700;letter-spacing:.06em;color:var(--accent);
+    margin-bottom:.7rem}
+  .fig-c{font-size:.78rem;color:var(--muted);margin-top:.7rem;line-height:1.7}
+  .flow{display:flex;flex-direction:column;align-items:stretch;gap:.3rem}
+  .flow .step{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .7rem;text-align:center}
+  .flow .step b{display:block;font-size:.9rem;font-weight:700}
+  .flow .step span{display:block;font-size:.78rem;color:var(--muted);margin-top:.15rem;
+    line-height:1.6}
+  .flow .arr{text-align:center;color:var(--accent);font-size:.9rem;line-height:1}
+  /* 2x2 マトリクス: 経営フレームの定番。軸ラベルを外側に置いて象限を読ませる */
+  .mtx{display:flex;flex-direction:column;gap:.3rem}
+  .mtx .ylab{font-size:.72rem;color:var(--muted);text-align:center}
+  .mtx .grid{display:grid;grid-template-columns:1fr 1fr;gap:.35rem}
+  .mtx .mcell{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .6rem;min-height:3.6rem;display:flex;flex-direction:column;
+    justify-content:center}
+  .mtx .mcell.empty{background:transparent;border-style:dashed;opacity:.5}
+  .mtx .mcell b{font-size:.86rem;font-weight:700;line-height:1.5}
+  .mtx .mcell span{font-size:.76rem;color:var(--muted);margin-top:.2rem;line-height:1.55}
+  .mtx .xlabs{display:flex;justify-content:space-between;font-size:.72rem;
+    color:var(--muted);padding:0 .2rem}
+  /* 横棒: 研究の効果量・前後差を数字で見せる */
+  .bars{display:flex;flex-direction:column;gap:.5rem}
+  .brow{display:flex;flex-direction:column;gap:.2rem}
+  .blab{font-size:.84rem;font-weight:600}
+  .blab .bnote{font-weight:400;color:var(--muted);font-size:.76rem;margin-left:.4rem}
+  /* grid: the bar track takes the leftover width and the number never wraps under it.
+     A percentage width inside a flex row was being resolved against the wrong box, which is
+     what made the bars overflow on a phone. */
+  .btrack{display:grid;grid-template-columns:minmax(0,1fr) max-content;gap:.55rem;
+    align-items:center}
+  .bwrap{background:var(--line);border-radius:5px;height:1.35rem;overflow:hidden;width:100%}
+  .bbar{height:100%;background:var(--accent);border-radius:5px;opacity:.9}
+  .bval{font-size:.82rem;font-weight:700;color:var(--accent);
+    font-variant-numeric:tabular-nums}
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
+  .cmp .col{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .65rem}
+  .cmp .ch{font-size:.78rem;font-weight:700;color:var(--accent);margin-bottom:.4rem;
+    padding-bottom:.35rem;border-bottom:1px solid var(--line)}
+  .cmp ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.3rem}
+  .cmp li{font-size:.86rem;line-height:1.6;padding-left:.75rem;position:relative}
+  .cmp li::before{content:"・";position:absolute;left:0;color:var(--faint)}
+  .rel{display:flex;flex-direction:column;align-items:center;gap:.55rem}
+  .rel .hub{background:var(--accent);color:var(--card);border-radius:999px;
+    padding:.5rem 1.1rem;font-size:.9rem;font-weight:700}
+  .rel .sats{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem}
+  .rel .sat{background:var(--card);border:1px solid var(--line);border-radius:999px;
+    padding:.35rem .75rem;font-size:.84rem}
+  @media (max-width:380px){ .cmp{grid-template-columns:1fr} }
+  /* Tap target: a bare inline link is hard to hit on a phone, so give it real height. */
+  .src{display:inline-block;margin-top:1rem;font-size:.86rem;color:var(--muted);
+    text-decoration:none;border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .8rem;line-height:1.5;word-break:break-word}
+  .src:hover{color:var(--accent);border-color:var(--accent)}
+  /* 今週の論文: 定義リストで「問い／検証／結果／含意／留意」を固定の型に見せる */
+  .papers{margin-top:2.2rem}
+  .sec{font-size:.78rem;font-weight:700;letter-spacing:.14em;color:var(--accent);
+    margin:0 0 .9rem;padding-bottom:.5rem;border-bottom:1px solid var(--line)}
+  .paper{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.1rem 1.05rem;margin-bottom:1rem}
+  .paper h3{font-size:1.02rem;font-weight:700;line-height:1.6;margin:0 0 .3rem;
+    text-wrap:balance}
+  .paper .auth{font-size:.78rem;color:var(--faint);margin-bottom:.75rem}
+  .paper dl{margin:0;display:grid;grid-template-columns:max-content minmax(0,1fr);
+    gap:.5rem .8rem;align-items:start}
+  .paper dt{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.08em;
+    padding-top:.15rem;white-space:nowrap}
+  .paper dd{margin:0;font-size:.9rem;line-height:1.8;text-align:justify}
+  .paper .finds{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;
+    gap:.35rem}
+  .paper .finds li{position:relative;padding-left:1rem;line-height:1.75}
+  .paper .finds li::before{content:"";position:absolute;left:.2rem;top:.72em;width:.3rem;
+    height:.3rem;border-radius:50%;background:var(--accent)}
+  @media (max-width:420px){ .paper dl{grid-template-columns:1fr;gap:.15rem .8rem}
+    .paper dt{margin-top:.5rem} }
+  footer{margin-top:2.4rem;padding-top:1.1rem;border-top:1px solid var(--line);
+    font-size:.78rem;color:var(--faint);line-height:1.7}
+  a:focus-visible,.src:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+.fav{appearance:none;-webkit-appearance:none;cursor:pointer;display:inline-flex;
+  align-items:center;justify-content:center;gap:6px;min-width:44px;min-height:44px;
+  padding:0 12px;border-radius:999px;font:inherit;font-size:14px;font-weight:600;
+  background:var(--surface,#fff);color:var(--ink-mut,#6b7280);
+  border:1px solid var(--line,#e5e7eb);line-height:1;}
+.fav:hover{border-color:#f0b429;color:#b26b00;}
+.fav[aria-pressed="true"]{background:#fff8e6;border-color:#f0b429;color:#b26b00;}
+.fav .ic{font-size:16px;line-height:1;}
+.fav-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:14px 0 6px;}
+.fav-bar a.all{font-size:13.5px;color:var(--ink-mut,#6b7280);text-decoration:none;
+  min-height:44px;display:inline-flex;align-items:center;}
+.fav-bar a.all:hover{text-decoration:underline;}
+.fav-mini{appearance:none;-webkit-appearance:none;cursor:pointer;background:none;border:0;
+  padding:6px 8px;margin-left:2px;font-size:15px;line-height:1;color:#c3c8d0;
+  min-width:36px;min-height:36px;}
+.fav-mini[aria-pressed="true"]{color:#f0b429;}
+
+</style>
+</head>
+<body>
+<div class="wrap"><div class="inner">
+  <header>
+    <p class="eyebrow">Weekly Insight</p>
+    <h1>今週のインサイト <span style="color:var(--faint);font-weight:500">2026-10-04</span></h1>
+    <p class="lede">今週の論考を並べると、二つのことが同時に起きているのが見えてきます。AIが仕事の手を速くする一方で、人が自分で考える力と、出てきたものを確かめる力の価値が上がっていることです。去年までのAIの議論は「使えば速くなる」が中心でした。今年は「速くなった後、人は何を考え、何を確かめるのか」に移っています。もう一つの太い流れは、経営者が自分の言葉と行動のずれをどう扱うかです。半世紀前のアージリスの会議観察が、日本語版で読み直されているのは偶然ではないでしょう。不確実な時代の「勘」を正面から肯定する論考もあり、データ偏重への揺り戻しも感じられます。読む順番としては、まずアージリスの会議の話と経験則の話で、自分の判断の癖を点検してください。次にAIの二本で、新人育成と仕事の任せ方を考えます。最後に、トップ販売員の昇格と後継者育成の二本を読むと、来年の人事を考える材料が揃います。</p>
+    <div class="fav-bar"><button class="fav" data-fav data-url="https://hacadr-cloud.github.io/weekly-insight/2026-10-04.html" data-title="週次インサイト 2026-10-04" data-kind="insight" data-date="2026-10-04" aria-pressed="false"><span class="ic">☆</span><span class="tx">あとで読む</span></button><a class="all" href="favorites.html">保存した記事を見る →</a></div>
+  </header>
+  <div class="picks">
+    <article class="pick">
+      <div class="n">1</div>
+      <h2>幹部の「率直に話そう」は口だけ――265の会議を観察して分かったこと</h2>
+      <div class="fig"><div class="fig-t">言うこととやること</div><div class="cmp"><div class="col"><div class="ch">幹部が語ること</div><ul><li>率直に意見を言う</li><li>新しい案を試す</li><li>部下を信頼する</li></ul></div><div class="col"><div class="ch">会議で起きていること</div><ul><li>本音は口にしない</li><li>前例の範囲で決める</li><li>沈黙を同意とみなす</li></ul></div></div><div class="fig-c">左右の差が本人には見えていない、というのが論考の核心。</div></div>
+      <div class="sum"><h3 class="sh">何が問題だったのか</h3><p>経営幹部に「会議で大事にしていることは何か」と聞くと、ほぼ全員が「率直に意見を言うこと」「新しい案を試すこと」「部下を信頼すること」と答えます。ところが、実際の会議でやっていることはその答えとずれています。これを示したのが、組織学習の研究で知られるクリス・アージリスの古典的な論考です。</p><p>厄介なのは、本人がずれに気づいていないことです。幹部は自分を率直で開かれた人間だと信じています。だから会議が停滞すると、「部下が意見を言わない」「情報が上がってこない」と外に原因を探します。自分の振る舞いを見直す発想にはなりません。</p><h3 class="sh">どう調べたか</h3><p>アージリスは、複数の企業で開かれた実際の意思決定会議を265回以上観察しました。アンケートで「どう振る舞うか」を聞いたのではありません。会議での発言を一つずつ記録し、分類しています。</p><p>分類の軸は大きく二つです。</p><ul class="blist"><li>個人の次元：自分の考えを自分の責任で言うか、気持ちを率直に出すか、新しい考えを試すか</li><li>対人の次元：他人の意見を受け止めるか、相手が率直に話せるよう助けるか、信頼を示すか</li></ul><p>そのうえで、本人たちが語る価値観と、記録された行動を突き合わせました。</p><h3 class="sh">分かったこと</h3><ul class="blist"><li>「自分の考えを言う」「他人の考えに関心を示す」といった無難な行動は多かった</li><li>「気持ちを率直に言う」「新しい考えを試す」「相手を助けて率直にさせる」行動はごくまれだった</li><li>反対意見は正面からは出ず、沈黙・やんわりした同調・会議後の根回しという形で現れた</li><li>幹部自身は、自分の会議は率直で効果的だと評価していた</li></ul><p>つまり、口で語る価値観と、実際に使っている行動の型が食い違っていました。後にアージリスはこれを「信奉理論」と「使用理論」のずれと呼んでいます。</p><h3 class="sh">なぜそうなるのか</h3><p>アージリスの説明は「防衛」です。立場が上の人ほど、失敗や知らないことを見せると立場が危うくなると感じます。そこで自分も相手も傷つかないよう、本音を避けて場を丸く収める行動が身につきます。</p><p>この防衛は、やがて組織全体の暗黙のルールになります。部下は上司の機嫌を読みます。上司は部下の沈黙を同意と受け取ります。誰も嘘をついていないのに、決定の質だけが落ちていきます。</p><h3 class="sh">場面で考える</h3><p>たとえば店長会議で、オーナーが「新しい販売施策をどう思う？率直に言ってくれ」と聞きます。店長たちは「いいと思います」と答えます。しかし会議の後、店では実行されません。オーナーは「やる気がない」と感じます。</p><p>アージリスの見方では、問題は店長ではなく会議の型にあります。過去に反対意見が退けられた経験がある。オーナーが結論を先に言う癖がある。言い出した人が責任を負わされる空気がある。こうした積み重ねが、「その場では同意しておく」行動を合理的にしています。</p><h3 class="sh">処方と、その限界</h3><p>アージリスの解決策は、幹部が自分の会議の記録を聞き、語る価値観と実際の行動のずれを自分の耳で確かめることでした。外部の進行役を交えて振り返り、防衛的な型を少しずつ学び直します。</p><p>ただし、これは1960年代の米国大企業の観察に基づく古典です。オーナーの権限が強い中小企業では、防衛がオーナーに向かう一方向になりやすい。逆に規模が小さい分、直接の対話で崩しやすい面もあります。</p><p>また、録音を相手に突きつけると、信頼関係がない場では防衛をかえって強めます。まずは自分の会議を一度だけ録り、自分の発言の割合と、反対意見が出たときの自分の反応を数えてみる。そこから始めるのが現実的です。</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14897" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">2</div>
+      <h2>先が読めない時ほど、単純な経験則が精緻な分析に勝つ</h2>
+      <div class="fig"><div class="fig-t">経験則と分析の使い分け</div><div class="mtx"><div class="ylab top">環境が変わる</div><div class="grid"><div class="mcell"><b>経験則が優位</b><span>基準を2〜3個に絞る</span></div><div class="mcell"><b>併用</b><span>モデルを短い周期で見直す</span></div><div class="mcell"><b>前例をルール化</b><span>経験を書き出して共有</span></div><div class="mcell"><b>分析が優位</b><span>統計モデルで最適化</span></div></div><div class="ylab bot">環境が安定</div><div class="xlabs"><span>データが少ない</span><span>データが豊富</span></div></div><div class="fig-c">左上に近いほど、単純な経験則の方が当たりやすい。</div></div>
+      <div class="sum"><h3 class="sh">何が問題か</h3><p>経営者は毎日、勘で決めています。しかし多くの人はそれを恥じ、データや精緻なモデルの陰に隠そうとします。IMDの本稿は、先が読めない環境では単純な経験則こそ合理的な場合が多いと論じ、勘を正直に認めるよう勧めています。</p><p>これまでの意思決定の考え方は、情報は多いほどよく、モデルは精緻なほどよいという前提に立ってきました。この前提が成り立つのは、起こりうることとその確率が分かる「リスク」の世界です。確率すら分からない「不確実性」の世界では、この前提が崩れます。</p><h3 class="sh">研究が示してきたこと</h3><p>この主張の土台には、心理学者ゲルト・ギーゲレンツァーらが積み重ねてきた研究があります。代表的なものを挙げます。</p><ul class="blist"><li>資産運用：資金を全銘柄に均等に分ける「1/N」という単純な方法と、14種類の最適化モデルを比べた研究がある。最適化モデルが一貫して1/Nを上回ることはなかった</li><li>顧客の離反予測：「最後の購入から一定期間買っていない客は離反とみなす」という一行のルールが、統計モデルと同等以上に将来の購買を言い当てた</li><li>救急医療：胸痛の患者を集中治療に回すかを3つの質問で決める判断の木が、複雑な点数表より不要な入院を減らした</li></ul><p>いずれも、条件がそろえば「情報を減らした方が当たる」ことを示しています。</p><h3 class="sh">なぜ単純が勝つのか</h3><p>カギは「過去への合わせすぎ」です。データが少なく環境が変わる中では、複雑なモデルは過去の偶然の揺れまで覚え込みます。その結果、未来では外れます。</p><p>単純なルールは、調整するつまみが少ない分だけ偶然に振り回されません。予測の誤りには「狙いの偏り」と「結果のばらつき」があります。単純なルールは偏りが少し大きい代わりに、ばらつきが小さい。先が読めない環境では、ばらつきの方が痛いのです。</p><h3 class="sh">場面で考える</h3><p>美容室の顧客管理を考えます。高価な分析ツールを入れなくても、「前回来店から一定期間来ていない客に連絡する」という一行のルールで、離れかけた客の多くを拾えます。期間は、自店の平均的な来店周期を基準に決めればよいのです。</p><p>新店の出店判断のように前例の少ない決定でも同じです。指標を20個並べて点数化するより、「この条件を満たさなければ出さない」という基準を2〜3個に絞った方が、判断がぶれにくくなります。</p><h3 class="sh">反論と限界</h3><p>単純なルールが勝つのは、次の条件がそろうときです。</p><ul class="blist"><li>データが少ない</li><li>環境が変わりやすい</li><li>予測する対象に偶然の揺れが大きい</li></ul><p>逆に、大量で安定したデータがある領域では統計モデルが勝ちます。毎月ほぼ同じように売れる定番商品の発注などがそうです。</p><p>また、行動経済学には「直感は偏見を生む」という強い立場があります。両者の違いは、勘を検証できるルールに落としているかどうかです。経験則は書き出し、結果と照らして直す。本稿の主張は、勘を隠すのではなく、どの場面でどの経験則を使っているかを組織で共有せよ、ということです。</p></div>
+      <a class="src" href="https://www.imd.org/ibyimd/leadership/decision-making-in-uncertain-times-why-simple-heuristics-often-trump-complex-models/" target="_blank" rel="noopener">IMD ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">3</div>
+      <h2>AIで「できた」新人ほど、AIなしでは考えられなくなる</h2>
+      <div class="fig"><div class="fig-t">AIの使い方と学習効果</div><div class="bars"><div class="brow"><div class="blab">練習：AIそのまま</div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:37.8%"></div></div><span class="bval">48%</span></div></div><div class="brow"><div class="blab">本番：AIそのまま<span class="bnote">AIなしで低下</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:3.0%"></div></div><span class="bval">-17%</span></div></div><div class="brow"><div class="blab">練習：家庭教師型</div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:100.0%"></div></div><span class="bval">127%</span></div></div><div class="brow"><div class="blab">本番：家庭教師型<span class="bnote">差なし</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:3.0%"></div></div><span class="bval">0%</span></div></div></div><div class="fig-c">AIありの練習の伸びは、AIなしの本番の力を表さない。</div></div>
+      <div class="sum"><h3 class="sh">何が問題か</h3><p>生成AIを使うと、新人でもベテランに近い成果物をすぐに出せます。では、その新人は本当に仕事を覚えているのか。VoxEUの本稿は、AI時代に初心者が「考える力」を身につけるにはどうすればよいかを論じています。</p><p>これが見えにくいのは、AIを使っている間は成績が上がって見えるからです。本当の力が分かるのはAIを外したときです。しかし、職場でわざわざAIを外して測る機会はほとんどありません。</p><h3 class="sh">代表的な実験</h3><p>この分野で最もよく引用されるのが、トルコの高校で約1,000人の生徒を対象に行われた実験です。数学の授業で、生徒を3つの組に分けました。</p><ul class="blist"><li>AIをそのまま使える組</li><li>答えを直接言わず、ヒントで導くよう設計したAI（家庭教師型）を使う組</li><li>AIを使わない組</li></ul><p>練習問題はAIを使って解き、その後の本番テストはAIなしで受けます。練習と本番の成績を比べることで、「AIで解けた」と「自分で解ける」を分けて測りました。</p><h3 class="sh">分かったこと</h3><ul class="blist"><li>AIをそのまま使った組は、練習の成績が約48%上がった</li><li>しかし本番テストでは、AIを使わない組より約17%低かった</li><li>家庭教師型AIの組は、練習の成績が約127%上がった</li><li>家庭教師型の組は、本番では使わない組と差がなかった（害は消えたが、上乗せも出なかった）</li></ul><p>もう一つ重要なのは、AIをそのまま使った生徒が、自分の学びが損なわれたと感じていなかったことです。</p><h3 class="sh">なぜそうなるのか</h3><p>AIに答えを出させると、考える過程そのものを飛ばしてしまいます。学習が起きるのは、詰まって、試して、間違える過程です。そこをAIが肩代わりすると、成果物は残っても頭には何も残りません。</p><p>家庭教師型の設計で害が消えたのは、考える過程を生徒側に残したからです。つまり、問題は「AIを使うか」ではなく「誰が考えるか」にあります。</p><h3 class="sh">職場での別の結果</h3><p>一方、米国のコールセンター約5,000人を対象にした研究では、AI支援で生産性が平均14%、経験の浅い担当者では34%上がりました。しかもAIが止まった時間帯にも成績の改善が残っており、AIの提案から応対のコツを学んでいたと解釈されています。</p><p>二つの結果の違いは、AIが「答え」を渡したか、「良いやり方の手本」を見せ続けたかにあると考えられます。</p><h3 class="sh">場面で考える</h3><p>携帯ショップの新人が、料金プランの比較説明をAIに作らせて接客するとします。最初の数週間はスムーズに見えます。しかし、お客様から想定外の質問が来たとき、仕組みを理解していないので答えられません。</p><p>対策は単純です。研修期間は、AIに「答えを書かせる」のではなく「自分の説明を添削させる」使い方に限る。そして月に一度は、AIなしで説明させて確かめる。</p><h3 class="sh">限界</h3><p>上の実験は高校の数学で、期間も一学期程度です。職場の技能でも同じ大きさの差が出るかは分かっていません。また、AIが当たり前の時代には「AIを使いこなす力」こそ技能だという反論もあります。ただし、AIの出力の誤りに気づくには基礎の理解が要る。この点は、どちらの立場でも変わりません。</p></div>
+      <a class="src" href="https://news.google.com/rss/articles/CBMihgFBVV95cUxOTUgtNmFaZXhmM2tka0Zub2xsNUVxSHZkaE5zRzRNcGxzTEhqR2FOcDlfdnNEOEsyMlRqcmlNcWRHXzBOQS1FY2VROWx2Ty1QaEZWbEhHT3VnS1pfVHZKZm1Gektya2dHWXFGbGVrLVJfQ2tLa2wtYXF3bDlFbHV1UGh0SURUZw?oc=5" target="_blank" rel="noopener">VoxEU ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">4</div>
+      <h2>AIエージェントの価値は「時短」ではなく仕事の範囲を広げること</h2>
+      <div class="fig"><div class="fig-t">AIで仕事が変わる順序</div><div class="flow"><div class="step"><b>アシスタント</b><span>情報を返す・人が仕上げる</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>エージェント</b><span>成果物まで自分で作る</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>委任と監督</b><span>任せる範囲と確認役を決める</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>範囲の拡大</b><span>手が回らなかった仕事へ</span></div></div><div class="fig-c">右に進むほど、効果は時短ではなく範囲で測るべきものになる。</div></div>
+      <div class="sum"><h3 class="sh">何が問題か</h3><p>AI導入の効果を「何時間短くなったか」で測る会社は多くあります。しかし、個人の作業が速くなっても、会社の売上や利益が目に見えて動かない。今週はこの壁を扱う論考が複数出ました。DIAMONDハーバード・ビジネス・レビューの本稿は、そもそも時短という物差しが間違っていると論じます。</p><p>本稿が区別するのは二種類のAIです。</p><ul class="blist"><li>AIアシスタント：聞かれたことに情報を返す。仕上げるのは人</li><li>AIエージェント：自分で手順を踏み、完成した成果物まで出す</li></ul><p>アシスタントは既存の作業を速くします。エージェントは、人が担当できる仕事の範囲そのものを広げます。</p><h3 class="sh">どう調べたか</h3><p>筆者らは利用者への調査データをもとに、二種類のAIの使われ方を比較しました。比べた観点は3つです。</p><ul class="blist"><li>自律性：人がどこまで任せているか</li><li>効率性：作業時間がどれだけ短くなったか</li><li>範囲：これまでやれなかった仕事に手を広げたか</li></ul><p>その結果、エージェントの効果は効率よりも範囲に強く表れていました。</p><h3 class="sh">関連する実験</h3><p>同じ方向の結果は、ほかの実験でも出ています。米P&amp;Gの社員776人を対象にした実験では、AIを使った個人が、AIを使わない2人組のチームと同水準の新商品案を出しました。</p><p>さらに、技術系の社員は商業面を、営業系の社員は技術面を取り込んだ案を出すようになりました。AIが専門の壁を越えさせたのです。これはまさに「仕事の範囲が広がる」効果です。</p><h3 class="sh">人の役割はどう変わるか</h3><p>本稿によれば、人の仕事は「実行」から「委任と監督」に移ります。</p><ul class="blist"><li>何をAIに任せるかを決める</li><li>任せる条件と目的を伝える</li><li>出てきた成果物を確かめ、責任を持つ</li></ul><p>この移行が起きないと、浮いた時間は細かな手直しや雑務に吸い込まれます。個人は楽になっても、組織の成果は増えません。同じ週のHBRでも「AIの成果物を確かめる工程こそが新たなボトルネックになる」と論じられています。</p><h3 class="sh">場面で考える</h3><p>美容室の本部で、販促チラシの作成をAIエージェントに任せたとします。時短の発想なら、浮いた時間で別のチラシを作ります。範囲の発想なら、これまで手が回らなかった休眠客向けの店別メッセージや、スタッフ別の指名促進まで広げます。</p><p>そのとき本部の担当者の仕事は、文面を書くことではなくなります。どの店にどんな狙いで出すかを決め、出てきた文面に誤りや表現の問題がないかを確かめる仕事になります。</p><h3 class="sh">限界と注意点</h3><p>範囲が広がるほど、確かめる量も増えます。慣れていない分野の成果物は、誤りに気づきにくいものです。BCGのコンサルタント758人の実験では、AIが得意な課題では質が上がりました。一方、AIが苦手な課題でAIに頼ると、正答率がかえって下がりました。</p><p>任せる範囲を広げるなら、最終確認ができる人を誰にするかを先に決めておく必要があります。また本稿の調査は先進的な利用者が中心とみられ、平均的な職場で同じ結果が出るかは別問題です。</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14664" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">5</div>
+      <h2>トップ販売員を店長にすると店が弱くなる理由と、その乗り越え方</h2>
+      <div class="fig"><div class="fig-t">プレイヤーと指揮者</div><div class="cmp"><div class="col"><div class="ch">プレイヤー</div><ul><li>自分で売る</li><li>自分の数字で評価</li><li>答えを即答する</li></ul></div><div class="col"><div class="ch">指揮者（店長）</div><ul><li>人に売らせる</li><li>チームの数字で評価</li><li>問いで考えさせる</li></ul></div></div><div class="fig-c">右側への切り替えができないことが、昇格後のつまずきの正体。</div></div>
+      <div class="sum"><h3 class="sh">何が問題か</h3><p>一番売る人を店長にする。多くの店で当たり前に行われている人事です。しかし、優秀なプレイヤーが優秀な管理者になるとは限りません。IMDの本稿は、高い成果を上げる人がリーダーに移るときにつまずく理由と、コーチングによる乗り越え方を扱っています。</p><p>本稿の比喩は「演奏者から指揮者へ」です。演奏者は自分の楽器で最高の音を出せば評価されます。指揮者は自分では一音も出さず、全員の音で評価されます。求められる能力がまったく違います。</p><h3 class="sh">データが示すこと</h3><p>この問題には、大規模なデータで裏付けた研究があります。米国の200社以上、数万人の営業職の昇進記録を分析した研究です。</p><ul class="blist"><li>営業成績が高い人ほど、管理職に昇進しやすかった</li><li>しかし、成績の高かった人が管理職になると、その部下の成績はむしろ下がる傾向があった</li><li>会社は、それを承知の上でトップ販売員を昇進させている面があった（昇進が、売る人へのご褒美として機能していたため）</li></ul><p>「人は無能になる地位まで昇進する」という、古くからの皮肉を裏付ける結果です。</p><h3 class="sh">なぜつまずくのか</h3><p>本稿が挙げる壁は、能力よりも習慣です。</p><ul class="blist"><li>自分でやった方が早いので、部下の商談を引き取ってしまう</li><li>自分の成功体験を正解として押し付ける</li><li>自分の数字が評価の拠り所だったので、チームの数字に責任を持つ感覚が育たない</li></ul><p>優秀な人ほど、過去にうまくいったやり方を手放すのが難しいのです。</p><h3 class="sh">どう乗り越えるか</h3><p>本稿は、外部や上司によるコーチングで次の転換を促すことを勧めています。</p><ul class="blist"><li>答えを言う代わりに、問いで部下に考えさせる</li><li>自分の時間の使い方を、売る時間から育てる時間へ意識して移す</li><li>成功の定義を「自分が売った」から「チームが売れた」に書き換える</li></ul><h3 class="sh">場面で考える</h3><p>携帯ショップで、月間販売数トップのスタッフを店長に上げたとします。最初の数か月、本人は難しい客を自分で接客し、店の数字は一時的に保たれます。しかし他のスタッフは育たず、店長が休むと数字が落ちます。</p><p>昇格の前後でできることがあります。昇格前に、新人1人の育成を任せて様子を見る。昇格後の評価に、本人の販売数ではなく部下の成績の伸びを入れる。最初の3か月は、オーナーや先輩店長が週に一度振り返りに付き合う。</p><h3 class="sh">別の見方と限界</h3><p>一方で、小さな店では店長がプレイヤーを兼ねざるを得ません。トップ販売員の店長が手本を見せることで、チームが学ぶ面もあります。問題は兼務そのものではなく、育成に時間を割かないことです。</p><p>また、昇進以外のご褒美がない会社では、トップ販売員を昇進させないと辞めてしまいます。管理職にならずに処遇が上がる道（専門職やトレーナー職）を用意しておくことが、この問題の根本的な対策になります。</p></div>
+      <a class="src" href="https://www.imd.org/ibyimd/coaching-corner/how-high-performers-can-make-the-leap-to-leadership/" target="_blank" rel="noopener">IMD ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">6</div>
+      <h2>後継者は「選ぶ」だけでは育たない――挑戦経験を設計する</h2>
+      <div class="fig"><div class="fig-t">後継候補の見分け方</div><div class="mtx"><div class="ylab top">現職の成果が高い</div><div class="grid"><div class="mcell"><b>優秀だが未熟</b><span>選ぶだけで終わる層</span></div><div class="mcell"><b>本命候補</b><span>経験を振り返らせる</span></div><div class="mcell"><b>今は対象外</b><span>現職で育てる</span></div><div class="mcell"><b>伸びしろ層</b><span>成果より経験を見る</span></div></div><div class="ylab bot">現職の成果が低い</div><div class="xlabs"><span>挑戦経験が少ない</span><span>挑戦経験が多い</span></div></div><div class="fig-c">左上を後継者と見なしてしまうのが典型的な失敗。</div></div>
+      <div class="sum"><h3 class="sh">何が問題か</h3><p>後継者育成というと、多くの会社はまず「誰を候補にするか」を考えます。成績の良い管理職を候補者リストに載せ、研修を受けさせる。パーソル総合研究所の本稿は、それだけでは後継者は育たないと指摘します。足りないのは、候補者に計画的に「挑戦の経験」を積ませる仕組みです。</p><p>選ぶことに力が偏るのは、選考は一度で済み、成果が見えやすいからです。一方、経験を積ませるには数年かかり、その間に業務への影響も出ます。だから後回しになりがちです。</p><h3 class="sh">研究の土台</h3><p>「経営者は経験で育つ」という考え方には、長い研究の蓄積があります。1980年代に米国の研究機関が、成功した経営幹部たちに「自分を最も成長させた出来事」を聞き取りました。そこから広まったのが、成長の源泉はおおよそ次の比率だという経験則です。</p><ul class="blist"><li>7割：仕事上の挑戦経験</li><li>2割：上司や先輩など他者との関わり</li><li>1割：研修や読書</li></ul><p>厳密な数字ではありませんが、研修だけでは育たないという点は多くの研究で一致しています。</p><h3 class="sh">成長につながる挑戦とは</h3><p>成長を生む経験には、共通する型があるとされます。</p><ul class="blist"><li>ゼロから立ち上げる（新店・新規事業）</li><li>立て直す（不振の店・部署）</li><li>担当範囲が一気に広がる（複数店の統括）</li><li>未経験の職能を担う（現場の人が管理部門へ、など）</li></ul><p>いずれも、それまでのやり方が通用しない状況です。本稿の主張は、こうした経験を偶然に任せず、育成の計画として順番に与えるべきだということです。</p><h3 class="sh">選抜だけで失敗する理由</h3><p>現職で優秀な管理職は、今の仕事に最適化しています。そのため、経営者に必要な広い視野や、答えのない状況での判断力を試される機会がありません。候補者リストには載っても、いざ任せると判断が狭い、ということが起きます。</p><p>加えて、経験を与えた後の「振り返り」がないと、挑戦は単なる苦労で終わります。何がうまくいき、なぜそうしたのかを言葉にさせる場が、経験を力に変えます。</p><h3 class="sh">場面で考える</h3><p>沖縄と福岡に店舗を持つ会社で、将来の幹部候補を育てる場面を考えます。優秀な店長を本部に呼ぶだけでは、経験の幅は広がりません。たとえば、次のように順番を設計できます。</p><ul class="blist"><li>1年目：不振店の立て直しを任せる</li><li>2年目：もう一方の地域で新店の立ち上げを担う</li><li>3年目：採用や数値管理など本部機能を一つ持たせる</li></ul><p>それぞれの節目で、オーナーと1時間の振り返りを行います。</p><h3 class="sh">限界</h3><p>挑戦の場は、会社の規模が小さいほど限られます。不振店の立て直しを「練習台」にすれば、失敗のコストは会社が負います。だから、失敗しても致命傷にならない大きさの挑戦から始める必要があります。</p><p>また、挑戦を与えた候補者が他社に引き抜かれるリスクもあります。経験を積ませることと、処遇や将来像を示すことは、セットで考えるべきでしょう。</p></div>
+      <a class="src" href="https://news.google.com/rss/articles/CBMiekFVX3lxTFBoSkczZ1ZsMFBMZkYyU0NQOTN5RTBwMDE1WFVncDNoV3JiYkFyaHNzb2R6Y3RKaV9Sdjd2cWRjVDQtQVdlTHBDSFMzQWo3VTR6YkhZQ3Q4RGZncUEyem5fY2J0eDRkQUNPUTdQSDRyY1l0NkNCLVRSQnpR?oc=5" target="_blank" rel="noopener">パーソル総合研究所 ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">7</div>
+      <h2>組織をまたぐ協業は「橋渡し役」の質で決まる</h2>
+      <div class="fig"><div class="fig-t">協業が事業になる道筋</div><div class="flow"><div class="step"><b>試作品</b><span>アイデアは形になる</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>協業の壁</b><span>目的と言葉が食い違う</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>橋渡し役</b><span>翻訳し第三の案を探す</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>事業化</b><span>双方の強みが生きる</span></div></div><div class="fig-c">二つ目で折衷案に流れるか、三つ目を置けるかが分かれ目。</div></div>
+      <div class="sum"><h3 class="sh">何が問題か</h3><p>優れたアイデアがあり、試作品までは作れた。しかし事業として大きな収益を生むところまで行かない。DIAMONDハーバード・ビジネス・レビューの本稿は、多くの企業が抱えるこの壁を扱っています。</p><p>筆者らによれば、原因は技術ではなく協業です。一つの部門や一社だけでイノベーションを起こすことは難しくなり、他部門や他社と組む場面が増えました。その分、協業の失敗も増えています。</p><h3 class="sh">協業はなぜ失敗するのか</h3><p>協業がうまくいかないとき、よく起きるのは決裂ではありません。むしろ、双方の顔を立てた「折衷案」に収まってしまうことです。</p><ul class="blist"><li>双方の要求を半分ずつ取り入れ、どちらの強みも生きない</li><li>責任の所在があいまいになり、誰も最後まで推さない</li><li>問題が起きても、相手の領分には踏み込まない</li></ul><p>誰も反対していないのに、事業が大きくならない。これが本稿の言う協業の失敗です。</p><h3 class="sh">橋渡し役（ブリッジャー）とは</h3><p>本稿が成否のカギとするのが、筆者らが「ブリッジャー」と呼ぶリーダーです。単なる調整役や連絡係ではありません。</p><ul class="blist"><li>双方の目的と言葉の違いを理解し、互いに翻訳する</li><li>妥協ではなく、両方の強みが生きる第三の案を探す</li><li>どちらの組織にも完全には属さない立場から、全体の成果に責任を持つ</li></ul><h3 class="sh">研究の裏付け</h3><p>組織の境目に立つ人が価値を生むことは、以前から研究で示されています。米国の電機メーカーで、サプライチェーンの管理職673人を調べた研究があります。普段から異なるグループの間をつなぐ立場にいた人ほど、経営陣から高く評価される改善案を出していました。</p><p>異なる集団の情報に触れられる人は、片方の集団の中だけでは思いつかない組み合わせに気づきやすい。ブリッジャーの価値は、この「つなぐ位置」にあります。</p><h3 class="sh">場面で考える</h3><p>携帯販売代理店が、家電量販店の売場で共同キャンペーンを行う場面を考えます。量販店は売場全体の客数と家電の売上を、代理店は回線契約の獲得を、キャリアはブランドの見え方を重視します。</p><p>ここで調整役が各社の要望を足し合わせると、どの目的にも中途半端な企画になります。ブリッジャーなら、「家電購入客に回線の見直しを提案し、浮いた通信費で家電の上位機種を勧める」のような、三者の目的が同時にかなう筋書きを探します。そのためには、各社の評価指標まで理解している必要があります。</p><h3 class="sh">限界と注意点</h3><p>ブリッジャーは、どちらの組織からも「相手寄り」と見られやすく、評価されにくい立場です。成果を個人の調整力に頼ると、その人が抜けた途端に協業が止まります。</p><p>誰をブリッジャーにするかを決めるだけでなく、その人に双方への発言権と、協業全体の成果での評価を与えることが前提になります。また本稿の事例は大企業の新規事業が中心で、小規模な取引関係にどこまで当てはまるかは慎重に見る必要があります。</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14899" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+  </div>
+  
+  <footer>
+    コンサルティングファーム・ビジネススクール・調査機関の19ソースから、
+    直近7日の公開分を収集し日本語に要約したもの。判断の前に各出典を確認してください。
+  </footer>
+</div></div>
+<script>
+(function(){
+  var KEY = "lsm-favs-v1";
+  function load(){ try { return JSON.parse(localStorage.getItem(KEY)) || []; }
+                   catch(e){ return []; } }
+  function save(v){ try { localStorage.setItem(KEY, JSON.stringify(v)); } catch(e){} }
+  function has(url){ return load().some(function(x){ return x.url === url; }); }
+  function paint(b){
+    var on = has(b.dataset.url);
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+    var ic = b.querySelector(".ic"), tx = b.querySelector(".tx");
+    if (ic) ic.textContent = on ? "\u2605" : "\u2606";
+    if (tx) tx.textContent = on ? "保存済み" : "あとで読む";
+    if (!ic && !tx) b.textContent = on ? "\u2605" : "\u2606";
+  }
+  function toggle(b){
+    var d = b.dataset, list = load(), i = list.findIndex(function(x){ return x.url === d.url; });
+    if (i >= 0) list.splice(i, 1);
+    else list.unshift({url:d.url, title:d.title||d.url, kind:d.kind||"", date:d.date||"",
+                       note:d.note||"", saved:new Date().toISOString().slice(0,10)});
+    save(list); paint(b);
+    if (window.renderFavs) window.renderFavs();
+  }
+  function wire(){
+    var bs = document.querySelectorAll("[data-fav]");
+    for (var i = 0; i < bs.length; i++){
+      (function(b){ paint(b); b.addEventListener("click", function(e){
+        e.preventDefault(); e.stopPropagation(); toggle(b); }); })(bs[i]);
+    }
+  }
+  window.favStore = {load:load, save:save, has:has};
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", wire);
+  else wire();
+})();
+</script>
+</body>
+</html>
