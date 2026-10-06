@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>今週のインサイト 2026-10-07</title>
+<style>
+  :root{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E; --accent-bg:#F5EFE3;
+    --sans: system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
+      --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E; --accent-bg:#F5EFE3;
+  }
+  :root[data-theme="dark"]{
+    --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
+    --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
+  }
+  /* Phone-first. Body text sits at 16px (never below -- iOS zooms on focus under 16px and
+     small type is the main complaint on a handset), the column is capped just above a
+     comfortable measure, and side padding stays generous so text never touches the edge. */
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0}
+  .wrap{background:var(--ground);color:var(--ink);font-family:var(--sans);
+    font-size:16px;line-height:1.9;-webkit-font-smoothing:antialiased;
+    padding:1.5rem 1.15rem 4rem;min-height:100vh}
+  .inner{max-width:34rem;margin:0 auto}
+  header{border-bottom:1px solid var(--line);padding-bottom:1.25rem;margin-bottom:1.5rem}
+  .eyebrow{font-size:.72rem;letter-spacing:.16em;color:var(--faint);
+    text-transform:uppercase;margin:0 0 .5rem}
+  h1{font-size:1.4rem;font-weight:700;letter-spacing:-.01em;line-height:1.45;
+    margin:0;text-wrap:balance}
+  .lede{font-size:1rem;color:var(--muted);margin:1.1rem 0 0;line-height:1.95}
+  .picks{display:flex;flex-direction:column;gap:1.15rem}
+  .pick{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.2rem 1.1rem;position:relative}
+  .n{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.1em;margin-bottom:.35rem}
+  .pick h2{font-size:1.12rem;font-weight:700;line-height:1.6;margin:0 0 .7rem;
+    letter-spacing:-.005em;text-wrap:balance}
+  /* No justify: on a narrow screen it opens rivers of white space between Japanese runs. */
+  .sum{font-size:1rem;color:var(--ink)}
+  .sum p{margin:0 0 .95rem}
+  .sum p:last-child{margin-bottom:0}
+  .sum .blist{list-style:none;margin:0 0 1rem;padding:0;display:flex;
+    flex-direction:column;gap:.5rem}
+  /* 本文中の小見出し: 長い解説を拾い読みできるようにする */
+  .sum .sh{font-size:.94rem;font-weight:700;color:var(--ink);margin:1.5rem 0 .55rem;
+    padding-left:.6rem;border-left:3px solid var(--accent);line-height:1.6}
+  .sum .sh:first-child{margin-top:0}
+  .sum .blist li{position:relative;padding-left:1.1rem;line-height:1.85}
+  .sum .blist li::before{content:"";position:absolute;left:.2rem;top:.75em;
+    width:.32rem;height:.32rem;border-radius:50%;background:var(--accent)}
+  /* 図解の崩れ防止: 長い語も枠内で折り返し、幅が足りなければ横スクロールさせる */
+  .fig *{overflow-wrap:anywhere;word-break:normal;min-width:0}
+  /* 図解: CSS で組む（SVGだと縮小して読めなくなる）。縦積みなので幅の狭い画面でも崩れない */
+  .fig{margin:.9rem 0 1rem;padding:.9rem .85rem;border:1px solid var(--line);
+    border-radius:12px;background:var(--ground)}
+  .fig-t{font-size:.76rem;font-weight:700;letter-spacing:.06em;color:var(--accent);
+    margin-bottom:.7rem}
+  .fig-c{font-size:.78rem;color:var(--muted);margin-top:.7rem;line-height:1.7}
+  .flow{display:flex;flex-direction:column;align-items:stretch;gap:.3rem}
+  .flow .step{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .7rem;text-align:center}
+  .flow .step b{display:block;font-size:.9rem;font-weight:700}
+  .flow .step span{display:block;font-size:.78rem;color:var(--muted);margin-top:.15rem;
+    line-height:1.6}
+  .flow .arr{text-align:center;color:var(--accent);font-size:.9rem;line-height:1}
+  /* 2x2 マトリクス: 経営フレームの定番。軸ラベルを外側に置いて象限を読ませる */
+  .mtx{display:flex;flex-direction:column;gap:.3rem}
+  .mtx .ylab{font-size:.72rem;color:var(--muted);text-align:center}
+  .mtx .grid{display:grid;grid-template-columns:1fr 1fr;gap:.35rem}
+  .mtx .mcell{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .6rem;min-height:3.6rem;display:flex;flex-direction:column;
+    justify-content:center}
+  .mtx .mcell.empty{background:transparent;border-style:dashed;opacity:.5}
+  .mtx .mcell b{font-size:.86rem;font-weight:700;line-height:1.5}
+  .mtx .mcell span{font-size:.76rem;color:var(--muted);margin-top:.2rem;line-height:1.55}
+  .mtx .xlabs{display:flex;justify-content:space-between;font-size:.72rem;
+    color:var(--muted);padding:0 .2rem}
+  /* 横棒: 研究の効果量・前後差を数字で見せる */
+  .bars{display:flex;flex-direction:column;gap:.5rem}
+  .brow{display:flex;flex-direction:column;gap:.2rem}
+  .blab{font-size:.84rem;font-weight:600}
+  .blab .bnote{font-weight:400;color:var(--muted);font-size:.76rem;margin-left:.4rem}
+  /* grid: the bar track takes the leftover width and the number never wraps under it.
+     A percentage width inside a flex row was being resolved against the wrong box, which is
+     what made the bars overflow on a phone. */
+  .btrack{display:grid;grid-template-columns:minmax(0,1fr) max-content;gap:.55rem;
+    align-items:center}
+  .bwrap{background:var(--line);border-radius:5px;height:1.35rem;overflow:hidden;width:100%}
+  .bbar{height:100%;background:var(--accent);border-radius:5px;opacity:.9}
+  .bval{font-size:.82rem;font-weight:700;color:var(--accent);
+    font-variant-numeric:tabular-nums}
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
+  .cmp .col{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .65rem}
+  .cmp .ch{font-size:.78rem;font-weight:700;color:var(--accent);margin-bottom:.4rem;
+    padding-bottom:.35rem;border-bottom:1px solid var(--line)}
+  .cmp ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.3rem}
+  .cmp li{font-size:.86rem;line-height:1.6;padding-left:.75rem;position:relative}
+  .cmp li::before{content:"・";position:absolute;left:0;color:var(--faint)}
+  .rel{display:flex;flex-direction:column;align-items:center;gap:.55rem}
+  .rel .hub{background:var(--accent);color:var(--card);border-radius:999px;
+    padding:.5rem 1.1rem;font-size:.9rem;font-weight:700}
+  .rel .sats{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem}
+  .rel .sat{background:var(--card);border:1px solid var(--line);border-radius:999px;
+    padding:.35rem .75rem;font-size:.84rem}
+  @media (max-width:380px){ .cmp{grid-template-columns:1fr} }
+  /* Tap target: a bare inline link is hard to hit on a phone, so give it real height. */
+  .src{display:inline-block;margin-top:1rem;font-size:.86rem;color:var(--muted);
+    text-decoration:none;border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .8rem;line-height:1.5;word-break:break-word}
+  .src:hover{color:var(--accent);border-color:var(--accent)}
+  /* 今週の論文: 定義リストで「問い／検証／結果／含意／留意」を固定の型に見せる */
+  .papers{margin-top:2.2rem}
+  .sec{font-size:.78rem;font-weight:700;letter-spacing:.14em;color:var(--accent);
+    margin:0 0 .9rem;padding-bottom:.5rem;border-bottom:1px solid var(--line)}
+  .paper{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.1rem 1.05rem;margin-bottom:1rem}
+  .paper h3{font-size:1.02rem;font-weight:700;line-height:1.6;margin:0 0 .3rem;
+    text-wrap:balance}
+  .paper .auth{font-size:.78rem;color:var(--faint);margin-bottom:.75rem}
+  .paper dl{margin:0;display:grid;grid-template-columns:max-content minmax(0,1fr);
+    gap:.5rem .8rem;align-items:start}
+  .paper dt{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.08em;
+    padding-top:.15rem;white-space:nowrap}
+  .paper dd{margin:0;font-size:.9rem;line-height:1.8;text-align:justify}
+  .paper .finds{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;
+    gap:.35rem}
+  .paper .finds li{position:relative;padding-left:1rem;line-height:1.75}
+  .paper .finds li::before{content:"";position:absolute;left:.2rem;top:.72em;width:.3rem;
+    height:.3rem;border-radius:50%;background:var(--accent)}
+  @media (max-width:420px){ .paper dl{grid-template-columns:1fr;gap:.15rem .8rem}
+    .paper dt{margin-top:.5rem} }
+  footer{margin-top:2.4rem;padding-top:1.1rem;border-top:1px solid var(--line);
+    font-size:.78rem;color:var(--faint);line-height:1.7}
+  a:focus-visible,.src:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+.fav{appearance:none;-webkit-appearance:none;cursor:pointer;display:inline-flex;
+  align-items:center;justify-content:center;gap:6px;min-width:44px;min-height:44px;
+  padding:0 12px;border-radius:999px;font:inherit;font-size:14px;font-weight:600;
+  background:var(--surface,#fff);color:var(--ink-mut,#6b7280);
+  border:1px solid var(--line,#e5e7eb);line-height:1;}
+.fav:hover{border-color:#f0b429;color:#b26b00;}
+.fav[aria-pressed="true"]{background:#fff8e6;border-color:#f0b429;color:#b26b00;}
+.fav .ic{font-size:16px;line-height:1;}
+.fav-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:14px 0 6px;}
+.fav-bar a.all{font-size:13.5px;color:var(--ink-mut,#6b7280);text-decoration:none;
+  min-height:44px;display:inline-flex;align-items:center;}
+.fav-bar a.all:hover{text-decoration:underline;}
+.fav-mini{appearance:none;-webkit-appearance:none;cursor:pointer;background:none;border:0;
+  padding:6px 8px;margin-left:2px;font-size:15px;line-height:1;color:#c3c8d0;
+  min-width:36px;min-height:36px;}
+.fav-mini[aria-pressed="true"]{color:#f0b429;}
+
+</style>
+</head>
+<body>
+<div class="wrap"><div class="inner">
+  <header>
+    <p class="eyebrow">Weekly Insight</p>
+    <h1>今週のインサイト <span style="color:var(--faint);font-weight:500">2026-10-07</span></h1>
+    <p class="lede">今週の論考を並べると、一つのことがはっきり見えてきます。AIや新しい制度を入れた後、その効果が出るか出ないかを決めるのは道具の性能ではありません。人と組織の側の設計です。
+
+AIの判断に責任を負わされた社員がAIの関与を伏せてしまう話。個人の作業時間は減ったのに会社全体の成果が増えない話。AIそのものが人間と同じように自信過剰だという研究。この三つは同じ問題を別の角度から見たものです。去年までは「AIをどう導入するか」が中心でしたが、今年は「入れた後、なぜ効かないのか」に議論が移りました。
+
+もう一つの柱は、現場で働く人の扱いです。給与が月ごとに上下すると人が辞める、という研究。社会階層の低い人ほど昇給の交渉を避け、交渉すると反発を受けるという実験。部下が育つ店長と育たない店長の違い。どれも歩合給や店舗運営に直接関わるテーマです。
+
+読む順のおすすめは、最初に給与の変動と離職の話です。次に店長の育成、その次にAIの三本へ進んでください。睡眠不足のリーダーの話は最後に、ご自身のこととして読んでいただければと思います。</p>
+    <div class="fav-bar"><button class="fav" data-fav data-url="https://hacadr-cloud.github.io/weekly-insight/2026-10-07.html" data-title="週次インサイト 2026-10-07" data-kind="insight" data-date="2026-10-07" aria-pressed="false"><span class="ic">☆</span><span class="tx">あとで読む</span></button><a class="all" href="favorites.html">保存した記事を見る →</a></div>
+  </header>
+  <div class="picks">
+    <article class="pick">
+      <div class="n">1</div>
+      <h2>給与が月ごとに揺れると人は辞める――変動報酬の隠れたコスト</h2>
+      <div class="fig"><div class="fig-t">変動報酬が離職を生む流れ</div><div class="flow"><div class="step"><b>手取りが揺れる</b><span>施策・季節で月ごとに上下</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>見通せない</b><span>理由が分からず備えられない</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>統制感の喪失</b><span>努力と報酬が結びつかない</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>離職</b><span>平均額が同じでも辞める</span></div></div><div class="fig-c">左から右へ連鎖する。途中の「見通せない」を断つのが最も手軽</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>歩合給やインセンティブは、成果を上げた人に報いる仕組みとして広く使われています。携帯販売の獲得件数に応じた手当、美容室の指名売上に連動する歩合などが典型です。</p><p>これまで変動報酬の議論は「やる気が上がるか」に偏っていました。見落とされてきたのが「毎月の手取りが読めない」こと自体の負担です。平均で見れば十分な額でも、月ごとの振れ幅が大きいと働き手は離れていきます。</p><h3 class="sh">どう調べたのか</h3><p>この研究は、時間給・歩合給で働く人を対象にしています。手取りの月ごとの振れ幅と、その後に辞めたかどうかを突き合わせて分析しました。</p><p>ポイントは比較の取り方です。平均の手取りが同じくらいの人どうしを比べています。そのため「稼げないから辞める」という説明とは切り分けて、「揺れるから辞める」効果を取り出せます。</p><h3 class="sh">分かったこと</h3><ul class="blist"><li>平均収入が同じでも、月ごとの振れ幅が大きい人ほど離職しやすい</li><li>振れ幅が予告なく起きたとき、本人が理由を説明できないときに影響が強い</li><li>不満の中心は金額の少なさではない。「自分ではコントロールできない」という感覚</li></ul><p>著者は、離職を減らすために企業が取れる行動を四つ挙げています。</p><ul class="blist"><li>支給額の見通しを事前に示す（いつ・いくらになりそうかを早めに伝える）</li><li>変動部分の上下に幅を設け、極端な月をならす</li><li>計算方法を本人が追える形で開示する</li><li>シフトや配置など、変動の原因となる決定に本人の声を入れる</li></ul><h3 class="sh">なぜそうなるのか</h3><p>生活費は毎月ほぼ一定です。家賃もローンも、手取りが少ない月を待ってはくれません。収入が揺れると、働き手は「悪い月」に備えて常に気を張ることになります。</p><p>この心理的な負担が、平均額の高さでは埋まりません。さらに「何をすれば増えるのか分からない」状態だと、努力と報酬の結びつきが切れます。歩合の本来の狙いである動機づけも、逆に弱まってしまいます。</p><h3 class="sh">具体的な場面と別の見方</h3><p>たとえば携帯ショップで、キャリアの施策が変わった月に獲得単価が急に下がったとします。スタッフ本人の頑張りは同じでも、手当は大きく減ります。こうしたとき、事前に「来月は単価がこう変わる」と伝えるだけで受け止め方は変わります。</p><p>美容室でも、閑散期の歩合の落ち込みを固定部分で一部支えるやり方があります。これは「ならし」の一例です。</p><p>一方で、変動を小さくしすぎると成果を上げる人ほど不満を持ちます。トップ層の引き留めには大きな歩合が効く、という立場もあります。全員の振れ幅を一律に削るより、下振れの底だけを支える設計のほうが両立させやすいでしょう。</p><h3 class="sh">限界</h3><p>対象は主に時間給・歩合給の層で、管理職や高所得の専門職にそのまま当てはまるとは限りません。また、地域の労働市場で転職先が多いかどうかによって、離職への効き方は変わります。</p></div>
+      <a class="src" href="http://hbr.org/2026/10/research-when-pay-fluctuates-workers-walk-away" target="_blank" rel="noopener">HBR ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">2</div>
+      <h2>部下が育つ店長は何をしているか――関わり方の違い</h2>
+      <div class="fig"><div class="fig-t">育つ店と育たない店</div><div class="cmp"><div class="col"><div class="ch">育たない店の店長</div><ul><li>忙しいと自分で処理</li><li>指示だけで理由を言わない</li><li>失敗を責める</li><li>数字をそのまま伝える</li></ul></div><div class="col"><div class="ch">育つ店の店長</div><ul><li>背伸びの仕事を任せる</li><li>任せた後に短く振り返る</li><li>次の手を一緒に考える</li><li>数字を現場の言葉に直す</li></ul></div></div><div class="fig-c">右列の行動はどれも数分で済む。研修ではなく日常の差</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>店舗ビジネスでは、スタッフの成長はほぼ店長次第です。同じ会社・同じ研修でも、ある店では人が育ち、別の店では辞めていきます。</p><p>にもかかわらず、店長の評価は売上や目標達成率で決まることがほとんどです。「育てる力」は測られず、属人的なセンスとして片づけられてきました。この調査は、育成できる店長の行動を具体的に取り出そうとしたものです。</p><h3 class="sh">どう調べたのか</h3><p>店舗で働くスタッフと店長を対象に調査を行っています。スタッフが「この店で成長できている」と感じているかどうかと、店長の日々の関わり方を突き合わせました。</p><p>見ているのは店長の性格や経歴ではありません。「どんな声かけをしているか」「仕事をどう任せているか」といった、観察できる行動です。</p><h3 class="sh">分かったこと</h3><p>育成できる店長には、共通する行動が見られました。</p><ul class="blist"><li>少し背伸びが必要な仕事を任せる（できることだけをさせない）</li><li>任せた後に放置せず、短い振り返りの場を持つ</li><li>失敗を責めるより、次にどうするかを一緒に考える</li><li>店の目標や数字の意味を、スタッフの言葉に置き換えて伝える</li></ul><p>反対に、育成がうまくいかない店長には次の傾向があります。</p><ul class="blist"><li>忙しいときに自分で処理してしまい、仕事を手放さない</li><li>指示は出すが、なぜそうするのかを説明しない</li></ul><h3 class="sh">なぜそうなるのか</h3><p>人は経験から学びますが、経験しただけでは学びになりません。経験の後に「何が起きたか」「次はどうするか」を言葉にする段階があって、初めて身につきます。</p><p>育つ店の店長は、この振り返りを接客の合間や終礼の数分で回しています。特別な研修ではなく、日常の小さな対話が積み重なっているのです。</p><p>逆に、店長が仕事を抱え込むと、スタッフは挑戦する機会そのものを失います。店長が優秀なプレイヤーであるほど、この罠に落ちやすくなります。</p><h3 class="sh">具体的な場面</h3><p>携帯ショップで考えてみます。料金プランの見直し提案を、入社半年のスタッフに任せる。終わったら五分だけ「お客様は何に迷っていたか」を聞く。これが背伸びと振り返りの組み合わせです。</p><p>美容室なら、アシスタントにカウンセリングの一部を任せ、施術後に「どこで提案できたか」を一緒に振り返ります。</p><h3 class="sh">別の見方と限界</h3><p>「任せる」は人手に余裕がある店でしかできない、という反論はもっともです。繁忙期の店で失敗を許す余地は小さく、任せる範囲は店の状況によって調整が要ります。</p><p>また、この調査はスタッフ本人の「成長実感」を尺度にしています。実際の売上やスキルの伸びとの関係は、別に確かめる必要があります。店長を評価する仕組みに育成の指標を入れるかどうかは、会社として判断すべき点です。</p></div>
+      <a class="src" href="https://news.google.com/rss/articles/CBMijAFBVV95cUxOcnZJem9TREVSeTV0TUVUcmppMWVRZ2VqMURBTFJSOEZGNUtuS29ONDVudXlRRjV5dzc0MTB6SmxmMzJsT0NweXB3cWk5ZDN2d2FsQ2d0OEl5OVRBZk56VFFaVUVmMGhoSkZUTDFhbmJxQUowRDQxejJ5aDZFbTJXTWFPSC1YcVN0S0dqNw?oc=5" target="_blank" rel="noopener">パーソル総合研究所 ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">3</div>
+      <h2>「クラスの天井」――出自で昇給交渉に差が出る仕組み</h2>
+      <div class="fig"><div class="fig-t">交渉と評価の4象限</div><div class="mtx"><div class="ylab top">出自が高い</div><div class="grid"><div class="mcell"><b>機会損失</b><span>黙っていても損は小さい</span></div><div class="mcell"><b>報われる</b><span>要求が自然と受け取られる</span></div><div class="mcell"><b>据え置き</b><span>申し出ないので上がらない</span></div><div class="mcell"><b>逆風</b><span>同じ要求でも反発を受ける</span></div></div><div class="ylab bot">出自が低い</div><div class="xlabs"><span>交渉しない</span><span>交渉する</span></div></div><div class="fig-c">下の二つの象限がどちらも不利。基準で決めれば下段の差が縮む</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>昇進や昇給の差は、本人の能力や努力の差だと考えられがちです。しかし研究によると、育った家庭の社会階層によっても差が生まれます。</p><p>英国では社会学者フリードマンとローリソンが、同じ専門職に就いていても労働者階級出身の人は、恵まれた家庭出身の人より収入が約16%低いことを示しました。この差は学歴や職種をそろえても残ります。本稿は、この「クラスの天井」がどこで生まれるのかを実験で解き明かしています。</p><h3 class="sh">どう調べたのか</h3><p>一連の実験で、二つの場面を分けて調べています。</p><ul class="blist"><li>本人の側：社会階層の低い人は、給与や昇進について自分から交渉するか</li><li>周囲の側：同じ内容の交渉をしたとき、出自によって評価が変わるか</li></ul><p>二つ目の実験では、交渉の文面や条件をそろえています。違うのは出自をうかがわせる情報だけです。これで、評価の差が中身ではなく「誰が言ったか」で生じているかを確かめられます。</p><h3 class="sh">分かったこと</h3><ul class="blist"><li>社会階層の低い人は、そもそも交渉を切り出しにくい</li><li>交渉した場合、同じ内容でも「図々しい」「身の程知らず」と受け取られやすい</li><li>結果として、「交渉しない」と「交渉しても損をする」の両方から不利になる</li></ul><p>つまり、本人に「もっと主張しよう」と促すだけでは解決しません。主張したときに逆風が吹くからです。</p><h3 class="sh">なぜそうなるのか</h3><p>恵まれた家庭で育った人は、要求を口にすることが自然な環境で育っています。一方、資源が限られた環境で育った人は、周囲と協調し、出過ぎないことが身を守る知恵でした。この振る舞いは職場でも続きます。</p><p>評価する側も、無意識に「この人が要求するのはふさわしいか」を出自の印象で判断してしまいます。</p><h3 class="sh">具体的な場面とリーダーの打ち手</h3><p>店舗スタッフの昇給を、本人からの申し出があったときだけ検討する運用を考えてください。申し出る人ほど上がり、黙っている人は据え置かれます。これはまさにクラスの天井を作る仕組みです。</p><p>筆者はリーダーが取るべき行動を四つ挙げています。</p><ul class="blist"><li>交渉に頼らず、昇給・昇格の基準と時期をあらかじめ示す</li><li>「交渉してよい項目」を明示し、全員に同じ情報を渡す</li><li>申し出た人への評価が、言い方や印象で左右されていないか点検する</li><li>出自の違う人が相談できる先輩や窓口を用意する</li></ul><h3 class="sh">別の見方と限界</h3><p>実験の多くは欧米で行われています。日本では交渉そのものが少ないため、差の出方は違う可能性があります。また、交渉を減らして基準で決めると、優秀な人の引き留めが遅れるという懸念もあります。基準の外で例外を認める場合は、その理由を記録に残すとよいでしょう。</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14670" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">4</div>
+      <h2>AIの判断を説明させられる社員は、AIを隠し始める</h2>
+      <div class="fig"><div class="fig-t">説明責任への4つの反応</div><div class="mtx"><div class="ylab top">判断を変える</div><div class="grid"><div class="mcell"><b>伏せる</b><span>AIの関与を言わない</span></div><div class="mcell"><b>距離を取る</b><span>システムのせいにする</span></div><div class="mcell"><b>黙って上書き</b><span>記録に残らず精度不明</span></div><div class="mcell"><b>再解釈</b><span>自分の言葉で言い換える</span></div></div><div class="ylab bot">判断を変えない</div><div class="xlabs"><span>AIを表に出さない</span><span>AIを表に出す</span></div></div><div class="fig-c">左側の二つの象限は会社から見えない。ここが増えるとAIの効果を測れない</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>AIに需要予測や与信、人員配置などを判断させる企業が増えています。その際、判断の結果を顧客や上司に説明する責任は、多くの場合現場の社員が負います。</p><p>ここに葛藤が生まれます。自分が決めたわけではない判断を、自分の名前で正当化しなければなりません。本稿は、この立場に置かれた社員が実際にどう振る舞うかを調べた研究をもとにしています。</p><h3 class="sh">どう調べたのか</h3><p>研究者は、AIの判断を業務に組み込んだ職場で働く社員を観察し、聞き取りを重ねました。焦点は、AIの判断について説明を求められたとき、社員が何を言い、何を言わないかです。</p><h3 class="sh">分かったこと</h3><p>社員の反応は大きく分けて次のとおりでした。</p><ul class="blist"><li>再解釈する：AIの判断を自分の経験に引きつけて言い換え、「自分の判断」として説明する</li><li>伏せる：AIが関わったことを顧客や上司に言わない</li><li>距離を取る：「システムがそう出したので」とAIに責任を押しつける</li><li>上書きする：AIの判断を黙って変え、自分の判断に置き換える</li></ul><p>どの反応も、社員が自分の専門性と信用を守ろうとした結果です。</p><h3 class="sh">なぜそうなるのか</h3><p>「AIの言うとおりにした」と言えば、自分の専門性が軽く見られます。「自分が判断した」と言えば、外れたときの責任を一人で負います。社員はこの板挟みの中で、自分の立場が最も傷つかない言い方を選びます。</p><p>問題は、こうした対応が組織から見えなくなることです。AIが伏せられたり黙って上書きされたりすると、会社は「AIが実際にどれだけ使われ、どれだけ当たったか」を測れなくなります。</p><h3 class="sh">具体的な場面</h3><p>たとえば、AIの来店予測にもとづいて店長がシフトを組むとします。予測が外れて人が足りなかったとき、店長が「AIの予測です」と言えば部下の信頼を失うかもしれません。だから次からは予測を黙って修正し、記録には残しません。</p><p>こうなると、予測の精度が良いのか悪いのか、誰にも分からなくなります。</p><h3 class="sh">筆者の教訓と限界</h3><p>本稿は三つの教訓を挙げています。</p><ul class="blist"><li>AIを使った判断の責任範囲を、導入前に明文化する</li><li>AIの関与を開示しても評価が下がらないことを、上司の振る舞いで示す</li><li>人がAIを上書きした場合は、その理由を記録する仕組みを作る</li></ul><p>ただし、AIの関与を開示すると顧客の信頼が下がる業種もあります。開示の範囲は一律には決められません。また、観察された職場は限られており、AIの判断の重さ（金額や人命）によって反応は変わり得ます。</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14587" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">5</div>
+      <h2>AIで個人の時短が進んでも、会社の成果が増えない理由</h2>
+      <div class="fig"><div class="fig-t">時短と成果のずれ</div><div class="cmp"><div class="col"><div class="ch">期待されたこと</div><ul><li>個人の作業が速くなる</li><li>浮いた時間で成果が増える</li><li>会社全体の生産性が上がる</li></ul></div><div class="col"><div class="ch">実際に起きること</div><ul><li>承認待ちで流れが詰まる</li><li>空き時間が雑務に吸われる</li><li>確認の手間が他人に移る</li></ul></div></div><div class="fig-c">左は個人の視点、右は流れ全体の視点。差は工程のつなぎ目で生まれる</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>生成AIを使うと、資料作成やメールの下書きにかかる時間は確かに減ります。多くの調査で、使った本人は「仕事が速くなった」と答えています。</p><p>ところが、会社全体の売上や利益を見ると、その時短がはっきり表れないことが多いのです。本稿は、個人の時間短縮が組織の成果につながらない理由を三つに整理しています。</p><h3 class="sh">三つの理由</h3><ul class="blist"><li>浮いた時間の使い道が決まっていない：空いた時間は別の雑務や会議に吸い込まれ、成果を生む仕事に回らない</li><li>仕事のつなぎ目で詰まる：一人の作業が速くなっても、承認や確認を待つ時間は変わらない</li><li>品質確認の手間が増える：AIの出力を誰かが確かめる必要があり、その負担が別の人に移る</li></ul><h3 class="sh">なぜそうなるのか</h3><p>仕事は一人で完結するものではなく、何人もの手を経て流れていきます。流れ全体の速さは、最も遅い工程で決まります。</p><p>ある人の資料作成が30分から10分になっても、上司の確認が翌日になるなら、全体の速さは変わりません。個人の時短は、流れの中の一部を速くしただけなのです。</p><p>さらに、空いた時間は放っておくと埋まってしまいます。仕事は与えられた時間いっぱいに膨らむ、という経験則がここでも働きます。</p><h3 class="sh">具体的な場面</h3><p>携帯ショップで、受付時の説明資料をAIで作れるようにしたとします。作成は速くなりましたが、内容がキャリアの規定に合っているかを店長が毎回確認することになりました。結果として、店長の負担が増え、全体の処理件数は変わりません。</p><p>この場合に必要なのは、確認の基準を決めて店長を通さずに済む範囲を広げることです。そして、浮いた時間で何をするか（たとえば来店客への提案件数を増やす）を先に決めておくことです。</p><h3 class="sh">打ち手と別の見方</h3><p>本稿の示唆を手順にすると次のようになります。</p><ul class="blist"><li>導入前に「浮いた時間を何に使うか」を決めて共有する</li><li>個人ではなく、仕事の流れ全体で待ち時間の長い工程を探す</li><li>AIの出力を確認する基準を明文化し、確認の負担を偏らせない</li></ul><p>AIの効果はまだ時間がかかって表れるだけだ、という見方もあります。電気やコンピュータも、組織の仕組みが変わるまで生産性に表れるのに長い年月がかかりました。</p><h3 class="sh">限界</h3><p>本稿は主に事務職を念頭に置いています。接客そのものが中心の店舗業務では、時短の余地も詰まりやすい工程も違います。自社のどの工程にAIを入れるかを見極めるのが先です。</p></div>
+      <a class="src" href="https://news.google.com/rss/articles/CBMiekFVX3lxTE9qVkJpNlhZZTg4YmZZeFgwbzVEcGZLRHQ3OXAtUVlGYldXakcybXhuS0x6NHQtYzdWYU5JU3FKcHhDdzdMZlFrdGFUNXlZUk1WVTNpVlJOeFFqQU9BbjV1WHJpbzRKZVNKVjlKcHNkREV3M0Y1ZldJUjVB?oc=5" target="_blank" rel="noopener">パーソル総合研究所 ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">6</div>
+      <h2>AIも人間と同じく自信過剰――答えの確信度を信じすぎない</h2>
+      <div class="fig"><div class="fig-t">自信と正確さの組み合わせ</div><div class="mtx"><div class="ylab top">自信が高い</div><div class="grid"><div class="mcell"><b>危険地帯</b><span>自信満々で間違う</span></div><div class="mcell"><b>理想</b><span>自信も正確さも高い</span></div><div class="mcell"><b>慎重な誤り</b><span>迷いが見えるので気づける</span></div><div class="mcell"><b>控えめ</b><span>正しいが自信がない</span></div></div><div class="ylab bot">自信が低い</div><div class="xlabs"><span>正確さが低い</span><span>正確さが高い</span></div></div><div class="fig-c">AIは左上に入りやすい。難問ほど左上に寄る</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>AIチャットボットがもっともらしい嘘をつく「幻覚」は、よく知られた問題です。存在しない判例を引用した法律文書や、実在しない論文を挙げたレポートが実際に提出されています。</p><p>しかし、より根深い問題があります。AIは間違えるときも、自信たっぷりに答えるのです。カリフォルニア大学バークレー校ハース経営大学院の研究は、AIの自信の示し方が人間の自信過剰とよく似ていることを示しました。</p><h3 class="sh">どう調べたのか</h3><p>人間の自信過剰の研究では、問題に答えてもらい、同時に「どれくらい自信があるか」を答えてもらいます。そのうえで、自信の高さと実際の正答率を比べます。</p><p>この研究は、同じ方法をAIチャットボットに当てはめました。AIに問題を解かせ、答えと一緒に確信度を言わせて、実際の正答率と比べています。</p><h3 class="sh">分かったこと</h3><ul class="blist"><li>AIが示す確信度は、実際の正答率より高い傾向がある</li><li>難しい問題ほど、自信と正確さのずれが大きくなる</li><li>このパターンは人間の自信過剰とよく似ている</li></ul><p>関連する先行研究では、人間は問題を解き終えた後に自分の出来を振り返り、自信を下方修正できます。一方、AIはこの修正が苦手だという報告もあります。</p><h3 class="sh">なぜそうなるのか</h3><p>AIは人間が書いた大量の文章から学んでいます。人間の文章は、迷いを書かず、断定的に結論を述べるものが多いのです。AIはこの語り口ごと学んでしまいます。</p><p>さらに、AIは利用者に好まれるように調整されています。利用者は迷いのある答えより、はっきりした答えを好みます。その結果、自信のある言い方が強化されます。</p><h3 class="sh">具体的な場面</h3><p>たとえば、労務の規定や補助金の要件をAIに尋ねたとします。AIは条文番号まで挙げて、断定的に答えるでしょう。その答えが正しいかどうかは、言い方の確かさからは判断できません。</p><p>実務での使い方を整理すると、次のようになります。</p><ul class="blist"><li>金額・期限・法令が絡む答えは、必ず一次情報で確かめる</li><li>AIに「確信度」を言わせても、それを信頼の目安にしない</li><li>同じ質問を言い方を変えて二回聞き、答えが揺れるかを見る</li></ul><h3 class="sh">別の見方と限界</h3><p>AIの確信度の精度は、モデルの世代ごとに改善しているという報告もあります。この研究の結果が、最新のモデルにどこまで当てはまるかは注意が必要です。</p><p>また、人間の専門家も自信過剰であることに変わりはありません。重要なのはAIか人間かではなく、誰の答えであれ「確かめる仕組み」を持つことです。</p></div>
+      <a class="src" href="https://newsroom.haas.berkeley.edu/research/ai-chatbots-are-overconfident-like-humans/" target="_blank" rel="noopener">Berkeley Haas ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">7</div>
+      <h2>リーダーの睡眠不足は本人だけでなく部下を傷つける</h2>
+      <div class="fig"><div class="fig-t">リーダーの睡眠不足</div><div class="bars"><div class="brow"><div class="blab">週4晩以上不足<span class="bnote">本研究</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:66.7%"></div></div><span class="bval">40%</span></div></div><div class="brow"><div class="blab">それ以外</div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:100.0%"></div></div><span class="bval">60%</span></div></div></div><div class="fig-c">リーダーの5人に2人が、週の半分以上を睡眠不足で過ごしている</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>睡眠不足は個人の健康の問題として扱われてきました。忙しい経営者が睡眠を削るのは、むしろ当然の努力と見られることさえあります。</p><p>しかし、この研究が示すのは、リーダーの睡眠不足が組織の問題だということです。調査では、リーダーの約40%が週に4晩以上、睡眠が足りていないと答えています。その影響は本人の判断力にとどまらず、部下にまで及びます。</p><h3 class="sh">どう調べたのか</h3><p>リーダーを対象に、睡眠の量と質を尋ねる調査を行いました。あわせて、睡眠と翌日の行動、そして部下の受け止め方との関係を調べています。</p><p>この分野の先行研究では、上司に数日間にわたって睡眠を記録してもらい、同じ期間の部下の評価と照らし合わせる方法が使われてきました。同じ人の「よく眠れた日」と「眠れなかった日」を比べるので、性格の違いでは説明できません。</p><h3 class="sh">分かったこと</h3><ul class="blist"><li>リーダーの約40%が、週4晩以上の睡眠不足を抱えている</li><li>眠れなかった翌日は、部下に対して攻撃的・高圧的になりやすい</li><li>睡眠不足の上司は、部下から「やる気を引き出す力が弱い」と見られやすい</li><li>上司の不機嫌は部下に伝わり、チーム全体の意欲が下がる</li></ul><h3 class="sh">なぜそうなるのか</h3><p>人間が感情を抑える力は、睡眠で回復する資源です。睡眠が足りないと、この資源が回復しないまま一日が始まります。</p><p>その結果、普段なら我慢できる部下のミスに強く反応してしまいます。言葉を選ぶ余裕もなくなります。本人は「今日は忙しかっただけ」と思っていても、部下は上司の態度の変化を敏感に感じ取っています。</p><h3 class="sh">具体的な場面</h3><p>複数の店舗や事業を抱える経営者は、移動や夜遅くの数字確認で睡眠が削られがちです。そうした翌朝に店長会議を開くと、普段より厳しい言葉が出やすくなります。</p><p>本人の自覚がないことが厄介です。睡眠不足の人は、自分の能力の低下を過小評価する傾向があります。</p><p>研究から引き出せる対策は次のとおりです。</p><ul class="blist"><li>睡眠が足りない日は、人事評価や叱責など感情が絡む場面を先に延ばす</li><li>夜遅くの連絡を習慣にしない（部下の睡眠も削るため）</li><li>自分の睡眠時間を、売上と同じく記録して見える化する</li></ul><h3 class="sh">別の見方と限界</h3><p>睡眠の必要量には個人差があり、短い睡眠で問題なく働ける人もいます。ただ、そうした人はごく少数だと考えられています。</p><p>また、調査の多くは自己申告にもとづいています。睡眠不足を自覚していない人もいるため、実際の割合はさらに高い可能性があります。</p></div>
+      <a class="src" href="http://hbr.org/2026/10/research-sleep-deprivation-is-a-leadership-problem" target="_blank" rel="noopener">HBR ↗</a>
+    </article>
+  </div>
+  
+  <footer>
+    コンサルティングファーム・ビジネススクール・調査機関の19ソースから、
+    直近7日の公開分を収集し日本語に要約したもの。判断の前に各出典を確認してください。
+  </footer>
+</div></div>
+<script>
+(function(){
+  var KEY = "lsm-favs-v1";
+  function load(){ try { return JSON.parse(localStorage.getItem(KEY)) || []; }
+                   catch(e){ return []; } }
+  function save(v){ try { localStorage.setItem(KEY, JSON.stringify(v)); } catch(e){} }
+  function has(url){ return load().some(function(x){ return x.url === url; }); }
+  function paint(b){
+    var on = has(b.dataset.url);
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+    var ic = b.querySelector(".ic"), tx = b.querySelector(".tx");
+    if (ic) ic.textContent = on ? "\u2605" : "\u2606";
+    if (tx) tx.textContent = on ? "保存済み" : "あとで読む";
+    if (!ic && !tx) b.textContent = on ? "\u2605" : "\u2606";
+  }
+  function toggle(b){
+    var d = b.dataset, list = load(), i = list.findIndex(function(x){ return x.url === d.url; });
+    if (i >= 0) list.splice(i, 1);
+    else list.unshift({url:d.url, title:d.title||d.url, kind:d.kind||"", date:d.date||"",
+                       note:d.note||"", saved:new Date().toISOString().slice(0,10)});
+    save(list); paint(b);
+    if (window.renderFavs) window.renderFavs();
+  }
+  function wire(){
+    var bs = document.querySelectorAll("[data-fav]");
+    for (var i = 0; i < bs.length; i++){
+      (function(b){ paint(b); b.addEventListener("click", function(e){
+        e.preventDefault(); e.stopPropagation(); toggle(b); }); })(bs[i]);
+    }
+  }
+  window.favStore = {load:load, save:save, has:has};
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", wire);
+  else wire();
+})();
+</script>
+</body>
+</html>
