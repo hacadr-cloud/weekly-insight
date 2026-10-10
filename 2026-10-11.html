@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>今週のインサイト 2026-10-11</title>
+<style>
+  :root{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E; --accent-bg:#F5EFE3;
+    --sans: system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
+      --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E; --accent-bg:#F5EFE3;
+  }
+  :root[data-theme="dark"]{
+    --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
+    --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
+  }
+  /* Phone-first. Body text sits at 16px (never below -- iOS zooms on focus under 16px and
+     small type is the main complaint on a handset), the column is capped just above a
+     comfortable measure, and side padding stays generous so text never touches the edge. */
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0}
+  .wrap{background:var(--ground);color:var(--ink);font-family:var(--sans);
+    font-size:16px;line-height:1.9;-webkit-font-smoothing:antialiased;
+    padding:1.5rem 1.15rem 4rem;min-height:100vh}
+  .inner{max-width:34rem;margin:0 auto}
+  header{border-bottom:1px solid var(--line);padding-bottom:1.25rem;margin-bottom:1.5rem}
+  .eyebrow{font-size:.72rem;letter-spacing:.16em;color:var(--faint);
+    text-transform:uppercase;margin:0 0 .5rem}
+  h1{font-size:1.4rem;font-weight:700;letter-spacing:-.01em;line-height:1.45;
+    margin:0;text-wrap:balance}
+  .lede{font-size:1rem;color:var(--muted);margin:1.1rem 0 0;line-height:1.95}
+  .picks{display:flex;flex-direction:column;gap:1.15rem}
+  .pick{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.2rem 1.1rem;position:relative}
+  .n{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.1em;margin-bottom:.35rem}
+  .pick h2{font-size:1.12rem;font-weight:700;line-height:1.6;margin:0 0 .7rem;
+    letter-spacing:-.005em;text-wrap:balance}
+  /* No justify: on a narrow screen it opens rivers of white space between Japanese runs. */
+  .sum{font-size:1rem;color:var(--ink)}
+  .sum p{margin:0 0 .95rem}
+  .sum p:last-child{margin-bottom:0}
+  .sum .blist{list-style:none;margin:0 0 1rem;padding:0;display:flex;
+    flex-direction:column;gap:.5rem}
+  /* 本文中の小見出し: 長い解説を拾い読みできるようにする */
+  .sum .sh{font-size:.94rem;font-weight:700;color:var(--ink);margin:1.5rem 0 .55rem;
+    padding-left:.6rem;border-left:3px solid var(--accent);line-height:1.6}
+  .sum .sh:first-child{margin-top:0}
+  .sum .blist li{position:relative;padding-left:1.1rem;line-height:1.85}
+  .sum .blist li::before{content:"";position:absolute;left:.2rem;top:.75em;
+    width:.32rem;height:.32rem;border-radius:50%;background:var(--accent)}
+  /* 図解の崩れ防止: 長い語も枠内で折り返し、幅が足りなければ横スクロールさせる */
+  .fig *{overflow-wrap:anywhere;word-break:normal;min-width:0}
+  /* 図解: CSS で組む（SVGだと縮小して読めなくなる）。縦積みなので幅の狭い画面でも崩れない */
+  .fig{margin:.9rem 0 1rem;padding:.9rem .85rem;border:1px solid var(--line);
+    border-radius:12px;background:var(--ground)}
+  .fig-t{font-size:.76rem;font-weight:700;letter-spacing:.06em;color:var(--accent);
+    margin-bottom:.7rem}
+  .fig-c{font-size:.78rem;color:var(--muted);margin-top:.7rem;line-height:1.7}
+  .flow{display:flex;flex-direction:column;align-items:stretch;gap:.3rem}
+  .flow .step{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .7rem;text-align:center}
+  .flow .step b{display:block;font-size:.9rem;font-weight:700}
+  .flow .step span{display:block;font-size:.78rem;color:var(--muted);margin-top:.15rem;
+    line-height:1.6}
+  .flow .arr{text-align:center;color:var(--accent);font-size:.9rem;line-height:1}
+  /* 2x2 マトリクス: 経営フレームの定番。軸ラベルを外側に置いて象限を読ませる */
+  .mtx{display:flex;flex-direction:column;gap:.3rem}
+  .mtx .ylab{font-size:.72rem;color:var(--muted);text-align:center}
+  .mtx .grid{display:grid;grid-template-columns:1fr 1fr;gap:.35rem}
+  .mtx .mcell{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .6rem;min-height:3.6rem;display:flex;flex-direction:column;
+    justify-content:center}
+  .mtx .mcell.empty{background:transparent;border-style:dashed;opacity:.5}
+  .mtx .mcell b{font-size:.86rem;font-weight:700;line-height:1.5}
+  .mtx .mcell span{font-size:.76rem;color:var(--muted);margin-top:.2rem;line-height:1.55}
+  .mtx .xlabs{display:flex;justify-content:space-between;font-size:.72rem;
+    color:var(--muted);padding:0 .2rem}
+  /* 横棒: 研究の効果量・前後差を数字で見せる */
+  .bars{display:flex;flex-direction:column;gap:.5rem}
+  .brow{display:flex;flex-direction:column;gap:.2rem}
+  .blab{font-size:.84rem;font-weight:600}
+  .blab .bnote{font-weight:400;color:var(--muted);font-size:.76rem;margin-left:.4rem}
+  /* grid: the bar track takes the leftover width and the number never wraps under it.
+     A percentage width inside a flex row was being resolved against the wrong box, which is
+     what made the bars overflow on a phone. */
+  .btrack{display:grid;grid-template-columns:minmax(0,1fr) max-content;gap:.55rem;
+    align-items:center}
+  .bwrap{background:var(--line);border-radius:5px;height:1.35rem;overflow:hidden;width:100%}
+  .bbar{height:100%;background:var(--accent);border-radius:5px;opacity:.9}
+  .bval{font-size:.82rem;font-weight:700;color:var(--accent);
+    font-variant-numeric:tabular-nums}
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
+  .cmp .col{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .65rem}
+  .cmp .ch{font-size:.78rem;font-weight:700;color:var(--accent);margin-bottom:.4rem;
+    padding-bottom:.35rem;border-bottom:1px solid var(--line)}
+  .cmp ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.3rem}
+  .cmp li{font-size:.86rem;line-height:1.6;padding-left:.75rem;position:relative}
+  .cmp li::before{content:"・";position:absolute;left:0;color:var(--faint)}
+  .rel{display:flex;flex-direction:column;align-items:center;gap:.55rem}
+  .rel .hub{background:var(--accent);color:var(--card);border-radius:999px;
+    padding:.5rem 1.1rem;font-size:.9rem;font-weight:700}
+  .rel .sats{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem}
+  .rel .sat{background:var(--card);border:1px solid var(--line);border-radius:999px;
+    padding:.35rem .75rem;font-size:.84rem}
+  @media (max-width:380px){ .cmp{grid-template-columns:1fr} }
+  /* Tap target: a bare inline link is hard to hit on a phone, so give it real height. */
+  .src{display:inline-block;margin-top:1rem;font-size:.86rem;color:var(--muted);
+    text-decoration:none;border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .8rem;line-height:1.5;word-break:break-word}
+  .src:hover{color:var(--accent);border-color:var(--accent)}
+  /* 今週の論文: 定義リストで「問い／検証／結果／含意／留意」を固定の型に見せる */
+  .papers{margin-top:2.2rem}
+  .sec{font-size:.78rem;font-weight:700;letter-spacing:.14em;color:var(--accent);
+    margin:0 0 .9rem;padding-bottom:.5rem;border-bottom:1px solid var(--line)}
+  .paper{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.1rem 1.05rem;margin-bottom:1rem}
+  .paper h3{font-size:1.02rem;font-weight:700;line-height:1.6;margin:0 0 .3rem;
+    text-wrap:balance}
+  .paper .auth{font-size:.78rem;color:var(--faint);margin-bottom:.75rem}
+  .paper dl{margin:0;display:grid;grid-template-columns:max-content minmax(0,1fr);
+    gap:.5rem .8rem;align-items:start}
+  .paper dt{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.08em;
+    padding-top:.15rem;white-space:nowrap}
+  .paper dd{margin:0;font-size:.9rem;line-height:1.8;text-align:justify}
+  .paper .finds{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;
+    gap:.35rem}
+  .paper .finds li{position:relative;padding-left:1rem;line-height:1.75}
+  .paper .finds li::before{content:"";position:absolute;left:.2rem;top:.72em;width:.3rem;
+    height:.3rem;border-radius:50%;background:var(--accent)}
+  @media (max-width:420px){ .paper dl{grid-template-columns:1fr;gap:.15rem .8rem}
+    .paper dt{margin-top:.5rem} }
+  footer{margin-top:2.4rem;padding-top:1.1rem;border-top:1px solid var(--line);
+    font-size:.78rem;color:var(--faint);line-height:1.7}
+  a:focus-visible,.src:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+.fav{appearance:none;-webkit-appearance:none;cursor:pointer;display:inline-flex;
+  align-items:center;justify-content:center;gap:6px;min-width:44px;min-height:44px;
+  padding:0 12px;border-radius:999px;font:inherit;font-size:14px;font-weight:600;
+  background:var(--surface,#fff);color:var(--ink-mut,#6b7280);
+  border:1px solid var(--line,#e5e7eb);line-height:1;}
+.fav:hover{border-color:#f0b429;color:#b26b00;}
+.fav[aria-pressed="true"]{background:#fff8e6;border-color:#f0b429;color:#b26b00;}
+.fav .ic{font-size:16px;line-height:1;}
+.fav-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:14px 0 6px;}
+.fav-bar a.all{font-size:13.5px;color:var(--ink-mut,#6b7280);text-decoration:none;
+  min-height:44px;display:inline-flex;align-items:center;}
+.fav-bar a.all:hover{text-decoration:underline;}
+.fav-mini{appearance:none;-webkit-appearance:none;cursor:pointer;background:none;border:0;
+  padding:6px 8px;margin-left:2px;font-size:15px;line-height:1;color:#c3c8d0;
+  min-width:36px;min-height:36px;}
+.fav-mini[aria-pressed="true"]{color:#f0b429;}
+
+</style>
+</head>
+<body>
+<div class="wrap"><div class="inner">
+  <header>
+    <p class="eyebrow">Weekly Insight</p>
+    <h1>今週のインサイト <span style="color:var(--faint);font-weight:500">2026-10-11</span></h1>
+    <p class="lede">今週は「AIを入れた後、人と組織をどう設計し直すか」という問いが、複数の論考に通底していました。去年までは「AIで何が速くなるか」が中心でしたが、今年は「速くなった結果、考える力・育成・顧客との接点がどう変わるか」に重心が移っています。もう一つの流れは人の組み合わせです。優秀な人ほど抱える見えない負荷、エース同士の張り合い、補い合うチーム編成と、個人の能力より配置と関係を扱う論考が並びました。読む順は、まずAIと思考力の話、次にAIで成果を出す人の違い、その後に人材の3本を続けて読むと繋がりが見えます。お断りが一つあります。今回の材料は見出しと要旨だけです。各記事の本文にある数字や手順は確認できていないため、要旨から言えることと、別の既存研究から補った部分を本文中で分けて書きました。字数も指定より短く、作り話で埋めていません。論文枠は、対象の論文が題名しか分からず、方法や結果を正確に書けないため今週は空にしています。</p>
+    <div class="fav-bar"><button class="fav" data-fav data-url="https://hacadr-cloud.github.io/weekly-insight/2026-10-11.html" data-title="週次インサイト 2026-10-11" data-kind="insight" data-date="2026-10-11" aria-pressed="false"><span class="ic">☆</span><span class="tx">あとで読む</span></button><a class="all" href="favorites.html">保存した記事を見る →</a></div>
+  </header>
+  <div class="picks">
+    <article class="pick">
+      <div class="n">1</div>
+      <h2>AIに頼るほど考える力が落ちる問題への備え方</h2>
+      <div class="fig"><div class="fig-t">AI利用と考える力</div><div class="cmp"><div class="col"><div class="ch">力が落ちる使い方</div><ul><li>AIの答えから始める</li><li>出力をそのまま使う</li><li>全員が同じ聞き方をする</li></ul></div><div class="col"><div class="ch">力を保つ使い方</div><ul><li>先に自分の案を書く</li><li>根拠を自分で説明する</li><li>AI案と自案を比べる</li></ul></div></div><div class="fig-c">左右の違いはAIの性能ではなく、使う順番と姿勢にある。</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>AIを使うと仕事は速くなります。しかし、速くなった分だけ人が考えなくなるおそれがあります。この論考はその副作用を正面から扱っています。</p><p>要旨が挙げる懸念は次の3つです。</p><ul class="blist"><li>従業員の専門性が育たなくなる</li><li>視点の多様性が失われる</li><li>批判的に考える力が落ちる</li></ul><p>厄介なのは、短期の数字には表れないことです。作業時間は減り、成果物の見た目も整います。失われるものは数年後にしか見えません。</p><h3 class="sh">材料の範囲</h3><p>今回確認できたのは要旨だけです。記事が紹介する具体的な手法や企業事例の中身は分かりません。以下の数字は、同じテーマの別の研究から補ったものです。</p><h3 class="sh">別の研究で分かっていること</h3><p>マイクロソフトとカーネギーメロン大学は2025年に調査を公表しました。知識労働者319人から、AIを使った936件の仕事の例を集めたものです。</p><p>結果は次のとおりです。</p><ul class="blist"><li>AIを信頼している人ほど、出力を吟味しなくなる</li><li>自分の力に自信がある人ほど、吟味を続ける</li><li>仕事の中身が「作る」から「確認してまとめる」へ移る</li></ul><p>つまり力が落ちるかどうかは、AIの性能より使う側の姿勢で決まります。同じテーマは今週、パーソル総合研究所も「育成阻害」として取り上げています。</p><h3 class="sh">なぜそうなるのか</h3><p>考える力は、使う機会があって初めて保たれます。下書きも要約もAIが出すと、新人は「自分で一度間違える」経験を失います。</p><p>視点の多様性も同じ理屈です。全員が同じAIに同じように尋ねれば、似た答えが集まります。会議で異論が出にくくなります。</p><h3 class="sh">具体的な場面</h3><p>店舗で考えてみます。新人がお客様への提案文をAIに書かせるとします。文面は整いますが、なぜその提案なのかを本人が説明できないことがあります。</p><p>要旨が示す方向は「人がAIに左右されず主体的に向き合える環境を整える」ことです。たとえば先に自分の案を書かせ、その後にAIの案と比べさせる順番が考えられます。これは筆者の例ではなく、要旨の方向に沿った一例です。</p><h3 class="sh">反論と限界</h3><p>反対の見方もあります。電卓や検索が普及した時も同じ心配がありました。空いた時間でより高度な判断に移れるなら、損失とは言えません。</p><p>限界もあります。上の調査は本人の自己申告です。実際に能力が落ちたかを測ったものではありません。長期の影響はまだ誰も確かめていません。</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14586" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">2</div>
+      <h2>AIで最も得をする人は自動化の先で何をしているか</h2>
+      <div class="fig"><div class="fig-t">AI利用の効果（2023年の別実験）</div><div class="bars"><div class="brow"><div class="blab">完了した課題数<span class="bnote">増加</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:30.5%"></div></div><span class="bval">12.2%</span></div></div><div class="brow"><div class="blab">作業の速さ<span class="bnote">短縮</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:62.8%"></div></div><span class="bval">25.1%</span></div></div><div class="brow"><div class="blab">成果物の質<span class="bnote">向上</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:100.0%"></div></div><span class="bval">40%</span></div></div></div><div class="fig-c">AIが得意な課題に限った数字。苦手な課題では正答率が19ポイント下がった。</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>同じAIを配っても、成果には大きな差が出ます。ある人は作業が少し速くなるだけです。別の人は仕事のやり方そのものが変わります。この論考はその差を扱っています。</p><p>要旨によると、最も効果を出す人は自動化で止まりません。次の3つにAIを使っています。</p><ul class="blist"><li>仕事の流れを組み直す</li><li>判断の質を上げる</li><li>新しい能力を身につける</li></ul><h3 class="sh">材料の範囲</h3><p>確認できたのは見出しと要旨の一文だけです。調査の対象や人数は分かりません。以下の数字は、関連する別の研究のものです。</p><h3 class="sh">別の研究が示す数字</h3><p>ハーバード大学などの研究者は2023年、ボストン コンサルティング グループのコンサルタント758人で実験をしました。AIを使う群と使わない群に分け、同じ課題を解かせています。</p><p>AIが得意な課題での結果です。</p><ul class="blist"><li>完了した課題の数が12.2%増えた</li><li>作業が25.1%速くなった</li><li>成果物の質が40%以上高く評価された</li></ul><p>一方、AIが苦手な課題では逆になりました。AIを使った群は、正解にたどり着く割合が19ポイント低くなっています。</p><h3 class="sh">なぜ差がつくのか</h3><p>AIの得意・不得意の境界は外から見えません。簡単そうな仕事で間違え、難しそうな仕事を難なくこなします。</p><p>成果を出す人は、この境界を自分の仕事で試して把握しています。任せる部分と自分で握る部分を分けているのです。今週のマッキンゼーにも「AIの簡単な成功は経営者を誤らせる」という題の論考がありました。</p><h3 class="sh">具体的な場面</h3><p>店長の仕事で考えます。シフト表の作成をAIに任せるのは自動化です。時間は浮きますが、仕事の形は同じです。</p><p>一歩進むと、来店数の傾向とスタッフの得意分野をAIに整理させ、配置の考え方から見直す使い方になります。要旨の言う「仕事の流れを考え直す」はこちらに近いと読めます。</p><h3 class="sh">反論と限界</h3><p>成果を出す人がAIをうまく使うのか、元から優秀な人がそう使うだけなのか。見出しからは区別がつきません。因果の向きには注意が必要です。</p><p>また、上の実験はコンサルタントという特殊な職種です。接客や現場作業に同じ効果量が当てはまる保証はありません。</p></div>
+      <a class="src" href="http://hbr.org/2026/10/what-top-performers-do-differently-with-ai-and-why-they-see-the-biggest-benefits" target="_blank" rel="noopener">HBR ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">3</div>
+      <h2>AIが買い物を代行する時代、顧客は誰のものか</h2>
+      <div class="fig"><div class="fig-t">選ぶ瞬間の移動</div><div class="flow"><div class="step"><b>顧客が要望を伝える</b><span>相手は店ではなくAI</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>AIが条件を比べる</b><span>読める情報だけで判断</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>候補が絞られる</b><span>企業はここに立ち会えない</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>人が担う部分が残る</b><span>設定・故障対応・相談</span></div></div><div class="fig-c">左から右へ、決定の場が企業の手を離れていく流れを示す。</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>これまで企業は、顧客との接点を増やすことに力を入れてきました。アプリ、会員制度、通知、ポイントなどです。接点が多いほど顧客を握れるという前提がありました。</p><p>この論考はその前提を疑います。要旨はこう述べています。買い物客がより多くの判断をAIに任せるようになると、接点の多さはもはや主導権を保証しない。</p><h3 class="sh">材料の範囲</h3><p>確認できたのは見出しと要旨の一文です。筆者が示す枠組みやデータは分かりません。以下は要旨の主張を筋道立てて展開したものです。</p><h3 class="sh">何が変わるのか</h3><p>人が自分で選ぶとき、効くのは次のようなものでした。</p><ul class="blist"><li>目立つ場所に並ぶこと</li><li>広告や接客の印象</li><li>慣れや親しみ</li></ul><p>AIが代わりに選ぶと、これらは効きにくくなります。AIは条件を並べて比べます。価格、仕様、在庫、評価といった、機械が読める情報が物を言います。</p><h3 class="sh">なぜ主導権が移るのか</h3><p>顧客が最初に話しかける相手がAIになるからです。顧客は「月の通信費を下げたい」とAIに伝えます。どの会社を候補に出すかはAIが決めます。</p><p>企業は顧客と毎日接していても、選ぶ瞬間に立ち会えなくなります。接点はあっても、決定の場にいないという状態です。</p><h3 class="sh">具体的な場面</h3><p>携帯の料金プランは条件が複雑です。だからこそ店頭で相談する価値がありました。AIが利用状況を読んで最適なプランを示せるなら、比較の部分は代行されます。</p><p>残るのは次のような、AIが代行しにくい部分です。</p><ul class="blist"><li>端末の設定やデータ移行</li><li>故障や紛失への対応</li><li>家族全体の事情を踏まえた相談</li></ul><p>美容室は様子が違います。仕上がりの好みや担当者との相性は条件に落としにくいからです。ただし予約の入口をAIが握る可能性はあります。</p><h3 class="sh">反論と限界</h3><p>AIへの委任がどこまで進むかは、まだ分かりません。高額な買い物や好みが絡む買い物では、人は自分で決めたがります。</p><p>また、AIを提供する側が中立とは限りません。特定の企業を優先する仕組みになれば、別の問題が生まれます。来年も有効な問いですが、答えはまだ出ていません。</p></div>
+      <a class="src" href="http://hbr.org/2026/10/who-owns-the-customer-in-the-age-of-ai-agents" target="_blank" rel="noopener">HBR ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">4</div>
+      <h2>エース同士の張り合いがチームを負けさせる仕組み</h2>
+      <div class="fig"><div class="fig-t">競争の2つの型</div><div class="mtx"><div class="ylab top">無理をする</div><div class="grid"><div class="mcell"><b>挑戦</b><span>目標に向けた健全な背伸び</span></div><div class="mcell"><b>危険な張り合い</b><span>勝つために組織を傷つける</span></div><div class="mcell"><b>通常の競争</b><span>順位を意識して努力する</span></div><div class="mcell"><b>好敵手</b><span>刺激し合って伸びる</span></div></div><div class="ylab bot">無理をしない</div><div class="xlabs"><span>相手は不特定</span><span>相手は特定の一人</span></div></div><div class="fig-c">右上に入った組み合わせが、チームを負けさせる状態。</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>競争は人を伸ばすと考えられています。営業成績の順位を貼り出す会社は多いでしょう。しかし、競争が特定の相手との張り合いに変わると話が違ってきます。</p><p>要旨はこう述べます。競い合いが個人的なものになると、従業員は組織を傷つける危険な選択をすることがある。筆者はダーランダー、ピエツンカ、トーマスの3氏です。</p><h3 class="sh">材料の範囲</h3><p>確認できたのは見出しと要旨です。今回の研究の対象や数字は分かりません。筆者らが示す「見つけ方と直し方」の中身も確認できていません。</p><h3 class="sh">関連する先行研究</h3><p>筆者の一人ピエツンカ氏は、過去にF1レースを分析しています。1970年から2014年までのドライバー同士の衝突を調べたものです。</p><p>分かったことは次のとおりです。</p><ul class="blist"><li>実力や地位が近い者同士ほど衝突しやすい</li><li>年齢が近いほどその傾向が強まる</li><li>シーズン終盤ほど強まる</li></ul><p>順位が近い相手は、自分の立場を脅かす存在です。だから無理な追い抜きを仕掛けてしまいます。</p><h3 class="sh">なぜ組織が損をするのか</h3><p>目的がすり替わるからです。本来の目的は成果を出すことでした。張り合いが始まると「あの人に勝つこと」が目的になります。</p><p>すると次のような行動が出ます。</p><ul class="blist"><li>勝算の低い賭けに出る</li><li>情報や顧客を相手に渡さない</li><li>相手の失敗を待つ</li></ul><p>本人は懸命に働いているつもりです。しかしチーム全体の成果は下がります。</p><h3 class="sh">具体的な場面</h3><p>同じ店に成績1位と2位の販売員がいるとします。月末、差はわずかです。2位の人は、無理な条件での契約を取りに行くかもしれません。後で解約や苦情になれば、損をするのは店です。</p><p>見分ける手がかりは、比べる相手です。目標や全体平均ではなく、特定の一人の数字ばかり気にし始めたら注意が要ります。これは要旨から推し量った目安です。</p><h3 class="sh">反論と限界</h3><p>好敵手がいることで力が出るという研究もあります。張り合いが常に害とは言えません。問題は、危険な行動に結びつくかどうかです。</p><p>F1は個人の順位がすべて公開される特殊な世界です。チームで成果を分け合う職場では、同じ強さで起きるとは限りません。</p></div>
+      <a class="src" href="https://www.imd.org/ibyimd/leadership/when-star-performers-target-rivals-a-team-loses/" target="_blank" rel="noopener">IMD ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">5</div>
+      <h2>創造的な成果は人材の「補い合う組み合わせ」で決まる</h2>
+      <div class="fig"><div class="fig-t">成果を支える3つの資本</div><div class="rel"><div class="hub">創造的な成果</div><div class="sats"><span class="sat">経済資本</span><span class="sat">社会関係資本</span><span class="sat">文化資本</span><span class="sat">不足を補う組み方</span></div></div><div class="fig-c">3つのうち欠けているものを、組む相手で埋めるという見方。</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>創造的な仕事は、才能ある個人に頼りがちです。誰と誰を組ませるかは、上司の勘や相性で決められてきました。</p><p>この論考は別の見方を示します。成果を決めるのは個人の才能だけではない。人をどう組み合わせるかが重要だ、という主張です。</p><h3 class="sh">3つの資本という物差し</h3><p>要旨によると、筆者は人が持つ強みを3種類に分けています。もとは社会学者ブルデューの考え方です。</p><ul class="blist"><li>経済資本：お金や設備など、動かせる資源</li><li>社会関係資本：人脈や信頼関係</li><li>文化資本：知識、技能、センス、評価</li></ul><p>誰もが3つを均等に持つわけではありません。腕は確かでも人脈がない人がいます。顔は広いが専門性が浅い人もいます。</p><h3 class="sh">分かったこと</h3><p>要旨は「膨大なデータ分析に基づく」と述べています。ただし対象や件数は確認できていません。結論の骨子は次のとおりです。</p><ul class="blist"><li>足りない資本を互いに補う組み合わせが成果を高める</li><li>直感ではなく、3つの資本で見ると組み方が決まる</li><li>個人の才能に頼るより再現しやすい</li></ul><h3 class="sh">なぜそうなるのか</h3><p>創造的な成果には、作る力と届ける力の両方が要ります。良いものを作っても、資金がなければ形になりません。知られなければ評価もされません。</p><p>同じ強みを持つ人を組ませると、同じ部分が重なり、同じ部分が欠けます。違う強みを持つ人を組ませると、欠けた部分が埋まります。</p><h3 class="sh">具体的な場面</h3><p>美容室で考えます。技術は高いが指名が伸びない若手がいるとします。文化資本はあるが、社会関係資本が足りない状態です。</p><p>常連の多いベテランと組ませ、紹介の流れを作れば補えます。逆にベテランは若手から新しい技法を得られます。経済資本は店が道具や研修費で補う部分です。これは枠組みを当てはめた例で、記事の事例ではありません。</p><h3 class="sh">反論と限界</h3><p>強みが違う人同士は、価値観も違うことが多いものです。補い合う前にぶつかるおそれがあります。組ませれば自動的にうまくいくわけではありません。</p><p>また、人の強みを3種類に測り分けること自体が難しい作業です。分析の元データがどの業界かによって、当てはまる範囲は変わります。</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14788" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">6</div>
+      <h2>優秀な社員を消耗させる「見えない負荷」の正体</h2>
+      <div class="fig"><div class="fig-t">見えない仕事の4段階</div><div class="flow"><div class="step"><b>先読みする</b><span>必要になることに気づく</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>調べる</b><span>選択肢を探して比べる</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>決める</b><span>ここだけが周りに見える</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>見届ける</b><span>結果を確かめて直す</span></div></div><div class="fig-c">4段階のうち3つは周囲から見えず、特定の人に偏りやすい。</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>優秀な社員が突然疲れ切ることがあります。残業は多くありません。成績も落ちていません。それでも集中が続かなくなります。</p><p>この論考は原因を「メンタルロード」と呼びます。仕事と私生活の調整に追われる、頭と気持ちの労働です。要旨は、優秀な人ほどこれにひそかに疲弊していると述べます。</p><h3 class="sh">なぜ見えないのか</h3><p>労働時間や成果の指標には表れないからです。要旨が挙げる影響は次の3つです。</p><ul class="blist"><li>集中力の低下</li><li>新しい発想の停滞</li><li>燃え尽き</li></ul><p>どれも原因が特定されにくく、本人の問題として片づけられがちです。</p><h3 class="sh">負荷の中身</h3><p>要旨は「4つの処方箋」を示すと述べますが、中身は確認できていません。ここでは別の研究で負荷の正体を補います。</p><p>社会学者ダミンガー氏は2019年、35組の夫婦に聞き取りをしました。家庭を回す頭の仕事を4段階に分けています。</p><ul class="blist"><li>必要になることを先読みする</li><li>選択肢を調べる</li><li>決める</li><li>結果を見届ける</li></ul><p>目に見えるのは「決める」だけです。前後の3つは誰にも気づかれません。そして特定の人に偏ります。</p><h3 class="sh">なぜ優秀な人に集まるのか</h3><p>気づく人に仕事が集まるからです。先回りできる人は、頼まれる前に動きます。周りはそれを当てにするようになります。</p><p>職場でも同じです。誰の担当でもない段取り、新人の様子の気配り、抜け漏れの確認。これらは評価表に載りません。</p><h3 class="sh">具体的な場面</h3><p>子育て中の副店長を思い浮かべてください。勤務中に保育園の連絡、シフトの穴、新人の不安、明日の納品を同時に気にかけています。時短勤務という制度はあります。</p><p>しかし要旨は「表面的な柔軟性を脱する」ことを求めています。時間を短くしても、頭の中の段取りが減らなければ負荷は残るという指摘と読めます。まず誰が何を気にかけているかを書き出し、見えるようにすることが出発点になります。</p><h3 class="sh">反論と限界</h3><p>段取りや気配りは、やりがいの源でもあります。すべてを負荷として取り除けばよいとは限りません。本人がどう感じているかの確認が先です。</p><p>また、上の聞き取りは米国の家庭が対象です。職場にそのまま当てはまるかは別途確かめる必要があります。</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14662" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">7</div>
+      <h2>模倣品は自社の本当の強みを映す鏡になる</h2>
+      <div class="fig"><div class="fig-t">模倣品で強みを仕分ける</div><div class="mtx"><div class="ylab top">顧客が価値を感じる</div><div class="grid"><div class="mcell"><b>本当の強み</b><span>ここに資源を寄せる</span></div><div class="mcell"><b>守れない強み</b><span>差はいずれ消える</span></div><div class="mcell"><b>自己満足</b><span>こだわりだが選ばれない</span></div><div class="mcell"><b>どこにでもある</b><span>投資しても差にならない</span></div></div><div class="ylab bot">顧客が価値を感じない</div><div class="xlabs"><span>真似されにくい</span><span>真似されやすい</span></div></div><div class="fig-c">模倣品が写した要素は右側、写せなかった要素は左側に入る。左上が守るべき強み。</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>自社の強みを正しく言える会社は多くありません。経営者が思う強みと、顧客が価値を感じている点はしばしばずれています。</p><p>この論考は意外な手がかりを示します。模倣品です。要旨は「模倣を鏡のように扱う」と表現しています。事例はルルレモン、スウォッチ、クルーリーの3社です。</p><h3 class="sh">材料の範囲</h3><p>確認できたのは見出しと要旨の一文です。3社の事例の詳細は分かりません。以下は「鏡として扱う」という考え方を展開したものです。</p><h3 class="sh">鏡に映るもの</h3><p>真似する側は、売れる部分だけを安く写そうとします。だから模倣品を見ると、次のことが分かります。</p><ul class="blist"><li>市場が価値を認めている要素はどれか</li><li>簡単に写せる要素はどれか</li><li>写そうとしても写せなかった要素はどれか</li></ul><p>3つ目が本当の強みです。真似されても残る部分だからです。</p><h3 class="sh">なぜ有効なのか</h3><p>自社の分析は願望が混じります。顧客調査は建前が混じります。模倣品は、他人がお金をかけて行った市場の検証結果です。</p><p>写された部分は、もう差にはなりません。そこに投資を続けても守れません。写されなかった部分に資源を寄せる判断ができます。</p><h3 class="sh">具体的な場面</h3><p>繁盛している美容室の近くに、内装も料金表も似た店ができたとします。腹は立ちますが、観察の機会でもあります。</p><p>見るべき点は次のとおりです。</p><ul class="blist"><li>何を真似たか（内装、メニュー、価格）</li><li>何を真似ていないか（技術者の育成、接客の型、再来店の仕組み）</li><li>客がどちらに残ったか</li></ul><p>客が流れないなら、強みは内装や価格ではなかったということです。流れたなら、強みと思っていたものは写せるものだったことになります。</p><h3 class="sh">反論と限界</h3><p>模倣を放置してよいという話ではありません。商標や意匠の侵害には法的に対応すべきです。観察と対処は両立します。</p><p>また、真似する側が見誤ることもあります。写されなかった部分が、単に気づかれていないだけの場合もあります。事例の3社は消費者向けの有名ブランドで、小さな事業にそのまま当てはまるとは限りません。</p></div>
+      <a class="src" href="http://hbr.org/2026/10/how-copycats-can-reveal-your-competitive-advantage" target="_blank" rel="noopener">HBR ↗</a>
+    </article>
+  </div>
+  
+  <footer>
+    コンサルティングファーム・ビジネススクール・調査機関の19ソースから、
+    直近7日の公開分を収集し日本語に要約したもの。判断の前に各出典を確認してください。
+  </footer>
+</div></div>
+<script>
+(function(){
+  var KEY = "lsm-favs-v1";
+  function load(){ try { return JSON.parse(localStorage.getItem(KEY)) || []; }
+                   catch(e){ return []; } }
+  function save(v){ try { localStorage.setItem(KEY, JSON.stringify(v)); } catch(e){} }
+  function has(url){ return load().some(function(x){ return x.url === url; }); }
+  function paint(b){
+    var on = has(b.dataset.url);
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+    var ic = b.querySelector(".ic"), tx = b.querySelector(".tx");
+    if (ic) ic.textContent = on ? "\u2605" : "\u2606";
+    if (tx) tx.textContent = on ? "保存済み" : "あとで読む";
+    if (!ic && !tx) b.textContent = on ? "\u2605" : "\u2606";
+  }
+  function toggle(b){
+    var d = b.dataset, list = load(), i = list.findIndex(function(x){ return x.url === d.url; });
+    if (i >= 0) list.splice(i, 1);
+    else list.unshift({url:d.url, title:d.title||d.url, kind:d.kind||"", date:d.date||"",
+                       note:d.note||"", saved:new Date().toISOString().slice(0,10)});
+    save(list); paint(b);
+    if (window.renderFavs) window.renderFavs();
+  }
+  function wire(){
+    var bs = document.querySelectorAll("[data-fav]");
+    for (var i = 0; i < bs.length; i++){
+      (function(b){ paint(b); b.addEventListener("click", function(e){
+        e.preventDefault(); e.stopPropagation(); toggle(b); }); })(bs[i]);
+    }
+  }
+  window.favStore = {load:load, save:save, has:has};
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", wire);
+  else wire();
+})();
+</script>
+</body>
+</html>
