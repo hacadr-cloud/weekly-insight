@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>今週のインサイト 2026-10-14</title>
+<style>
+  :root{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E; --accent-bg:#F5EFE3;
+    --sans: system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
+      --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E; --accent-bg:#F5EFE3;
+  }
+  :root[data-theme="dark"]{
+    --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
+    --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
+  }
+  /* Phone-first. Body text sits at 16px (never below -- iOS zooms on focus under 16px and
+     small type is the main complaint on a handset), the column is capped just above a
+     comfortable measure, and side padding stays generous so text never touches the edge. */
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0}
+  .wrap{background:var(--ground);color:var(--ink);font-family:var(--sans);
+    font-size:16px;line-height:1.9;-webkit-font-smoothing:antialiased;
+    padding:1.5rem 1.15rem 4rem;min-height:100vh}
+  .inner{max-width:34rem;margin:0 auto}
+  header{border-bottom:1px solid var(--line);padding-bottom:1.25rem;margin-bottom:1.5rem}
+  .eyebrow{font-size:.72rem;letter-spacing:.16em;color:var(--faint);
+    text-transform:uppercase;margin:0 0 .5rem}
+  h1{font-size:1.4rem;font-weight:700;letter-spacing:-.01em;line-height:1.45;
+    margin:0;text-wrap:balance}
+  .lede{font-size:1rem;color:var(--muted);margin:1.1rem 0 0;line-height:1.95}
+  .picks{display:flex;flex-direction:column;gap:1.15rem}
+  .pick{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.2rem 1.1rem;position:relative}
+  .n{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.1em;margin-bottom:.35rem}
+  .pick h2{font-size:1.12rem;font-weight:700;line-height:1.6;margin:0 0 .7rem;
+    letter-spacing:-.005em;text-wrap:balance}
+  /* No justify: on a narrow screen it opens rivers of white space between Japanese runs. */
+  .sum{font-size:1rem;color:var(--ink)}
+  .sum p{margin:0 0 .95rem}
+  .sum p:last-child{margin-bottom:0}
+  .sum .blist{list-style:none;margin:0 0 1rem;padding:0;display:flex;
+    flex-direction:column;gap:.5rem}
+  /* 本文中の小見出し: 長い解説を拾い読みできるようにする */
+  .sum .sh{font-size:.94rem;font-weight:700;color:var(--ink);margin:1.5rem 0 .55rem;
+    padding-left:.6rem;border-left:3px solid var(--accent);line-height:1.6}
+  .sum .sh:first-child{margin-top:0}
+  .sum .blist li{position:relative;padding-left:1.1rem;line-height:1.85}
+  .sum .blist li::before{content:"";position:absolute;left:.2rem;top:.75em;
+    width:.32rem;height:.32rem;border-radius:50%;background:var(--accent)}
+  /* 図解の崩れ防止: 長い語も枠内で折り返し、幅が足りなければ横スクロールさせる */
+  .fig *{overflow-wrap:anywhere;word-break:normal;min-width:0}
+  /* 図解: CSS で組む（SVGだと縮小して読めなくなる）。縦積みなので幅の狭い画面でも崩れない */
+  .fig{margin:.9rem 0 1rem;padding:.9rem .85rem;border:1px solid var(--line);
+    border-radius:12px;background:var(--ground)}
+  .fig-t{font-size:.76rem;font-weight:700;letter-spacing:.06em;color:var(--accent);
+    margin-bottom:.7rem}
+  .fig-c{font-size:.78rem;color:var(--muted);margin-top:.7rem;line-height:1.7}
+  .flow{display:flex;flex-direction:column;align-items:stretch;gap:.3rem}
+  .flow .step{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .7rem;text-align:center}
+  .flow .step b{display:block;font-size:.9rem;font-weight:700}
+  .flow .step span{display:block;font-size:.78rem;color:var(--muted);margin-top:.15rem;
+    line-height:1.6}
+  .flow .arr{text-align:center;color:var(--accent);font-size:.9rem;line-height:1}
+  /* 2x2 マトリクス: 経営フレームの定番。軸ラベルを外側に置いて象限を読ませる */
+  .mtx{display:flex;flex-direction:column;gap:.3rem}
+  .mtx .ylab{font-size:.72rem;color:var(--muted);text-align:center}
+  .mtx .grid{display:grid;grid-template-columns:1fr 1fr;gap:.35rem}
+  .mtx .mcell{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .6rem;min-height:3.6rem;display:flex;flex-direction:column;
+    justify-content:center}
+  .mtx .mcell.empty{background:transparent;border-style:dashed;opacity:.5}
+  .mtx .mcell b{font-size:.86rem;font-weight:700;line-height:1.5}
+  .mtx .mcell span{font-size:.76rem;color:var(--muted);margin-top:.2rem;line-height:1.55}
+  .mtx .xlabs{display:flex;justify-content:space-between;font-size:.72rem;
+    color:var(--muted);padding:0 .2rem}
+  /* 横棒: 研究の効果量・前後差を数字で見せる */
+  .bars{display:flex;flex-direction:column;gap:.5rem}
+  .brow{display:flex;flex-direction:column;gap:.2rem}
+  .blab{font-size:.84rem;font-weight:600}
+  .blab .bnote{font-weight:400;color:var(--muted);font-size:.76rem;margin-left:.4rem}
+  /* grid: the bar track takes the leftover width and the number never wraps under it.
+     A percentage width inside a flex row was being resolved against the wrong box, which is
+     what made the bars overflow on a phone. */
+  .btrack{display:grid;grid-template-columns:minmax(0,1fr) max-content;gap:.55rem;
+    align-items:center}
+  .bwrap{background:var(--line);border-radius:5px;height:1.35rem;overflow:hidden;width:100%}
+  .bbar{height:100%;background:var(--accent);border-radius:5px;opacity:.9}
+  .bval{font-size:.82rem;font-weight:700;color:var(--accent);
+    font-variant-numeric:tabular-nums}
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
+  .cmp .col{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .65rem}
+  .cmp .ch{font-size:.78rem;font-weight:700;color:var(--accent);margin-bottom:.4rem;
+    padding-bottom:.35rem;border-bottom:1px solid var(--line)}
+  .cmp ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.3rem}
+  .cmp li{font-size:.86rem;line-height:1.6;padding-left:.75rem;position:relative}
+  .cmp li::before{content:"・";position:absolute;left:0;color:var(--faint)}
+  .rel{display:flex;flex-direction:column;align-items:center;gap:.55rem}
+  .rel .hub{background:var(--accent);color:var(--card);border-radius:999px;
+    padding:.5rem 1.1rem;font-size:.9rem;font-weight:700}
+  .rel .sats{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem}
+  .rel .sat{background:var(--card);border:1px solid var(--line);border-radius:999px;
+    padding:.35rem .75rem;font-size:.84rem}
+  @media (max-width:380px){ .cmp{grid-template-columns:1fr} }
+  /* Tap target: a bare inline link is hard to hit on a phone, so give it real height. */
+  .src{display:inline-block;margin-top:1rem;font-size:.86rem;color:var(--muted);
+    text-decoration:none;border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .8rem;line-height:1.5;word-break:break-word}
+  .src:hover{color:var(--accent);border-color:var(--accent)}
+  /* 今週の論文: 定義リストで「問い／検証／結果／含意／留意」を固定の型に見せる */
+  .papers{margin-top:2.2rem}
+  .sec{font-size:.78rem;font-weight:700;letter-spacing:.14em;color:var(--accent);
+    margin:0 0 .9rem;padding-bottom:.5rem;border-bottom:1px solid var(--line)}
+  .paper{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.1rem 1.05rem;margin-bottom:1rem}
+  .paper h3{font-size:1.02rem;font-weight:700;line-height:1.6;margin:0 0 .3rem;
+    text-wrap:balance}
+  .paper .auth{font-size:.78rem;color:var(--faint);margin-bottom:.75rem}
+  .paper dl{margin:0;display:grid;grid-template-columns:max-content minmax(0,1fr);
+    gap:.5rem .8rem;align-items:start}
+  .paper dt{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.08em;
+    padding-top:.15rem;white-space:nowrap}
+  .paper dd{margin:0;font-size:.9rem;line-height:1.8;text-align:justify}
+  .paper .finds{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;
+    gap:.35rem}
+  .paper .finds li{position:relative;padding-left:1rem;line-height:1.75}
+  .paper .finds li::before{content:"";position:absolute;left:.2rem;top:.72em;width:.3rem;
+    height:.3rem;border-radius:50%;background:var(--accent)}
+  @media (max-width:420px){ .paper dl{grid-template-columns:1fr;gap:.15rem .8rem}
+    .paper dt{margin-top:.5rem} }
+  footer{margin-top:2.4rem;padding-top:1.1rem;border-top:1px solid var(--line);
+    font-size:.78rem;color:var(--faint);line-height:1.7}
+  a:focus-visible,.src:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+.fav{appearance:none;-webkit-appearance:none;cursor:pointer;display:inline-flex;
+  align-items:center;justify-content:center;gap:6px;min-width:44px;min-height:44px;
+  padding:0 12px;border-radius:999px;font:inherit;font-size:14px;font-weight:600;
+  background:var(--surface,#fff);color:var(--ink-mut,#6b7280);
+  border:1px solid var(--line,#e5e7eb);line-height:1;}
+.fav:hover{border-color:#f0b429;color:#b26b00;}
+.fav[aria-pressed="true"]{background:#fff8e6;border-color:#f0b429;color:#b26b00;}
+.fav .ic{font-size:16px;line-height:1;}
+.fav-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:14px 0 6px;}
+.fav-bar a.all{font-size:13.5px;color:var(--ink-mut,#6b7280);text-decoration:none;
+  min-height:44px;display:inline-flex;align-items:center;}
+.fav-bar a.all:hover{text-decoration:underline;}
+.fav-mini{appearance:none;-webkit-appearance:none;cursor:pointer;background:none;border:0;
+  padding:6px 8px;margin-left:2px;font-size:15px;line-height:1;color:#c3c8d0;
+  min-width:36px;min-height:36px;}
+.fav-mini[aria-pressed="true"]{color:#f0b429;}
+
+</style>
+</head>
+<body>
+<div class="wrap"><div class="inner">
+  <header>
+    <p class="eyebrow">Weekly Insight</p>
+    <h1>今週のインサイト <span style="color:var(--faint);font-weight:500">2026-10-14</span></h1>
+    <p class="lede">今週は、AIそのものの話よりも「AIが当たり前になった後、人と組織に何が残るか」を問う論考が目立ちました。去年までは「AIで何が速くなるか」が中心でしたが、今週の書き手たちは速さの先を見ています。分析が速くなっても判断が良くなるとは限らない。誰もが同じ分析道具を持てば、分析では差がつかない。そういう指摘です。もう一つの流れは、会議とチームという古い主題の見直しです。会議は回数ではなく終わり方で決まる、良いチームに仲の良さは必須ではない、という二本は、店長会議や店舗の運営にそのまま重なります。読む順は、まず会議の終わり方の一本、次にAI分析と判断の質の一本、そのあとにチームの結束の一本をおすすめします。今週は本文を十分に取得できた記事が少なかったため、6本に絞りました。うち2本は冒頭だけから短く書いています。学術論文は題名と著者名しか手元になく、中身を確かめられなかったので、論文枠は今週は空にしています。</p>
+    <div class="fav-bar"><button class="fav" data-fav data-url="https://hacadr-cloud.github.io/weekly-insight/2026-10-14.html" data-title="週次インサイト 2026-10-14" data-kind="insight" data-date="2026-10-14" aria-pressed="false"><span class="ic">☆</span><span class="tx">あとで読む</span></button><a class="all" href="favorites.html">保存した記事を見る →</a></div>
+  </header>
+  <div class="picks">
+    <article class="pick">
+      <div class="n">1</div>
+      <h2>会議は回数ではなく終わり方で決まる</h2>
+      <div class="fig"><div class="fig-t">高評価チームの割合</div><div class="bars"><div class="brow"><div class="blab">明確にしないチーム<span class="bnote">基準</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:25.0%"></div></div><span class="bval">1倍</span></div></div><div class="brow"><div class="blab">責任と次の一歩を明確化<span class="bnote">約4倍</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:100.0%"></div></div><span class="bval">4倍</span></div></div></div><div class="fig-c">会話の終わりに責任と次の一歩を常に明確にするチームは、高評価の割合が約4倍。</div></div>
+      <div class="sum"><h3 class="sh">何が問題か</h3><p>ピント外れの会議は誰でも経験がある。話題が取りとめなく続く。重要なテーマが話し合われない。何も決まらずに終わる。</p><p>もっと悪い場合は、以前と同じ決定がもう一度繰り返される。</p><p>こういうとき、原因は議題や日程にあると考えがちだ。会議の数が多すぎる、という指摘もよく出る。筆者らは、どちらも的を外していると言う。問題はもっと根深いところにある。</p><h3 class="sh">筆者らの見立て</h3><p>戦略も、イノベーションも、意思決定も、人間関係も、すべて会話から始まる。会議は、会社の重要な会話の多くが行われる場だ。</p><p>会話が生産的なら、チームには次のことが起きる。</p><ul class="blist"><li>足並みが早く揃う</li><li>問題の解決策をより創造的に見つけられる</li><li>人間関係が強くなる</li><li>決定の質が上がる</li></ul><p>逆に会話の生産性が低ければ、会社がツケを払う。時間を浪費する。計画の実行がうまくいかない。機会を活かせない。</p><h3 class="sh">どう調べたか</h3><p>筆者はハーバード・ビジネス・スクールの准教授と、コンサルティング会社BTSの実務家である。この10年間の調査をもとにしている。</p><ul class="blist"><li>対象は70近い組織</li><li>100を超えるチーム</li><li>会議に参加した1000人以上</li></ul><p>尋ねたのは三つ。チームの有効性、会議の生産性、会話に関する慣行だ。</p><h3 class="sh">分かったこと</h3><p>チームの有効性と関連があったのは、会議の頻度ではなかった。一緒に過ごす時間をどう使うか、だった。</p><p>際立った数字が一つある。会話が終わった時点で、常に「誰が責任を持つか」と「次に何をするか」を明確にしているチームがある。そうしたチームは、そうでないチームに比べ、「高い効果を上げている」と評価される割合が約4倍だった。</p><p>筆者らはここから一つの結論を引き出す。話し合いの後に何が残るかは、会話の質で決まる。そしてリーダーは、自分の振る舞いで会話の質を大きく変えられる。</p><h3 class="sh">なぜ見落とされるのか</h3><p>経営者は、業務フロー、データの可視化、プロジェクトの計画に莫大な労力を使っている。最近はAIツールの改善がそこに加わった。</p><p>しかし協働の土台は、それらより古く、チームの深いところにある。筆者らの言葉では、協働のOSはテクノロジーではなく会話である。</p><p>会話を意識的に形づくる力を、筆者らは「会話のスチュワードシップ（責任ある管理）」と呼ぶ。習得は難しくない、とも書いている。</p><h3 class="sh">場面に置いてみる</h3><p>月例の店長会議を思い浮かべるとよい（これは本文の例ではなく、こちらで置いた場面である）。数字の報告が一巡し、いくつか意見が出て、時間が来て散会する。</p><p>翌月、同じ課題がまた議題に上がる。この研究に照らせば、会議を減らしても増やしても、ここは変わらない。変えるべきは終わり方だ。</p><p>散会の前に「誰が」「いつまでに」「何を」を口に出して確かめる。研究が成果と結び付けたのは、その一点である。</p><h3 class="sh">読むときの注意</h3><p>4倍という差は「関連」であって、因果とは限らない。もともと有能なチームが、責任と次の一歩を自然に明確にしているだけかもしれない。</p><p>評価の出どころも、参加者への質問である。売上や利益のような外の指標で測った結果ではない。</p><p>取得できた本文は導入部までだった。「会話のスチュワードシップ」の具体的な手順は確認できていない。ここに書いたのは、問題の立て方と調査結果までである。</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14759" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">2</div>
+      <h2>AI分析は「何を知りたいか」より「何を決めるか」から</h2>
+      <div class="fig"><div class="fig-t">二つの分析の違い</div><div class="cmp"><div class="col"><div class="ch">セルフサービス分析</div><ul><li>何を知りたいかから始める</li><li>質問の量と速さを増やす</li><li>反応率の高い施策を聞く</li></ul></div><div class="col"><div class="ch">意思決定支援分析</div><ul><li>何を決めるかから始める</li><li>判断の質を上げる</li><li>施策で増えた利益を聞く</li></ul></div></div><div class="fig-c">左は答えを増やす使い方、右は判断を良くする使い方。筆者が勧めるのは右。</div></div>
+      <div class="sum"><h3 class="sh">何が問題か</h3><p>AIでデータ分析の回答は格段に速くなった。だが、速く答えが出ることと、良い判断ができることは別である。</p><p>多くの企業はAI分析を「アクセスの問題」と捉えている。より多くの人が、より多くのデータに、より多くの質問をできるようにする、という発想だ。</p><p>筆者は、これを出発点として間違いだと言う。問うべきは、得られた回答でどうすれば判断が良くなるか、である。</p><p>AIを質問の処理量を増やす道具として扱うと、不完全なデータや歪んだ推論まで増幅してしまう。競争上の差を生むのは答えの量ではなく、決定の質だ。</p><h3 class="sh">書き手と根拠</h3><p>筆者はカリフォルニア大学バークレー校ハース経営大学院の教授で、経済学者である。組織が意思決定でデータをどう使うかを30年研究してきた。</p><p>アマゾンでは経済学とマーケットデザイン担当のバイスプレジデントを務めた。イーベイではリサーチ担当のシニアディレクターだった。幅広い業界へのコンサルティング経験もある。</p><p>本稿は実験やデータの報告ではない。この経験から引き出した考え方の整理である。</p><h3 class="sh">二つの分析を区別する</h3><p>カギは次の区別にある。</p><ul class="blist"><li>セルフサービス分析: 「何を知りたいか」という利用者の質問から始まる</li><li>意思決定支援分析: その一歩手前の「どの判断の質を高めたいのか」から始まる</li></ul><p>本文の例はこうだ。マネジャーが「どのキャンペーンのコンバージョン率が最も高かったか」と聞けば、AIはすぐに答える。</p><p>しかし本当に決めたいのが「次の四半期のマーケティング予算の配分」なら、質問が変わる。「本来なら買わなかった顧客の中で、どのキャンペーンが最も利益を増やしたか」を問うべきかもしれない。</p><p>これに答えるには、実験や、キャンペーンを当てない対照群や、測定方法の見直しが要ることがある。良い質問は、手間のかかる質問であることが多い。</p><p>店の販促に置き換えるとこうなる（本文の例ではなく、こちらで置いた場面）。チラシを配った週の来店数はすぐ数えられる。だが知りたいのは、配らなくても来た客を除いた増分だ。配らない週や地区と比べなければ分からない。</p><h3 class="sh">使い方の三段階</h3><p>筆者は、AI分析の使い方を三つの水準に分ける。</p><ul class="blist"><li>多くの企業: 効率化のため。集計の自動化、回答までの時間短縮、ボトルネックの削減</li><li>優れた企業: 信頼性のため。用語と指標の定義の統一、文書化、データの来歴の記録、検証の手順、専門家の確認</li><li>最も優れた企業: 意思決定の質のため。最も重要な判断に合わせて分析を設計し直す</li></ul><p>AIの利点は認めている。定型作業が減る。マネジャーがデータを探り、異常を見つけ、仮説を立てる助けになる。</p><p>データ担当者は同じ質問に繰り返し答える時間が減る。その分を因果の分析、予測、実験に回せる。ただし筆者は、その利点は自動的には得られないと書く。</p><h3 class="sh">6つの要素と、最初の一つ</h3><p>筆者は、AI分析を答えの数を増やす追加部品と見るな、と言う。運用の仕組みに組み込むべきものだ。</p><p>その仕組みが決めるのは、どの質問に価値があるか、どの回答が信頼できるか、それに従って何を決めるか、である。6つの要素から成る。</p><p>関わるのはデータ担当者だけではない。</p><ul class="blist"><li>意思決定の責任を担うリーダー</li><li>測定の規律を守る分析チーム</li><li>不都合な証拠を歓迎するか無視するかを左右する、評価と報酬を握る経営幹部</li></ul><p>第一の要素は「何を判断するのか」から始めることだ。AIに分析させる前に、三つを問う。</p><ul class="blist"><li>これは何の意思決定の質を上げるための分析か</li><li>どんな施策が考えられるか</li><li>どんな事実が示されたら考えを変えるか</li></ul><p>筆者はアマゾンの「逆算」の手順を比喩に使う。同社は製品を作る前に、顧客の課題や望ましい結果から逆算して、架空のプレスリリースとFAQを書く。</p><p>そこに分析の答えがあるわけではない。結果を議論する前に、何を決めようとしているかをはっきりさせる点に意味がある。</p><h3 class="sh">別の見方と限界</h3><p>経済学者のアグラワル、ガンズ、ゴールドファーブは、AIは作業を実行する力の代わりになり、判断の価値を高めると論じた。筆者はこれを正しいと認める。</p><p>そのうえで、経営の問いはもっと具体的だと言う。個々の判断を「意思決定の根拠になる水準」に変える組織の仕組みは何か、という問いだ。</p><p>取得できた本文は、6つの要素のうち第一までである。残る5つの中身は確認できていない。効果を裏づける数字も、取得できた範囲には出てこない。</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14663" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">3</div>
+      <h2>良いチームに仲の良さは必須ではない</h2>
+      <div class="fig"><div class="fig-t">職場に要る関係は</div><div class="rel"><div class="hub">関係の四分類</div><div class="sats"><span class="sat">取引相手＝必要</span><span class="sat">同志＝目標</span><span class="sat">仲間＝趣味</span><span class="sat">伴侶＝価値観</span></div></div><div class="fig-c">チームに必須なのは目標を共有する「同志」だけで、他は任意だというのがグラント氏の主張。</div></div>
+      <div class="sum"><h3 class="sh">何が問題か</h3><p>職場の結束を強めたいとき、経営者はよく「みんな友達になろう」「うちの会社は家族だ」と言う。組織心理学者でウォートン校教授のアダム・グラント氏は、これを多くのリーダーの誤りだと指摘する。</p><p>番組の冒頭で、聞き手の一人も素直な直感を口にしている。気の合う集団のほうが成果を出すと思う、という感覚だ。グラント氏が揺さぶるのは、この直感である。</p><p>氏の主張は短い。優れたチームに必要なのは、好意でも、意見の一致でもない。方向が揃っていることだ。</p><h3 class="sh">人間関係の四分類</h3><p>氏は新著で、仕事と人生に必要な相手を四種類に分けている。</p><ul class="blist"><li>取引相手: 互いの必要を満たす。割り切った関係</li><li>同志: 目標を共有する。同じ使命に取り組む</li><li>仲間: 興味や趣味を共有する。一緒にいて楽しい</li><li>伴侶的な相手: 価値観を共有し、深い愛情がある</li></ul><p>「友達になろう」は三番目を求めている。「会社は家族」は四番目を求めている。</p><p>氏によれば、どちらも必要な手順ではない。逆効果になることさえある。優れたチームと組織は「同志」でできている。仲間や伴侶的な関係は、あってもなくてもよい。</p><h3 class="sh">二種類の結束</h3><p>根拠として氏が挙げるのは、チームの結束に関する研究だ。結束には二種類ある。</p><ul class="blist"><li>社会的な結束: 仕事の後も一緒にいたい、飲みに行きたいという結び付き。多くの人が結束と聞いて思い浮かべるもの</li><li>課題の結束: 目的を共有しているという結び付き</li></ul><p>氏は後者をこう言い表す。集団の中で互いに結び付いているのではない。集団そのものに結び付いている。</p><p>職場のチームでも、スポーツのチームでも、成果にとっては課題の結束のほうが重要だという。氏は、証拠は非常にはっきりしていると述べている。</p><h3 class="sh">リーダーの最初の仕事</h3><p>ここから氏は、リーダーの第一の仕事を定義し直す。互いの付き合いを楽しませることではない。同じ目的に全員が納得している状態をつくることだ。</p><p>番組の紹介文には、氏が語った論点が並んでいる。</p><ul class="blist"><li>違いを競争上の強みに変える</li><li>現状に異議を唱える人に報いる</li><li>新人の受け入れ方を見直す</li><li>率直な意見を引き出す</li><li>仕事を意味のある使命に結び付ける</li></ul><p>聞き手は、本物の関係には摩擦が付きものだとも述べている。それは避けるより受け入れるべきものかもしれない、という見立てだ。</p><h3 class="sh">場面に置いてみる</h3><p>店舗で考えるとこうなる（本文の例ではなく、こちらで置いた場面である）。スタッフ同士の仲が良く、食事会も盛り上がる。それでも、店の目標を誰も自分のものと思っていない店がある。</p><p>逆に、私的な付き合いはほとんどない店もある。それでも「この店は何を目指すか」が揃っていて、互いの仕事に遠慮なく口を出せる。氏の議論に従えば、成果に効くのは後者の状態だ。</p><p>懇親の場を増やす前に、目的が共有されているかを確かめる。順番の問題である。</p><h3 class="sh">別の見方と限界</h3><p>氏は、仲の良さが害だとは言っていない。「任意」だと言っている。聞き手が語ったように、好きな相手と働くことは長く勤める理由になりうる。</p><p>この対談では、研究の対象や規模、効果の大きさを示す数字は語られていない。「課題の結束のほうが重要」という方向だけが示されている。</p><p>取得できたのは対談の前半までである。紹介文に並んだ五つの論点の具体的なやり方は確認できていない。</p></div>
+      <a class="src" href="http://hbr.org/podcast/2026/10/why-great-teams-dont-need-to-like-each-other" target="_blank" rel="noopener">HBR ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">4</div>
+      <h2>人とAIの分業を誰が設計するのか</h2>
+      <div class="fig"><div class="fig-t">人が担う指定と検証</div><div class="flow"><div class="step"><b>必要を見極める</b><span>何のための仕事かを決める</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>条件を指定する</b><span>問題と条件を言葉にする</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>機械が処理する</b><span>1万通を10人に絞るなど</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>人が検証する</b><span>結果を問いただす</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>人が決める</b><span>必要なら指定し直す</span></div></div><div class="fig-c">左から右へ進み、検証で足りなければ指定に戻る。最初と最後は人が握る。</div></div>
+      <div class="sum"><h3 class="sh">何が問題か</h3><p>記事は、ある月曜の朝の場面から始まる。新製品の発売を控えた会社だ。週末のうちに、AIが競合と見込み客を調べ上げている。別のAIが、それを発売戦略の下書きに変えている。</p><p>見込み客の優先順位はアルゴリズムが付ける。情報の回付、作業の割り当て、承認の起動は自動で流れる。9時ごろ、人が仕事を始める。</p><p>人がやるのは、AIの提案を問い直すこと、外注先への指示を磨くこと、そして全体の調整だ。社内の力関係、顧客との関係、ブランドの判断、予算が絡む。</p><p>ここで筆者は問う。この仕事全体に責任を持つのは誰か。AIは情報システムの責任者のもの。業務は業務の責任者のもの。では人事はどこにいるのか。</p><p>人と機械が混ざった職場では、責任と所有の線がばらばらになる恐れがある。それがこの記事の問題意識だ。</p><h3 class="sh">筆者の提案</h3><p>人事の守備範囲は、これまで人で始まり人で終わっていた。採用、育成、配置、報酬、評価、昇進である。</p><p>筆者は、その範囲を広げよと言う。人を管理する役から、仕事の組み立てを設計する役へ。肩書きで言えば、最高人事責任者から「最高仕事責任者」へ、である。</p><p>対象は人だけではない。人、AI、アルゴリズム、自動化のすべてを束ねる。変わらなければ、人事は他の部門に脇へ追いやられる、とも警告している。</p><p>筆者は、これは人や人の責任を捨てることではないと念を押す。守備範囲の拡大である。そのために、いま優先すべきことを三つ挙げる。</p><ul class="blist"><li>AIを使いこなせるようになる</li><li>何が可能かの最前線に居続ける</li><li>慎重に試す</li></ul><h3 class="sh">共通する型は「指定と検証」</h3><p>筆者が現場で見ている新しいやり方には、共通点がある。定型の作業を減らし、人の経験と専門性と直感と判断を最大限に使う。</p><p>その中心にあるのが、人が担う二つの役割だ。</p><ul class="blist"><li>指定する: 事業上の必要を見極め、問題の性質と条件を言葉にする</li><li>検証する: 機械が出した結果を問いただす</li><li>必要なら、もう一度指定し直す</li></ul><p>これは一度で終わらない。続けて回すものだとされている。</p><h3 class="sh">具体例</h3><p>採用の選考が最初の例だ。正しく条件を指定すれば、アルゴリズムは1万通の履歴書を10人の候補に絞る単調な作業を引き受ける。</p><p>その先は人の仕事である。採用担当者が候補者に会う。誰の履歴書を現場の責任者に回すかを決める。</p><p>一次面接を機械に任せる例もある。有望な候補者が地球の反対側にいて、時差が壁になる場合だ。AIが人と同じ質問をし、回答や語彙を分析して、絞り込みを助ける。最終の評価と採用の判断は人に残す。</p><p>採用以外の例も挙がっている。</p><ul class="blist"><li>社員一人ひとりの希望を聞き取り、必要な経験と講座を探して育成計画をつくる。数千人規模で、日程や予算も織り込める</li><li>かつては上級幹部だけのものだったコーチングを、広い層に開く</li><li>福利厚生や資産設計の制度を、社員が理解して使えるようにつなぐ</li></ul><h3 class="sh">中小企業に引き寄せると</h3><p>専任の人事役員がいない会社では、この役は経営者自身のものになる（ここは本文にない、こちらの読みである）。求人の応募を絞る。シフトを組む。研修の資料をつくる。</p><p>どれをAIに任せ、どこを人が決めるか。筆者の型に従えば、任せる前に条件を言葉にし、出てきたものを人が確かめる。その二つを省かないことが要点になる。</p><h3 class="sh">別の見方と限界</h3><p>筆者自身が但し書きを付けている。賢い人事部門は、AIの道具を社員に解き放って、あとは運任せにはしない。指定と検証を担う人の判断が、常に要る。</p><p>この記事は、筆者が見聞きした実践の紹介と提言である。効果を測った調査ではない。採用の質が上がったか、費用が下がったかの数字は出てこない。</p><p>責任を人事に集めるべきだ、という結論にも別の立場がありうる。記事自体が、AIは情報システム側、業務は業務側にあると認めている。誰が束ねるかは、各社が決める問題として残る。</p><p>取得できた本文は途中までで、三つの優先事項の詳しい中身は確認できていない。</p></div>
+      <a class="src" href="https://www.imd.org/ibyimd/talent/hr-needs-to-start-owning-how-work-gets-done-heres-why/" target="_blank" rel="noopener">IMD ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">5</div>
+      <h2>誰もが同じAIを使う時代、戦略の差はどこで生まれるか</h2>
+      <div class="fig"><div class="fig-t">優位の源泉の移り変わり</div><div class="cmp"><div class="col"><div class="ch">これまで</div><ul><li>優れた分析が差を生む</li><li>道具とデータの量で勝つ</li></ul></div><div class="col"><div class="ch">AI時代</div><ul><li>分析は誰でも手に入る</li><li>言葉にしにくい知識</li><li>文脈と切り離せない洞察</li></ul></div></div><div class="fig-c">左の強みはAIで横並びになり、右の「移しにくい知識」が差の源になるという主張。</div></div>
+      <div class="sum"><h3 class="sh">何が問題か</h3><p>競争戦略の要は、他社と違うことである。マイケル・ポーターが30年前に説いた原則で、今も変わっていない。</p><p>変わったのは、その実現が難しくなったことだ。筆者らは、原因はAIにあると言う。</p><h3 class="sh">なぜ差がつかなくなるのか</h3><p>いまや、どの競合も同じものを手にしている。</p><ul class="blist"><li>AIを使った分析</li><li>戦略のフレームワーク</li><li>シナリオを組み立てる能力</li><li>市場と競合に関する膨大なデータ</li></ul><p>その結果、各社は似た結論に達し、似た手を打つ。見つけた優位はすぐに消える。</p><p>筆者らの結論ははっきりしている。優れた分析は誰にでも手に入る。だから、もはや決定的な競争優位の源ではない。</p><h3 class="sh">筆者らの答え</h3><p>代わりに差を生むものとして、筆者らは「粘着性のある知識」を挙げる。次のような性質を持つ洞察のことだ。</p><ul class="blist"><li>言葉にしにくい</li><li>他人に移しにくい</li><li>それが生まれた文脈から切り離しにくい</li></ul><p>優れた戦略家は、この種の知識を育てているという。筆者はダートマス大学タック経営大学院の研究者3人と、マイクロソフトやメットライフでの実務経験を持つ研究員である。</p><h3 class="sh">読むときの注意</h3><p>手元にあるのは、記事の冒頭と要約だけである。その知識をどう育てるのか、どんな事例や根拠があるのかは確認できていない。</p><p>言葉にしにくい知識の典型は現場の肌感覚だろう、というのはこちらの推測である。記事がそう書いているわけではない。</p><p>（本文は取得できず、公開されている要旨から書いています）</p></div>
+      <a class="src" href="http://hbr.org/2026/10/what-sets-great-strategists-apart-in-the-ai-era" target="_blank" rel="noopener">HBR ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">6</div>
+      <h2>巨人に勝つ必要はない、隣の競合に勝てばよい</h2>
+      <div class="fig"><div class="fig-t">巨人がいる市場の戦い方</div><div class="flow"><div class="step"><b>巨人と比べない</b><span>正面から速さを競わない</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>他の競合を見る</b><span>同じ巨人に押される相手</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>弱点を見つける</b><span>巨人以外の相手の穴を探す</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>そこで勝つ</b><span>隣より速く走ればよい</span></div></div><div class="fig-c">左から右へ。比べる相手を巨人から「隣の競合」に替えるのが出発点。</div></div>
+      <div class="sum"><h3 class="sh">何が問題か</h3><p>ウォルマートと勝負する。そう聞くと、たいていの小売企業は身をすくめる。無益な戦いに見えるからだ。</p><p>それでも少数ながら、冷静に、組織的に対抗しようとする企業がある。うまく立ち回って、この巨人を出し抜いている企業もある。</p><p>これは2005年の論考で、今週あらためて掲載された。筆者はコンサルティング会社ベイン・アンド・カンパニーの2人である。</p><h3 class="sh">クマのたとえ</h3><p>ウォルマートとの戦いに勝ったある企業のCEOは、自社の戦略を古いたとえ話で語ったという。</p><ul class="blist"><li>キャンプ中の2人が朝起きると、獰猛なクマがテントに近づいていた</li><li>1人はうろたえて後ずさりした</li><li>もう1人は落ち着いて靴のひもを結び始めた</li></ul><p>「靴を履いてもクマより速くは走れない」と1人目が言う。2人目は答える。「クマより速く走る必要はない。君より速く走れればいい」。</p><h3 class="sh">筆者らの要点</h3><p>ウォルマートより速く走る必要はない。まずウォルマート以外の競合の弱点を見つけ、うまく立ち回ればよい。これが冒頭で示される考え方だ。</p><p>圧倒的な大手がいる市場で、中小がまず比べるべき相手は大手ではない。同じように大手に押されている、他の競合である。</p><h3 class="sh">読むときの注意</h3><p>手元にあるのは冒頭の400字余りで、全文は約2300字ある。競合の弱点をどう見つけるのか、どの企業がどう勝ったのかは確認できていない。</p><p>20年前の米国小売の話である。ネット通販が主戦場になった現在に、どこまで通じるかは別に考える必要がある。</p><p>（本文は取得できず、公開されている要旨から書いています）</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14459" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+  </div>
+  
+  <footer>
+    コンサルティングファーム・ビジネススクール・調査機関の19ソースから、
+    直近7日の公開分を収集し日本語に要約したもの。判断の前に各出典を確認してください。
+  </footer>
+</div></div>
+<script>
+(function(){
+  var KEY = "lsm-favs-v1";
+  function load(){ try { return JSON.parse(localStorage.getItem(KEY)) || []; }
+                   catch(e){ return []; } }
+  function save(v){ try { localStorage.setItem(KEY, JSON.stringify(v)); } catch(e){} }
+  function has(url){ return load().some(function(x){ return x.url === url; }); }
+  function paint(b){
+    var on = has(b.dataset.url);
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+    var ic = b.querySelector(".ic"), tx = b.querySelector(".tx");
+    if (ic) ic.textContent = on ? "\u2605" : "\u2606";
+    if (tx) tx.textContent = on ? "保存済み" : "あとで読む";
+    if (!ic && !tx) b.textContent = on ? "\u2605" : "\u2606";
+  }
+  function toggle(b){
+    var d = b.dataset, list = load(), i = list.findIndex(function(x){ return x.url === d.url; });
+    if (i >= 0) list.splice(i, 1);
+    else list.unshift({url:d.url, title:d.title||d.url, kind:d.kind||"", date:d.date||"",
+                       note:d.note||"", saved:new Date().toISOString().slice(0,10)});
+    save(list); paint(b);
+    if (window.renderFavs) window.renderFavs();
+  }
+  function wire(){
+    var bs = document.querySelectorAll("[data-fav]");
+    for (var i = 0; i < bs.length; i++){
+      (function(b){ paint(b); b.addEventListener("click", function(e){
+        e.preventDefault(); e.stopPropagation(); toggle(b); }); })(bs[i]);
+    }
+  }
+  window.favStore = {load:load, save:save, has:has};
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", wire);
+  else wire();
+})();
+</script>
+</body>
+</html>
