@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>今週のインサイト 2026-10-18</title>
+<style>
+  :root{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E; --accent-bg:#F5EFE3;
+    --sans: system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
+      --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E; --accent-bg:#F5EFE3;
+  }
+  :root[data-theme="dark"]{
+    --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
+    --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
+  }
+  /* Phone-first. Body text sits at 16px (never below -- iOS zooms on focus under 16px and
+     small type is the main complaint on a handset), the column is capped just above a
+     comfortable measure, and side padding stays generous so text never touches the edge. */
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0}
+  .wrap{background:var(--ground);color:var(--ink);font-family:var(--sans);
+    font-size:16px;line-height:1.9;-webkit-font-smoothing:antialiased;
+    padding:1.5rem 1.15rem 4rem;min-height:100vh}
+  .inner{max-width:34rem;margin:0 auto}
+  header{border-bottom:1px solid var(--line);padding-bottom:1.25rem;margin-bottom:1.5rem}
+  .eyebrow{font-size:.72rem;letter-spacing:.16em;color:var(--faint);
+    text-transform:uppercase;margin:0 0 .5rem}
+  h1{font-size:1.4rem;font-weight:700;letter-spacing:-.01em;line-height:1.45;
+    margin:0;text-wrap:balance}
+  .lede{font-size:1rem;color:var(--muted);margin:1.1rem 0 0;line-height:1.95}
+  .picks{display:flex;flex-direction:column;gap:1.15rem}
+  .pick{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.2rem 1.1rem;position:relative}
+  .n{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.1em;margin-bottom:.35rem}
+  .pick h2{font-size:1.12rem;font-weight:700;line-height:1.6;margin:0 0 .7rem;
+    letter-spacing:-.005em;text-wrap:balance}
+  /* No justify: on a narrow screen it opens rivers of white space between Japanese runs. */
+  .sum{font-size:1rem;color:var(--ink)}
+  .sum p{margin:0 0 .95rem}
+  .sum p:last-child{margin-bottom:0}
+  .sum .blist{list-style:none;margin:0 0 1rem;padding:0;display:flex;
+    flex-direction:column;gap:.5rem}
+  /* 本文中の小見出し: 長い解説を拾い読みできるようにする */
+  .sum .sh{font-size:.94rem;font-weight:700;color:var(--ink);margin:1.5rem 0 .55rem;
+    padding-left:.6rem;border-left:3px solid var(--accent);line-height:1.6}
+  .sum .sh:first-child{margin-top:0}
+  .sum .blist li{position:relative;padding-left:1.1rem;line-height:1.85}
+  .sum .blist li::before{content:"";position:absolute;left:.2rem;top:.75em;
+    width:.32rem;height:.32rem;border-radius:50%;background:var(--accent)}
+  /* 図解の崩れ防止: 長い語も枠内で折り返し、幅が足りなければ横スクロールさせる */
+  .fig *{overflow-wrap:anywhere;word-break:normal;min-width:0}
+  /* 図解: CSS で組む（SVGだと縮小して読めなくなる）。縦積みなので幅の狭い画面でも崩れない */
+  .fig{margin:.9rem 0 1rem;padding:.9rem .85rem;border:1px solid var(--line);
+    border-radius:12px;background:var(--ground)}
+  .fig-t{font-size:.76rem;font-weight:700;letter-spacing:.06em;color:var(--accent);
+    margin-bottom:.7rem}
+  .fig-c{font-size:.78rem;color:var(--muted);margin-top:.7rem;line-height:1.7}
+  .flow{display:flex;flex-direction:column;align-items:stretch;gap:.3rem}
+  .flow .step{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .7rem;text-align:center}
+  .flow .step b{display:block;font-size:.9rem;font-weight:700}
+  .flow .step span{display:block;font-size:.78rem;color:var(--muted);margin-top:.15rem;
+    line-height:1.6}
+  .flow .arr{text-align:center;color:var(--accent);font-size:.9rem;line-height:1}
+  /* 2x2 マトリクス: 経営フレームの定番。軸ラベルを外側に置いて象限を読ませる */
+  .mtx{display:flex;flex-direction:column;gap:.3rem}
+  .mtx .ylab{font-size:.72rem;color:var(--muted);text-align:center}
+  .mtx .grid{display:grid;grid-template-columns:1fr 1fr;gap:.35rem}
+  .mtx .mcell{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .6rem;min-height:3.6rem;display:flex;flex-direction:column;
+    justify-content:center}
+  .mtx .mcell.empty{background:transparent;border-style:dashed;opacity:.5}
+  .mtx .mcell b{font-size:.86rem;font-weight:700;line-height:1.5}
+  .mtx .mcell span{font-size:.76rem;color:var(--muted);margin-top:.2rem;line-height:1.55}
+  .mtx .xlabs{display:flex;justify-content:space-between;font-size:.72rem;
+    color:var(--muted);padding:0 .2rem}
+  /* 横棒: 研究の効果量・前後差を数字で見せる */
+  .bars{display:flex;flex-direction:column;gap:.5rem}
+  .brow{display:flex;flex-direction:column;gap:.2rem}
+  .blab{font-size:.84rem;font-weight:600}
+  .blab .bnote{font-weight:400;color:var(--muted);font-size:.76rem;margin-left:.4rem}
+  /* grid: the bar track takes the leftover width and the number never wraps under it.
+     A percentage width inside a flex row was being resolved against the wrong box, which is
+     what made the bars overflow on a phone. */
+  .btrack{display:grid;grid-template-columns:minmax(0,1fr) max-content;gap:.55rem;
+    align-items:center}
+  .bwrap{background:var(--line);border-radius:5px;height:1.35rem;overflow:hidden;width:100%}
+  .bbar{height:100%;background:var(--accent);border-radius:5px;opacity:.9}
+  .bval{font-size:.82rem;font-weight:700;color:var(--accent);
+    font-variant-numeric:tabular-nums}
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
+  .cmp .col{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .65rem}
+  .cmp .ch{font-size:.78rem;font-weight:700;color:var(--accent);margin-bottom:.4rem;
+    padding-bottom:.35rem;border-bottom:1px solid var(--line)}
+  .cmp ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.3rem}
+  .cmp li{font-size:.86rem;line-height:1.6;padding-left:.75rem;position:relative}
+  .cmp li::before{content:"・";position:absolute;left:0;color:var(--faint)}
+  .rel{display:flex;flex-direction:column;align-items:center;gap:.55rem}
+  .rel .hub{background:var(--accent);color:var(--card);border-radius:999px;
+    padding:.5rem 1.1rem;font-size:.9rem;font-weight:700}
+  .rel .sats{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem}
+  .rel .sat{background:var(--card);border:1px solid var(--line);border-radius:999px;
+    padding:.35rem .75rem;font-size:.84rem}
+  @media (max-width:380px){ .cmp{grid-template-columns:1fr} }
+  /* Tap target: a bare inline link is hard to hit on a phone, so give it real height. */
+  .src{display:inline-block;margin-top:1rem;font-size:.86rem;color:var(--muted);
+    text-decoration:none;border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .8rem;line-height:1.5;word-break:break-word}
+  .src:hover{color:var(--accent);border-color:var(--accent)}
+  /* 今週の論文: 定義リストで「問い／検証／結果／含意／留意」を固定の型に見せる */
+  .papers{margin-top:2.2rem}
+  .sec{font-size:.78rem;font-weight:700;letter-spacing:.14em;color:var(--accent);
+    margin:0 0 .9rem;padding-bottom:.5rem;border-bottom:1px solid var(--line)}
+  .paper{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.1rem 1.05rem;margin-bottom:1rem}
+  .paper h3{font-size:1.02rem;font-weight:700;line-height:1.6;margin:0 0 .3rem;
+    text-wrap:balance}
+  .paper .auth{font-size:.78rem;color:var(--faint);margin-bottom:.75rem}
+  .paper dl{margin:0;display:grid;grid-template-columns:max-content minmax(0,1fr);
+    gap:.5rem .8rem;align-items:start}
+  .paper dt{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.08em;
+    padding-top:.15rem;white-space:nowrap}
+  .paper dd{margin:0;font-size:.9rem;line-height:1.8;text-align:justify}
+  .paper .finds{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;
+    gap:.35rem}
+  .paper .finds li{position:relative;padding-left:1rem;line-height:1.75}
+  .paper .finds li::before{content:"";position:absolute;left:.2rem;top:.72em;width:.3rem;
+    height:.3rem;border-radius:50%;background:var(--accent)}
+  @media (max-width:420px){ .paper dl{grid-template-columns:1fr;gap:.15rem .8rem}
+    .paper dt{margin-top:.5rem} }
+  footer{margin-top:2.4rem;padding-top:1.1rem;border-top:1px solid var(--line);
+    font-size:.78rem;color:var(--faint);line-height:1.7}
+  a:focus-visible,.src:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+.fav{appearance:none;-webkit-appearance:none;cursor:pointer;display:inline-flex;
+  align-items:center;justify-content:center;gap:6px;min-width:44px;min-height:44px;
+  padding:0 12px;border-radius:999px;font:inherit;font-size:14px;font-weight:600;
+  background:var(--surface,#fff);color:var(--ink-mut,#6b7280);
+  border:1px solid var(--line,#e5e7eb);line-height:1;}
+.fav:hover{border-color:#f0b429;color:#b26b00;}
+.fav[aria-pressed="true"]{background:#fff8e6;border-color:#f0b429;color:#b26b00;}
+.fav .ic{font-size:16px;line-height:1;}
+.fav-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:14px 0 6px;}
+.fav-bar a.all{font-size:13.5px;color:var(--ink-mut,#6b7280);text-decoration:none;
+  min-height:44px;display:inline-flex;align-items:center;}
+.fav-bar a.all:hover{text-decoration:underline;}
+.fav-mini{appearance:none;-webkit-appearance:none;cursor:pointer;background:none;border:0;
+  padding:6px 8px;margin-left:2px;font-size:15px;line-height:1;color:#c3c8d0;
+  min-width:36px;min-height:36px;}
+.fav-mini[aria-pressed="true"]{color:#f0b429;}
+
+</style>
+</head>
+<body>
+<div class="wrap"><div class="inner">
+  <header>
+    <p class="eyebrow">Weekly Insight</p>
+    <h1>今週のインサイト <span style="color:var(--faint);font-weight:500">2026-10-18</span></h1>
+    <p class="lede">今週の論考に共通しているのは、AIで仕事が速くなるほど、人の判断・注意・関係をどう守るかという問いです。去年までは「AIを入れるかどうか」の議論が中心でした。今年はそこから「入れたあと、どう定着させ、何を人に残すか」へ重心が移っています。その代表が、AIで自作した業務ツールが本番で使えなくなる「展開ギャップ」の論考です。常時接続の文化が判断の質を削るという論考も、同じ流れにあります。もう一つの柱は人です。優秀なプレーヤーを管理職にするときのつまずき方と、労働組合を持たない優良企業がどう人を大切にしてきたかを扱った2本が並びました。さらに、家族経営で創業家が支配権を失う仕組みや、キャリアの「時刻表」が消えたという話もあり、どれも長く経営する人ほど身にしみる内容です。読む順は、まずAIツールの話で足元のリスクを押さえ、次に連絡ルールと新任管理職の2本で明日から試せることを拾ってください。週末に、事業承継とキャリアの2本をゆっくり読むのがおすすめです。</p>
+    <div class="fav-bar"><button class="fav" data-fav data-url="https://hacadr-cloud.github.io/weekly-insight/2026-10-18.html" data-title="週次インサイト 2026-10-18" data-kind="insight" data-date="2026-10-18" aria-pressed="false"><span class="ic">☆</span><span class="tx">あとで読む</span></button><a class="all" href="favorites.html">保存した記事を見る →</a></div>
+  </header>
+  <div class="picks">
+    <article class="pick">
+      <div class="n">1</div>
+      <h2>AIで自作した業務ツールを、現場で本当に使える形にする3つの手順</h2>
+      <div class="fig"><div class="fig-t">展開ギャップの越え方</div><div class="flow"><div class="step"><b>作る前に線引き</b><span>自作する部分と専門家の部分</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>つなぎ過ぎない</b><span>中核システムに直結しない</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>用途を絞る</b><span>追加の使い道を制限する</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>技術者が点検</b><span>本番・展開の前に構造を確認</span></div></div><div class="fig-c">左から順に、試作から本番へ進む前に通る関門</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>生成AIのおかげで、ソフトを作る費用はほぼゼロに感じられるようになった。担当者が欲しい機能を説明すればAIがコードを書き、その日の午後には動く道具ができる。</p><p>その結果、これまで外から買っていたソフトを社内で作る会社が増えている。2026年のマッキンゼーの世界調査では、経営幹部1,719人の3分の1近くが「AIで自作できるので、少なくとも1つのソフトや機能の購入をやめた」と答えた。</p><p>ところが、動く試作品と、毎日の業務で使える道具は別物だ。使う人が増え、使う場面が広がり、社内の他のシステムとつながるほど、仕組みは複雑になる。著者らはこの溝を「展開ギャップ」と呼ぶ。</p><p>最悪の場合、専門家でも直せない不具合が出る。維持費がかさみ、結局は市販品を買ったほうが安かった、ということにもなる。</p><h3 class="sh">ある銀行の失敗</h3><p>欧州の大手銀行の例がわかりやすい。顧客担当者は、顧客管理システムの更新、コンプライアンスの書類、フォローの連絡といった事務に追われていた。</p><p>スイスのAIスタートアップが、7つのAIエージェントを連携させて試験導入した。効果はすぐに出た。顧客と向き合う時間が、担当者1人あたり1日1時間以上増えた。</p><p>経営陣はこう考えた。「小さなスタートアップに作れるなら、自社でチームを作り、同じAIツールを持たせればいい」。そこで人を雇い、社内開発に切り替えた。</p><ul class="blist"><li>6カ月と多額の投資をかけて、できたのは基本的な試作品だけだった</li><li>複雑な規制への対応、複数エージェントの連携、日常の使用に耐える安定性という「ラストワンマイル」を越えられなかった</li><li>結局ベンダーを呼び戻した。だがベンダーは「直すより最初から作り直すほうが早い」と判断し、銀行は作り直しを発注した</li></ul><h3 class="sh">調べ方と、成功した会社の3つの手順</h3><p>著者らは過去2年、米国と欧州の11社（製薬、銀行・金融、日用品、ソフトウェア）でAIプロジェクトを率いたり、助言したりしてきた。関わった期間は4カ月から2年以上に及ぶ。</p><p>つまずいた会社もあったが、溝を埋めた会社には共通の手順があった。</p><ul class="blist"><li>作る前に、技術者でない人が自分で作れる部分と、専門家が関わるべき部分を話し合う</li><li>新しい道具を、会社の中核システムにがっちり組み込まない</li><li>「ついでにこれも」という追加の使い道を絞る</li></ul><h3 class="sh">なぜ作った本人が直せないのか</h3><p>生成AIを使う開発では、人間は「何をしたいか」を伝えるだけで、仕組みの組み立て方はAIが決める。速くて楽な反面、作った本人がその構造を知らないという盲点が生まれる。</p><p>そのため、あとで例外的なケースに対応しようとしても、どこを直せばいいかわからない。専門家を呼んでも、今あるものを直すより作り直すほうが安くなる。AIモデルや外部サービスの仕様や料金が変わるたびに、保守の手間も増える。</p><p>経営トップも「AIなら簡単に作れる」と思い込み、現場に無理な注文を出しがちだと著者らは指摘する。</p><h3 class="sh">実際の場面ではどうするか</h3><p>スイスの製薬会社ロシュには、18人全員が生成AIでダッシュボードや分析の自動化を作っているデータチームがある。このうち3人は技術者だ。本番に出す前、あるいは作った本人以外に広げる前に、必ず中身を点検する。</p><p>点検するのは次の3点だ。</p><ul class="blist"><li>仕組みがどう組み立てられているか</li><li>展開と保守にどれだけの手間と費用がかかるか</li><li>新しいデータやシステムに安定してつなげられるか</li></ul><p>これで分析担当は自分で素早く作れる。しかも構造を理解している人がいるので、あとで直すこともできる。</p><p>試作の成功で盛り上がったチームを立ち止まらせるために、著者らは一つの問いを勧める。「この道具の本番での出来に、自分の評価やボーナスを連動させてもいいか」。こう聞くと、チームは自分から専門家に確認を頼むようになるという。</p><p>もう一つの注意点は「つながり」だ。データの受け渡し、他システムとの連携、その道具を前提にした後工程。どれも、道具を変えたときに壊れる場所になる。つながるほど、直すのも替えるのもやめるのも高くつく。</p><p>たとえば、店舗スタッフがAIで在庫表や予約表を自作するのはよい。ただ、それを売上管理の基幹に直結させたり、全店に広げたりする前に、仕組みのわかる人に一度見てもらう。この順番が要点だ。</p><h3 class="sh">限界</h3><p>根拠は、著者らが自ら主導・助言した11社の事例だ。大規模な比較調査ではない。対象は大企業が中心で、専任の技術者を置けない小さな会社でどう応用するかは、読み手が考える必要がある。</p></div>
+      <a class="src" href="http://hbr.org/2026/10/turn-vibe-coded-prototypes-into-tools-your-company-can-actually-use" target="_blank" rel="noopener">HBR ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">2</div>
+      <h2>「すぐ返信」は生産性ではない──常時接続が判断を鈍らせる</h2>
+      <div class="fig"><div class="fig-t">1日に届く連絡</div><div class="bars"><div class="brow"><div class="blab">メール<span class="bnote">1日平均</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:76.5%"></div></div><span class="bval">117件</span></div></div><div class="brow"><div class="blab">Teamsメッセージ<span class="bnote">1日平均</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:100.0%"></div></div><span class="bval">153件</span></div></div></div><div class="fig-c">2つを合わせると、1日に約270件の連絡に注意を奪われる</div></div>
+      <div class="sum"><h3 class="sh">「すぐ返す」は生産性なのか</h3><p>多くの組織には、まだ古い思い込みが残っている。社員がいつでもつかまるほど、生産性は上がるという考えだ。IMDのアンドリュー・シャーマンは、これを「つながっていること」と「成果」の取り違えだと言う。</p><p>この取り違えから生まれるのが「常時オン」の文化だ。誰もが忙しそうに見えるのに、本当の価値を生む仕事と効率は、静かに落ちていく。</p><h3 class="sh">データが示す現状</h3><p>著者はいくつかの調査を引いている。</p><ul class="blist"><li>Slackの2023年調査：経営幹部の27%が、生産性を目に見える活動量で測っていた。デスクワーカーの53%は、勤務時間外でもすぐ返信しなければという圧力を感じていた</li><li>Slackの別の調査：アプリ利用者の56%が、アプリの切り替えで肝心の仕事が進みにくいと答えた。68%は1日30分以上をツール間の移動に使っている</li><li>マイクロソフトの2025年報告：中核の勤務時間中、平均2分に1回、会議・メール・通知で仕事が中断される。1日に届くのはメール117通、Teamsのメッセージ153件</li><li>同じ報告：社員の48%、リーダーの52%が、仕事を混沌として細切れだと感じている。午後8時以降の会議は前年より16%増えた</li></ul><p>マイクロソフトはこれを「終わりのない勤務日」と呼んでいる。</p><h3 class="sh">なぜ成果が落ちるのか</h3><p>ソフィー・ルロワの研究によれば、人は作業を切り替えても、注意の一部が前の作業に残る。「注意の残りかす」と呼ばれる現象だ。切り替えが多いほど、次の作業で考える質が落ちる。</p><p>ほかにも研究がある。スマートフォンが近くにあるだけで認知能力が下がるという実験。通知による中断を減らすと成果が上がり、負担が減るという報告。勤務時間外もつながっていると仕事から気持ちが離れず、情緒的な消耗が増えるという研究。</p><p>著者の主張は単純だ。一時的に集中するのは力になる。だが、ずっと待機状態でいると警戒が続き、注意力と判断力が削られる。成果を出し続けるには、集中と回復をくり返す周期が要る。</p><h3 class="sh">目に見えるものが評価される罠</h3><p>返信の速さ、埋まった予定表、緑のオンライン表示は、仕事が前に進んでいる印象を与える。目に見えるので、リーダーは無意識にそれを評価しがちだ。</p><p>一方、深く考えることは測りにくい。戦略を練っている時間は、外からは何もしていないように見える。じっくり考えた判断は、反射的な判断より時間がかかる。</p><p>それでも、価値を生むのは判断のほうだ。長期の投資リスクを見積もる財務責任者も、事故の前の小さな兆しに気づく安全管理者も、即答で価値を出しているわけではない。問題はつながること自体ではなく、管理されていないつながり方だと著者は言う。</p><h3 class="sh">1週間で試せる実験</h3><p>著者は1週間でできる実験を3つ挙げている。取得できた本文に含まれていたのは次の2つだ。</p><ul class="blist"><li>朝の1時間を守る：毎朝最初の60分を、本当に頭を使う仕事にあてる。戦略の準備、書く仕事、意思決定、リスクの点検などだ。その間はメールやチャットを開かない（本当に緊急のときを除く）</li><li>返信のルールを決め直す：「緊急は今日中」「重要は24時間以内」「情報共有は求められない限り返信不要」とチームで決める。件名や書き出しで区分がわかるようにする</li></ul><p>週の終わりに振り返る。難しい仕事は進んだか。一日が受け身ではなく、自分で組み立てたものに感じられたか。むだな確認は減ったか。</p><p>たとえば複数の店舗をチャットでまとめている会社なら、店長への連絡を「今日中」「24時間以内」「返信不要」の3段階に分けるだけでも、同じ考え方を試せる。オーナー自身が深夜に連絡を送らない、という手本を見せることも大切だ。</p><h3 class="sh">限界と別の見方</h3><p>引用されている数字の多くは、Slackやマイクロソフトといったツールを提供する企業の調査だ。また、著者が想定しているのは主に判断や思考を担う人たちである。店頭での接客のように、その場ですぐ応じることそのものが仕事という職種には、そのまま当てはまらない。</p></div>
+      <a class="src" href="https://www.imd.org/ibyimd/wellness/why-always-on-culture-weakens-productivity/" target="_blank" rel="noopener">IMD ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">3</div>
+      <h2>優秀なプレーヤーを「指揮者」に変える──新任管理職の行動実験</h2>
+      <div class="fig"><div class="fig-t">演奏家から指揮者へ</div><div class="cmp"><div class="col"><div class="ch">名演奏家のまま</div><ul><li>自分で問題を解く</li><li>細部に口を出す</li><li>すぐ指示・訂正する</li></ul></div><div class="col"><div class="ch">指揮者になる</div><ul><li>全体の成果に責任</li><li>部下を解くべき謎と見る</li><li>まず問いかける</li></ul></div></div><div class="fig-c">左の行動を右に置き換えるのが、新任管理職の課題</div></div>
+      <div class="sum"><h3 class="sh">優秀な人が管理職になってつまずく理由</h3><p>技術で抜きんでた人を昇進させても、人をうまく率いられるとは限らない。現場の仕事から離れた新任の管理職は、細かく口を出し、管理で縛るほうへ流れやすい。</p><p>IMDのデイブ・シューフは、ある事例をもとに、コーチングがこの移行をどう助けるかを描いている。</p><h3 class="sh">カールのケース</h3><p>カールはソフトウェアの多国籍企業で、技術部門の責任者になって3カ月になる。率いるのは15人の技術者だ。技術力と難しい問題を解く力が評価されての昇進だった。</p><p>ところが、人事部に苦情が届き始める。</p><ul class="blist"><li>部下には本社の外や時差のある場所で働く人が多いのに、非常識な時間に会議を入れる</li><li>一方的で、指示が多すぎる</li><li>相手が話し終える前に遮る</li><li>皆の前で部下を叱ったことがある</li></ul><p>チームには恐れが広がった。部下は異論を言わず、問題も報告しなくなった。こっそり異動を願い出る人まで出た。</p><p>上司と話し合っても、カールは身構えて部下の能力不足を主張した。自分で人を選び直したいとも言ったが、その提案は退けられた。</p><p>会社は、開かれた学びの文化へ変わろうとしている最中だった。経営陣の考えははっきりしていた。変わるか、去るか。カールと上司は、最後の手段としてコーチングに頼ることにした。</p><h3 class="sh">コーチングで何が起きたか</h3><p>最初の面談でも、カールは「問題は部下だ」と譲らなかった。そこでコーチは問いを変えた。「人を率いることを、どう感じていますか」。</p><p>するとカールは、自分で問題を解くのが好きで、昇進でそれを失ったと認めた。彼が語っていたのは「喪失」だった。コーチは、これはよくある反応で、恋しく思うのは自然なことだと伝えた。</p><p>話すうちに、カールは気づき始める。細部に首を突っ込むのは、その仕事が恋しいからかもしれない。だが部下には、それが信頼されていない合図に見えていた。</p><p>コーチはたとえを使った。あなたはもう名演奏家ではなく、指揮者だ。1つの楽器ではなく、オーケストラ全体の音に責任を持つ。</p><p>そしてこう問いかけた。部下一人ひとりを、解く価値のあるパズルだと思ってみたらどうか。コードに独自の論理があるように、人にもその人なりの論理がある。</p><h3 class="sh">小さな行動実験</h3><p>2人は、コードのデバッグと同じやり方で自分の行動を試すことにした。</p><ul class="blist"><li>会議でいらだったら、答える前に一拍おく</li><li>締め切りに遅れた部下には「なぜ遅れたのか」ではなく「何が妨げになったのか」と聞く</li><li>遮りたくなったら数秒待ち、その衝動をやり過ごす</li></ul><p>ロールプレイも行った。コーチが部下を演じる。カールがいつもの反応に戻ると、コーチは役を降り、カールが伝えたかったことと相手が感じたことのずれを一緒に確かめた。</p><p>こうしてカールは、自分の意図と、それが相手に与える影響は同じではないと理解していった。</p><h3 class="sh">現場に置き換えると</h3><p>この話は、売上トップの販売員を店長にした場面や、指名の多いスタイリストに店を任せた場面にそのまま重なる。本人は自分にできることを部下にも求め、つい自分で接客や施術に入ってしまう。</p><p>ポイントは、性格を変えろと説教しないことだ。本人の得意な考え方（カールの場合は問題を解くことへの好奇心）を、人に向け直させる。そのうえで「一拍おく」「聞き方を変える」といった小さな行動を試させ、結果を観察させる。</p><p>著者によれば、リーダーが最も価値を生むのは、名演奏家から指揮者に変わったときだ。部下が自分で決め、意見を出し、力を出しきれるようにすることが、指揮者の仕事になる。</p><h3 class="sh">限界</h3><p>これは一人のケースを描いた実践の記事で、効果を数字で比べた研究ではない。取得できた本文は途中までで、カールがその後どう変わったかは含まれていない。外部のコーチを付けられない会社では、直属の上司が同じ問いかけ役を担う工夫が要る。</p></div>
+      <a class="src" href="https://www.imd.org/ibyimd/coaching-corner-spanish/como-pueden-los-profesionales-de-alto-rendimiento-dar-el-salto-al-liderazgo/" target="_blank" rel="noopener">IMD ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">4</div>
+      <h2>労組のない優良企業26社に学ぶ、人を大切にする仕組み</h2>
+      <div class="fig"><div class="fig-t">求人と応募の差</div><div class="bars"><div class="brow"><div class="blab">一般職の求人</div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:6.2%"></div></div><span class="bval">500件/年</span></div></div><div class="brow"><div class="blab">応募件数<span class="bnote">最大1万件</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:100.0%"></div></div><span class="bval">8000件/年</span></div></div></div><div class="fig-c">人を大切にする会社には、求人の16〜20倍の応募が集まる</div></div>
+      <div class="sum"><h3 class="sh">何を確かめようとしたのか</h3><p>アメリカの大企業で、労働組合をまったく持たない会社はごくわずかだ。そうした会社の人事は、進歩的で公正だと広く評価されてきた。ボストン大学の教授である著者は、その理由を探った。</p><p>組合がないことの利点は、賃金や福利厚生費が安く済むことだと考える人は多い。著者はこの見方に強く反論する。最大の利点は、生産性を高めるための柔軟性にあるという。なお、元の論文は1981年にHBRに掲載されたもので、今回あらためて公開された。</p><h3 class="sh">調べ方</h3><ul class="blist"><li>対象：組合がまったく、またはほとんどない大企業26社</li><li>20社はフォーチュン誌の製造業500社に入る会社。残り6社は非上場企業かサービス業</li><li>半数が売上高10億ドル以上。米国内の従業員数は2,200人〜15万人で、60%は1万人以上</li><li>3社を除いてすべて製造業。銀行・保険は含まない</li><li>ブラック・アンド・デッカー、イーライリリー、ジレット、IBM、ポラロイドなどが含まれる</li><li>会長・社長から事業部長、現場の管理者、人事担当まで、500人以上に面接した</li></ul><p>対象は無作為に選ばれていない。業界で尊敬され、人事施策に定評のある会社をあえて選んでいる。この点は最初に押さえておきたい。</p><h3 class="sh">分かったこと</h3><p>経営者たちは「組合があったら、今の生産性は出せない」と信じていた。社員の忠誠心が高く、離職や欠勤が少なく、技術の変化への抵抗も小さいという。具体的な数字も挙がっている。</p><ul class="blist"><li>ある会社の月間離職率は0.5%で、業界平均を大きく下回る</li><li>別の会社の年間離職率は平均3%</li><li>ある会社は、売上1ドルあたりの従業員数が業界で最も少ない</li><li>ある会社には、一般職の年間求人500人に対し、毎年8,000〜1万件の応募が来る</li></ul><p>著者の観察では、こうした利点は次の3つから生まれる。人事施策を自由に試せること。従業員と直接接する機会があること。労使が対立していないこと。</p><h3 class="sh">最も重要な要因は「平等」</h3><p>著者は、組合の有無にかかわらず人事の効果を測る物差しとして使える、9つの共通点を挙げている。中でも最も重要とされるのが、1つ目の「気くばりの感覚」、つまり徹底した平等主義だ。</p><p>多くの会社では、副社長から清掃担当まで同じ駐車場を使い、似た医療給付を受け、同じ食堂で食事をする。役員室は質素か、そもそもない。誰もが互いをファーストネームで呼ぶ。</p><p>社用車やクラブ会員権のような役員の特権を廃止した会社も多い。トップの報酬も、大企業の水準からすると低めだ。</p><p>象徴だけではない。ヒューレット・パッカードは、雇用の保障、独自の研修、社内公募による登用、現金での利益分配、株式購入制度、ストックオプション、フレックスタイムを実施していた。</p><h3 class="sh">創業者の言葉が文化になる</h3><p>注目したいのは、多くの会社で、まだ小さかった頃に創業者が人事の考え方を言葉にし、文書に残していたことだ。</p><ul class="blist"><li>IBMのトーマス・ワトソンは、半世紀近く前に人事の原則を定めた。「個人の尊重」はその1つで、今も会社を方向づけている</li><li>ポラロイドのエドウィン・ランドは、目標の1つとして「ここでの仕事が、働く一人ひとりの人生にとって報われる時間になる機会を与えること」を掲げた</li><li>イーライリリーでは1916年、J・K・リリーが「採用室は会社で最も重要な部門の1つとみなすべきだ」と書いた</li></ul><p>著者によれば、トップの従業員への関心は、さまざまな施策を通じて仕組みになっている。そこにリーダーシップ、トップ自身の手本、象徴の使い方が加わり、大きな役割を果たしている。</p><h3 class="sh">どう読むか、どこまで使えるか</h3><p>中小企業に置き換えると、オーナーだけの特別扱いを減らし、大事にしたいことを早いうちに言葉にして残す、という話になる。店舗が増えてからでは、文化をあとから作るのは難しい。</p><p>ただし限界も大きい。対象は評判のよい大企業に絞られており、組合のある会社との統計的な比較はない。成果の数字も各社の経営者の話に基づく。著者自身、これらの会社の結果を簡単にまねたり移し替えたりはできないと断っている。</p><p>日本の労働環境とは前提が違う点にも注意したい。また、取得できた本文には9つの共通点のうち1つ目しか含まれていない。</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14330" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">5</div>
+      <h2>創業家が会社を失う原因は危機より「将来のオーナー」育成不足</h2>
+      <div class="fig"><div class="fig-t">支配権が失われる過程</div><div class="flow"><div class="step"><b>後継計画なし</b><span>株を分けるだけで終わる</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>一族の方針不在</b><span>会社に何を求めるか不一致</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>経営を丸投げ</b><span>異を唱える力も独立取締役もない</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>安値で売却</b><span>買い手は放置した経営陣</span></div></div><div class="fig-c">左から右へ、気づかないうちに支配権が失われていく</div></div>
+      <div class="sum"><h3 class="sh">支配権は「事件」ではなく「準備不足」で失われる</h3><p>ファミリービジネスの創業家が会社を手放すのは、突然の危機よりも、世代交代の準備不足が原因であることが多い。家族経営の数百社に助言してきた、バニヤン・グローバル・ファミリー・ビジネス・アドバイザーズの著者らの見方だ。</p><h3 class="sh">ある新聞社の例</h3><p>3代続くメディア企業で、家長が急に亡くなった。彼は父親が始めた事業を、国内最大級の新聞社（非上場）に育てた人物だ。収益は好調で、企業価値は10億ドル近かった。</p><p>成人した5人の子どもは取締役に名を連ねていた。ただ、幼い頃から父親の愛情を競い合ってきたため、きょうだいの絆は弱かった。</p><p>3年もたたないうちに、一族はピーク時の数分の一の価格で会社を売るしかないと考えるようになった。表向きの理由は、紙からネットへの移行という業界の逆風だった。</p><p>だが著者らには別のものが見えた。一族は、とっくに支配権を失っていたのだ。</p><ul class="blist"><li>先代は株式を分ける信託を作っただけで、後継者候補に意味のある役職を与えず、本当の後継計画もなかった</li><li>子どもたちは書類上はオーナーだったが、経営の判断はプロの経営者に任せるしかないと感じていた</li><li>会社に何を求めるかについて、一族の意見はまとまっていなかった</li><li>経営陣に異を唱えた経験がなく、ガバナンスの要になる独立した取締役もいなかった</li></ul><p>そして買い手になったのは、売却価格が下がり、会社が傾くのを放置してきたその経営陣だった。</p><h3 class="sh">見落とされる「将来のオーナー」の育成</h3><p>支配権を失うと、「誰のせいか」が問われがちだ。だが実際には、準備不足、無理な期待、周りの支えの不足が重なり、次の世代が不利な立場に追い込まれている。</p><p>共通するのは、先代や顧問が「将来の経営者」の育成には大きな力を注ぐのに、「将来のオーナー」の育成にはほとんど力を注がないことだ。経営を担う人と、株を持って経営を監督する人は、別の役割である。</p><h3 class="sh">自社に当てはめるなら</h3><p>子どもが事業に入らない場合でも、株を継ぐなら、オーナーとして何を決め、何を任せるかを学ぶ必要がある。家族で会社に何を求めるかをそろえておくこと。経営陣と対等に話せる力を付けさせること。こうした準備ほど後回しになりやすい、というのが本稿の警告だ。</p><p>本稿は、3つの典型的な罠と、その処方箋（将来のオーナーの育成、家族の関係づくりなど）を示している。ただ、その詳細は今回の材料に含まれていない。事例は著者らの助言経験に基づくもので、統計的に検証されたものではない。</p><p>（本文は取得できず、公開されている要旨から書いています）</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14709" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">6</div>
+      <h2>キャリアは「計画」より「準備」──人生の時刻表が消えた時代</h2>
+      <div class="fig"><div class="fig-t">キャリアの前提の変化</div><div class="cmp"><div class="col"><div class="ch">20世紀</div><ul><li>教育→仕事→引退</li><li>同年代が同じ歩調</li><li>5年計画が機能した</li></ul></div><div class="col"><div class="ch">いま</div><ul><li>50〜60年働く</li><li>AIで仕事が急変する</li><li>人ごとに段階が違う</li></ul></div></div><div class="fig-c">右の条件では、計画より変化に備える準備が効く</div></div>
+      <div class="sum"><h3 class="sh">前提が崩れた</h3><p>これまでのキャリア設計は、5年先の姿を決め、道筋を描き、必要なスキルを身につけるという長期の計画が前提だった。ロンドン・ビジネススクールの教授である著者は、その前提が崩れつつあると言う。</p><p>理由は、2つの変化が同時に起きていることだ。</p><ul class="blist"><li>職業人生が延び、50年、60年と働く人が増えた</li><li>AIの進化で、仕事そのものが変わるスピードが上がった</li></ul><h3 class="sh">「キャリアの時刻表」が消えた</h3><p>20世紀の大半、人の働き方はいわば「時刻表」で決まっていた。教育、仕事、引退。ほぼ同じ年齢の人が、この3つの段階をそろって進んだ。</p><p>みんなが同じリズムで動いていたので、多くの決断は考えるまでもないように見えた。今学び直すべきか、寄り道すべきか、ペースを落とすべきか。そう悩む必要はほとんどなかった。時刻表が答えてくれていたからだ。</p><p>その時刻表が消えつつある。金融機関のシニアリーダーのビルが同僚や友人の話を聞くと、その人生は驚くほど多様だった。</p><ul class="blist"><li>会社勤めをやめ、複数の仕事を組み合わせる働き方に移った人</li><li>仕事を離れて親の介護をし、その後復帰した人</li><li>大企業に数十年勤めたあと、起業した人</li></ul><p>著者によれば、職業人生が延びたことの最大の意味は、時間が増えたことではない。足並みをそろえてくれる仕組みがなくなったことだ。</p><h3 class="sh">計画より準備</h3><p>決まった順序がなくなれば、計画は人生の手引きとしてあまり頼りにならない。必要なのは、変化に柔軟に対応する構えだと著者は主張する。</p><p>著者は10週間かけてグローバル企業3社のシニアリーダーたちと過ごし、不確実さの中で質の高い決断をするための「3つの意思決定ルール」を導き出した。ただし、ルールの中身は今回の材料に含まれていない。</p><h3 class="sh">経営者として読むなら</h3><p>これは自分自身のキャリアの話であると同時に、社員の育て方の話でもある。同じ年齢の社員でも、介護、子育て、学び直しなど、まったく違う段階にいるのが当たり前になる。年次で一律に処遇や研修を決める仕組みは、合わなくなっていく。</p><p>（本文は取得できず、公開されている要旨から書いています）</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14708" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+  </div>
+  
+  <footer>
+    コンサルティングファーム・ビジネススクール・調査機関の19ソースから、
+    直近7日の公開分を収集し日本語に要約したもの。判断の前に各出典を確認してください。
+  </footer>
+</div></div>
+<script>
+(function(){
+  var KEY = "lsm-favs-v1";
+  function load(){ try { return JSON.parse(localStorage.getItem(KEY)) || []; }
+                   catch(e){ return []; } }
+  function save(v){ try { localStorage.setItem(KEY, JSON.stringify(v)); } catch(e){} }
+  function has(url){ return load().some(function(x){ return x.url === url; }); }
+  function paint(b){
+    var on = has(b.dataset.url);
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+    var ic = b.querySelector(".ic"), tx = b.querySelector(".tx");
+    if (ic) ic.textContent = on ? "\u2605" : "\u2606";
+    if (tx) tx.textContent = on ? "保存済み" : "あとで読む";
+    if (!ic && !tx) b.textContent = on ? "\u2605" : "\u2606";
+  }
+  function toggle(b){
+    var d = b.dataset, list = load(), i = list.findIndex(function(x){ return x.url === d.url; });
+    if (i >= 0) list.splice(i, 1);
+    else list.unshift({url:d.url, title:d.title||d.url, kind:d.kind||"", date:d.date||"",
+                       note:d.note||"", saved:new Date().toISOString().slice(0,10)});
+    save(list); paint(b);
+    if (window.renderFavs) window.renderFavs();
+  }
+  function wire(){
+    var bs = document.querySelectorAll("[data-fav]");
+    for (var i = 0; i < bs.length; i++){
+      (function(b){ paint(b); b.addEventListener("click", function(e){
+        e.preventDefault(); e.stopPropagation(); toggle(b); }); })(bs[i]);
+    }
+  }
+  window.favStore = {load:load, save:save, has:has};
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", wire);
+  else wire();
+})();
+</script>
+</body>
+</html>
