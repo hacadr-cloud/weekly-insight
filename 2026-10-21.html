@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>今週のインサイト 2026-10-21</title>
+<style>
+  :root{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E; --accent-bg:#F5EFE3;
+    --sans: system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
+      --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E; --accent-bg:#F5EFE3;
+  }
+  :root[data-theme="dark"]{
+    --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
+    --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
+  }
+  /* Phone-first. Body text sits at 16px (never below -- iOS zooms on focus under 16px and
+     small type is the main complaint on a handset), the column is capped just above a
+     comfortable measure, and side padding stays generous so text never touches the edge. */
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0}
+  .wrap{background:var(--ground);color:var(--ink);font-family:var(--sans);
+    font-size:16px;line-height:1.9;-webkit-font-smoothing:antialiased;
+    padding:1.5rem 1.15rem 4rem;min-height:100vh}
+  .inner{max-width:34rem;margin:0 auto}
+  header{border-bottom:1px solid var(--line);padding-bottom:1.25rem;margin-bottom:1.5rem}
+  .eyebrow{font-size:.72rem;letter-spacing:.16em;color:var(--faint);
+    text-transform:uppercase;margin:0 0 .5rem}
+  h1{font-size:1.4rem;font-weight:700;letter-spacing:-.01em;line-height:1.45;
+    margin:0;text-wrap:balance}
+  .lede{font-size:1rem;color:var(--muted);margin:1.1rem 0 0;line-height:1.95}
+  .picks{display:flex;flex-direction:column;gap:1.15rem}
+  .pick{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.2rem 1.1rem;position:relative}
+  .n{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.1em;margin-bottom:.35rem}
+  .pick h2{font-size:1.12rem;font-weight:700;line-height:1.6;margin:0 0 .7rem;
+    letter-spacing:-.005em;text-wrap:balance}
+  /* No justify: on a narrow screen it opens rivers of white space between Japanese runs. */
+  .sum{font-size:1rem;color:var(--ink)}
+  .sum p{margin:0 0 .95rem}
+  .sum p:last-child{margin-bottom:0}
+  .sum .blist{list-style:none;margin:0 0 1rem;padding:0;display:flex;
+    flex-direction:column;gap:.5rem}
+  /* 本文中の小見出し: 長い解説を拾い読みできるようにする */
+  .sum .sh{font-size:.94rem;font-weight:700;color:var(--ink);margin:1.5rem 0 .55rem;
+    padding-left:.6rem;border-left:3px solid var(--accent);line-height:1.6}
+  .sum .sh:first-child{margin-top:0}
+  .sum .blist li{position:relative;padding-left:1.1rem;line-height:1.85}
+  .sum .blist li::before{content:"";position:absolute;left:.2rem;top:.75em;
+    width:.32rem;height:.32rem;border-radius:50%;background:var(--accent)}
+  /* 図解の崩れ防止: 長い語も枠内で折り返し、幅が足りなければ横スクロールさせる */
+  .fig *{overflow-wrap:anywhere;word-break:normal;min-width:0}
+  /* 図解: CSS で組む（SVGだと縮小して読めなくなる）。縦積みなので幅の狭い画面でも崩れない */
+  .fig{margin:.9rem 0 1rem;padding:.9rem .85rem;border:1px solid var(--line);
+    border-radius:12px;background:var(--ground)}
+  .fig-t{font-size:.76rem;font-weight:700;letter-spacing:.06em;color:var(--accent);
+    margin-bottom:.7rem}
+  .fig-c{font-size:.78rem;color:var(--muted);margin-top:.7rem;line-height:1.7}
+  .flow{display:flex;flex-direction:column;align-items:stretch;gap:.3rem}
+  .flow .step{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .7rem;text-align:center}
+  .flow .step b{display:block;font-size:.9rem;font-weight:700}
+  .flow .step span{display:block;font-size:.78rem;color:var(--muted);margin-top:.15rem;
+    line-height:1.6}
+  .flow .arr{text-align:center;color:var(--accent);font-size:.9rem;line-height:1}
+  /* 2x2 マトリクス: 経営フレームの定番。軸ラベルを外側に置いて象限を読ませる */
+  .mtx{display:flex;flex-direction:column;gap:.3rem}
+  .mtx .ylab{font-size:.72rem;color:var(--muted);text-align:center}
+  .mtx .grid{display:grid;grid-template-columns:1fr 1fr;gap:.35rem}
+  .mtx .mcell{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .6rem;min-height:3.6rem;display:flex;flex-direction:column;
+    justify-content:center}
+  .mtx .mcell.empty{background:transparent;border-style:dashed;opacity:.5}
+  .mtx .mcell b{font-size:.86rem;font-weight:700;line-height:1.5}
+  .mtx .mcell span{font-size:.76rem;color:var(--muted);margin-top:.2rem;line-height:1.55}
+  .mtx .xlabs{display:flex;justify-content:space-between;font-size:.72rem;
+    color:var(--muted);padding:0 .2rem}
+  /* 横棒: 研究の効果量・前後差を数字で見せる */
+  .bars{display:flex;flex-direction:column;gap:.5rem}
+  .brow{display:flex;flex-direction:column;gap:.2rem}
+  .blab{font-size:.84rem;font-weight:600}
+  .blab .bnote{font-weight:400;color:var(--muted);font-size:.76rem;margin-left:.4rem}
+  /* grid: the bar track takes the leftover width and the number never wraps under it.
+     A percentage width inside a flex row was being resolved against the wrong box, which is
+     what made the bars overflow on a phone. */
+  .btrack{display:grid;grid-template-columns:minmax(0,1fr) max-content;gap:.55rem;
+    align-items:center}
+  .bwrap{background:var(--line);border-radius:5px;height:1.35rem;overflow:hidden;width:100%}
+  .bbar{height:100%;background:var(--accent);border-radius:5px;opacity:.9}
+  .bval{font-size:.82rem;font-weight:700;color:var(--accent);
+    font-variant-numeric:tabular-nums}
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
+  .cmp .col{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .65rem}
+  .cmp .ch{font-size:.78rem;font-weight:700;color:var(--accent);margin-bottom:.4rem;
+    padding-bottom:.35rem;border-bottom:1px solid var(--line)}
+  .cmp ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.3rem}
+  .cmp li{font-size:.86rem;line-height:1.6;padding-left:.75rem;position:relative}
+  .cmp li::before{content:"・";position:absolute;left:0;color:var(--faint)}
+  .rel{display:flex;flex-direction:column;align-items:center;gap:.55rem}
+  .rel .hub{background:var(--accent);color:var(--card);border-radius:999px;
+    padding:.5rem 1.1rem;font-size:.9rem;font-weight:700}
+  .rel .sats{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem}
+  .rel .sat{background:var(--card);border:1px solid var(--line);border-radius:999px;
+    padding:.35rem .75rem;font-size:.84rem}
+  @media (max-width:380px){ .cmp{grid-template-columns:1fr} }
+  /* Tap target: a bare inline link is hard to hit on a phone, so give it real height. */
+  .src{display:inline-block;margin-top:1rem;font-size:.86rem;color:var(--muted);
+    text-decoration:none;border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .8rem;line-height:1.5;word-break:break-word}
+  .src:hover{color:var(--accent);border-color:var(--accent)}
+  /* 今週の論文: 定義リストで「問い／検証／結果／含意／留意」を固定の型に見せる */
+  .papers{margin-top:2.2rem}
+  .sec{font-size:.78rem;font-weight:700;letter-spacing:.14em;color:var(--accent);
+    margin:0 0 .9rem;padding-bottom:.5rem;border-bottom:1px solid var(--line)}
+  .paper{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.1rem 1.05rem;margin-bottom:1rem}
+  .paper h3{font-size:1.02rem;font-weight:700;line-height:1.6;margin:0 0 .3rem;
+    text-wrap:balance}
+  .paper .auth{font-size:.78rem;color:var(--faint);margin-bottom:.75rem}
+  .paper dl{margin:0;display:grid;grid-template-columns:max-content minmax(0,1fr);
+    gap:.5rem .8rem;align-items:start}
+  .paper dt{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.08em;
+    padding-top:.15rem;white-space:nowrap}
+  .paper dd{margin:0;font-size:.9rem;line-height:1.8;text-align:justify}
+  .paper .finds{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;
+    gap:.35rem}
+  .paper .finds li{position:relative;padding-left:1rem;line-height:1.75}
+  .paper .finds li::before{content:"";position:absolute;left:.2rem;top:.72em;width:.3rem;
+    height:.3rem;border-radius:50%;background:var(--accent)}
+  @media (max-width:420px){ .paper dl{grid-template-columns:1fr;gap:.15rem .8rem}
+    .paper dt{margin-top:.5rem} }
+  footer{margin-top:2.4rem;padding-top:1.1rem;border-top:1px solid var(--line);
+    font-size:.78rem;color:var(--faint);line-height:1.7}
+  a:focus-visible,.src:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+.fav{appearance:none;-webkit-appearance:none;cursor:pointer;display:inline-flex;
+  align-items:center;justify-content:center;gap:6px;min-width:44px;min-height:44px;
+  padding:0 12px;border-radius:999px;font:inherit;font-size:14px;font-weight:600;
+  background:var(--surface,#fff);color:var(--ink-mut,#6b7280);
+  border:1px solid var(--line,#e5e7eb);line-height:1;}
+.fav:hover{border-color:#f0b429;color:#b26b00;}
+.fav[aria-pressed="true"]{background:#fff8e6;border-color:#f0b429;color:#b26b00;}
+.fav .ic{font-size:16px;line-height:1;}
+.fav-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:14px 0 6px;}
+.fav-bar a.all{font-size:13.5px;color:var(--ink-mut,#6b7280);text-decoration:none;
+  min-height:44px;display:inline-flex;align-items:center;}
+.fav-bar a.all:hover{text-decoration:underline;}
+.fav-mini{appearance:none;-webkit-appearance:none;cursor:pointer;background:none;border:0;
+  padding:6px 8px;margin-left:2px;font-size:15px;line-height:1;color:#c3c8d0;
+  min-width:36px;min-height:36px;}
+.fav-mini[aria-pressed="true"]{color:#f0b429;}
+
+</style>
+</head>
+<body>
+<div class="wrap"><div class="inner">
+  <header>
+    <p class="eyebrow">Weekly Insight</p>
+    <h1>今週のインサイト <span style="color:var(--faint);font-weight:500">2026-10-21</span></h1>
+    <p class="lede">今週は、AIそのものよりも、AIや働き方の変化で「人が育つ場」と「判断の質」がどう変わるかを問う論考が目立ちました。リモートでは若手が育たないので経験者の採用に偏る、という構造を示した研究があります。波風を立てない「よい人文化」が業績を削る仕組みや、高齢のリーダーの引き際を話題にできない組織の弱さを扱った論考もありました。どれも「言いにくいことを言えるか」という一点でつながっています。去年までは「AIで何を自動化するか」が中心でしたが、今年は「自動化した後に、人の経験と判断をどう残すか」へ関心が移ってきたように見えます。店舗運営では、出店の成果をECと合算した顧客価値で測るべきだという研究がデータ付きで出ており、顧客の声を「いつまでに対応してほしいか」で読む視点も、日々のクレーム対応にそのまま使えます。まず若手採用、次に実店舗投資の論考を読むと今週の骨格がつかめます。続けて「よい人文化」と引き際の論考を読み、最後に否定バイアスの短い論考で、月曜の朝の自分の判断を点検してみてください。</p>
+    <div class="fav-bar"><button class="fav" data-fav data-url="https://hacadr-cloud.github.io/weekly-insight/2026-10-21.html" data-title="週次インサイト 2026-10-21" data-kind="insight" data-date="2026-10-21" aria-pressed="false"><span class="ic">☆</span><span class="tx">あとで読む</span></button><a class="all" href="favorites.html">保存した記事を見る →</a></div>
+  </header>
+  <div class="picks">
+    <article class="pick">
+      <div class="n">1</div>
+      <h2>リモートだと若手を採らない――求人5000万件が示す育成の空洞</h2>
+      <div class="fig"><div class="fig-t">リモート職の採用要件</div><div class="bars"><div class="brow"><div class="blab">対面職</div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:80.0%"></div></div><span class="bval">100指数（対面職=100）</span></div></div><div class="brow"><div class="blab">リモート職<span class="bnote">約25％高い</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:100.0%"></div></div><span class="bval">125指数（対面職=100）</span></div></div></div><div class="fig-c">働く場所が違うだけで、求める水準が約4分の1上がる</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>採用で、新卒の若手と経験5年の即戦力のどちらを取るか迷う場面があります。少し前まで、企業は思い切って若手を採っていました。チームとメンター、偶然の学びの機会があれば、新人は大きく伸びると信じられていたからです。</p><p>ところがリモート職では、こうした採用をしなくなっています。米ノースウェスタン大学ケロッグスクールなどの研究者が、『Administrative Science Quarterly』誌に発表した研究で、この傾向をデータで示しました。筆者らによれば、問題はリモートワークそのものではありません。育成の土台が、見えないところで崩れていることです。</p><h3 class="sh">どう調べたか</h3><ul class="blist"><li>欧州28カ国の求人5000万件超を分析</li><li>同じ企業・同じ職種・同じ年で、リモートかどうかだけが違う求人を比較</li><li>採用担当者と経営幹部の計37人に詳しく聞き取り</li><li>オンラインで集めた採用担当者1200人に、同じ職種を「リモート」か「対面」のどちらかにランダムに振り分けて説明し、採用要件を決めてもらう実験</li></ul><p>求人の比較では、働く場所以外の条件をそろえています。実験は、その差が偶然ではないことを確かめるためのものです。</p><h3 class="sh">分かったこと</h3><ul class="blist"><li>リモート職は、求めるスキル・経験年数・学歴の水準が、対面職より一貫して約25％高い</li><li>実験でも同じ結果が出た。「リモート」と付くだけで要求が上がった</li><li>差が最も大きいのは完全リモートの職</li><li>ハイブリッドの職は、完全リモートより対面の職にずっと近かった</li></ul><h3 class="sh">なぜそうなるのか</h3><p>筆者らは、互いに強め合う3つの要因を挙げています。</p><ul class="blist"><li>応募者が多い。リモート職には対面職の2割増から最大10倍の応募が来るので、絞り込むために基準が上がる</li><li>対面の面接が減り、将来性を直接見る機会が減る。そのため学位や資格など、確かめやすい経歴に頼る</li><li>職場で教えるのが難しい</li></ul><p>筆者らが最も重いと見ているのは3つ目です。以前は、廊下の立ち話で疑問が解け、ミスはその場で先輩に直され、先輩の隣で暗黙知が身につきました。聞き取りでは、こうした偶然の学びはリモートでは再現しにくいと語られています。ある人事担当者は「リモートで働くなら、自分で何をすべきか分かっている人でなければ」と述べています。</p><p>他の研究も同じ方向を示しています。フォーチュン500企業のソフトウェアエンジニアを2019〜2024年に追った研究では、同僚の近くに座るだけで非公式な指導が増え、特に経験の浅い若手の成果が伸びました。オフィスが閉鎖されると、その機会はほぼなくなりました。</p><h3 class="sh">悪循環の構図</h3><p>教えにくいので経験者を採る。経験者ばかり採るので、次の世代が経験を積む場がさらに減る。指導が弱まって孤立が増え、成長はさらに鈍くなる。筆者らはこれを、それぞれ別の課題ではなく一つの増幅する循環だと見ています。</p><p>身近な場面に置き換えてみます。エリアの責任者が複数の店舗をオンラインでまとめていて、新人の接客を隣で見る人がいない状態です。すると「経験者でないと店を回せない」という判断が自然に出てきます。短期的には正しくても、数年後には店長候補がいなくなります。</p><h3 class="sh">別の見方と限界</h3><p>育成にかけるコストを負担できない企業にとっては、経験者の採用が合理的だという見方もあります。筆者らも、問題は企業が「近視眼的な判断に甘んじている」ことだとしています。一社の短期的な判断としては筋が通ることまでは否定していません。</p><p>限界も筆者ら自身が書いています。</p><ul class="blist"><li>求人データは欧州のもの。ただし米国での聞き取りと実験でも同じ傾向が出ている</li><li>孤立やメンタルヘルスに関する証拠は他の研究からの引用で、強い相関はあるが因果関係までは示していない</li></ul><p>裏返すと、時々でも対面で会う形にすれば、育成の土台はかなり保てる可能性があります。リスクが集中するのは、若手を含む完全リモートのチームです。</p><p>（本文は途中までしか取得できず、処方箋の部分は取得できた範囲に含まれていません）</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14706" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">2</div>
+      <h2>実店舗の価値はECとの合算で測る――体験型の店は総売上2割増</h2>
+      <div class="fig"><div class="fig-t">出店後の純売上の変化</div><div class="bars"><div class="brow"><div class="blab">周辺のEC売上<span class="bnote">8〜11％減</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:3.0%"></div></div><span class="bval">-11%</span></div></div><div class="brow"><div class="blab">大型店A 合計</div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:78.9%"></div></div><span class="bval">21.7%</span></div></div><div class="brow"><div class="blab">大型店B 合計</div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:84.4%"></div></div><span class="bval">23.2%</span></div></div><div class="brow"><div class="blab">長期観察 合計<span class="bnote">大型店</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:100.0%"></div></div><span class="bval">27.5%</span></div></div><div class="brow"><div class="blab">小型店 合計<span class="bnote">有意差なし</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:3.0%"></div></div><span class="bval">0%</span></div></div></div><div class="fig-c">ECの売上は減っても、体験型の大型店だけが全体を押し上げた</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>商店街には空き店舗が目立ち、消費に占めるECの割合は伸び続けています。それでも、成長している小売企業の一部はむしろ出店を加速しています。ECだけで始めたアイウエアのワービーパーカーは、2025年末に323店を構え、2026年にさらに50店を出す計画です。</p><p>オランダの家電EC、クールブルーの年間売上は、2015年には5億5500万ユーロで店舗は7店でした。現在は売上25億ユーロ超、店舗は40店超です。問いは「店に未来はあるか」から「店にどう投資するか」に変わっています。</p><p>特に難しいのが、他社と同じメーカーの商品を売る小売です。独自ブランドで客を呼べません。店で商品を見た客が、もっと安い店で買う「ショールーミング」のリスクもあります。</p><h3 class="sh">社内の帳簿が判断をゆがめる</h3><p>筆者らによれば、店舗とECで損益計算書を分けている会社が多くあります。そうすると、店舗もECも自分の売上を守ろうとして、店の評価がゆがみます。</p><ul class="blist"><li>ECの売上が落ちると、ECの失敗に見える</li><li>店舗の売上が好調でも、実はECから移っただけかもしれない</li><li>出店後にECが伸びても、どのみち起きていた分を「店の効果」と誤解しうる</li></ul><p>大事なのは、開店後に起きたことすべてではありません。店があったからこそ生じた変化だけを取り出すことです。</p><h3 class="sh">どう調べたか</h3><p>ECが主力で、複数メーカーの商品を扱う家電小売の取引データを2年2カ月分集めました。対象は、新しく開いた3店の周辺にある2388の郵便番号エリアです。3店の内訳は、体験重視の大型店が2つ、利便性重視の小型店が1つです。</p><p>出店した地域の変化を、条件の似た他の地域の変化と比べました。こうして、もともとの売上の流れと出店の効果を切り分けています。</p><p>さらに顧客450人に調査しました。情報収集、商品の受け取り、返品の各場面で店がどれだけ役立つかを、商品カテゴリーごとに測っています。研究は『Production and Operations Management』誌に掲載予定です。</p><h3 class="sh">分かったこと</h3><ul class="blist"><li>開店後4カ月で、3店とも周辺のEC純売上（購入額から返品額を引いたもの）が8〜11％減った</li><li>体験重視の大型店2つは、全チャネル合計の純売上がそれぞれ21.7％と23.2％増えた</li><li>より長い期間を観察した店では、伸びが最終的に27.5％に達した</li><li>利便性重視の小型店も同じくらいECの売上を奪ったが、合計では有意な増加がなかった</li></ul><h3 class="sh">なぜ差がついたのか</h3><p>小型店はテレビや洗濯機を置けないからだ、と考えたくなります。しかし、店舗とECの両方で扱う商品だけに絞って比べても、大型店の伸びはほとんど変わりませんでした。小型店は伸びないままでした。</p><p>差を生んだのは品ぞろえではなく、客が店の中で何をできるかでした。触って比べたり、相談して確かめたりできる店は、ECの客を奪っても全体の売上を押し上げます。受け取りに寄るだけの店は、ECの売上を店に付け替えるだけで終わります。</p><h3 class="sh">具体的な場面</h3><p>携帯ショップや家電量販店の売場に置き換えると分かりやすくなります。店頭での契約数だけで店を評価すると、店舗が客を呼んだ結果オンラインでの手続きが増えた、という効果は見えません。</p><p>逆に店頭が好調でも、オンラインから移っただけなら会社全体の売上は増えていません。店の評価を、その地域の全チャネル合計で見る発想が必要です。</p><h3 class="sh">限界</h3><p>これは1社・3店の結果です。家電という、触って確かめたい商品の話でもあります。小型店でも、役割の設計次第で結果が変わる可能性は残ります。</p><p>（本文は途中までしか取得できず、取得できた範囲と公開されている要旨から書いています）</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14757" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">3</div>
+      <h2>「よい人」文化が業績を削る――厳しい対話を仕組みにする</h2>
+      <div class="fig"><div class="fig-t">二つの組織文化</div><div class="cmp"><div class="col"><div class="ch">よい人文化</div><ul><li>ほぼ全員が期待以上の評価</li><li>会議は進捗報告だけ</li><li>顧客との厳しい話を避ける</li></ul></div><div class="col"><div class="ch">成果を求める文化</div><ul><li>成果をきちんと検証する</li><li>会議で異を唱え合う</li><li>経営陣が率先して示す</li></ul></div></div><div class="fig-c">左の習慣が積み重なるほど、人間関係は良好でも成果が平凡になる</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>リーダーが「感じのよい人」であろうとするほど、組織の成果は落ちていきます。筆者らはこれを「よい人文化」と呼びます。対立や厳しいフィードバックを避ける心理と、波風を立てない仕事の進め方が組み合わさって定着したものです。</p><p>筆者らは、大企業や非営利団体への助言で合わせて60年の経験を持ちます。感じのよさを重んじる組織は業績を損なうリスクを抱えている、というのが筆者らの見方です。反対に、より厳しい文化の組織ほど財務目標や組織の目的を達成しやすいとしています。</p><h3 class="sh">よい人文化の3つの例</h3><p>筆者らが支援した組織の例は具体的です。</p><ul class="blist"><li>年末評価で、ほぼ全員が「期待どおり」か「期待以上」と評価された。マネジャーは厳しい話をせずに済んだが、誰も最低限以上を求められず、成果は平凡なままだった。かつて業界をリードしていたこの会社は、機敏な競合にシェアを奪われた</li><li>営業担当者が多すぎる製品を売らされ、その多くは利益率が下がっていた。全員が分かっていたのに、長年の顧客に買い方を変えてもらう話を誰もしなかった。売上も利益率も期待を下回った</li><li>理事会が大きくなりすぎた非営利団体では、CEOに結果の責任を問えなくなった。人間関係は良好でも、成果は低迷した</li></ul><h3 class="sh">なぜ見えにくいのか</h3><p>文化は、会議から評価制度まで、日々の業務に埋め込まれています。会議で互いの意見に異を唱えているのか、進捗を報告しているだけなのか。評価では成果をきちんと検証し、改善を強く求めているのか。</p><p>こうした場面に潜む「感じのよさ」への小さな偏りは、目に見えないことが多いのです。自分の考えを変えるだけでも難しいのに、同じ抵抗感を持つ他人を変えるのはさらに難しくなります。</p><h3 class="sh">処方箋1：経営陣から変える</h3><p>筆者らが効果を確かめてきた戦略は3つです。</p><ul class="blist"><li>経営陣を巻き込む</li><li>このやり方が効くことを現場で実証する</li><li>より厳しい業務レビュー会議を行う</li></ul><p>文化は、トップの方針発表よりも、上に立つ人の振る舞いで広がります。マネジャーは経営陣を見て何が評価されるかを知り、社員はマネジャーを手本にします。</p><p>実例もあります。著者の一人は、11の非営利団体の経営チームを対象に、厳しいフィードバックと結果責任に絞ったリーダー育成プログラムを実施しました。そのうち8団体で、フィードバックと結果責任について社員の評価が平均9ポイント上がりました。後の調査でも、経営陣と中間管理職が日常的に実践を続けていました。</p><p>一方、ベイン・アンド・カンパニーによる1250組織の調査では、こうした行動を一貫して実践できている経営チームは5分の1にすぎませんでした。</p><h3 class="sh">具体策：同僚からの内密なフィードバック</h3><p>効果的な方法の一つが、経営陣同士で体系的にフィードバックし合う仕組みです。チームの力を高めている行動と妨げている行動について、各自が同僚から率直で内密な意見を受け取ります。そのうえで同僚と一緒に振り返り、個人として、チームとして何を変えるかを決める場を設けます。</p><p>複数店舗の店長会議を思い浮かべてみてください。各店が数字を読み上げて終わる会議は、筆者らのいう「進捗を報告するだけの会議」そのものです。全員に「よく頑張った」と付く評価表も同じ構図です。</p><h3 class="sh">別の見方と限界</h3><p>厳しくすれば萎縮や離職を招く、という懸念はありえます。筆者らも、厳しい姿勢が本当にプラスになるのか疑う人がいることを認めています。筆者らの主張は意地悪になれということではありません。相手を安心させることよりも、組織のために本当になる行動を選べ、ということです。</p><p>なお、根拠の多くは筆者らの助言経験です。効果の数字は、11団体のプログラムの結果が中心です。</p><p>（本文は途中までしか取得できず、3つの戦略のうち後半2つの詳しい内容は含まれていません）</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14755" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">4</div>
+      <h2>顧客の声は「いつまでに」で読む――対応の緊急度という第3の信号</h2>
+      <div class="fig"><div class="fig-t">声の強さと緊急度</div><div class="mtx"><div class="ylab top">いますぐ</div><div class="grid"><div class="mcell"><b>見落とし注意</b><span>静かでも即対応が必要</span></div><div class="mcell"><b>即対応</b><span>解約をほのめかす等</span></div><div class="mcell"><b>計画に入れる</b><span>次の改善で対応</span></div><div class="mcell"><b>受け止める</b><span>強い不満でも当面は待てる</span></div></div><div class="ylab bot">待てる</div><div class="xlabs"><span>感情が控えめ</span><span>感情が強い</span></div></div><div class="fig-c">上の段は、感情の強さに関係なく急いで対応する</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>企業はこの10年、顧客の声を集めるために大きな投資をしてきました。レビュー、機能の要望、問い合わせ、コミュニティでの議論などです。AIの分析・翻訳ツールで、世界中の声を処理できるようにもなりました。</p><p>しかし、多くの仕組みが見ているのは、顧客が「何を求めているか」と「どう感じているか」の2つだけです。見落とされているのが3つ目の信号、「いつ対応してほしいか」です。筆者らはこれを「時間的緊急度」と呼びます。</p><h3 class="sh">読み誤ると何が起きるか</h3><ul class="blist"><li>急ぐべき問題を、遠い将来の計画に先送りしてしまう</li><li>慎重な検証を望む顧客に、急な変更を押し付けてしまう</li><li>支持されていた以前の体験を、顧客が離れていく前に元に戻せない</li></ul><p>「いますぐ」「後で」「まだ早い」を見分ける力が、顧客対応に欠かせない条件になりつつあります。</p><h3 class="sh">どう調べたか</h3><p>筆者らは戦略論と国際経営論の研究者で、北京大学、オックスフォード大学、サウスカロライナ大学に所属しています。最近の2本の論文で、デジタルゲーム企業が顧客の声に含まれる「時間の信号」をどう読み取っているかを分析しました。</p><p>その結果、企業の対応は、イノベーションと製品の利用にプラスとマイナスの両方の影響を与えていました。取得できた本文には、データの規模や効果の大きさを示す数字は含まれていません。</p><h3 class="sh">緊急度の見分け方</h3><p>同じ機能を求め、同じくらい強く不満を口にする顧客が2人いるとします。一方は「いずれ対応されればいい」と考え、もう一方は「すぐ直らなければ使うのをやめる」と考えているかもしれません。</p><p>緊急度がはっきり言葉になる場合もあります。</p><ul class="blist"><li>「いますぐ直してほしい」と要求する</li><li>解約をほのめかす</li><li>「使い物にならなくなった」と言う</li></ul><p>多くの場合は、もっと間接的に現れます。</p><ul class="blist"><li>対応の時期に触れる</li><li>日々の作業が妨げられていると訴える</li><li>回避策を何度も使っている</li><li>次の更新を受け入れるのをためらう</li><li>「これ以上は受け入れられない」と言う</li></ul><p>こうした手がかりを読めれば、感情の強さと、求められている対応時期を分けて判断できます。強い否定的な意見でも、当面は我慢できる問題があります。控えめな少数意見でも、すぐに手を打つべき問題があります。</p><h3 class="sh">実例：GPT-5の口調をめぐる反発</h3><p>オープンAIが2025年にGPT-5を出したとき、多くの利用者は性能だけでなく、対話の口調に違和感を訴えました。以前のモデルよりよそよそしく、事務的で、親しみに欠けるというのです。</p><p>オープンAIは数日のうちに、有料の利用者が以前のGPT-4oを選べるようにし、GPT-5の標準の性格を調整しました。意見の内容は口調という表面的に見える話でした。しかし求められた対応の時間軸は「即時」でした。利用者にとって口調は、いずれ直ればいい好みの問題ではなく、いまの製品体験そのものだったからです。</p><h3 class="sh">店頭での場面</h3><p>美容室の口コミに、「仕上がりが好みと違った」という声と、「予約の仕組みが変わって予約が取れない」という声が並んだとします。前者のほうが感情は強く見えるかもしれません。しかし後者は来店そのものを止めてしまう話で、「いますぐ」に分類されます。</p><h3 class="sh">限界</h3><p>研究の対象はデジタルゲーム業界です。筆者らは、知見は他の業界にも通じるとしています。ただ、製品の更新頻度が低い業種でどこまで当てはまるかは、別に考える必要があります。</p><p>（本文は途中までしか取得できず、4つの実践的な方法の中身は含まれていません）</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14673" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">5</div>
+      <h2>高齢リーダーの引き際を話せる組織に――後継の話を日常にする</h2>
+      <div class="fig"><div class="fig-t">引き際を話す手順</div><div class="flow"><div class="step"><b>役割で話す</b><span>年齢ではなく職務と成果で</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>全員と話す</b><span>後継の計画を全員分つくる</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>退いた後を話す</b><span>意味と居場所まで話す</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>責任として話す</b><span>個人の評価にしない</span></div></div><div class="fig-c">左から順に、普段の会話にしておくほど切り出しやすくなる</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>年齢と後継、引退は、職場で最も口にしにくい話題の一つです。同族企業の助言者で、MBAでも教えるクリスティーナ・ウィング氏は、新刊『Unspeakable』（未訳）でこの話題の切り出し方を示しました。本稿はその抜粋です。</p><p>雇用法やマナーの影響で、多くの人はこの話を避けます。働く人は年を取らず、技能も衰えず、いずれ役割を離れる準備を急ぐ必要もない。そんな前提で振る舞ってしまいます。人が長く生き、長く働くようになるにつれて、この会話はますます難しくなっています。</p><h3 class="sh">歯科医院がなくなった話</h3><p>筆者には15年通っていた、冗談好きの歯科医がいました。ある日、器具を持つ手が震えていることに気づきます。その後の通院でも器具を落とすようになり、足取りもおぼつかなくなりました。年齢は75歳前後でした。</p><p>同じ医院で働く息子の歯科医は引退を説得しましたが、父は聞き入れません。対立の末、息子は別の医院へ移りました。患者は離れ、医院は数カ月で閉院しました。</p><p>衛生士や助手は職を失い、父と息子は口をきかなくなりました。父が亡くなったとき、町は彼の功績よりも「患者を危険にさらしたかもしれない人」として記憶しました。</p><p>筆者は、企業でも同じことが起きていると見ています。会社を創業したベビーブーム世代が80代に入っても、退く理由はないと考えているからです。</p><h3 class="sh">筆者が勧める4つの原則</h3><ul class="blist"><li>年齢ではなく役割で話す。年齢や勤続年数ではなく、仕事に必要なこと・成果・成長・組織の必要で話す。「5年後どうしていたいですか」は誰にでも聞ける質問で、一定の年齢の人には引退の時期を考え始める自然な入り口になる</li><li>後継の計画は全員分つくる。後継はCEOだけの話ではない。若手ほど転職が多いので、むしろ全員分が必要になる。成長や次の仕事について普段から話していれば、ある年齢で初めて切り出す気まずさがなくなる</li><li>「どう辞めるか」まで話す。退けない理由の多くは、役割を失うと自分が何者でもなくなるという恐れにある。引退後に何に意味や楽しみを見出すかまで話さなければ、本気の話にならない</li><li>組織への責任として話す。優秀な人でも、次の世代を育てるために退くことがある。ウォルマートのダグ・マクミロンCEOは59歳で退任したが、後継者の準備が整ったことが理由の一つだった</li></ul><p>後継を「個人の価値を判定する場」ではなく「組織への責任」と位置づけると、対立しにくい会話になります。</p><h3 class="sh">90代の創業者</h3><p>筆者がケースを書いた欧州のIT企業の共同創業者は、いま90代です。65歳のとき法律でCEOを退き、会長になりました。しかし実権を握っているのが誰かは明らかです。</p><p>社内規定では75歳で会長も退くはずでした。ところが支持者で固めた取締役会に、5年の延長を何度も認めさせています。</p><p>体は健康で、90代になってもバイクで通勤し、週6日長時間働いています。お金に困っているわけではなく、株はすでに子どもに譲りました。働き続ける理由は、権力と、存在意義と、人とのつながりです。辞めたら何をするかと聞かれると、「見当もつかない」と答えます。筆者は、何年も前に退くべきだったと述べています。</p><h3 class="sh">場面：オーナー自身の引き際</h3><p>中小企業では他人事ではありません。最も退きにくいのは、多くの場合オーナー自身です。周りの誰も言い出せない構図は、歯科医院の息子が置かれた立場と同じです。</p><h3 class="sh">別の見方と限界</h3><p>人手不足の中では、長く働ける人に働き続けてもらうことに価値があります。年齢で一律に線を引くべきではない、という立場もあるでしょう。筆者も、年齢そのものではなく役割と成果で判断するよう求めており、この点は対立しません。</p><p>本稿は筆者の助言経験と事例に基づくもので、データによる検証ではありません。</p><p>（本文は途中までしか取得できず、取得できた範囲と公開されている要旨から書いています）</p></div>
+      <a class="src" href="http://hbr.org/2026/10/leaders-must-speak-honestly-about-aging-at-work" target="_blank" rel="noopener">HBR ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">6</div>
+      <h2>良いアイデアが広がらない理由――ハーバード大ヒル教授の処方箋</h2>
+      <div class="fig"><div class="fig-t">アイデアを広げる道筋</div><div class="flow"><div class="step"><b>つながる</b><span>他部署との信頼を築く</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>ぶつけ合う</b><span>摩擦と心理的安全性</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>試す</b><span>決定権をはっきりさせる</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>打ち切る</b><span>歩く屍を残さない</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>広げる</b><span>3つの役割で波及させる</span></div></div><div class="fig-c">どの段階が欠けても、アイデアは広がる前に止まる</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>良いアイデアを出す会社は多くあります。しかし、それを事業として成功するところまで広げられる会社はごくわずかです。ハーバード・ビジネススクールのリンダ・ヒル教授は、共著の新刊『Genius at Scale』でこの問題を扱いました。ここでは、IMDの読書会で行われた対談の内容を紹介します。</p><p>ヒル教授は、イノベーションはもう選ぶものではなく、競争力を保つだけでも絶えず必要になったと言います。</p><h3 class="sh">アイデアが死ぬ仕組み</h3><p>原因は、組織が人を「イノベーター」と「実行する人」に分けていることにあります。イノベーターが出したアイデアを他の部署に渡すと、拒まれやすくなります。アイデアを広げるには受け手もイノベーターになる必要がありますが、受け手の評価指標はそれに報いないからです。</p><p>OpenAIでさえ例外ではありません。元幹部の一人はヒル教授に、画期的なアイデアは大量に出せたが、組織の他の部分に採用させ広げるのは苦しい戦いだったと語ったそうです。</p><p>人は、よく知らない相手とは一緒にリスクを取りたがりません。組織をまたいだつながりがなければ、何も生まれません。そして組織はもともと政治的なものです。権限の及ばない他の部署や他社の人を、味方につける必要があります。</p><h3 class="sh">先が見えない中で進む条件</h3><p>ヒル教授は、決めた計画どおりに進む「パスファインダー」と、進みながら針路を変える「ウェイファインダー」を区別します。画期的なものほど、先は見通せません。</p><p>たとえるならジャズバンドです。全員が同じキーとテンポと構成を共有しながら、即興する自由を持っています。そのうえで、ヒル教授は次の条件を挙げます。</p><ul class="blist"><li>誰が決めるかをはっきりさせる。決定権があいまいだと、すべてが遅れる</li><li>「創造的な摩擦」を歓迎する。違う視点をぶつけ合う。ただし人は遠慮するので、安心して発言できる環境が欠かせない</li><li>自由には説明責任を伴わせる</li></ul><h3 class="sh">やめどきを決める</h3><p>実験は、いくつかのアイデアを打ち切る覚悟があって初めて機能します。ある経営者は、自分のプロジェクトを打ち切った社員に報酬を払いました。その会社では、始めたまま止められない実験が「歩く屍」のように残り、本当に必要な実験に回す資源がなくなっていたのです。</p><p>合言葉は「解決策ではなく、問題に惚れよ」です。続ける信念と、手放す柔軟さの両方が求められます。</p><p>P&amp;Gでは、実験の失敗がキャリアの終わりになるという強い恐れがありました。そこで業績の測り方と報い方を見直したといいます。</p><p>ヒル教授は、自社でどこまでリスクを取るかについて、過去の判断を積み重ねて「判例」をつくるよう勧めています。誰も自分の案が危ないとは認めたがらないので、「リスク」ではなく「複雑さ」と呼ぶことも提案しています。</p><h3 class="sh">3つの役割</h3><ul class="blist"><li>アーキテクト：誰もが実験し学べる文化と能力を設計する人</li><li>ブリッジャー：外部と組んで人材や道具を取り込む人</li><li>カタリスト：業界や取引先まで含めた周囲全体に広がる動きを起こす人</li></ul><p>デルタ航空は、生体認証を使った搭乗券の開発で外部企業と組み、90日で試作品を動かしました。</p><h3 class="sh">場面と限界</h3><p>複数の店舗を持つ会社で、ある店長が始めた予約の工夫が他の店に広がらない。これがまさにこの話です。他の店長の評価指標がその工夫に報いないなら、広がらないのは自然なことです。</p><p>ただし本稿は対談の紹介で、データによる検証は示されていません。事例も大企業が中心です。</p></div>
+      <a class="src" href="https://www.imd.org/ibyimd/book-club/why-scaling-innovation-is-so-damn-hard/" target="_blank" rel="noopener">IMD ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">7</div>
+      <h2>不安が大きすぎる日の見分け方――否定バイアスの「音量」を下げる</h2>
+      <div class="fig"><div class="fig-t">不安を増幅する要因</div><div class="rel"><div class="hub">否定バイアスの音量</div><div class="sats"><span class="sat">睡眠と体力</span><span class="sat">状況の重さ</span><span class="sat">相手との過去</span><span class="sat">自分の引き金</span></div></div><div class="fig-c">四つのうち重なる数が多い日ほど、反応を割り引いて考える</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>四半期末に、会社が深刻な課題を抱えていると発表したとします。自分のリーダーシップは高く評価されたのに、不安で頭がいっぱいになってしまう。これが「否定バイアス」です。批判や後退や脅威に、良い知らせよりも強く反応してしまう傾向をいいます。心理学者のバウマイスターらの言葉を借りれば、「悪いことは良いことより強い」のです。</p><p>IMDで経営者のコーチを務めるフランチェスカ＝ジュリア・メレウ氏は、このバイアスを消そうとするのではなく、その「音量」を知るよう勧めています。</p><h3 class="sh">バイアスの3つの層</h3><ul class="blist"><li>種として：脅威を見逃す損失のほうが、機会を見逃す損失より大きい環境で、人間が身につけた性質</li><li>性格として：強さには個人差がある。楽観的な人は否定的な情報から注意が離れ、悲観的な人は注意がそこに留まる</li><li>その時々で：同じ人でも、睡眠やプレッシャー、状況によって強くなったり弱くなったりする</li></ul><p>すぐに手を打てるのは3つ目です。</p><h3 class="sh">なぜ「その時々」の影響は見えにくいのか</h3><p>最初の2つは「人間の性だ」「自分は悲観的だから」と説明がつきます。3つ目が見えにくいのは、そのときの気分が判断の材料に紛れ込むからです。</p><p>2008年のある研究では、雨の日に答えた人は、人生への満足度を低く評価しました。ところが、質問の前に聞き手がさりげなく天気を尋ねると、差は消えました。気分がどこから来ているかに気づくだけで、その影響は弱まるのです。</p><h3 class="sh">音量を下げる4つのつまみ</h3><ul class="blist"><li>体力：徹夜明けは、脳の警報役の部位が否定的な画像に約60％強く反応する。空腹や、朝に家で緊張した出来事があったことも影響する。「なぜ今日は消耗しているのか」と自分に問う</li><li>状況：評価される、主導権を失う、不公平を感じる。中でも不公平は尾を引き、「面倒だ」がいつの間にか「間違っている」に変わる。「ここで自分は何を失いかねないのか」と問う</li><li>相手：相手との過去のいきさつが、本人より先に頭に浮かぶ。「メッセージに反応しているのか、送り手に反応しているのか」と問う</li><li>引き金：月曜の朝、空港のラウンジ、「ちょっと質問」の「ちょっと」。「これは自分にとっての引き金か」と問う</li></ul><h3 class="sh">具体的な場面</h3><p>月曜の朝、ある店長から「ちょっとご相談が」と連絡が来たとします。この店長とは前回もめた。週末は寝不足だった。こうした条件が重なると、中身を読む前から悪い話だと身構えてしまいます。</p><p>4つの問いを先に通すだけで、本当の問題なのか、雑音なのかを見分けやすくなります。</p><h3 class="sh">限界</h3><p>本稿は短い実践ガイドです。4つのつまみを組み合わせたやり方そのものが、実験で検証されたわけではありません。</p><p>筆者自身も、否定バイアスは身を守りリスクを知らせてくれるものなので、黙らせようとするなと書いています。狙いは、受け取った情報に比べて雑音が大きすぎるときを見分け、どれだけ重みを置くかを自分で決めることです。</p></div>
+      <a class="src" href="https://www.imd.org/ibyimd/brain-circuits/how-to-put-your-negativity-bias-to-good-use/" target="_blank" rel="noopener">IMD ↗</a>
+    </article>
+  </div>
+  
+  <footer>
+    コンサルティングファーム・ビジネススクール・調査機関の19ソースから、
+    直近7日の公開分を収集し日本語に要約したもの。判断の前に各出典を確認してください。
+  </footer>
+</div></div>
+<script>
+(function(){
+  var KEY = "lsm-favs-v1";
+  function load(){ try { return JSON.parse(localStorage.getItem(KEY)) || []; }
+                   catch(e){ return []; } }
+  function save(v){ try { localStorage.setItem(KEY, JSON.stringify(v)); } catch(e){} }
+  function has(url){ return load().some(function(x){ return x.url === url; }); }
+  function paint(b){
+    var on = has(b.dataset.url);
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+    var ic = b.querySelector(".ic"), tx = b.querySelector(".tx");
+    if (ic) ic.textContent = on ? "\u2605" : "\u2606";
+    if (tx) tx.textContent = on ? "保存済み" : "あとで読む";
+    if (!ic && !tx) b.textContent = on ? "\u2605" : "\u2606";
+  }
+  function toggle(b){
+    var d = b.dataset, list = load(), i = list.findIndex(function(x){ return x.url === d.url; });
+    if (i >= 0) list.splice(i, 1);
+    else list.unshift({url:d.url, title:d.title||d.url, kind:d.kind||"", date:d.date||"",
+                       note:d.note||"", saved:new Date().toISOString().slice(0,10)});
+    save(list); paint(b);
+    if (window.renderFavs) window.renderFavs();
+  }
+  function wire(){
+    var bs = document.querySelectorAll("[data-fav]");
+    for (var i = 0; i < bs.length; i++){
+      (function(b){ paint(b); b.addEventListener("click", function(e){
+        e.preventDefault(); e.stopPropagation(); toggle(b); }); })(bs[i]);
+    }
+  }
+  window.favStore = {load:load, save:save, has:has};
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", wire);
+  else wire();
+})();
+</script>
+</body>
+</html>
