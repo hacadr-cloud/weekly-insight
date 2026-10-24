@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>今週のインサイト 2026-10-25</title>
+<style>
+  :root{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E; --accent-bg:#F5EFE3;
+    --sans: system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
+      --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E; --accent-bg:#F5EFE3;
+  }
+  :root[data-theme="dark"]{
+    --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
+    --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
+  }
+  /* Phone-first. Body text sits at 16px (never below -- iOS zooms on focus under 16px and
+     small type is the main complaint on a handset), the column is capped just above a
+     comfortable measure, and side padding stays generous so text never touches the edge. */
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0}
+  .wrap{background:var(--ground);color:var(--ink);font-family:var(--sans);
+    font-size:16px;line-height:1.9;-webkit-font-smoothing:antialiased;
+    padding:1.5rem 1.15rem 4rem;min-height:100vh}
+  .inner{max-width:34rem;margin:0 auto}
+  header{border-bottom:1px solid var(--line);padding-bottom:1.25rem;margin-bottom:1.5rem}
+  .eyebrow{font-size:.72rem;letter-spacing:.16em;color:var(--faint);
+    text-transform:uppercase;margin:0 0 .5rem}
+  h1{font-size:1.4rem;font-weight:700;letter-spacing:-.01em;line-height:1.45;
+    margin:0;text-wrap:balance}
+  .lede{font-size:1rem;color:var(--muted);margin:1.1rem 0 0;line-height:1.95}
+  .picks{display:flex;flex-direction:column;gap:1.15rem}
+  .pick{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.2rem 1.1rem;position:relative}
+  .n{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.1em;margin-bottom:.35rem}
+  .pick h2{font-size:1.12rem;font-weight:700;line-height:1.6;margin:0 0 .7rem;
+    letter-spacing:-.005em;text-wrap:balance}
+  /* No justify: on a narrow screen it opens rivers of white space between Japanese runs. */
+  .sum{font-size:1rem;color:var(--ink)}
+  .sum p{margin:0 0 .95rem}
+  .sum p:last-child{margin-bottom:0}
+  .sum .blist{list-style:none;margin:0 0 1rem;padding:0;display:flex;
+    flex-direction:column;gap:.5rem}
+  /* 本文中の小見出し: 長い解説を拾い読みできるようにする */
+  .sum .sh{font-size:.94rem;font-weight:700;color:var(--ink);margin:1.5rem 0 .55rem;
+    padding-left:.6rem;border-left:3px solid var(--accent);line-height:1.6}
+  .sum .sh:first-child{margin-top:0}
+  .sum .blist li{position:relative;padding-left:1.1rem;line-height:1.85}
+  .sum .blist li::before{content:"";position:absolute;left:.2rem;top:.75em;
+    width:.32rem;height:.32rem;border-radius:50%;background:var(--accent)}
+  /* 図解の崩れ防止: 長い語も枠内で折り返し、幅が足りなければ横スクロールさせる */
+  .fig *{overflow-wrap:anywhere;word-break:normal;min-width:0}
+  /* 図解: CSS で組む（SVGだと縮小して読めなくなる）。縦積みなので幅の狭い画面でも崩れない */
+  .fig{margin:.9rem 0 1rem;padding:.9rem .85rem;border:1px solid var(--line);
+    border-radius:12px;background:var(--ground)}
+  .fig-t{font-size:.76rem;font-weight:700;letter-spacing:.06em;color:var(--accent);
+    margin-bottom:.7rem}
+  .fig-c{font-size:.78rem;color:var(--muted);margin-top:.7rem;line-height:1.7}
+  .flow{display:flex;flex-direction:column;align-items:stretch;gap:.3rem}
+  .flow .step{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .7rem;text-align:center}
+  .flow .step b{display:block;font-size:.9rem;font-weight:700}
+  .flow .step span{display:block;font-size:.78rem;color:var(--muted);margin-top:.15rem;
+    line-height:1.6}
+  .flow .arr{text-align:center;color:var(--accent);font-size:.9rem;line-height:1}
+  /* 2x2 マトリクス: 経営フレームの定番。軸ラベルを外側に置いて象限を読ませる */
+  .mtx{display:flex;flex-direction:column;gap:.3rem}
+  .mtx .ylab{font-size:.72rem;color:var(--muted);text-align:center}
+  .mtx .grid{display:grid;grid-template-columns:1fr 1fr;gap:.35rem}
+  .mtx .mcell{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .6rem;min-height:3.6rem;display:flex;flex-direction:column;
+    justify-content:center}
+  .mtx .mcell.empty{background:transparent;border-style:dashed;opacity:.5}
+  .mtx .mcell b{font-size:.86rem;font-weight:700;line-height:1.5}
+  .mtx .mcell span{font-size:.76rem;color:var(--muted);margin-top:.2rem;line-height:1.55}
+  .mtx .xlabs{display:flex;justify-content:space-between;font-size:.72rem;
+    color:var(--muted);padding:0 .2rem}
+  /* 横棒: 研究の効果量・前後差を数字で見せる */
+  .bars{display:flex;flex-direction:column;gap:.5rem}
+  .brow{display:flex;flex-direction:column;gap:.2rem}
+  .blab{font-size:.84rem;font-weight:600}
+  .blab .bnote{font-weight:400;color:var(--muted);font-size:.76rem;margin-left:.4rem}
+  /* grid: the bar track takes the leftover width and the number never wraps under it.
+     A percentage width inside a flex row was being resolved against the wrong box, which is
+     what made the bars overflow on a phone. */
+  .btrack{display:grid;grid-template-columns:minmax(0,1fr) max-content;gap:.55rem;
+    align-items:center}
+  .bwrap{background:var(--line);border-radius:5px;height:1.35rem;overflow:hidden;width:100%}
+  .bbar{height:100%;background:var(--accent);border-radius:5px;opacity:.9}
+  .bval{font-size:.82rem;font-weight:700;color:var(--accent);
+    font-variant-numeric:tabular-nums}
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
+  .cmp .col{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .65rem}
+  .cmp .ch{font-size:.78rem;font-weight:700;color:var(--accent);margin-bottom:.4rem;
+    padding-bottom:.35rem;border-bottom:1px solid var(--line)}
+  .cmp ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.3rem}
+  .cmp li{font-size:.86rem;line-height:1.6;padding-left:.75rem;position:relative}
+  .cmp li::before{content:"・";position:absolute;left:0;color:var(--faint)}
+  .rel{display:flex;flex-direction:column;align-items:center;gap:.55rem}
+  .rel .hub{background:var(--accent);color:var(--card);border-radius:999px;
+    padding:.5rem 1.1rem;font-size:.9rem;font-weight:700}
+  .rel .sats{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem}
+  .rel .sat{background:var(--card);border:1px solid var(--line);border-radius:999px;
+    padding:.35rem .75rem;font-size:.84rem}
+  @media (max-width:380px){ .cmp{grid-template-columns:1fr} }
+  /* Tap target: a bare inline link is hard to hit on a phone, so give it real height. */
+  .src{display:inline-block;margin-top:1rem;font-size:.86rem;color:var(--muted);
+    text-decoration:none;border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .8rem;line-height:1.5;word-break:break-word}
+  .src:hover{color:var(--accent);border-color:var(--accent)}
+  /* 今週の論文: 定義リストで「問い／検証／結果／含意／留意」を固定の型に見せる */
+  .papers{margin-top:2.2rem}
+  .sec{font-size:.78rem;font-weight:700;letter-spacing:.14em;color:var(--accent);
+    margin:0 0 .9rem;padding-bottom:.5rem;border-bottom:1px solid var(--line)}
+  .paper{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.1rem 1.05rem;margin-bottom:1rem}
+  .paper h3{font-size:1.02rem;font-weight:700;line-height:1.6;margin:0 0 .3rem;
+    text-wrap:balance}
+  .paper .auth{font-size:.78rem;color:var(--faint);margin-bottom:.75rem}
+  .paper dl{margin:0;display:grid;grid-template-columns:max-content minmax(0,1fr);
+    gap:.5rem .8rem;align-items:start}
+  .paper dt{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.08em;
+    padding-top:.15rem;white-space:nowrap}
+  .paper dd{margin:0;font-size:.9rem;line-height:1.8;text-align:justify}
+  .paper .finds{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;
+    gap:.35rem}
+  .paper .finds li{position:relative;padding-left:1rem;line-height:1.75}
+  .paper .finds li::before{content:"";position:absolute;left:.2rem;top:.72em;width:.3rem;
+    height:.3rem;border-radius:50%;background:var(--accent)}
+  @media (max-width:420px){ .paper dl{grid-template-columns:1fr;gap:.15rem .8rem}
+    .paper dt{margin-top:.5rem} }
+  footer{margin-top:2.4rem;padding-top:1.1rem;border-top:1px solid var(--line);
+    font-size:.78rem;color:var(--faint);line-height:1.7}
+  a:focus-visible,.src:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+.fav{appearance:none;-webkit-appearance:none;cursor:pointer;display:inline-flex;
+  align-items:center;justify-content:center;gap:6px;min-width:44px;min-height:44px;
+  padding:0 12px;border-radius:999px;font:inherit;font-size:14px;font-weight:600;
+  background:var(--surface,#fff);color:var(--ink-mut,#6b7280);
+  border:1px solid var(--line,#e5e7eb);line-height:1;}
+.fav:hover{border-color:#f0b429;color:#b26b00;}
+.fav[aria-pressed="true"]{background:#fff8e6;border-color:#f0b429;color:#b26b00;}
+.fav .ic{font-size:16px;line-height:1;}
+.fav-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:14px 0 6px;}
+.fav-bar a.all{font-size:13.5px;color:var(--ink-mut,#6b7280);text-decoration:none;
+  min-height:44px;display:inline-flex;align-items:center;}
+.fav-bar a.all:hover{text-decoration:underline;}
+.fav-mini{appearance:none;-webkit-appearance:none;cursor:pointer;background:none;border:0;
+  padding:6px 8px;margin-left:2px;font-size:15px;line-height:1;color:#c3c8d0;
+  min-width:36px;min-height:36px;}
+.fav-mini[aria-pressed="true"]{color:#f0b429;}
+
+</style>
+</head>
+<body>
+<div class="wrap"><div class="inner">
+  <header>
+    <p class="eyebrow">Weekly Insight</p>
+    <h1>今週のインサイト <span style="color:var(--faint);font-weight:500">2026-10-25</span></h1>
+    <p class="lede">今週の論考の多くはAIがテーマでした。ただ、問いは去年までと変わっています。以前は「AIで何ができるか」でしたが、今は「使っているのに成果が出ないのはなぜか」「人と組織のどこで詰まっているのか」に移りました。たとえば、部署をまたぐデータ集めや突き合わせの作業が放置されている問題。社員が期待と不安を同時に抱え、それを隠している問題。AIが付けた点数を、実際の成果と取り違える問題。どれも技術ではなく、経営の設計の話です。もう一つ共通していたのは「押し付けると逆効果になる」という発見でした。セキュリティ規則の実験では、ルールは必須のまま「やり方」に選択肢を残すだけで、反発も危機感の低下も抑えられました。NBAのデータでは、ライバルへの執着が個人の数字を上げる一方、チームの成績を下げていました。読む順としては、まず部署をまたぐ作業の話で全体をつかみ、AIへの感情とセキュリティ規則の2本を続けて読むのがおすすめです。そのあと委任の手順、ライバル研究、AI評価の落とし穴へ進むと、「人をどう測り、どう任せるか」が一つにつながります。</p>
+    <div class="fav-bar"><button class="fav" data-fav data-url="https://hacadr-cloud.github.io/weekly-insight/2026-10-25.html" data-title="週次インサイト 2026-10-25" data-kind="insight" data-date="2026-10-25" aria-pressed="false"><span class="ic">☆</span><span class="tx">あとで読む</span></button><a class="all" href="favorites.html">保存した記事を見る →</a></div>
+  </header>
+  <div class="picks">
+    <article class="pick">
+      <div class="n">1</div>
+      <h2>AI投資が実らない理由は「部門間のつなぎ作業」にある</h2>
+      <div class="fig"><div class="fig-t">現場の時間配分</div><div class="bars"><div class="brow"><div class="blab">事務作業</div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:40.9%"></div></div><span class="bval">18%</span></div></div><div class="brow"><div class="blab">調整作業<span class="bnote">76%が減らしたい</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:84.1%"></div></div><span class="bval">37%</span></div></div><div class="brow"><div class="blab">本来業務<span class="bnote">85%が増やしたい</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:100.0%"></div></div><span class="bval">44%</span></div></div></div><div class="fig-c">仕事時間の4割近くが、部署をまたぐつなぎ作業に消えている</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>AIは広く使われているのに、生産性ははっきり上がっていない。この現象は、すでに複数の調査で裏付けられています。</p><ul class="blist"><li>2026年初めの経営幹部約6,000人の調査：自社でAIを使っているのは69%。ただし約9割が、生産性にも雇用にも測れる効果はないと答えた</li><li>2025年末のマッキンゼー調査：88%の組織がAIを日常的に使っている。全社の営業利益に効果が出たのは39%</li><li>2025年の別の調査：利益に測れる効果を出したAIの試行は5%だけ</li></ul><p>筆者らは生産性と人材を研究する経済学者です。うち1人はアマゾンで全社のAI導入を率いました。筆者らは、これは技術の問題ではなく「導入の仕方」の問題だと言います。</p><h3 class="sh">どう調べたか</h3><p>対象は、年商5億ドル超の米国企業で働く現場社員と現場マネジャー300人です。所属はサプライチェーン、調達、リスク管理、製造、財務、マーケティングなど。何に時間を使い、どの仕事に満足し、AIをどう使っているかを聞きました。</p><p>仕事は次の3つに分けています。</p><ul class="blist"><li>事務作業：評価面談、1on1、採用、社内報告</li><li>調整作業：複数システムからのデータ集めと整形、部署間で食い違う数字の突き合わせ、定例レポートの更新、部門横断の進捗会議、既存分析の作り直し</li><li>本来業務：独自の分析や文章作成、結果の解釈、意思決定と承認、顧客や取引先とのやりとり</li></ul><h3 class="sh">分かったこと</h3><ul class="blist"><li>時間の内訳は、事務18%、調整37%、本来業務44%</li><li>全員がAIを使い、半数近くは毎日複数のツールを使っていた</li><li>主な用途は要約・分析・検索・下書き。システムをまたぐ調整には使われていない</li><li>AIに望むことを聞くと、半数近くが調整作業を挙げた（1回の問い合わせで複数システムのデータを引く、見積依頼から請求書までをつなぐ、など）</li><li>76%が調整作業を減らしたい、85%が本来業務を増やしたいと答えた</li></ul><h3 class="sh">なぜそうなるのか</h3><p>調整作業の多くは、今のAIでも自動化できる中身です。しかし、仕事そのものは複数のシステムにまたがっています。一方、配られたAIは1つのシステムの中でしか動かない作りです。</p><p>さらに見えにくいコストもあります。ある部署にとって正しい判断が、別の部署にコストを押し付けるのです。</p><ul class="blist"><li>人件費予算に合わせて現場の給与を決める → 離職が増え、別部署の安全コストが上がる</li><li>一番安い輸送ルートを選ぶ → 下流の拠点が在庫を多く持つことになる</li></ul><p>部署にとっては正解でも、会社にとっては不正解。部署をまたいで全体像を集めるのが遅すぎるか、難しすぎるために、こうした判断が起きます。</p><h3 class="sh">具体的な場面</h3><p>筆者らの例は、売れ行きの悪い商品（SKU）を廃番にするかどうかです。財務は「まだ利益が出ている」と見ます。製造は「段取り替えが増え、1個あたりの原価が上がる」と見ます。計画部門は「需要がぶれるので安全在庫が余計に要る」と見ます。マーケティングは「廃番にしても、隣の似た商品に客が移るだけ」と見ます。</p><p>どの部署も自分の数字を最適化しており、判断の持ち主はいません。残す判断は各部署が単独で下せます。しかし廃番には部門横断の判断が要ります。だから商品数は毎年増えていきます。</p><p>AIが4部門のデータを集め、各SKUの利益貢献を計算できれば判断は変わります。生産・在庫のコストや、似た商品に移る売上も含めた計算です。売上・在庫・シフトを別々の表で管理している店舗でも、同じ構図が起こりえます。</p><h3 class="sh">別の見方と限界</h3><p>筆者らによれば、大きな技術は仕事を組み直した後で効いてきます。1980年代にパソコンが普及しても、生産性の伸びが統計に出たのは90年代でした。業務の設計や技能が変わってからです。最初は変化のコストで下がり、後で上がる。これを「Jカーブ」と呼びます。今の「効果が出ない」は、失敗ではなく途中段階だという見方もできます。</p><p>一方で、この調査は大企業の300人の自己申告です。時間配分は本人の感覚による部分があります。小さな組織では、そもそも調整作業の量が違います。役割・予算・評価は部署ごとの調整作業を前提に作られています。そのため、AIを入れるだけでは変わらず、人の役割の再設計がセットで必要だ、と筆者らは主張しています。</p></div>
+      <a class="src" href="http://hbr.org/2026/10/the-deployment-failure-holding-back-your-ai-investments" target="_blank" rel="noopener">HBR ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">2</div>
+      <h2>AIへの「期待と不安」を部下は隠している――その受け止め方</h2>
+      <div class="fig"><div class="fig-t">揺れる感情への打ち手</div><div class="rel"><div class="hub">両価的な不安</div><div class="sats"><span class="sat">緊張を認める</span><span class="sat">迷いも見せる</span><span class="sat">安全に試す場</span><span class="sat">小さな成功を共有</span><span class="sat">力と欠点を体験</span><span class="sat">成果を人に再投資</span></div></div><div class="fig-c">真ん中の感情に、周りの6つの打ち手で向き合う</div></div>
+      <div class="sum"><h3 class="sh">何が起きているのか</h3><p>研究によると、AIに不安を抱く人は仕事への熱意が下がり、燃え尽きやすく、満足度も低くなります。ツールを避けたり、抜け道を探したりもします。その分、AI投資の回収も遅れます。</p><p>筆者は、職場のフィードバックと感情を研究する3人（リズ、モリー、キム）です。今回の変化は過去より厄介だと言います。変化が速く、組織のあらゆる階層に同時に及び、手本がないまま決断を迫られるからです。</p><h3 class="sh">どう調べたか</h3><p>リズとモリーは500人の職業人に、ある文を完成させてもらいました。「職場のAIで、私は前より＿＿と感じ、＿＿と感じなくなった」という文です。</p><p>回答者は全員、相反する感情を書きました。数分で提案書を下書きできることに「わくわく」「力が増した」と感じる。その一方で「不安」を覚え、将来が怖い。筆者らはこれを「両価的な不安」と呼びます。Anthropicの研究者が約8万1,000人を調べた結果も同じでした。希望と警戒は人を2つの陣営に分けるのではなく、一人の中に同居していました。</p><h3 class="sh">分かったこと</h3><ul class="blist"><li>多くの人は、同僚に感情のすべてを見せていない</li><li>特に隠されるのは、不安、混乱、苛立ち、恨み、怒り</li><li>表では好奇心を見せ、内側ではずっと暗いものを抱えている</li><li>変化の速さが重い感情を強める（「1日の隙間がなくなり、前より走り回り、重圧も増した」）</li><li>「自分は後任を育てているのか」という恐れから、AIの利用を拒む人がいる。わざと質の低い仕事をしてAIを無能に見せる人の報告もある</li></ul><h3 class="sh">なぜ押し付けが逆効果なのか</h3><p>恐れやストレスの中では、学ぶこと自体が難しくなります。「遅れている」「ついて来い」「AIを使うか、辞めるか」。こうした言い方は人をさらに怖がらせ、新しい技能を身につけにくくします。</p><p>上から作った危機感は見抜かれます。「同業他社もまだ分かっていないはずなのに、遅れていると言われる」という声がありました。「AIは本当に便利。でも無理やり押し込まれると受け入れにくい」という声もありました。</p><h3 class="sh">リーダーがすること</h3><p>筆者らによれば、リーダーの役目は確信や前向きさを演じることではありません。緊張を認めること。安全に試せる場（砂場）を作ること。生まれた成果を人に再投資すること。この3つです。</p><ul class="blist"><li>自分の迷いも見せる。ある財務責任者は「正しい方向に舵を切れているか分からない」と打ち明けた</li><li>人員削減は絶対しない、とは約束できない。だが黙っていること自体が一つのメッセージになる</li><li>日々の困りごとを各自が挙げ、その1つを解決するエージェントやプロンプトを試す時間を作る。成功は公に称え、チームで共有する</li><li>元グーグル人事責任者のラズロ・ボックは、まず「すぐ効く生産性向上」を体験させ、続けて「欠点」も体験させることを勧める。力と限界の両方を知ると、自信がつき不安が減る</li></ul><p>アトラシアンは、丸一日を実験に充てる「AIイノベーション・デー」を設けています。最初は「始める・やめる・続ける」の演習です。AIを使ってほしい場面、まったく役に立たない場面、価値が出ている場面を出し合います。</p><h3 class="sh">場面に置き換えると</h3><p>店長会議で「AIを使え」と号令をかけるより、効果的なやり方があります。各店で「毎日いちばん面倒な作業」を1つ挙げてもらい、それをAIで片付ける時間を取るのです。うまくいった例は全店に回します。このほうが、人は自分から動きます。キムは2000年代のグーグルの自動化から得た教訓を挙げています。社員を削るべき経費ではなく、投資先の資産として扱うことです。</p><h3 class="sh">限界</h3><p>この調査は感情を自由記述で集めたもので、介入の効果を比べた実験ではありません。紹介された手法も、事例と経験則が中心です。強い危機感が必要な局面もありえます。どこまで「認める」側に寄せるかは、組織の状況次第です。</p></div>
+      <a class="src" href="http://hbr.org/2026/10/leaders-need-to-grapple-with-employee-ambivalence-on-ai" target="_blank" rel="noopener">HBR ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">3</div>
+      <h2>「禁止」が危機感を下げる――セキュリティ規則の逆効果</h2>
+      <div class="fig"><div class="fig-t">規則が危機感を削る連鎖</div><div class="flow"><div class="step"><b>一方的な強制</b><span>支配されすぎと感じる</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>心理的反発</b><span>苛立ち・脅威感・不安</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>解決策への嫌悪</b><span>対策そのものが嫌になる</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>脅威を軽く見る</b><span>リスクは大げさだと考える</span></div></div><div class="fig-c">左から右へ連鎖する。最初の段で「やり方」を選ばせると連鎖が弱まる</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>職場には、生成AIや便利なアプリがあふれています。会社が禁止しても、社員が使うのをやめるとは限りません。見えないところで使い続けることが多いのです。</p><ul class="blist"><li>2025年のKPMGとメルボルン大学の世界調査：57%がAIの利用を隠したことがあり、48%が会社のデータを公開AIツールに入力している</li><li>ベライゾンの2026年データ侵害調査報告：無許可のAI利用（シャドーAI）の検知数が1年で4倍</li><li>筆者の1人は、社員が実際に使っているツールを洗い出す会社を経営している。ほぼすべての導入先で、実際のAIツール数はセキュリティ担当の想定の数倍だった</li></ul><p>普通は「社員が不注意だから、もっと締め付けよう」と考えます。しかし筆者らの研究によると、厳しい規則そのものが問題の一部になりえます。</p><h3 class="sh">どう調べたか</h3><p>2,800人超が参加した6つの実験です。社員は規則を受け身で受け取るわけではありません。規則を解釈し、従うか、黙って回避するかを決めます。その判断を大きく左右するのが、脅威をどれだけ本物だと感じるかです。実験では、規則の出し方がこの感覚をどう変えるかを測りました。</p><ul class="blist"><li>実験1：アプリやサイトが攻撃の主な入り口になっていると説明した後、参加者を無作為に2群に分ける。一方は未承認アプリを自動で遮断する方針を、もう一方は安全なアプリの見分け方を教える方針を読む</li><li>実験2：上司が全員に研修受講を命じる条件と、四半期の研修メニューから自分で選んで同じ研修を受ける条件</li><li>実験3：研修は全員必須のまま。一方は選択肢なし。もう一方は受け方（対面・ライブ映像・資料での自習、一括か分割か、日時）を選べる</li></ul><h3 class="sh">分かったこと</h3><ul class="blist"><li>遮断方針を読んだ人は、教育方針を読んだ人より強く反発した（苛立ち、脅かされた感覚、怖さ）。脅威が深刻だということも、その証拠も否定しがちだった</li><li>命じられた研修は、自分で選んだ同じ研修より反発が大きく、脅威の否定も強かった</li><li>必須のままでも「やり方」を選べると、反発が減り、脅威の否定も減った</li><li>規則を撤廃・緩和すると、社員は「もともとそこまで危なくなかった」と推測し、セキュリティ全般への関心を下げた。ただし撤廃時に「リスクは残っている」と明言すると、この影響は和らいだ</li></ul><h3 class="sh">なぜそうなるのか</h3><p>鍵は「心理的リアクタンス」です。組織に支配されすぎていると感じると、人は測れるほどの感情的な反発を起こします。</p><p>もう一つは、筆者の1人が研究してきた「解決策嫌悪」です。問題への解決策が嫌だと、人は問題そのものが深刻ではないと考えやすくなります。厳しい対策は、対策への反発を生むだけでなく、リスクがあるという認識まで削ってしまうのです。</p><h3 class="sh">具体的な場面</h3><p>多くの会社では、研修を任意にはできません。筆者らも、締めるべきシステムや、外部AIに貼り付けてはいけないデータは当然あると認めています。ポイントは、「何を守るか」は譲らず、「どう守るか」に選択肢を残すことです。</p><p>たとえば、顧客情報を扱う店舗で個人情報の研修を必須にするとします。日時を選べる。動画か対面かを選べる。何回かに分けて受けられる。これだけで「やらされている」感覚が減り、リスクを本気で受け止める人が増えるかもしれません。ルールを緩めるときは、「危険がなくなったからではない」と一言添えることです。</p><h3 class="sh">限界</h3><p>実験の多くは、文章を読んで場面を想像させる方式です。実際の職場で行動がどう変わったかを追ったものではありません。また、ここで中身を確認できたのは最初の3つの実験です。撤廃の影響を調べた残りの実験の詳細は確認できていません。反発や脅威の否定が減ることが、実際の情報漏えいの減少につながるかは、別途確かめる必要があります。</p></div>
+      <a class="src" href="http://hbr.org/2026/10/when-restrictive-cybersecurity-policies-backfire" target="_blank" rel="noopener">HBR ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">4</div>
+      <h2>何を誰に任せるか――委任を仕組みにする手順</h2>
+      <div class="fig"><div class="fig-t">何から任せるか</div><div class="mtx"><div class="ylab top">高リスク</div><div class="grid"><div class="mcell"><b>基準を書いて渡す</b><span>前例を文書化して定型化</span></div><div class="mcell"><b>自分で持つ</b><span>戦略・採用・資源確保</span></div><div class="mcell"><b>まず任せる</b><span>定例レポート・日程調整</span></div><div class="mcell"><b>現場に近い人へ</b><span>現場への近さは専門性</span></div></div><div class="ylab bot">低リスク</div><div class="xlabs"><span>定型・前例あり</span><span>非定型・初めて</span></div></div><div class="fig-c">左下から順に手放し、右上だけを自分に残す</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>上の立場になるほど、優先事項が積み上がります。自分で抱え込めば燃え尽き、戦略を考える時間がなくなります。すでに手一杯のチームをさらに押せば、信頼が崩れ、優秀な人を失う恐れがあります。</p><p>「もっと任せるべきだ」とは誰もが分かっています。難しいのは、何を、誰に任せるかです。HBRの日刊ニュースレターから選ばれた委任のコツには、それに答える具体的な手順がまとまっています。</p><h3 class="sh">まず自分の時間を記録する（リック・ネマニック）</h3><ul class="blist"><li>15分か30分刻みの簡単な表を作り、2週間、メール・会議・報告・会話をすべて記録する。記憶に頼らないよう1日に数回更新する。この段階では習慣を直そうとしない</li><li>仕事を4つに分ける：①任せるべき ②任せてもよい ③任せるべきでない ④自動化か廃止</li><li>「任せるべき」の中から、技能や目標が合う人を選んで引き継ぐ。最初から完璧でなくても口を出さない</li><li>2カ月後に最初の記録と比べ、空いた時間を戦略的な仕事に回す</li></ul><p>分けてみると、本来はもう手放してよい仕事、引き継いだまま疑わなかった仕事、そもそも不要な仕事が見えてきます。</p><h3 class="sh">判断を任せるかを決める4つの問い（シェリル・ストラウス・アインホーン）</h3><ul class="blist"><li>現場に一番近いのは誰か。現場に近いこと自体が一種の専門性である</li><li>この判断は前にもしたか。したなら基準を決めて文書にし、定型化して渡す</li><li>自分より良い視点を持つ人はいないか</li><li>どこで仕事が止まっているか。誰も自分に権限があると思っていないなら、誰かに持たせる</li></ul><h3 class="sh">任せ方の基本（レベッカ・ナイト）</h3><p>まず、任せられない理由を自覚します。支配したい気持ち、完璧主義、失敗への恐れなどです。管理職が担うべき仕事は、戦略、採用の判断、チームに資源を確保すること、の3つです。それ以外は他の人でもできる可能性が高い、とナイトは言います。</p><p>小さく始めることも大切です。定例レポートや日程調整のような低リスクの仕事から渡します。期待する成果と途中の確認点は示しますが、やり方は本人に任せます。確認は決まった場で行い、横で張り付かないことです。</p><h3 class="sh">誰もやりたがらない仕事を渡すとき（グリーンバーグら）</h3><ul class="blist"><li>小さくても本当の自由を渡したか。何をやるかは変えられなくても、いつ・どうやるかは選べないか</li><li>決定ははっきりしているか。「とりあえずこれで」とぼかすと、受け入れが遅れる。決定事項だと示すほうが、人は抵抗をやめて取り組みやすい</li><li>決め方は正当に見えるか。理由と、一貫した基準に沿っていることを説明する</li></ul><h3 class="sh">場面に置き換えると</h3><p>複数店舗のオーナーなら、2週間だけ自分の時間を記録してみる価値があります。シフト調整、日々の数字の確認、備品の発注など。そのうち店長が判断できるものや、前にも同じ判断をしたものは、基準を書いて渡せます。</p><p>仕事量が限界を超えたときの手順もあります（メロディ・ワイルディング）。まず、何を止めるか、何を縮めるかをチームに聞きます。次に、自分がトレードオフをどう判断しているか、今は何が「これで十分」なのかを共有します。そして、どんなときに自分まで上げてほしいかをはっきり伝えます。</p><h3 class="sh">別の見方と限界</h3><p>これは研究論文ではなく、実務家と研究者の寄稿から集めたコツ集です。効果を数字で比べたものではありません。ただ、「やり方に選択肢を残すと受け入れられやすい」という点は、今週のセキュリティ規則の実験とも重なります。任せる相手の育成が追いついていない段階では、委任が品質の低下を招くことにも注意が必要です。</p></div>
+      <a class="src" href="http://hbr.org/2026/10/our-favorite-management-tips-on-delegating" target="_blank" rel="noopener">HBR ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">5</div>
+      <h2>「ライバルへの執着」がエースを弱くする――NBAの検証</h2>
+      <div class="fig"><div class="fig-t">ライバル戦の影響</div><div class="bars"><div class="brow"><div class="blab">通常時<span class="bnote">比較の基準</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:95.2%"></div></div><span class="bval">100指数</span></div></div><div class="brow"><div class="blab">個人の得点<span class="bnote">約5%増</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:100.0%"></div></div><span class="bval">105指数</span></div></div><div class="brow"><div class="blab">チームの成績<span class="bnote">約3分の1減</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:63.8%"></div></div><span class="bval">67指数</span></div></div></div><div class="fig-c">個人の数字が上がる裏で、チームの成績は大きく落ちる（通常時を100とした目安）</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>「あいつにだけは負けたくない」。ライバル意識は人を燃えさせます。これまでの研究も、その良い面を示してきました。長距離ランナーはいつもの相手と走るとタイムが良くなる。大学バスケットのチームは宿敵が相手だと守備が激しくなる。そうした知見です。</p><p>ところが、リーナス・ダーランダー、ヘニング・ピエズンカ、アルネ・トーマスの研究は、別の面を明らかにしました。個人的なライバルを倒すことに集中すると、本人の数字は上がっても、組織への貢献は下がるというのです。</p><p>厄介なのは、これが現場ではほとんど見えないことです。営業担当の契約件数は分かります。しかし「その四半期にライバルを意識していなかったら、何を生んでいたか」は測れません。</p><h3 class="sh">どう調べたか</h3><p>そこで研究チームは、同じ人を「ライバルがいる場面」と「いない場面」で比べられる環境を選びました。米プロバスケットボールのNBAです。</p><ul class="blist"><li>選手は1シーズンで数十のチームと対戦する。個人的なライバルがいるのはその一部</li><li>ライバルの判定には、リーグがまとめた「史上最大の選手間ライバル関係70組」を使った（ジョーダンとアイザイア・トーマス、レブロン・ジェームズとステフィン・カリーなど）</li><li>チームへの貢献は「ネットレーティング」で測った。その選手がコートにいる間に、チームが100回の攻撃あたり何点上回ったかを示す指標</li></ul><p>ネットレーティングの良い点は、得点のような目立つ数字に出ない貢献も拾えることです。</p><h3 class="sh">分かったこと</h3><ul class="blist"><li>ライバルと対戦すると、選手個人の得点は約5%増える</li><li>一方、その選手がコートにいる間のチームの成績は、ほぼ3分の1落ちる</li><li>著者らの言葉では、「ライバル相手に奮起した、やる気のある選手」に見えたものが、チームから見れば「より悪い選手」だった</li></ul><h3 class="sh">なぜそうなるのか</h3><p>ライバル関係は、普通の競争よりずっと個人的なものです。比べられる相手のほうが良い結果を出しているかもしれない、という居心地の悪さが続きます。</p><p>その結果、努力の量は増えても、注意の向きが変わります。「特定の誰かに勝つ」ことに意識が向き、自分の手柄だと分かりやすい貢献に偏るのです。契約件数、出した報告書、会議で示す目立つ数字などです。</p><p>一方で、組織の価値の多くは目立たない形で生まれます。同僚にそっと回した商談。誰にも知られる前に防いだトラブル。ライバルに夢中な人は、こうした仕事が手薄になりがちです。リスクの高すぎる勝負に出やすくなる点も指摘されています。</p><h3 class="sh">どんな場面の話か</h3><p>象徴的なのは投資家ビル・アックマンの例です。ハーバライフの株価下落に10億ドルを賭けた勝負が、別の投資家カール・アイカーンとの個人的な対決になりました。テレビの生中継で怒鳴り合うまでに発展しています。アックマンは損失が膨らむ中でも、相手の誤りを示す発表を重ねました。ポジションを解消するまでに何年もかかっています。</p><p>身近な例に置き換えると、隣の店舗や同じフロアの販売員と月間の獲得件数を競い合う場面です。自分の件数は伸びていても、後輩のフォロー、接客の引き継ぎ、クレームの芽を摘む仕事が抜け落ちていないか。店全体の数字と並べて見る必要があります。</p><p>著者らは、管理する側の落とし穴も挙げています。やる気が特に強く見える人に、責任を集めすぎてしまうことです。</p><h3 class="sh">別の見方と限界</h3><p>先行研究が示すとおり、ライバル意識が努力を引き出すこと自体は否定されていません。問題は、その努力が「個人の目立つ成果」に流れる構造です。チームの成果と個人の成果がほぼ一致する仕事なら、害は小さいかもしれません。</p><p>また、データはプロスポーツのもので、ライバルも歴史に残る70組という極端な関係です。日常の職場の軽い競争意識で、同じ大きさの影響が出るとは限りません。</p><p>著者らの処方は2つです。責任の割り振り方を見直すこと。そして、チーム全体への貢献を認める評価の仕組みを持つことです。</p></div>
+      <a class="src" href="https://www.imd.org/ibyimd/spanish-articles/cuando-los-mejores-empleados-se-obsesionan-con-sus-rivales-pierde-todo-el-equipo/" target="_blank" rel="noopener">IMD ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">6</div>
+      <h2>AIに「成績の付け方」を任せると数字だけが良くなる</h2>
+      <div class="fig"><div class="fig-t">数字と実態のずれ</div><div class="cmp"><div class="col"><div class="ch">見えている数字</div><ul><li>売上目標を達成</li><li>平均応答時間が短縮</li><li>AIの採点が右肩上がり</li></ul></div><div class="col"><div class="ch">実際に起きていること</div><ul><li>値引きで利益率が低下</li><li>未解決のまま案件終了</li><li>仕事の質は未確認</li></ul></div></div><div class="fig-c">左の改善に右の実態が伴っているかを、抜き取りで確かめる</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>業績指標は、測りにくいものを間接的に測る道具です。売上目標は「持続的に稼ぐ力」を、平均応答時間は「サービスの質」を映すために置かれます。</p><p>ところが、指標を目標に据えた途端、指標と本来の成果の間にずれが生まれることがあります。数字は良くなるのに、数字が表している現実は良くならないのです。研修設計の専門家ロバート・ヴィルケリスはIMDへの寄稿で、AIがこのずれを広げると警告しています。</p><h3 class="sh">ずれの典型</h3><ul class="blist"><li>営業チームが値引きで売上目標を達成し、利益率を削る</li><li>顧客窓口が、問題を解決する前に案件を閉じ、平均応答時間を縮める</li></ul><p>こうしたずれを見つける仕組みがなければ、組織は実態を映していない数字を「良好」とみなし続けます。</p><h3 class="sh">AIは楽な道を選ぶ</h3><p>最近は、評価に使う報告書や所見を、人ではなくAIが書くことが増えています。それを別のAIが要約し、点数を付けます。</p><p>すると、ある循環が起きます。一方のAIが、別のAIに高く評価されやすい内容を書く。もう一方のAIがそれを高く採点する。その点数は、実際の仕事の質を映しているとは限りません。人間が「本来の目的に合っているか」を確かめなければ、誰も気づかないまま回り続けます。</p><h3 class="sh">どう防ぐか</h3><p>すべての評価を見直す必要はありません。筆者によれば、少数を抜き取って次の3つを行えば足りる場合があります。</p><ul class="blist"><li>評価と元の仕事を突き合わせる。点数ではなく、評価された文書・活動・成果そのものを見る</li><li>本当に大事なものを測っているか確かめる。「組織が求める成果そのものを最適化させたら、AIは何を生み出すか」を考える。高評価を取るための中身になっていないかを見る</li><li>きれいすぎる改善を疑う。驚くほど規則的な推移や、点数の右肩上がりが続くときは、良い兆しと受け取る前に仕組みを点検する</li></ul><h3 class="sh">具体的な場面</h3><p>店舗の日報や接客報告をAIで下書きし、本部がAIで集計・採点する仕組みを考えてみてください。報告書の出来は、全店でそろって上がるかもしれません。しかし、その間に顧客満足やリピートが実際に上がっているかは別の問題です。</p><p>月に数件だけ点数の高い報告を選び、その日の売上明細や顧客の声と並べてみる。報告に書かれた接客が、本当に行われていたかを確かめる。これが筆者の言う「抜き取りの突き合わせ」です。</p><p>評価する側だけの話でもありません。評価される側がAIで報告を書くなら、「AIに褒められる書き方」が社内に広がります。どちらの側にも、現物を見る人が要ります。</p><h3 class="sh">別の見方と限界</h3><p>この論考は短い実践的な提言で、データや実験で検証したものではありません。抜き取りの頻度や件数の目安も示されていません。また、AIによる評価には、人による評価のばらつきや好き嫌いを減らす面もあります。すぐに人の評価へ戻せばよい、という話ではありません。</p><p>筆者の主張はこうです。AIの採点が上がったことを、実際の成果が上がったことと取り違えない。そのために、人が定期的に現物を見る。</p></div>
+      <a class="src" href="https://www.imd.org/ibyimd/brain-circuits-spanish/estas-dejando-que-la-inteligencia-artificial-decida-como-medir-el-rendimiento/" target="_blank" rel="noopener">IMD ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">7</div>
+      <h2>競合の次の一手は「求人票」に先に出る</h2>
+      <div class="fig"><div class="fig-t">競合情報の時間軸</div><div class="cmp"><div class="col"><div class="ch">従来の情報源</div><ul><li>財務諸表＝過去の投資</li><li>発表＝伝えたいこと</li><li>顧客の声＝過去の評価</li></ul></div><div class="col"><div class="ch">求人情報</div><ul><li>これからの投資先</li><li>必要なスキルが具体的</li><li>非上場や海外も公開</li></ul></div></div><div class="fig-c">左は過去を、右は数カ月先の動きを映す</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>多くの企業は、競合の次の動きを読むために、決算説明を分析し、プレスリリースを追い、調査を外注し、顧客に聞き取りをしています。それでも、最も明確で手に入りやすい兆候を見落としがちです。それは、競合が「どんな人を採ろうとしているか」です。</p><p>筆者はマイアミ大学の経営学教授で、この問題を5年間研究してきました。共著のワーキングペーパーでは、買収する側が買収対象の求人から何を読み取れるか、組織の戦略の方向を従業員データでどう測れるかを検証しています。</p><h3 class="sh">実例：発表の数カ月前に出ていた兆候</h3><ul class="blist"><li>アマゾン：2019年、衛星エンジニアや関連する技術職の求人をひそかに多数出し始めた。その数カ月後、世界規模の衛星インターネット網「プロジェクト・カイパー」を発表した</li><li>アップル：2018年初め、分析会社シンクナムが、デザイン関連の求人がほぼ倍増していることに気づいた。モーション分野の科学者や光学エンジニアもまとめて募集されていた。アップルは未発表製品について何も語っていなかったが、求人はAR（拡張現実）やウェアラブルへの投資を示していた</li></ul><p>影響を受けたのは既存の事業者です。アマゾンはスターリンク、ビアサット、ヒューズネットと競合することになりました。アップルは、メタ、マイクロソフト、マジック・リープが何年もかけて取り組んできた領域に入ってきました。彼らには、発表の日に突然競争が始まったように見えたかもしれません。しかし、採用には何カ月も前から兆しが出ていました。</p><h3 class="sh">なぜ求人が信頼できるのか</h3><p>新製品の発売、新市場への参入、新技術の導入。そのいずれにも、ほぼ例外なく先に人が要ります。だから採用の判断を見れば、ほかの情報源に出るはるか前に、企業がどこに力を入れるのかが分かります。</p><ul class="blist"><li>求人は投資家や報道機関を説得するためではなく、人を採るために作られている</li><li>条件に合う人を集める必要があるので、スキル、技術、職務、優先事項がかなり具体的に書かれる</li><li>非上場企業、新興企業、海外の競合のように情報をほとんど出さない相手でも、求人は公開していることが多い</li></ul><p>ヘッジファンドなどの運用会社は、すでに整理された求人データを日常的に分析しています。決算や届出より前に、事業の拡大・縮小・方針転換の兆しを捉えるためです。一方で、多くの企業の競合分析部門は、この身近な情報源を見過ごしています。</p><h3 class="sh">従来の手法との違い</h3><p>従来の手法は今も役に立ちます。ただし、その多くは過去を振り返るものです。</p><ul class="blist"><li>財務諸表：競合がどこに投資したか</li><li>プレスリリース：企業が関係者に何を伝えたいか</li><li>顧客の声：過去の施策がどう受け止められたか</li></ul><p>これで「すでに何をしたか」は分かります。しかし「次にどう動くか」を読むには足りません。機械学習エンジニアを募集する会社と、営業やサプライチェーンの専門家を募集する会社では、目指す未来が違います。新しい国で規制対応の専門家を採るなら、その市場への参入準備かもしれません。サイバーセキュリティの採用が急に増えたなら、顧客が気づく前にデジタル基盤へ投資している兆しかもしれません。</p><h3 class="sh">場面に置き換えると</h3><p>筆者の考え方は、地域の同業他社の求人を定期的に眺めるだけでも応用できます。これまでにない勤務地での募集、新しい職種、急な大量募集。どれも公式発表より先に表に出る動きです。</p><h3 class="sh">限界</h3><p>筆者は分析上の注意点も論じていますが、その部分は今回取得できた範囲に含まれていません。求人は欠員の補充や会社の宣伝のために出ることもあります。1件の求人だけで戦略を読み取るのは危険で、件数や職種の変化を時間を追って見る必要があります。</p><p>（本文は取得できず、公開されている要旨から書いています）</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14711" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+  </div>
+  
+  <footer>
+    コンサルティングファーム・ビジネススクール・調査機関の19ソースから、
+    直近7日の公開分を収集し日本語に要約したもの。判断の前に各出典を確認してください。
+  </footer>
+</div></div>
+<script>
+(function(){
+  var KEY = "lsm-favs-v1";
+  function load(){ try { return JSON.parse(localStorage.getItem(KEY)) || []; }
+                   catch(e){ return []; } }
+  function save(v){ try { localStorage.setItem(KEY, JSON.stringify(v)); } catch(e){} }
+  function has(url){ return load().some(function(x){ return x.url === url; }); }
+  function paint(b){
+    var on = has(b.dataset.url);
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+    var ic = b.querySelector(".ic"), tx = b.querySelector(".tx");
+    if (ic) ic.textContent = on ? "\u2605" : "\u2606";
+    if (tx) tx.textContent = on ? "保存済み" : "あとで読む";
+    if (!ic && !tx) b.textContent = on ? "\u2605" : "\u2606";
+  }
+  function toggle(b){
+    var d = b.dataset, list = load(), i = list.findIndex(function(x){ return x.url === d.url; });
+    if (i >= 0) list.splice(i, 1);
+    else list.unshift({url:d.url, title:d.title||d.url, kind:d.kind||"", date:d.date||"",
+                       note:d.note||"", saved:new Date().toISOString().slice(0,10)});
+    save(list); paint(b);
+    if (window.renderFavs) window.renderFavs();
+  }
+  function wire(){
+    var bs = document.querySelectorAll("[data-fav]");
+    for (var i = 0; i < bs.length; i++){
+      (function(b){ paint(b); b.addEventListener("click", function(e){
+        e.preventDefault(); e.stopPropagation(); toggle(b); }); })(bs[i]);
+    }
+  }
+  window.favStore = {load:load, save:save, has:has};
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", wire);
+  else wire();
+})();
+</script>
+</body>
+</html>
