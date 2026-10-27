@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>今週のインサイト 2026-10-28</title>
+<style>
+  :root{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E; --accent-bg:#F5EFE3;
+    --sans: system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
+      --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E; --accent-bg:#F5EFE3;
+  }
+  :root[data-theme="dark"]{
+    --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
+    --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
+  }
+  /* Phone-first. Body text sits at 16px (never below -- iOS zooms on focus under 16px and
+     small type is the main complaint on a handset), the column is capped just above a
+     comfortable measure, and side padding stays generous so text never touches the edge. */
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0}
+  .wrap{background:var(--ground);color:var(--ink);font-family:var(--sans);
+    font-size:16px;line-height:1.9;-webkit-font-smoothing:antialiased;
+    padding:1.5rem 1.15rem 4rem;min-height:100vh}
+  .inner{max-width:34rem;margin:0 auto}
+  header{border-bottom:1px solid var(--line);padding-bottom:1.25rem;margin-bottom:1.5rem}
+  .eyebrow{font-size:.72rem;letter-spacing:.16em;color:var(--faint);
+    text-transform:uppercase;margin:0 0 .5rem}
+  h1{font-size:1.4rem;font-weight:700;letter-spacing:-.01em;line-height:1.45;
+    margin:0;text-wrap:balance}
+  .lede{font-size:1rem;color:var(--muted);margin:1.1rem 0 0;line-height:1.95}
+  .picks{display:flex;flex-direction:column;gap:1.15rem}
+  .pick{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.2rem 1.1rem;position:relative}
+  .n{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.1em;margin-bottom:.35rem}
+  .pick h2{font-size:1.12rem;font-weight:700;line-height:1.6;margin:0 0 .7rem;
+    letter-spacing:-.005em;text-wrap:balance}
+  /* No justify: on a narrow screen it opens rivers of white space between Japanese runs. */
+  .sum{font-size:1rem;color:var(--ink)}
+  .sum p{margin:0 0 .95rem}
+  .sum p:last-child{margin-bottom:0}
+  .sum .blist{list-style:none;margin:0 0 1rem;padding:0;display:flex;
+    flex-direction:column;gap:.5rem}
+  /* 本文中の小見出し: 長い解説を拾い読みできるようにする */
+  .sum .sh{font-size:.94rem;font-weight:700;color:var(--ink);margin:1.5rem 0 .55rem;
+    padding-left:.6rem;border-left:3px solid var(--accent);line-height:1.6}
+  .sum .sh:first-child{margin-top:0}
+  .sum .blist li{position:relative;padding-left:1.1rem;line-height:1.85}
+  .sum .blist li::before{content:"";position:absolute;left:.2rem;top:.75em;
+    width:.32rem;height:.32rem;border-radius:50%;background:var(--accent)}
+  /* 図解の崩れ防止: 長い語も枠内で折り返し、幅が足りなければ横スクロールさせる */
+  .fig *{overflow-wrap:anywhere;word-break:normal;min-width:0}
+  /* 図解: CSS で組む（SVGだと縮小して読めなくなる）。縦積みなので幅の狭い画面でも崩れない */
+  .fig{margin:.9rem 0 1rem;padding:.9rem .85rem;border:1px solid var(--line);
+    border-radius:12px;background:var(--ground)}
+  .fig-t{font-size:.76rem;font-weight:700;letter-spacing:.06em;color:var(--accent);
+    margin-bottom:.7rem}
+  .fig-c{font-size:.78rem;color:var(--muted);margin-top:.7rem;line-height:1.7}
+  .flow{display:flex;flex-direction:column;align-items:stretch;gap:.3rem}
+  .flow .step{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .7rem;text-align:center}
+  .flow .step b{display:block;font-size:.9rem;font-weight:700}
+  .flow .step span{display:block;font-size:.78rem;color:var(--muted);margin-top:.15rem;
+    line-height:1.6}
+  .flow .arr{text-align:center;color:var(--accent);font-size:.9rem;line-height:1}
+  /* 2x2 マトリクス: 経営フレームの定番。軸ラベルを外側に置いて象限を読ませる */
+  .mtx{display:flex;flex-direction:column;gap:.3rem}
+  .mtx .ylab{font-size:.72rem;color:var(--muted);text-align:center}
+  .mtx .grid{display:grid;grid-template-columns:1fr 1fr;gap:.35rem}
+  .mtx .mcell{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .6rem;min-height:3.6rem;display:flex;flex-direction:column;
+    justify-content:center}
+  .mtx .mcell.empty{background:transparent;border-style:dashed;opacity:.5}
+  .mtx .mcell b{font-size:.86rem;font-weight:700;line-height:1.5}
+  .mtx .mcell span{font-size:.76rem;color:var(--muted);margin-top:.2rem;line-height:1.55}
+  .mtx .xlabs{display:flex;justify-content:space-between;font-size:.72rem;
+    color:var(--muted);padding:0 .2rem}
+  /* 横棒: 研究の効果量・前後差を数字で見せる */
+  .bars{display:flex;flex-direction:column;gap:.5rem}
+  .brow{display:flex;flex-direction:column;gap:.2rem}
+  .blab{font-size:.84rem;font-weight:600}
+  .blab .bnote{font-weight:400;color:var(--muted);font-size:.76rem;margin-left:.4rem}
+  /* grid: the bar track takes the leftover width and the number never wraps under it.
+     A percentage width inside a flex row was being resolved against the wrong box, which is
+     what made the bars overflow on a phone. */
+  .btrack{display:grid;grid-template-columns:minmax(0,1fr) max-content;gap:.55rem;
+    align-items:center}
+  .bwrap{background:var(--line);border-radius:5px;height:1.35rem;overflow:hidden;width:100%}
+  .bbar{height:100%;background:var(--accent);border-radius:5px;opacity:.9}
+  .bval{font-size:.82rem;font-weight:700;color:var(--accent);
+    font-variant-numeric:tabular-nums}
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
+  .cmp .col{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .65rem}
+  .cmp .ch{font-size:.78rem;font-weight:700;color:var(--accent);margin-bottom:.4rem;
+    padding-bottom:.35rem;border-bottom:1px solid var(--line)}
+  .cmp ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.3rem}
+  .cmp li{font-size:.86rem;line-height:1.6;padding-left:.75rem;position:relative}
+  .cmp li::before{content:"・";position:absolute;left:0;color:var(--faint)}
+  .rel{display:flex;flex-direction:column;align-items:center;gap:.55rem}
+  .rel .hub{background:var(--accent);color:var(--card);border-radius:999px;
+    padding:.5rem 1.1rem;font-size:.9rem;font-weight:700}
+  .rel .sats{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem}
+  .rel .sat{background:var(--card);border:1px solid var(--line);border-radius:999px;
+    padding:.35rem .75rem;font-size:.84rem}
+  @media (max-width:380px){ .cmp{grid-template-columns:1fr} }
+  /* Tap target: a bare inline link is hard to hit on a phone, so give it real height. */
+  .src{display:inline-block;margin-top:1rem;font-size:.86rem;color:var(--muted);
+    text-decoration:none;border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .8rem;line-height:1.5;word-break:break-word}
+  .src:hover{color:var(--accent);border-color:var(--accent)}
+  /* 今週の論文: 定義リストで「問い／検証／結果／含意／留意」を固定の型に見せる */
+  .papers{margin-top:2.2rem}
+  .sec{font-size:.78rem;font-weight:700;letter-spacing:.14em;color:var(--accent);
+    margin:0 0 .9rem;padding-bottom:.5rem;border-bottom:1px solid var(--line)}
+  .paper{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.1rem 1.05rem;margin-bottom:1rem}
+  .paper h3{font-size:1.02rem;font-weight:700;line-height:1.6;margin:0 0 .3rem;
+    text-wrap:balance}
+  .paper .auth{font-size:.78rem;color:var(--faint);margin-bottom:.75rem}
+  .paper dl{margin:0;display:grid;grid-template-columns:max-content minmax(0,1fr);
+    gap:.5rem .8rem;align-items:start}
+  .paper dt{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.08em;
+    padding-top:.15rem;white-space:nowrap}
+  .paper dd{margin:0;font-size:.9rem;line-height:1.8;text-align:justify}
+  .paper .finds{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;
+    gap:.35rem}
+  .paper .finds li{position:relative;padding-left:1rem;line-height:1.75}
+  .paper .finds li::before{content:"";position:absolute;left:.2rem;top:.72em;width:.3rem;
+    height:.3rem;border-radius:50%;background:var(--accent)}
+  @media (max-width:420px){ .paper dl{grid-template-columns:1fr;gap:.15rem .8rem}
+    .paper dt{margin-top:.5rem} }
+  footer{margin-top:2.4rem;padding-top:1.1rem;border-top:1px solid var(--line);
+    font-size:.78rem;color:var(--faint);line-height:1.7}
+  a:focus-visible,.src:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+.fav{appearance:none;-webkit-appearance:none;cursor:pointer;display:inline-flex;
+  align-items:center;justify-content:center;gap:6px;min-width:44px;min-height:44px;
+  padding:0 12px;border-radius:999px;font:inherit;font-size:14px;font-weight:600;
+  background:var(--surface,#fff);color:var(--ink-mut,#6b7280);
+  border:1px solid var(--line,#e5e7eb);line-height:1;}
+.fav:hover{border-color:#f0b429;color:#b26b00;}
+.fav[aria-pressed="true"]{background:#fff8e6;border-color:#f0b429;color:#b26b00;}
+.fav .ic{font-size:16px;line-height:1;}
+.fav-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:14px 0 6px;}
+.fav-bar a.all{font-size:13.5px;color:var(--ink-mut,#6b7280);text-decoration:none;
+  min-height:44px;display:inline-flex;align-items:center;}
+.fav-bar a.all:hover{text-decoration:underline;}
+.fav-mini{appearance:none;-webkit-appearance:none;cursor:pointer;background:none;border:0;
+  padding:6px 8px;margin-left:2px;font-size:15px;line-height:1;color:#c3c8d0;
+  min-width:36px;min-height:36px;}
+.fav-mini[aria-pressed="true"]{color:#f0b429;}
+
+</style>
+</head>
+<body>
+<div class="wrap"><div class="inner">
+  <header>
+    <p class="eyebrow">Weekly Insight</p>
+    <h1>今週のインサイト <span style="color:var(--faint);font-weight:500">2026-10-28</span></h1>
+    <p class="lede">今週は、経営の手法そのものを問い直す論考がそろいました。目を引くのは、AIをめぐる問いが「入れるかどうか」から「入れたのに、なぜ成果が出ないのか」「誰を育てられなくなるのか」に移ったことです。米国の上場企業600社超を調べた分析では、AI導入を進めた企業の大半が、株主リターンで業界平均を上回れていませんでした。差を分けたのは道具の数ではなく、仕事を組み直す力でした。論文枠では、若手の定型業務をAIに任せると熟練者が育つまでの年数が延びる、という理論モデルを紹介しています。一方で、老舗ファミリー企業の30年分の比較、戦略を一句にまとめる原則、目に見えない価値の売り方など、来年読んでも古びない話も並びました。最初に読んでほしいのは、店舗や部署ごとの順位を比べるときの思い込みを扱った一本です。明日の評価会議から使えるので、そのあとにAIの2本、最後に老舗と戦略原則の話へ進むと、今週の流れがつかみやすいはずです。</p>
+    <div class="fav-bar"><button class="fav" data-fav data-url="https://hacadr-cloud.github.io/weekly-insight/2026-10-28.html" data-title="週次インサイト 2026-10-28" data-kind="insight" data-date="2026-10-28" aria-pressed="false"><span class="ic">☆</span><span class="tx">あとで読む</span></button><a class="all" href="favorites.html">保存した記事を見る →</a></div>
+  </header>
+  <div class="picks">
+    <article class="pick">
+      <div class="n">1</div>
+      <h2>「12人中3位」は「24人中6位」より上か──順位の誤読</h2>
+      <div class="fig"><div class="fig-t">短いリストを選んだ割合</div><div class="bars"><div class="brow"><div class="blab">同じ位置の採用候補<span class="bnote">両者とも上位25%</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:100.0%"></div></div><span class="bval">61%</span></div></div><div class="brow"><div class="blab">短い側が劣る商品<span class="bnote">短い側が下位</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:93.4%"></div></div><span class="bval">57%</span></div></div><div class="brow"><div class="blab">偏りがない場合<span class="bnote">理論上の目安</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:82.0%"></div></div><span class="bval">50%</span></div></div></div><div class="fig-c">50%を超えた分が偏りの大きさ。劣っていても短い側が選ばれる</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>社内で人を選ぶとき、部署ごとの順位に頼ることは多い。Aさんは12人中3位、Bさんは24人中6位。どちらを選ぶだろうか。</p><p>多くの人はAさんを選ぶ。だが二人とも上位25%で、相対的な位置はまったく同じだ。実務経験のある管理職を対象にした実験でも、61%が短いリストの側を選んだ。</p><p>この「短いリストの側を高く評価してしまう」偏りを、研究者は「短いリスト・バイアス」と呼ぶ。現実の順位表はリストの長さがそろっていないのが普通なので、影響は広い。強制順位付けのような人事評価制度にも組み込まれやすい。</p><h3 class="sh">どう調べたか</h3><p>研究は学術誌『Organizational Behavior and Human Decision Processes』に掲載された。実験は8本、参加者は4,400人を超える。</p><ul class="blist"><li>対象：一般の消費者と、採用・管理の実務経験がある人</li><li>題材：採用候補、レストラン、商品、実際にもらえるペン、実際に聴く曲</li><li>比べた順位：8中2位と16中4位、12中3位と24中6位、20中18位と50中45位など</li></ul><p>リストの上位でも下位でも、題材を変えても、同じ傾向が繰り返し出た。</p><h3 class="sh">分かったこと</h3><ul class="blist"><li>相対的な位置が同じでも、短いリストの側が選ばれる</li><li>短いリストの側が劣っていても選ばれる。8個中2位（上位25%）と20個中4位（上位20%）なら後者が上だが、57%が前者を選んだ</li><li>「短いリストの方が粒ぞろい」と推測したからではない。重なりのないリスト（別部署・別地域・別ブランド）を使い、リスト全体の質も尋ねたが、参加者は両方を同じくらいと評価していた</li></ul><p>つまり、品質を合理的に推測した結果ではない。歪みは順位情報の読み方そのものにある。</p><h3 class="sh">なぜそうなるのか</h3><p>「12人中3位」には二つの情報がある。一つは「上に2人いる」という、すぐ分かる情報。もう一つは「全体が12人」という情報で、割り算をしないと比較に使えない。</p><p>人はこの最後のひと手間を省く。参加者に尋ねると、順位の数字を重く見て、リストの長さはあまり考慮していなかった。順位の数字を重く見た人ほど、短いリストの側を選んでいた。</p><p>判断の基準点は「1位からどれだけ離れているか」になる。1位はどのリストにも必ずあるが、リストの長さは示されないことすらあるからだ。相対的な位置が同じなら、短いリストの方が必ず1位に近い。12人中3位は1位まで2人、24人中6位は5人。だから良く見える。</p><h3 class="sh">現場での使い方と限界</h3><p>スタッフ5人の店の2位と、15人の大型店の5位を比べてみよう。前者が優秀に見えるが、上位40%と上位約33%で、実は大型店の5位の方が上にいる。昇格や表彰の候補を店舗をまたいで比べるとき、順位だけの表は判断を歪める。</p><p>研究で最も効いた対策は、最も単純なものだった。順位ではなくパーセンタイル（上位何%か）を見せることだ。管理職経験者にボーナスの対象者を選ばせた実験では、「8人中2位と16人中4位」と順位で見せた群は、小さなチームの社員を選びがちだった。同じ情報を「どちらも上位25%」と見せると、この偏りは和らいだ。</p><ul class="blist"><li>順位表には「何人中」と「上位◯%」を必ず並べて書く</li><li>規模の違う部署や店舗は、%に直してから比べる</li><li>「1位からの距離」で判断していないか、自分に問う</li></ul><p>ただし、実験の多くは選択課題で、実際の人事データで長期の効果を見たものではない。また、少人数の側が本当に精鋭ぞろいの場合は、短いリストを高く見る方が正しいこともありうる。そのときは%に直したうえで、集団の違いを別に考える必要がある。</p></div>
+      <a class="src" href="http://hbr.org/2026/10/why-managers-misread-rankings" target="_blank" rel="noopener">HBR ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">2</div>
+      <h2>AI投資が株主リターンに届かない理由は「能力」の欠落</h2>
+      <div class="fig"><div class="fig-t">AI導入層別の超過TSR</div><div class="bars"><div class="brow"><div class="blab">リーダー層（約6%）<span class="bnote">年率・平均</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:100.0%"></div></div><span class="bval">9.3%pt</span></div></div><div class="brow"><div class="blab">中間層（約4分の3）<span class="bnote">年率・中央値</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:3.0%"></div></div><span class="bval">-1.4%pt</span></div></div></div><div class="fig-c">業界平均との差。投資しても中間層は平均を上回れていない</div></div>
+      <div class="sum"><h3 class="sh">何が問題で、どう調べたか</h3><p>AIの道具は社員に配った。複数の部署で使い始め、支出は四半期ごとに増えている。それでも数字に成果が出ない。そういう企業が大多数だ、という研究だ。</p><p>これまでの調査は企業の自己申告に頼ることが多かった。そのため「何をやったか」と「何が返ってきたか」を客観的に突き合わせにくかった。</p><p>BCGの研究機関は、米国の上場企業600社超を対象に、外から観察できる情報だけでAI導入度を採点した。</p><ul class="blist"><li>人材データ：AI専門人材をどこで採用したか、AIスキルが社員にどれだけ広がったか</li><li>技術データ：どのAIベンダーを使っているか</li><li>文書分析：開示書類や決算説明会の発言から、どの部門でAIを使い、試行から全社展開に進んだか</li></ul><p>この得点と、過去3年の株主総利回り（TSR）を業界平均と比べた。</p><h3 class="sh">分かったこと</h3><p>企業は三つの層に分かれた。</p><ul class="blist"><li>初期層（約5分の1）：少数の道具を少数の部門で試している段階。投資も期待も小さい</li><li>リーダー層（約6%）：TSRが業界平均より年率9.3%高い</li><li>中間層（約4分の3）：平均13社のAIベンダーを使い、9部門に展開。本番運用も進む。だがTSRの中央値は業界平均を1.4ポイント下回る</li></ul><p>中間層の中で導入度が高い企業を見ても、リターンはほとんど上がらない。著者らはこれを「AI導入の踊り場」と呼ぶ。</p><h3 class="sh">なぜ成果が出ないのか</h3><p>自然な反応は「道具を増やす、もっと広げる」だ。だが著者らは、それが逆効果になりうると指摘する。根拠は三つある。</p><ul class="blist"><li>道具の数：自己申告の生産性は2つ目、3つ目の道具までは上がり、その先は下がる。切り替えや出力確認の手間が上回るからだ</li><li>見かけだけ完成した仕事：AIの出力を判断し直す力がないと、それらしいが不完全な仕事が回ってくる。過去1か月で約40%の社員がこれを受け取り、1件の手直しに2時間近くかかっていた</li><li>浮いた時間の行方：約3分の2の社員は、AIで浮いた時間の使い方について指示をほとんど受けていない。時間は成果にならずに消える</li></ul><p>三つとも根は同じだ。中間層は、道具と展開の得点ではリーダーにかなり迫る。差がつくのは「能力」だ。</p><p>ここでいう能力とは、AIを使いこなす力が社員全体に広がり、必要な所に専門人材がいて、仕事そのものがAI前提に組み直されている状態を指す。データ上、この能力がそろうまで、導入はリターンの上乗せを生まなかった。</p><h3 class="sh">一つ目の道：効率化で稼ぐ</h3><p>リーダー層の価値の出し方は三通りあり、それぞれ必要な能力が違う。一つ目は、仕事を速く安くする道だ。この型の企業は既製のAIを買うことが多い。差は道具ではなく、業務の組み直しで生まれる。</p><p>鍵は「自動化の前に単純化する」ことだ。古い手順にAIを載せると、積もった欠陥がそのまま固まってしまう。IBMは人事のチャットボットを入れる前に「なくす・単純化する・自動化する」の順番を決め、25種類以上あった休暇の区分を1つにまとめた。</p><p>店舗に置き換えるなら、受付や申込の手順にAIを入れる前に、まず手続きの分岐そのものを減らせないか見る、ということになる。残る二つの道の中身は、今回取得できた本文の範囲には入っていない。</p><h3 class="sh">鵜呑みにしないために</h3><p>これは相関の分析だ。AIの能力がTSRを押し上げたとまでは断定できない。もともと経営が強い企業が、AIもうまく使っているだけかもしれない。</p><p>外から見える信号で測っているため、社内で静かに進む取り組みは拾えない。対象は米国の上場企業なので、中小企業にそのまま当てはまるとも限らない。</p></div>
+      <a class="src" href="http://hbr.org/2026/10/3-paths-to-delivering-shareholder-returns-with-ai" target="_blank" rel="noopener">HBR ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">3</div>
+      <h2>どんな商品も「目に見えない価値」を売っている──レビット</h2>
+      <div class="fig"><div class="fig-t">無形性の効き方</div><div class="flow"><div class="step"><b>試せない</b><span>買う前に中身が分からない</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>代わりの手がかり</b><span>写真や利用者の評判で判断</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>獲得</b><span>無形性が決め手になる</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>維持</b><span>無形性が強いほど難しい</span></div></div><div class="fig-c">左から右へ進むほど、無形性が重荷に変わる</div></div>
+      <div class="sum"><h3 class="sh">すべての製品は無形性を売っている</h3><p>マーケティング論の大家レビットは、会社を「サービス業か、物を売る業か」で分けても役に立たないと言う。代わりに「無形製品」と「有形製品」で考えよ、と提案する。</p><p>工場で何をつくろうと、市場で売られているのは例外なく製品の無形性だ。これがこの論考の出発点になる。</p><h3 class="sh">無形製品は買う前に試せない</h3><p>無形製品は、買う前に試したり点検したりすることがほとんどできない。レビットが挙げる例は幅広い。</p><ul class="blist"><li>旅行のあっせん、保険、修理、教育、医療</li><li>ソフトウェア、コンサルティング、会計サービス</li><li>ヘアスタイリスト、葬儀社、仕出し屋、建設業者</li></ul><p>見込客は、買えば何が得られるかを知るために、代わりの手がかりに頼るしかない。リゾートホテルの写真や、いま使っている人の評判がそれにあたる。</p><p>車は試乗でき、香水は嗅げる。だがレビットは、最も有形な製品でも、試しただけでは確信を持てないと言う。製品の特長や据え付け方以外にも、判断すべき問題が多く残るからだ。</p><h3 class="sh">獲得と維持で効き方が違う</h3><p>レビットはマーケティングを「顧客をつくり、維持する活動」と定義する。そのうえで、無形性の効き方は局面で違うと指摘する。</p><ul class="blist"><li>顧客をつくる局面：製品の無形性が決め手になる</li><li>顧客を維持する局面：無形性の強い製品ほど難しい問題を起こす</li></ul><h3 class="sh">場面で考える</h3><p>美容室で考えてみる。来店前の客は仕上がりを試せない。だからスタイル写真や知人の口コミが、来店の決め手になる。レビットの言う「獲得の局面」だ。</p><p>要旨によれば、レビットの処方は、形に表れない特長を「有形化」することにある。そうすれば売り込みも、販売後の活動も強くできるという。具体的な手法は、今回取得した範囲には入っていない。</p><p>（本文は取得できず、公開されている要旨から書いています）</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14349" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">4</div>
+      <h2>戦略を一句にまとめ、現場に判断を任せる「戦略原則」</h2>
+      <div class="fig"><div class="fig-t">分権と一貫性</div><div class="mtx"><div class="ylab top">一貫性 高</div><div class="grid"><div class="mcell"><b>トップ依存</b><span>一貫するが判断が遅い</span></div><div class="mcell"><b>原則で動く</b><span>速くて一貫している</span></div><div class="mcell"><b>停滞</b><span>遅くてばらばら</span></div><div class="mcell"><b>無秩序</b><span>速いが統制が利かない</span></div></div><div class="ylab bot">一貫性 低</div><div class="xlabs"><span>集権</span><span>分権</span></div></div><div class="fig-c">右上に行くための道具が戦略原則</div></div>
+      <div class="sum"><h3 class="sh">分権化のジレンマ</h3><p>意思決定を現場に任せると、利点は多い。</p><ul class="blist"><li>移ろいやすい事業機会を素早くつかめる</li><li>顧客の好みの小さな変化を、商品やサービスに確実に反映できる</li><li>社員がイノベーションを追い、リスクを取るようになる</li></ul><p>だが、誰もが決める組織は、統制が利かなくなる危険と背中合わせだ。分権化しつつ一貫した戦略を進めるのは非常に難しい。</p><h3 class="sh">戦略を覚えやすい一句にする</h3><p>それを成し遂げている企業には共通点がある、と筆者ら（ベイン・アンド・カンパニー会長ら）は言う。戦略の核心を覚えやすい一句にまとめ、全社に浸透させている。これを「ストラテジック・プリンシプル」と呼ぶ。</p><ul class="blist"><li>デル：ダイレクト</li><li>GE：市場で1位か2位を占める。さもなければ撤退する</li><li>サウスウエスト航空：近距離路線の客のニーズに、マイカー旅行並みの運賃で応える</li><li>ウォルマート：エブリデイ・ロー・プライス</li><li>イーベイ：オンライン・オークション事業に全力を傾ける</li></ul><p>筆者らが知る限り、こうした原則を持つ企業は10社ほどだ。社内でその名前で呼んでいるわけではない。筆者らは2年間で50人を超えるCEOと接し、戦略の一貫性と機動力を両立させるこの力に感銘を受けたという。</p><h3 class="sh">原型は海軍にある</h3><p>18世紀、ネルソン提督のイギリス海軍は「敵艦のそばを決して離れるな」という単純な原則を貫いた。操艦術・訓練・経験で勝る英国艦は、一対一の局面なら優位に戦えたからだ。</p><p>ネルソンは、旗信号で各艦に細かく指示する当時の常識を「実戦的でない」として廃止した。艦長には戦術上の留意点だけを伝えた。原則を肝に銘じていれば、戦い方は各艦長に任せられる、という考え方だ。</p><h3 class="sh">場面で考える</h3><p>複数の店舗で、店長が値引きや例外対応のたびに本部に判断を仰いでいるとする。それは旗信号で全艦を動かしている状態に近い。</p><p>挙げられた例を見ると、良い原則は、何をやらないかの線引きまで含んでいる。GEの「さもなければ撤退」や、サウスウエストの「マイカー並みの運賃」がそうだ。現場が迷う場面で、その一句から答えを引き出せるかどうかが試金石になる。</p><p>（本文は取得できず、公開されている要旨から書いています）</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/12759" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">5</div>
+      <h2>老舗ファミリー企業は「予測」でなく「会社のつくり」で生き残る</h2>
+      <div class="fig"><div class="fig-t">変化への備え方</div><div class="cmp"><div class="col"><div class="ch">よくある発想</div><ul><li>未来を予測して備える</li><li>状況次第で何でも変える</li></ul></div><div class="col"><div class="ch">老舗が示すこと</div><ul><li>存在理由を先に固める</li><li>変える所と守る所を分ける</li><li>10年を100年の一部と見る</li></ul></div></div><div class="fig-c">右列は予測に頼らない備え方</div></div>
+      <div class="sum"><h3 class="sh">何を問うたか</h3><p>S&amp;P500採用銘柄の平均在籍期間は、1960年代半ばの約33年から、2020年には約21年に縮んだ。2020年代末には15〜20年になるという予測もある。企業が長く生き延びるのは、ますます難しくなっている。</p><p>では、何世紀も続く企業はどうやって変化を乗り越えてきたのか。筆者らは日本に注目した。</p><h3 class="sh">どう調べたか</h3><ul class="blist"><li>日本の上場大手ファミリー企業59社</li><li>比較対象：日本の非ファミリー企業、米国・ドイツ・カナダのファミリー企業と非ファミリー企業</li><li>期間：1994〜2024年の30年間</li><li>加えて、とらや・細尾・開化堂の経営者へのインタビュー</li></ul><p>日本を選んだのは、老舗が多いからだけではない。この30年、先進国で最も厳しい環境にあったからだ。15年間は物価が下落か横ばい、65歳超の人口はおよそ2倍、ドル換算のGDPは約2割縮んだ。同じ期間に米国のGDPは4倍になっている。</p><h3 class="sh">分かったこと</h3><ul class="blist"><li>国ごとの経済状況を調整すると、日本の大規模ファミリー企業の総資産利益率（ROA）は米国の同種企業と並び、ドイツとカナダを上回った</li><li>2014〜2024年は、調整前のROAでも米国と肩を並べた</li><li>30年間を通じて、ROAの振れ幅は米国の比較企業の半分程度だった</li></ul><p>厳しい環境で、同等以上の収益を、はるかに小さいリスクで上げてきたことになる。</p><h3 class="sh">強さは「会社のつくり」にある</h3><p>とらやは1945年、空襲で東京の主力工場を失った。それでも戦争が続く中ですぐに再建し、砂糖不足の時代も事業を続けた。菓子をつくることこそ自分たちの存在理由だ、という考えがあったからだ。</p><p>筆者らによれば、こうした企業を導いたのは未来予測ではなく、会社の「アーキテクチャー」だった。存在理由と、変えてよいもの・変えてはいけないものが明確なのだ。あるアドバイザーはこれを「家族による統治から理念による統治へ」と表現する。</p><p>時間の感覚も違う。ある取締役は、創業家から見れば3年や10年は100年の歴史のごく一部にすぎない、と語る。外から非合理に見える行動も、その時間軸では理にかなうことがあるという。要旨が挙げる柱は次のとおりだ。</p><ul class="blist"><li>明確な経営理念と超長期の視点</li><li>自社の価値観を映した事業運営</li><li>規律ある進化と長期的な資本運用</li><li>綿密な事業承継計画</li></ul><h3 class="sh">限界</h3><p>対象は上場している大手ファミリー企業だ。中小の非上場企業で同じ結果になるとは限らない。各規律の具体的な中身は、今回取得した範囲の先に書かれている。</p><p>（本文は取得できず、公開されている要旨から書いています）</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14826" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">6</div>
+      <h2>AIが「客」として買いに来る──備えを測る5本柱の診断</h2>
+      <div class="fig"><div class="fig-t">ARAの4段階</div><div class="flow"><div class="step"><b>立ち遅れ</b><span>EC・IT部門に丸投げ</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>発展途上</b></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>適格</b></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>先進的</b><span>常設議題・責任者を指名</span></div></div><div class="fig-c">5本柱それぞれで、いまどの段階かを判定する</div></div>
+      <div class="sum"><h3 class="sh">選ぶ人と、買う人が分かれる</h3><p>AIが買い物を代行する仕組みが、大手から相次いで出ている。</p><ul class="blist"><li>アマゾン：AIが他社サイトで商品を選び、決済まで済ませる機能（2025年4月）</li><li>オープンAI：チャットGPTの中で購入を完了する機能（2025年9月）</li><li>グーグル：ショッピファイ、ウォルマートなど20社超と共通規格を公開（2026年1月）</li></ul><p>ガートナーは、2028年までにB2B購買の90%、15兆ドル超がAIエージェント経由になると予測する。</p><p>筆者はこれを「買物客の分裂」と呼ぶ。何が必要かを決めるのは消費者のままだが、買い物を実行するのはアルゴリズムになる。ネット通販やスマホ通販は関わり方を変えただけで、買物客は人間のままだった。そこが違う。</p><h3 class="sh">AIは物語に反応しない</h3><p>AIエージェントは、パッケージも見ないし、ブランドの物語にも反応しない。構造化されたデータを読み、システム経由で問い合わせ、感情的な訴求とは無関係な基準で商品を評価する。</p><p>筆者いわく、いまの商品データの大半は、人間が眺めるための洗練されたパンフレットだ。それをAIに読ませるのは「表計算ソフトに詩を読ませるようなもの」だという。</p><h3 class="sh">準備度を測る「ARA」</h3><p>NISTやCOSOといった既存のAI管理の枠組みは、自社で導入したAIをどう管理するかを扱う。AIが「顧客」として来る場合は扱っていない。そこで筆者は診断の枠組みARAを提案する。</p><ul class="blist"><li>5つの柱ごとに、成熟度を4段階で評価する（立ち遅れ・発展途上・適格・先進的）</li><li>そのうえで、最初の90日で取る具体策を決める</li></ul><h3 class="sh">第1の柱：経営陣の共通理解</h3><p>問いは、経営陣がこれを切迫した共通課題と捉えているか、ネット通販の一部門の話として扱っているか、だ。遅れた企業では、担当をEC部門やIT部門に任せている。</p><p>進んだ企業では、経営幹部が一貫して意味を説明でき、会議の常設議題になっている。取締役会が承認したビジョンがあり、変革の責任者も指名されている。責任を複数の部署に分散させるのは、失敗の確かな予兆だという。</p><p>オーストラリアのある企業では、1年半のあいだ経営会議でほとんど話題にならなかった。だが常設議題にして責任者を任命すると、6か月で提携先3社との試行が始まった。残る4つの柱は、今回取得した範囲には入っていない。</p><p>（本文は取得できず、公開されている要旨から書いています）</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14715" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">7</div>
+      <h2>「どうすれば創造的に」ではなく「何が阻んでいるか」を問う</h2>
+      <div class="fig"><div class="fig-t">創造性への問い方</div><div class="cmp"><div class="col"><div class="ch">よくある問い</div><ul><li>どうすれば創造的になれるか</li><li>成功の手順書を求める</li></ul></div><div class="col"><div class="ch">キャットムルの問い</div><ul><li>何が創造性を阻んでいるか</li><li>問題を取り除き続ける</li></ul></div></div><div class="fig-c">足し算でなく引き算で組織を見る</div></div>
+      <div class="sum"><h3 class="sh">「成功の青写真」ではなかった</h3><p>エド・キャットムルはピクサーの共同創業者で、ジョブズやラセターと組んで同社を育てた。カリスマ性ではなく、謙虚さと心理的安全性で率いた「静かなリーダー」とされる。著書『ピクサー流 創造するちから』に大幅加筆した完全版が出た。</p><p>初版の読者からは、ヒット作を生む方法が分かって勉強になった、とよく言われた。だがキャットムルは、そんなものはつくっていないと言う。</p><ul class="blist"><li>どの作品も、それぞれ固有の壁にぶつかった</li><li>制作陣は、一つの手順書に従っていたわけではない</li><li>創造性を育てるとは、新しい問題を取り除き続けることを受け入れることだ</li></ul><h3 class="sh">問いを変える</h3><p>「どうすればもっと創造的になれるか」。彼は何度もそう聞かれ、そのたびに「質問が違う」と答えてきた。正しい問いは「創造性を阻害している文化的要因は何か」だという。原書の副題も「真のひらめきを妨げる見えない力を克服する」だ。</p><p>何を足せば生まれるかではなく、何が邪魔をしているかで組織を見る。足し算から引き算への発想の転換だ。</p><h3 class="sh">健全な文化も安泰ではない</h3><p>キャットムルは、どれほど誠実で自己認識の高いリーダーでも、予期せぬ問題は防げないと書く。彼自身、後から思えば明白だった重要な問題を見落としていたという。だからリーダーには次のことが要る。</p><ul class="blist"><li>失敗や脱線、落とし穴を受け止める受け皿を持つ</li><li>警戒心と機敏さを持ち続ける</li><li>何より、組織の中核となる価値観を守る</li></ul><p>健全な組織文化も、常に変化している。一度つくれば終わり、というものではない。</p><h3 class="sh">場面で考える</h3><p>スタッフから提案が出ない職場で、研修や発想法を足したくなることがある。キャットムルの考え方に従えば、先に問うべきは「何がスタッフの口を閉ざさせているか」だ。</p><p>（本文は取得できず、公開されている要旨から書いています）</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/15005" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+  </div>
+  <section class="papers"><h2 class="sec">今週の論文</h2>
+    <article class="paper">
+      <h3>AIで若手の仕事を減らすと、熟練者が育たなくなる</h3>
+      <div class="auth">Ina Catrinescu（arXivの投稿者。共著者の有無は取得範囲では不明）</div>
+      <dl>
+        <dt>問い</dt><dd>AIと雇用の分析の多くは「どの仕事がAIにさらされるか」を問う。この論文は、熟練者を生み出す育成の流れに何が起きるかを問う。若手の仕事ほど定型化されていて、自動化しやすい。若手が育つ場が減れば数年後にベテランが足りなくなるが、その損失は、導入を決める時点では見えにくい。</dd>
+        <dt>検証</dt><dd>先行研究（Caosun and Aral, 2026）では労働者1人を対象にしていたモデルを、若手とベテランの2世代を抱える企業のモデルに拡張した。定型化された仕事が自動化されたとき、専門性の育ち方がどう変わるかを分析している。熟練は「AIにできない仕事を、AIの助けなしに練習すること」で育つ、と置いている。2022年の水準を起点に基準の数値を設定してシミュレーションした。29ページ、表6点・図6点の作業論文で、重要なパラメータのうち2つは未計測。そのため結果は予測ではなくシナリオとして示されている。</dd>
+        <dt>結果</dt><dd><ul class="finds"><li>若手の仕事が最も定型化されているため、若手の需要が最初に落ちる。基準シナリオでは、2022年比で約5分の1減ったところで底を打ち、その後、減った分の大半を取り戻す。</li><li>ベテランの数は遅れて減るが、減り方は大きい。育成の流れが止まり、引退者の穴が埋まらないからだ。基準シナリオでは4分の1減り、その後半減する。</li><li>社内で熟練者を一人育てるのにかかる年数は、約5年から約9年に延びる。熟練はAIにできない仕事での自力の練習で育つ、という前提から導かれる結果だ。</li><li>コストを負う人と、導入を決める人が違う。3年の任期で考える管理者が目先の産出を最大化するようにAIを使うと、人件費は21%減る。</li><li>その一方で、AIにできない仕事をこなす企業の能力は5分の2落ちる。育成の流れが細った後は、そうした仕事の需要に応えられなくなる。</li></ul></dd>
+        <dt>含意</dt><dd>AI導入の効果を人件費や短期の生産性だけで測ると、数年後の熟練者不足を見落とす。論文は、組織が追うべき指標として3つを提案している。若手がAIにできない仕事を助けなしに練習できている量、ベテランがそうした仕事に使っている時間、熟練者一人を育てるのにかかる年数だ。若手の定型業務をAIに置き換えるなら、別の形で自力の練習の場を残す設計が要る。</dd>
+        <dt>留意</dt><dd>重要なパラメータ2つが未計測で、数字は予測ではなくシナリオにすぎない。実データで検証したものではなく理論モデルの計算結果で、業種や仕事の性質によって大きく変わりうる。</dd>
+      </dl>
+      <a class="src" href="https://arxiv.org/abs/2610.33102" target="_blank" rel="noopener">arXiv econ.GN ↗</a>
+    </article></section>
+  <footer>
+    コンサルティングファーム・ビジネススクール・調査機関の19ソースから、
+    直近7日の公開分を収集し日本語に要約したもの。判断の前に各出典を確認してください。
+  </footer>
+</div></div>
+<script>
+(function(){
+  var KEY = "lsm-favs-v1";
+  function load(){ try { return JSON.parse(localStorage.getItem(KEY)) || []; }
+                   catch(e){ return []; } }
+  function save(v){ try { localStorage.setItem(KEY, JSON.stringify(v)); } catch(e){} }
+  function has(url){ return load().some(function(x){ return x.url === url; }); }
+  function paint(b){
+    var on = has(b.dataset.url);
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+    var ic = b.querySelector(".ic"), tx = b.querySelector(".tx");
+    if (ic) ic.textContent = on ? "\u2605" : "\u2606";
+    if (tx) tx.textContent = on ? "保存済み" : "あとで読む";
+    if (!ic && !tx) b.textContent = on ? "\u2605" : "\u2606";
+  }
+  function toggle(b){
+    var d = b.dataset, list = load(), i = list.findIndex(function(x){ return x.url === d.url; });
+    if (i >= 0) list.splice(i, 1);
+    else list.unshift({url:d.url, title:d.title||d.url, kind:d.kind||"", date:d.date||"",
+                       note:d.note||"", saved:new Date().toISOString().slice(0,10)});
+    save(list); paint(b);
+    if (window.renderFavs) window.renderFavs();
+  }
+  function wire(){
+    var bs = document.querySelectorAll("[data-fav]");
+    for (var i = 0; i < bs.length; i++){
+      (function(b){ paint(b); b.addEventListener("click", function(e){
+        e.preventDefault(); e.stopPropagation(); toggle(b); }); })(bs[i]);
+    }
+  }
+  window.favStore = {load:load, save:save, has:has};
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", wire);
+  else wire();
+})();
+</script>
+</body>
+</html>
