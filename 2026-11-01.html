@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>今週のインサイト 2026-11-01</title>
+<style>
+  :root{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E; --accent-bg:#F5EFE3;
+    --sans: system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
+      --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E; --accent-bg:#F5EFE3;
+  }
+  :root[data-theme="dark"]{
+    --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
+    --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
+  }
+  /* Phone-first. Body text sits at 16px (never below -- iOS zooms on focus under 16px and
+     small type is the main complaint on a handset), the column is capped just above a
+     comfortable measure, and side padding stays generous so text never touches the edge. */
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0}
+  .wrap{background:var(--ground);color:var(--ink);font-family:var(--sans);
+    font-size:16px;line-height:1.9;-webkit-font-smoothing:antialiased;
+    padding:1.5rem 1.15rem 4rem;min-height:100vh}
+  .inner{max-width:34rem;margin:0 auto}
+  header{border-bottom:1px solid var(--line);padding-bottom:1.25rem;margin-bottom:1.5rem}
+  .eyebrow{font-size:.72rem;letter-spacing:.16em;color:var(--faint);
+    text-transform:uppercase;margin:0 0 .5rem}
+  h1{font-size:1.4rem;font-weight:700;letter-spacing:-.01em;line-height:1.45;
+    margin:0;text-wrap:balance}
+  .lede{font-size:1rem;color:var(--muted);margin:1.1rem 0 0;line-height:1.95}
+  .picks{display:flex;flex-direction:column;gap:1.15rem}
+  .pick{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.2rem 1.1rem;position:relative}
+  .n{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.1em;margin-bottom:.35rem}
+  .pick h2{font-size:1.12rem;font-weight:700;line-height:1.6;margin:0 0 .7rem;
+    letter-spacing:-.005em;text-wrap:balance}
+  /* No justify: on a narrow screen it opens rivers of white space between Japanese runs. */
+  .sum{font-size:1rem;color:var(--ink)}
+  .sum p{margin:0 0 .95rem}
+  .sum p:last-child{margin-bottom:0}
+  .sum .blist{list-style:none;margin:0 0 1rem;padding:0;display:flex;
+    flex-direction:column;gap:.5rem}
+  /* 本文中の小見出し: 長い解説を拾い読みできるようにする */
+  .sum .sh{font-size:.94rem;font-weight:700;color:var(--ink);margin:1.5rem 0 .55rem;
+    padding-left:.6rem;border-left:3px solid var(--accent);line-height:1.6}
+  .sum .sh:first-child{margin-top:0}
+  .sum .blist li{position:relative;padding-left:1.1rem;line-height:1.85}
+  .sum .blist li::before{content:"";position:absolute;left:.2rem;top:.75em;
+    width:.32rem;height:.32rem;border-radius:50%;background:var(--accent)}
+  /* 図解の崩れ防止: 長い語も枠内で折り返し、幅が足りなければ横スクロールさせる */
+  .fig *{overflow-wrap:anywhere;word-break:normal;min-width:0}
+  /* 図解: CSS で組む（SVGだと縮小して読めなくなる）。縦積みなので幅の狭い画面でも崩れない */
+  .fig{margin:.9rem 0 1rem;padding:.9rem .85rem;border:1px solid var(--line);
+    border-radius:12px;background:var(--ground)}
+  .fig-t{font-size:.76rem;font-weight:700;letter-spacing:.06em;color:var(--accent);
+    margin-bottom:.7rem}
+  .fig-c{font-size:.78rem;color:var(--muted);margin-top:.7rem;line-height:1.7}
+  .flow{display:flex;flex-direction:column;align-items:stretch;gap:.3rem}
+  .flow .step{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .7rem;text-align:center}
+  .flow .step b{display:block;font-size:.9rem;font-weight:700}
+  .flow .step span{display:block;font-size:.78rem;color:var(--muted);margin-top:.15rem;
+    line-height:1.6}
+  .flow .arr{text-align:center;color:var(--accent);font-size:.9rem;line-height:1}
+  /* 2x2 マトリクス: 経営フレームの定番。軸ラベルを外側に置いて象限を読ませる */
+  .mtx{display:flex;flex-direction:column;gap:.3rem}
+  .mtx .ylab{font-size:.72rem;color:var(--muted);text-align:center}
+  .mtx .grid{display:grid;grid-template-columns:1fr 1fr;gap:.35rem}
+  .mtx .mcell{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .6rem;min-height:3.6rem;display:flex;flex-direction:column;
+    justify-content:center}
+  .mtx .mcell.empty{background:transparent;border-style:dashed;opacity:.5}
+  .mtx .mcell b{font-size:.86rem;font-weight:700;line-height:1.5}
+  .mtx .mcell span{font-size:.76rem;color:var(--muted);margin-top:.2rem;line-height:1.55}
+  .mtx .xlabs{display:flex;justify-content:space-between;font-size:.72rem;
+    color:var(--muted);padding:0 .2rem}
+  /* 横棒: 研究の効果量・前後差を数字で見せる */
+  .bars{display:flex;flex-direction:column;gap:.5rem}
+  .brow{display:flex;flex-direction:column;gap:.2rem}
+  .blab{font-size:.84rem;font-weight:600}
+  .blab .bnote{font-weight:400;color:var(--muted);font-size:.76rem;margin-left:.4rem}
+  /* grid: the bar track takes the leftover width and the number never wraps under it.
+     A percentage width inside a flex row was being resolved against the wrong box, which is
+     what made the bars overflow on a phone. */
+  .btrack{display:grid;grid-template-columns:minmax(0,1fr) max-content;gap:.55rem;
+    align-items:center}
+  .bwrap{background:var(--line);border-radius:5px;height:1.35rem;overflow:hidden;width:100%}
+  .bbar{height:100%;background:var(--accent);border-radius:5px;opacity:.9}
+  .bval{font-size:.82rem;font-weight:700;color:var(--accent);
+    font-variant-numeric:tabular-nums}
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
+  .cmp .col{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .65rem}
+  .cmp .ch{font-size:.78rem;font-weight:700;color:var(--accent);margin-bottom:.4rem;
+    padding-bottom:.35rem;border-bottom:1px solid var(--line)}
+  .cmp ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.3rem}
+  .cmp li{font-size:.86rem;line-height:1.6;padding-left:.75rem;position:relative}
+  .cmp li::before{content:"・";position:absolute;left:0;color:var(--faint)}
+  .rel{display:flex;flex-direction:column;align-items:center;gap:.55rem}
+  .rel .hub{background:var(--accent);color:var(--card);border-radius:999px;
+    padding:.5rem 1.1rem;font-size:.9rem;font-weight:700}
+  .rel .sats{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem}
+  .rel .sat{background:var(--card);border:1px solid var(--line);border-radius:999px;
+    padding:.35rem .75rem;font-size:.84rem}
+  @media (max-width:380px){ .cmp{grid-template-columns:1fr} }
+  /* Tap target: a bare inline link is hard to hit on a phone, so give it real height. */
+  .src{display:inline-block;margin-top:1rem;font-size:.86rem;color:var(--muted);
+    text-decoration:none;border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .8rem;line-height:1.5;word-break:break-word}
+  .src:hover{color:var(--accent);border-color:var(--accent)}
+  /* 今週の論文: 定義リストで「問い／検証／結果／含意／留意」を固定の型に見せる */
+  .papers{margin-top:2.2rem}
+  .sec{font-size:.78rem;font-weight:700;letter-spacing:.14em;color:var(--accent);
+    margin:0 0 .9rem;padding-bottom:.5rem;border-bottom:1px solid var(--line)}
+  .paper{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.1rem 1.05rem;margin-bottom:1rem}
+  .paper h3{font-size:1.02rem;font-weight:700;line-height:1.6;margin:0 0 .3rem;
+    text-wrap:balance}
+  .paper .auth{font-size:.78rem;color:var(--faint);margin-bottom:.75rem}
+  .paper dl{margin:0;display:grid;grid-template-columns:max-content minmax(0,1fr);
+    gap:.5rem .8rem;align-items:start}
+  .paper dt{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.08em;
+    padding-top:.15rem;white-space:nowrap}
+  .paper dd{margin:0;font-size:.9rem;line-height:1.8;text-align:justify}
+  .paper .finds{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;
+    gap:.35rem}
+  .paper .finds li{position:relative;padding-left:1rem;line-height:1.75}
+  .paper .finds li::before{content:"";position:absolute;left:.2rem;top:.72em;width:.3rem;
+    height:.3rem;border-radius:50%;background:var(--accent)}
+  @media (max-width:420px){ .paper dl{grid-template-columns:1fr;gap:.15rem .8rem}
+    .paper dt{margin-top:.5rem} }
+  footer{margin-top:2.4rem;padding-top:1.1rem;border-top:1px solid var(--line);
+    font-size:.78rem;color:var(--faint);line-height:1.7}
+  a:focus-visible,.src:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+.fav{appearance:none;-webkit-appearance:none;cursor:pointer;display:inline-flex;
+  align-items:center;justify-content:center;gap:6px;min-width:44px;min-height:44px;
+  padding:0 12px;border-radius:999px;font:inherit;font-size:14px;font-weight:600;
+  background:var(--surface,#fff);color:var(--ink-mut,#6b7280);
+  border:1px solid var(--line,#e5e7eb);line-height:1;}
+.fav:hover{border-color:#f0b429;color:#b26b00;}
+.fav[aria-pressed="true"]{background:#fff8e6;border-color:#f0b429;color:#b26b00;}
+.fav .ic{font-size:16px;line-height:1;}
+.fav-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:14px 0 6px;}
+.fav-bar a.all{font-size:13.5px;color:var(--ink-mut,#6b7280);text-decoration:none;
+  min-height:44px;display:inline-flex;align-items:center;}
+.fav-bar a.all:hover{text-decoration:underline;}
+.fav-mini{appearance:none;-webkit-appearance:none;cursor:pointer;background:none;border:0;
+  padding:6px 8px;margin-left:2px;font-size:15px;line-height:1;color:#c3c8d0;
+  min-width:36px;min-height:36px;}
+.fav-mini[aria-pressed="true"]{color:#f0b429;}
+
+</style>
+</head>
+<body>
+<div class="wrap"><div class="inner">
+  <header>
+    <p class="eyebrow">Weekly Insight</p>
+    <h1>今週のインサイト <span style="color:var(--faint);font-weight:500">2026-11-01</span></h1>
+    <p class="lede">今週は「目に見えているものに安心するな」という警告が、別々の分野から同時に届いた週でした。小売の値下げ札、短期間の実験結果、ヒット商品の売上、すぐ返ってくる返信、AIで浮いたはずの時間。どれも一見うまくいっている数字や様子の裏に、別のリスクやコストが隠れているという指摘です。去年までのAI論は「入れるか入れないか」が中心でした。今週は「入れたのに成果が出ないのはなぜか」へと問いが移っています。在庫や価格についても、予測の精度を上げる話より、リスクを誰が持つかという仕組みの話が前に出てきました。まず小売のビジネスモデル転換の論考から読むと、今週の記事に共通する「構造を疑う」視点がつかみやすいはずです。続いて短期実験の信頼性、人気商品の罠と読み進めると、自社の数字の読み方を点検する材料がそろいます。なお今週は学術論文も多く届きましたが、中身を確かめられる本文が取れなかったため、論文欄は見送りました。</p>
+    <div class="fav-bar"><button class="fav" data-fav data-url="https://hacadr-cloud.github.io/weekly-insight/2026-11-01.html" data-title="週次インサイト 2026-11-01" data-kind="insight" data-date="2026-11-01" aria-pressed="false"><span class="ic">☆</span><span class="tx">あとで読む</span></button><a class="all" href="favorites.html">保存した記事を見る →</a></div>
+  </header>
+  <div class="picks">
+    <article class="pick">
+      <div class="n">1</div>
+      <h2>小売の苦境は店舗ではなく「在庫リスクの持ち方」にある</h2>
+      <div class="fig"><div class="fig-t">在庫リスクの持ち方</div><div class="cmp"><div class="col"><div class="ch">従来の買い取りモデル</div><ul><li>需要不明のまま仕入れ</li><li>外れたら値下げで処理</li><li>客が値下げ待ちを学ぶ</li></ul></div><div class="col"><div class="ch">筆者らの提案</div><ul><li>少量発注で反応を見る</li><li>商品を知る側に判断を任す</li><li>店をリスク配分の場に</li></ul></div></div><div class="fig-c">左の構造が値下げ札を生んでいる</div></div>
+      <div class="sum"><h3 class="sh">値下げ札は「告白」である</h3><p>シーズン末の百貨店には「40％オフ」「60％オフ」の札が並びます。小売企業はこれを、商品選びの失敗や販促のミス、天候不順といった個別の問題として片付けがちです。</p><p>筆者ら（ウォートンスクールのマーケティング教授と元学長）は、これを小売企業の「告白」だと言います。需要が分からないうちに商品を買い取り、予測が外れるリスクを自分で引き受ける。売れ残れば値下げで利益率を落とし、ブランドの価値まで傷つけます。</p><p>従来型の買い取り仕入れは、抱えきれないほどのリスクを小売企業に負わせている。これが本稿の出発点です。</p><h3 class="sh">店舗は本当に衰退しているのか</h3><p>数字だけを見ると、店舗の苦境ははっきりしているように見えます。</p><ul class="blist"><li>米国で2024年に閉鎖された店舗は7325店（コアサイト・リサーチ）</li><li>約1万店が閉じた2020年以来の高い水準</li><li>2024年から2025年初めまでに閉鎖が発表された店舗は9900店を超える（JLL）</li></ul><p>しかし筆者らは「実店舗が衰退している」という結論を退けます。新規出店も相当数あり、撤退した跡にはもっと競争力のある業態が入っているからです。消費者が店から離れたのではありません。変わっているのは小売りのビジネスモデルです。</p><p>利便性・価格・サービス・体験・ブランドとの接点をうまく組み合わせた店は、これからも伸びます。ただし最適な組み合わせは常に変わります。需要の予測が難しい市場で在庫リスクを過大に抱えている店ほど、強い圧力を受けています。</p><h3 class="sh">「小売りの輪」から抜け出せるか</h3><p>背景には、1960年にスタンリー・ホランダーが唱えた「小売りの輪」という理論があります。新しい業態は低コスト・低価格で参入します。やがて立地やサービスを充実させてコストが上がり、次の低コスト業態に市場を奪われます。</p><p>百貨店、ショッピングモール、ディスカウントストア、カテゴリーキラー、大型量販店、ECまで、どの業態もこの循環をたどってきました。筆者らが問うのは、この輪を回り続けるしかないのか、ということです。答えは「その必要はない」です。</p><p>そのためには、新しい業態を「もっとうまく仕入れて売る方法」と見るのをやめます。小売りを、リスクをうまく配分するための仕組み（プラットフォーム）として捉え直すのです。問題は店舗ではありません。何千ものSKU（在庫管理の最小単位）の需要を予測し、外れたコストを背負い、客に「値下げ待ち」を覚えさせてしまう仕組みのほうにあります。</p><h3 class="sh">なぜ今、限界にきているのか</h3><p>市場の変化がゆっくりだった頃は、このリスクも管理できました。今は事情が違います。</p><ul class="blist"><li>消費者の好みが速く変わる</li><li>ブランドの流行サイクルが短くなった</li><li>SNSで需要が数日のうちに生まれ、消える</li><li>オムニチャネル化で業務が複雑になった</li></ul><p>手元の情報の確かさは下がっているのに、賭ける金額は大きくなっています。AIによる需要予測や素早い補充は役に立ちますが、構造の問題は解決しません。在庫を判断する人がその商品の需要を一番よく知っているとは限らないからです。その商品にとって最善の判断をする動機があるとも限りません。</p><h3 class="sh">2つの処方箋</h3><p>需要と供給のずれを減らす道は2つあります。</p><ul class="blist"><li>判断を遅らせる**：まず少量だけ発注して反応を見てから、本格的に仕入れる。リアルタイムで需要を分析する仕組みと、近い地域から素早く調達できる体制が前提になる</li><li>よく知る側に任せる**：ブランド側は自社の商品・顧客・需要の兆しを、数百〜数千のSKUを受け持つ小売りのバイヤーより深く知っていることが多い</li></ul><p>問われているのは「判断を手放すかどうか」ではありません。「需要リスクは常に本部の仕入れ部門が負うもの」という前提を見直すかどうかです。</p><p>身近な例は美容室の店販商材です。売れ筋を読み違えて在庫を抱え、期限が近づいて値引きする。これは典型的な買い取りモデルの症状です。少量で試して動きを見る、メーカーにリスクを持ってもらう取引条件を探る、といった発想は筆者らの処方箋と同じ方向を向いています。</p><h3 class="sh">反論と限界</h3><p>少量の発注や判断の委譲は、仕入れ単価の上昇や品揃えのまとまりの低下につながりかねません。ブランド側に任せすぎれば、店の個性が薄れるおそれもあります。今回取得できた範囲には、こうしたトレードオフへの具体的な答えまでは書かれていません。</p><p>また、根拠になっている数字は米国のものです。店舗をどう作り直すかという具体策は本稿の後半にありますが、今回取得できたのは前半の問題提起と2つの方向性までです。</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14820" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">2</div>
+      <h2>短期のテスト結果は長期を当てるか――大手IT15社の経験則</h2>
+      <div class="fig"><div class="fig-t">効果は縮むが向きは保つ</div><div class="bars"><div class="brow"><div class="blab">実験直後<span class="bnote">Pinterest</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:100.0%"></div></div><span class="bval">7%</span></div></div><div class="brow"><div class="blab">長期<span class="bnote">なおプラス</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:35.7%"></div></div><span class="bval">2.5%</span></div></div></div><div class="fig-c">効果の大きさは縮んでも、プラスからマイナスには転じなかった</div></div>
+      <div class="sum"><h3 class="sh">何が問題なのか</h3><p>大事な変更が数カ月後、数年後にどう効いてくるか。誰もが知りたいことですが、それほど長く待てる会社はほとんどありません。そこで多くの企業は短期間の実験を行い、その効果を長期まで引き伸ばして判断しています。</p><p>では、その引き伸ばしはどこまで当てになるのか。MIT IDE（デジタル経済イニシアチブ）のデータ分析研究グループの責任者を含むチームが、ワーキングペーパー「長期を見据えた評価：産業界からの学び」でこの問いを整理しました。</p><h3 class="sh">どう調べたのか</h3><p>土台は、2025年のCODE@MITの前日に開かれた1日がかりのワークショップです。</p><ul class="blist"><li>参加した専門家は26人</li><li>大学4校と、オンラインサービスを運営する15社</li><li>Netflix、Meta、Pinterest、Airbnb、Uberなどが参加</li></ul><p>月間利用者が1000万人を超える大企業は、年に1万件から数十万件の実験を回しています。そのほとんどは短期間です。</p><ul class="blist"><li>典型的な実験の期間は数日〜数カ月</li><li>外部の実験基盤を使う企業の中央値は1〜3週間</li><li>多くの企業では2週間未満で終わる</li><li>3カ月以上の長期テストは主要な機能に限られ、15社のうち少なくとも7社に実施経験がある</li></ul><h3 class="sh">短期の結果はおおむね当たる</h3><p>参加者の多くは、短期で出た方向は長期とたいてい一致すると答えました。</p><ul class="blist"><li>Netflix：200件のA/Bテストで、2週間時点と2カ月時点の採用判断が95％一致した</li><li>Microsoft：統計的に有意な結果が、後から逆向きに転じた例を1件も見つけられなかった</li><li>Pinterest：バッジ表示で日次利用者が増えた。効果は7％から2.5％に縮んだが、長期でもプラスを保った</li></ul><p>つまり、効果の「向き」は合いやすい一方、「大きさ」は縮むことがあります。</p><h3 class="sh">短期の結果が裏切る3つの場面</h3><p>ただし、短期と長期が逆を向く場面もはっきり挙げられました。</p><p>1つ目は、コンテンツの質や関連性を変えたときです。Facebookが一部の利用者向けに通知を関連性で絞り込むと、滞在時間は最初は減りました。ところが1年後には、比較対象のグループより増えていました。最初は後退に見えた変更が、時間をかけて信頼を育てたのです。</p><p>2つ目は、ゲームで課金を強めすぎたときです。既存の客から多く取れば短期の売上は増えます。しかし離れていく客が増え、長期では売上が削られることがあります。</p><p>3つ目は、価格実験での「予約時期の偏り」です。早めに予約する客と直前に予約する客では行動が違います。短いテストでは、たまたまその期間に予約した層に結果が偏り、長期の効果がまったく逆に見えることがあります。Airbnbが価格アルゴリズムのテストに約4カ月かけるのはこのためです。</p><p>ほかに注意点が2つ挙がりました。</p><ul class="blist"><li>目新しさの効果：最初の数日だけ効果が大きく動く。ある企業は最初の数日のデータを原則として捨てている。判断が変わることはまれだと見る企業もある</li><li>継続率系の指標：効果が遅れて現れる。SNSの表示順位の変更では、最終的な効果の半分に届くまで約1カ月かかった</li></ul><h3 class="sh">現場が選ぶのは「説明できる指標」</h3><p>長期を予測するなら、多くの信号を組み込んだ複雑なモデルのほうが良さそうに思えます。しかし参加者が勧めたのは逆のやり方でした。数字がなぜ動いたのかを説明できないモデルは、誰も信用しないからです。</p><p>理屈の上では複雑なモデルが勝つこともあります。それでも現場は、みんなが納得して使える単純な代わりの指標を選びます。さらに、過去データに見られる相関は偏りやすく、新しい状況では崩れがちです。よく設計された長期実験1本のほうが、過去データの山を巧みに分析するより多くを教えてくれる、と参加者は言います。</p><h3 class="sh">身近な場面に置き換えると</h3><p>例えば美容室で新しい料金体系を試すとします。最初の2週間に来るのは早めに予約する常連が中心で、新規客や直前に予約する客の反応は見えにくいでしょう。Airbnbの予約時期の偏りと同じ構図です。</p><p>短期の数字で判断するときは、測った期間にどの客層が入っていたのかを必ず確かめる。これが一番の実務上の教訓です。</p><h3 class="sh">限界</h3><p>これは、年に何万件も実験を回す巨大プラットフォーム企業の経験則です。客数が少ない店舗では、そもそも短期間で意味のある差を出すのが難しいでしょう。また、結論は体系的な検証というより、ワークショップで集めた専門家の知見を整理したものだという点にも注意が必要です。</p></div>
+      <a class="src" href="https://ide.mit.edu/insights/how-the-biggest-names-in-tech-test-product-changes/" target="_blank" rel="noopener">MIT IDE ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">3</div>
+      <h2>ヒット商品ほど危ない――売れるほど監視を強める「人気の罠」対策</h2>
+      <div class="fig"><div class="fig-t">露出と監視の釣り合い</div><div class="mtx"><div class="ylab top">監視 露出連動</div><div class="grid"><div class="mcell"><b>余力あり</b><span>小規模でも点検は手厚い</span></div><div class="mcell"><b>連動型管理</b><span>節目ごとに点検を強化</span></div><div class="mcell"><b>通常運転</b><span>平均的な管理で足りる</span></div><div class="mcell"><b>人気の罠</b><span>露出増に監視が追いつかず</span></div></div><div class="ylab bot">監視 平均並み</div><div class="xlabs"><span>販売規模 小</span><span>販売規模 大</span></div></div><div class="fig-c">右下が最も危険。売れるほど右上へ移る必要がある</div></div>
+      <div class="sum"><h3 class="sh">ヒットは新しいリスクの始まり</h3><p>どの経営者もヒット商品を望みます。しかし見落とされがちなのは、ヒットした瞬間に別の課題が生まれることです。使う人、使う場面、使う回数が増えるほど、テストでは目立たなかったまれな欠陥が表に出てきます。</p><p>苦情が増え、規制当局や記者の目も厳しくなります。一部の利用者だけの弱点だったものが、一夜にして安全上の危機や評判の危機に変わることがあります。</p><h3 class="sh">テスラの例と10年分のデータ</h3><p>テスラのモデルYは2023年に世界で122万台売れ、世界で最も売れた車になりました。その分、珍しい不具合でも影響は大きくなります。2024年1月、リアカメラの映像が映らなくなるおそれのあるソフトの不具合で、約20万台をリコールしました。関連が疑われる保証請求は81件で、事故やけがの報告はなく、通信によるソフト更新で直しています。</p><p>筆者らは、数百万台分の車の販売とリコールを10年分調べました。分かったのは次の点です。</p><ul class="blist"><li>よく売れた車ほどリコールが多い</li><li>よく売れた車ほどリコールが早い</li><li>規模が製品そのものを悪くしたわけではない</li><li>規模はまれな問題を見つけやすくし、見逃したときの代償を大きくした</li></ul><h3 class="sh">なぜ人気が罠になるのか</h3><p>筆者らの説明では、人気は欠陥が表に出る機会を掛け算で増やします。何百万人が同じ製品を使えば、市場そのものが巨大で管理されていない耐久テストになります。隠れた弱点が出てくる機会は増え、その兆しが何を意味するかを経営陣が判断する時間は短くなります。</p><p>対応を怠ったときの代償は2つあります。</p><ul class="blist"><li>修理のコスト：欠陥品を売り続けるほど高くつく。世界の大手自動車メーカー12社だけで、保証とリコールの費用は年に約670億ドルと推計される</li><li>評判の危機：その製品の販売が止まり、会社全体から客が離れ、時価総額の大きな部分が失われうる</li></ul><h3 class="sh">罠を避けるための3つの行動</h3><p>1つ目は、露出の大きさに合わせて監視体制を広げることです。多くの会社は需要が急に増えると、生産・販売・サポートは増やします。ところが安全管理の基準、報告の経路、調査の能力、経営陣の関心は「平均的な製品」向けのまま据え置かれがちです。</p><p>問うべきは「何割が壊れているか」だけではありません。「何人が影響を受けうるか、どれだけ速く広がるか、学ぶための時間はどれだけ残っているか」です。故障率が小さくても、売れた数が巨大なら事故の件数は大きくなります。</p><p>悪い例がペロトンのトレッドミル「Tread+」です。コロナ禍で需要が急増し、ペットや子どもが巻き込まれたという報告が積み上がりました。それでも同社は2年以上リコールに応じませんでした。子どもが亡くなり、米消費者製品安全委員会が緊急警告を出すまで続いたのです。</p><p>監視の強化とは、具体的には次のようなことです。</p><ul class="blist"><li>安全点検の回数を増やす</li><li>技術者や調査担当を増やす</li><li>報告の間隔を短くする</li><li>苦情・返品・保証請求・修理記録・SNS投稿をリアルタイムでまとめて見る</li><li>未解決の重大な兆候を取締役会が直接見られるようにする</li></ul><p>トヨタ、チポトレ、ボーイングはこうした仕組みを作りましたが、いずれも危機が起きた後でした。筆者らは、発売前に「引き金」を決めておくよう勧めます。累計販売が一定数を超えた、利用が想定より速く伸びた、新しい客層や用途に広がった。そうしたときに正式なリスク点検を行うのです。原則は「商売の節目ごとに、管理の節目を置く」ことです。</p><p>2つ目は、「売れているから大丈夫」という考え方を退けることです。売上が測っているのは需要であって、安全性や頑丈さではありません。強い需要は開発チームの自信を強めます。その結果、精査を強めるべきときに、むしろ速度を上げる根拠にされてしまいます。</p><p>3つ目は、苦情が増えても「客が増えたのだから当然」で片付けないことです。たいていはその説明で正しいのですが、それが反射的な言い訳になると、新しく現れたパターンを見逃します。ケロッグは2024年5月、新発売のチョコ味コーンフレークをリコールしました。ごく一部の箱に、牛乳でふやけない硬い塊が入っている可能性があると、客の苦情から分かったためです。</p><h3 class="sh">当てはまる範囲と限界</h3><p>対象は自動車に限りません。家電、食品、医薬品、医療機器、産業機械、デジタルサービスなど、急に広がる製品や安全に関わる製品すべてに当てはまります。とくに新しくて技術的に複雑な製品ほど影響が大きくなります。</p><p>一方で、筆者ら自身も人気が欠陥を生むとは言っていません。監視の強化にはお金がかかりますし、苦情の多くは実際に「客が増えただけ」です。どこで線を引くかは、各社が前もって決めておく引き金の設計にかかっています。</p></div>
+      <a class="src" href="http://hbr.org/2026/10/when-something-goes-wrong-with-your-most-popular-product" target="_blank" rel="noopener">HBR ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">4</div>
+      <h2>「いつでも即返信」は生産性を下げる――常時接続の見えない代償</h2>
+      <div class="fig"><div class="fig-t">1日に届く連絡</div><div class="bars"><div class="brow"><div class="blab">メール<span class="bnote">1日平均</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:76.5%"></div></div><span class="bval">117件</span></div></div><div class="brow"><div class="blab">Teams<span class="bnote">1日平均</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:100.0%"></div></div><span class="bval">153件</span></div></div></div><div class="fig-c">合わせて約270件。勤務時間中は約2分に1回中断される</div></div>
+      <div class="sum"><h3 class="sh">「つながっている＝働いている」という思い込み</h3><p>多くの組織は古い前提のまま動いています。社員にすぐ連絡がつくほど生産性は高い、という前提です。いつでも連絡がつき、すぐ返事をし、常につながっている状態が良いとされています。</p><p>IMDに寄稿した筆者（2026年6月刊行の『The Wellbeing Book』の著者）は、この前提こそが持続的な成果を妨げる、見過ごされた障害だと指摘します。</p><h3 class="sh">データが示す「終わらない勤務日」</h3><p>筆者はいくつかの調査を引いています。まずSlackの調査です。</p><ul class="blist"><li>管理職の27％が、活動量や「見えている度合い」で生産性を測っている（2023年）</li><li>オフィスで働く人の53％が、勤務時間外でもすぐ返信しなければという圧力を感じている（2023年）</li><li>56％が、アプリを行き来するせいで本来の仕事がしにくいと答えた</li><li>68％が、ツールの切り替えに1日30分以上を使っている</li></ul><p>マイクロソフトの2025年の調査は「終わりのない勤務日」を描いています。</p><ul class="blist"><li>主な勤務時間中、平均して2分に1回、会議・メール・通知で作業が中断される</li><li>1日平均でメール117通、Teamsのメッセージ153件を受け取る</li><li>社員の48％、管理職の52％が、自分の仕事を混沌として細切れだと感じている</li><li>夜8時以降の会議が前年より16％増えた</li></ul><h3 class="sh">なぜ成果が落ちるのか</h3><p>すぐ返信するのは目に見える行動なので、生産的に感じられます。埋まった予定表や緑色のオンライン表示も、仕事が進んでいる印象を与えます。しかし目に見える活動は、価値を生むことと同じではありません。</p><p>管理職は、観察しやすい返信の速さを無意識に評価しがちです。じっくり考えている時間は、外からは何もしていないように見えます。しかし財務責任者の長期投資の判断や、安全担当が事故の前兆を見抜く仕事は、返信の数からは生まれません。判断力から生まれ、その判断力は注意力に支えられています。</p><p>研究による裏付けも示されています。</p><ul class="blist"><li>『Scientific Reports』に載った実験：スマホがそばにあるだけで認知能力が下がりうる</li><li>通知に関する研究：中断を減らすと成果が上がり、精神的な緊張が下がる</li><li>勤務時間外の連絡に関する研究：気持ちが仕事から離れず、心の消耗が増える</li><li>ソフィー・ルロワの「注意の残り」：作業を切り替えると注意の一部が前の作業に残り、次の作業の能率が落ちる</li></ul><p>筆者のまとめはこうです。一時的な集中は力を一点に集めるが、常に張り詰めた状態は注意力と判断力をすり減らす。成果を長く保つには、頑張る時間と回復する時間を交互に置く必要があります。</p><h3 class="sh">経営者にできること</h3><p>筆者が勧めるのは次の3つです。</p><ul class="blist"><li>集中する時間を守る</li><li>連絡のルールをはっきり決める</li><li>休みの時間を尊重する</li></ul><p>何より大事なのは、リーダー自身の振る舞いが手本になることです。上司が夜中に連絡すれば、部下は「即返信が求められている」と受け取ります。</p><p>例えば複数の店舗を持つ会社で、閉店後も店長のグループLINEに本部や社長から連絡が届く場面を考えてみてください。店長は休みの日もスマホを手放せず、翌日の売り場づくりや部下の育成に頭が回りません。緊急のもの以外は翌朝にまとめて送る、返信の期限を決める、といった取り決めが、筆者の言う「連絡のルール」にあたります。</p><h3 class="sh">別の見方と限界</h3><p>接客や店舗運営の現場では、すぐ対応すること自体が価値になる場面も多くあります。筆者の議論が主に想定しているのは、判断を伴う知識労働です。</p><p>また、引用されたデータの多くはSlackやマイクロソフトといったツール提供企業の調査で、対象は自社製品の利用者です。日本の中小企業の現場にそのまま当てはまるとは限りません。</p></div>
+      <a class="src" href="https://www.imd.org/ibyimd/spanish-articles/somos-personas-no-maquinas-de-trabajar-por-que-la-disponibilidad-permanente-perjudica-la-productividad/" target="_blank" rel="noopener">IMD ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">5</div>
+      <h2>AI投資が最も報われるのは「ミドルオフィス」の業務</h2>
+      <div class="fig"><div class="fig-t">成果が消える経路</div><div class="flow"><div class="step"><b>AIツール導入</b><span>効果が見込める業務に</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>時間が浮く</b><span>社員は生産性向上を実感</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>運用作業が発生</b><span>出力の手直しや手入力</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>成果ゼロ</b><span>2年後も収入・時間に差なし</span></div></div><div class="fig-c">3段目の手作業をなくすのが「統合」の役割</div></div>
+      <div class="sum"><h3 class="sh">導入したのに成果が出ないという矛盾</h3><p>AI導入をめぐる最近の研究は、厳しい矛盾を示しています。経済学者らが大規模な導入調査と行政の給与記録を突き合わせました。多くの雇用主は、効果が最も見込める領域にAIを入れていました。それでも2年後、収入と労働時間への効果は統計的にゼロと変わりませんでした。</p><p>従業員は生産性が上がったと答えています。技術も優れています。それなのに、最終的な利益には表れなかったのです。</p><h3 class="sh">浮いた時間はどこへ消えたのか</h3><p>研究者らの説明では、ツールで節約した時間が、ツールを運用するための作業に食われていました。</p><ul class="blist"><li>AIの出力への対応</li><li>出力を既存のシステムに手作業で入れ直す作業</li><li>出力を実際の意思決定に組み込む作業</li></ul><p>AIが業務の流れに本当の意味で組み込まれていなかったのです。そのため成果が、収入や取り戻した時間という形で表に出ませんでした。</p><h3 class="sh">狙うべきは「真ん中」の業務</h3><p>筆者らはアクセンチュアとグーグルの担当者です。過去1年、業界横断の分析と実際の業務での実験を進めてきました。その結論として、AIの価値が最も眠っているのはミドルオフィスだと言います。</p><p>ミドルオフィスとは、顧客に対応するフロントと、定型的な管理をするバックの間にある業務です。</p><ul class="blist"><li>契約審査</li><li>リスク管理</li><li>コンプライアンス</li></ul><p>どれも定型化しにくく例外が多い、人の判断に頼る仕事です。筆者らの分析では、ミドルオフィスは18業界で、労働時間で見たタスクの4割超を占めます。企業の中で最大の業務領域だということです。</p><p>ところが多くのAI計画は、自動化が進んで伸びしろが減ったバックオフィスから、価格の自動調整のような野心的なフロントの施策へと一足飛びに進みます。フロントの見返りは、いつも「1年先」にあるように見えます。業務の最大の割合を占め、最も早くリターンが出るはずの真ん中が見過ごされている、というのが筆者らの主張です。</p><h3 class="sh">身近な場面で考えると</h3><p>携帯ショップなら、申込書類の不備チェック、キャンペーン条件が当てはまるかの判断、例外的な契約手続きの確認がこれに近い業務です。質問に答えるAIを入れても、その結果を担当者がシステムに打ち直しているなら、浮いた時間は消えてしまいます。</p><h3 class="sh">注意点</h3><p>筆者らはAI導入を支援する企業の人間で、ミドルオフィスの重要性を強調しやすい立場にあります。本稿の中心である「4つの実践的ステップ」の中身は、今回取得できた範囲には含まれていません。</p><p>（本文は取得できず、公開されている要旨から書いています）</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14789" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">6</div>
+      <h2>インフレ期の値上げ習慣が招く「価格競争のワナ」</h2>
+      <div class="fig"><div class="fig-t">ワナにはまる順序</div><div class="flow"><div class="step"><b>値上げで転嫁</b><span>インフレ期に習慣化</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>需要が沈む</b><span>デフレで買い手市場に</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>競合が追随せず</b><span>値上げを見送る・小幅に</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>価格競争のワナ</b><span>投資しても価格で負ける</span></div></div><div class="fig-c">右に進むほど抜け出しにくくなる</div></div>
+      <div class="sum"><h3 class="sh">値上げで利幅を守る習慣の落とし穴</h3><p>コストの上昇は、どの企業にも影響しています。多くの経営者は、インフレが日々の経費に与える影響を調整するやり方は身につけてきました。しかし、それを競合との競争戦略に織り込む経営者はほとんどいない、と筆者（アラバマ大学の経営学教授）は指摘します。</p><p>とくに設備投資の大きい企業ほど、その投資が長期の競争力にどう響くかを見ていないことが多いといいます。筆者は、インフレにもかかわらず、むしろインフレを逆手にとって競争力を強められると説きます。そのために、自社と競合の両方について、戦略づくりを目的にしたコスト分析を勧めています。</p><h3 class="sh">XYZ社に何が起きたか</h3><p>筆者は、複数の企業を合わせた架空の「XYZ社」の物語で問題を描きます。流れは次のとおりです。</p><ul class="blist"><li>インフレが続くあいだ、コスト上昇分を値上げで転嫁し、利幅を守る習慣がついた</li><li>競合も同じように値上げするのを見て、それで安定していると感じていた</li><li>デフレが来て需要が沈み、ひどい不況で買い手市場になった</li><li>販売数量を重視する競合が、シェアを取りに価格で攻めてきた</li><li>競合は業界の一斉値上げに付き合わず、小幅にとどめるか見送るようになった</li></ul><p>その結果、競合の利益は伸びるのに、XYZ社の利益は減っていきました。価格競争のワナに正面からはまったのです。</p><h3 class="sh">追いつこうとして、さらに行き詰まる</h3><p>XYZ社は、競合のほうがコスト面で有利に違いないと考えました。そこで設備の近代化や、新鋭工場の建設を検討します。ところが投資額が大きすぎて、まともな投資利益を得るには価格をかなり上げなければなりません。その価格では、競合はなお十分に戦えます。</p><p>筆者は、同じ苦境にある業界として次の例を挙げます。</p><ul class="blist"><li>北米の紙パルプ業界：新しい設備と償却が済んだ設備では、1トンあたり100ドルのコスト差がある</li><li>米国の鉄鋼業界：変動費がアジア勢より速く上がり、大規模な一貫設備への更新には膨大な投資が要る</li><li>米国の電力業界：1970年代の3〜5倍の資本コストで設備を増やし、固定費が重くて競えないという不安を抱える。シーブルック原発は建設費が当初見込みの10億ドルから52億ドルに膨らんだ</li></ul><h3 class="sh">読み方と限界</h3><p>古い論考で、事例は米国の設備型産業に偏っています。それでも「値上げに慣れた会社は、相手が値上げに付き合わなくなった瞬間に弱くなる」という構図は、業種を問いません。物価上昇が続いた後に需要が冷え込み、価格を据え置く競合が現れる。そうした局面への備えを考える材料になります。</p><p>題名にある「付加価値体系による分析」と具体的な対応策は本稿の後半にあり、今回取得できたのは問題提起の部分までです。</p><p>（本文は取得できず、公開されている要旨から書いています）</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14093" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+  </div>
+  
+  <footer>
+    コンサルティングファーム・ビジネススクール・調査機関の19ソースから、
+    直近7日の公開分を収集し日本語に要約したもの。判断の前に各出典を確認してください。
+  </footer>
+</div></div>
+<script>
+(function(){
+  var KEY = "lsm-favs-v1";
+  function load(){ try { return JSON.parse(localStorage.getItem(KEY)) || []; }
+                   catch(e){ return []; } }
+  function save(v){ try { localStorage.setItem(KEY, JSON.stringify(v)); } catch(e){} }
+  function has(url){ return load().some(function(x){ return x.url === url; }); }
+  function paint(b){
+    var on = has(b.dataset.url);
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+    var ic = b.querySelector(".ic"), tx = b.querySelector(".tx");
+    if (ic) ic.textContent = on ? "\u2605" : "\u2606";
+    if (tx) tx.textContent = on ? "保存済み" : "あとで読む";
+    if (!ic && !tx) b.textContent = on ? "\u2605" : "\u2606";
+  }
+  function toggle(b){
+    var d = b.dataset, list = load(), i = list.findIndex(function(x){ return x.url === d.url; });
+    if (i >= 0) list.splice(i, 1);
+    else list.unshift({url:d.url, title:d.title||d.url, kind:d.kind||"", date:d.date||"",
+                       note:d.note||"", saved:new Date().toISOString().slice(0,10)});
+    save(list); paint(b);
+    if (window.renderFavs) window.renderFavs();
+  }
+  function wire(){
+    var bs = document.querySelectorAll("[data-fav]");
+    for (var i = 0; i < bs.length; i++){
+      (function(b){ paint(b); b.addEventListener("click", function(e){
+        e.preventDefault(); e.stopPropagation(); toggle(b); }); })(bs[i]);
+    }
+  }
+  window.favStore = {load:load, save:save, has:has};
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", wire);
+  else wire();
+})();
+</script>
+</body>
+</html>
