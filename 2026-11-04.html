@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>今週のインサイト 2026-11-04</title>
+<style>
+  :root{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E; --accent-bg:#F5EFE3;
+    --sans: system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
+      --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E; --accent-bg:#F5EFE3;
+  }
+  :root[data-theme="dark"]{
+    --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
+    --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
+  }
+  /* Phone-first. Body text sits at 16px (never below -- iOS zooms on focus under 16px and
+     small type is the main complaint on a handset), the column is capped just above a
+     comfortable measure, and side padding stays generous so text never touches the edge. */
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0}
+  .wrap{background:var(--ground);color:var(--ink);font-family:var(--sans);
+    font-size:16px;line-height:1.9;-webkit-font-smoothing:antialiased;
+    padding:1.5rem 1.15rem 4rem;min-height:100vh}
+  .inner{max-width:34rem;margin:0 auto}
+  header{border-bottom:1px solid var(--line);padding-bottom:1.25rem;margin-bottom:1.5rem}
+  .eyebrow{font-size:.72rem;letter-spacing:.16em;color:var(--faint);
+    text-transform:uppercase;margin:0 0 .5rem}
+  h1{font-size:1.4rem;font-weight:700;letter-spacing:-.01em;line-height:1.45;
+    margin:0;text-wrap:balance}
+  .lede{font-size:1rem;color:var(--muted);margin:1.1rem 0 0;line-height:1.95}
+  .picks{display:flex;flex-direction:column;gap:1.15rem}
+  .pick{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.2rem 1.1rem;position:relative}
+  .n{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.1em;margin-bottom:.35rem}
+  .pick h2{font-size:1.12rem;font-weight:700;line-height:1.6;margin:0 0 .7rem;
+    letter-spacing:-.005em;text-wrap:balance}
+  /* No justify: on a narrow screen it opens rivers of white space between Japanese runs. */
+  .sum{font-size:1rem;color:var(--ink)}
+  .sum p{margin:0 0 .95rem}
+  .sum p:last-child{margin-bottom:0}
+  .sum .blist{list-style:none;margin:0 0 1rem;padding:0;display:flex;
+    flex-direction:column;gap:.5rem}
+  /* 本文中の小見出し: 長い解説を拾い読みできるようにする */
+  .sum .sh{font-size:.94rem;font-weight:700;color:var(--ink);margin:1.5rem 0 .55rem;
+    padding-left:.6rem;border-left:3px solid var(--accent);line-height:1.6}
+  .sum .sh:first-child{margin-top:0}
+  .sum .blist li{position:relative;padding-left:1.1rem;line-height:1.85}
+  .sum .blist li::before{content:"";position:absolute;left:.2rem;top:.75em;
+    width:.32rem;height:.32rem;border-radius:50%;background:var(--accent)}
+  /* 図解の崩れ防止: 長い語も枠内で折り返し、幅が足りなければ横スクロールさせる */
+  .fig *{overflow-wrap:anywhere;word-break:normal;min-width:0}
+  /* 図解: CSS で組む（SVGだと縮小して読めなくなる）。縦積みなので幅の狭い画面でも崩れない */
+  .fig{margin:.9rem 0 1rem;padding:.9rem .85rem;border:1px solid var(--line);
+    border-radius:12px;background:var(--ground)}
+  .fig-t{font-size:.76rem;font-weight:700;letter-spacing:.06em;color:var(--accent);
+    margin-bottom:.7rem}
+  .fig-c{font-size:.78rem;color:var(--muted);margin-top:.7rem;line-height:1.7}
+  .flow{display:flex;flex-direction:column;align-items:stretch;gap:.3rem}
+  .flow .step{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .7rem;text-align:center}
+  .flow .step b{display:block;font-size:.9rem;font-weight:700}
+  .flow .step span{display:block;font-size:.78rem;color:var(--muted);margin-top:.15rem;
+    line-height:1.6}
+  .flow .arr{text-align:center;color:var(--accent);font-size:.9rem;line-height:1}
+  /* 2x2 マトリクス: 経営フレームの定番。軸ラベルを外側に置いて象限を読ませる */
+  .mtx{display:flex;flex-direction:column;gap:.3rem}
+  .mtx .ylab{font-size:.72rem;color:var(--muted);text-align:center}
+  .mtx .grid{display:grid;grid-template-columns:1fr 1fr;gap:.35rem}
+  .mtx .mcell{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .6rem;min-height:3.6rem;display:flex;flex-direction:column;
+    justify-content:center}
+  .mtx .mcell.empty{background:transparent;border-style:dashed;opacity:.5}
+  .mtx .mcell b{font-size:.86rem;font-weight:700;line-height:1.5}
+  .mtx .mcell span{font-size:.76rem;color:var(--muted);margin-top:.2rem;line-height:1.55}
+  .mtx .xlabs{display:flex;justify-content:space-between;font-size:.72rem;
+    color:var(--muted);padding:0 .2rem}
+  /* 横棒: 研究の効果量・前後差を数字で見せる */
+  .bars{display:flex;flex-direction:column;gap:.5rem}
+  .brow{display:flex;flex-direction:column;gap:.2rem}
+  .blab{font-size:.84rem;font-weight:600}
+  .blab .bnote{font-weight:400;color:var(--muted);font-size:.76rem;margin-left:.4rem}
+  /* grid: the bar track takes the leftover width and the number never wraps under it.
+     A percentage width inside a flex row was being resolved against the wrong box, which is
+     what made the bars overflow on a phone. */
+  .btrack{display:grid;grid-template-columns:minmax(0,1fr) max-content;gap:.55rem;
+    align-items:center}
+  .bwrap{background:var(--line);border-radius:5px;height:1.35rem;overflow:hidden;width:100%}
+  .bbar{height:100%;background:var(--accent);border-radius:5px;opacity:.9}
+  .bval{font-size:.82rem;font-weight:700;color:var(--accent);
+    font-variant-numeric:tabular-nums}
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
+  .cmp .col{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .65rem}
+  .cmp .ch{font-size:.78rem;font-weight:700;color:var(--accent);margin-bottom:.4rem;
+    padding-bottom:.35rem;border-bottom:1px solid var(--line)}
+  .cmp ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.3rem}
+  .cmp li{font-size:.86rem;line-height:1.6;padding-left:.75rem;position:relative}
+  .cmp li::before{content:"・";position:absolute;left:0;color:var(--faint)}
+  .rel{display:flex;flex-direction:column;align-items:center;gap:.55rem}
+  .rel .hub{background:var(--accent);color:var(--card);border-radius:999px;
+    padding:.5rem 1.1rem;font-size:.9rem;font-weight:700}
+  .rel .sats{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem}
+  .rel .sat{background:var(--card);border:1px solid var(--line);border-radius:999px;
+    padding:.35rem .75rem;font-size:.84rem}
+  @media (max-width:380px){ .cmp{grid-template-columns:1fr} }
+  /* Tap target: a bare inline link is hard to hit on a phone, so give it real height. */
+  .src{display:inline-block;margin-top:1rem;font-size:.86rem;color:var(--muted);
+    text-decoration:none;border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .8rem;line-height:1.5;word-break:break-word}
+  .src:hover{color:var(--accent);border-color:var(--accent)}
+  /* 今週の論文: 定義リストで「問い／検証／結果／含意／留意」を固定の型に見せる */
+  .papers{margin-top:2.2rem}
+  .sec{font-size:.78rem;font-weight:700;letter-spacing:.14em;color:var(--accent);
+    margin:0 0 .9rem;padding-bottom:.5rem;border-bottom:1px solid var(--line)}
+  .paper{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.1rem 1.05rem;margin-bottom:1rem}
+  .paper h3{font-size:1.02rem;font-weight:700;line-height:1.6;margin:0 0 .3rem;
+    text-wrap:balance}
+  .paper .auth{font-size:.78rem;color:var(--faint);margin-bottom:.75rem}
+  .paper dl{margin:0;display:grid;grid-template-columns:max-content minmax(0,1fr);
+    gap:.5rem .8rem;align-items:start}
+  .paper dt{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.08em;
+    padding-top:.15rem;white-space:nowrap}
+  .paper dd{margin:0;font-size:.9rem;line-height:1.8;text-align:justify}
+  .paper .finds{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;
+    gap:.35rem}
+  .paper .finds li{position:relative;padding-left:1rem;line-height:1.75}
+  .paper .finds li::before{content:"";position:absolute;left:.2rem;top:.72em;width:.3rem;
+    height:.3rem;border-radius:50%;background:var(--accent)}
+  @media (max-width:420px){ .paper dl{grid-template-columns:1fr;gap:.15rem .8rem}
+    .paper dt{margin-top:.5rem} }
+  footer{margin-top:2.4rem;padding-top:1.1rem;border-top:1px solid var(--line);
+    font-size:.78rem;color:var(--faint);line-height:1.7}
+  a:focus-visible,.src:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+.fav{appearance:none;-webkit-appearance:none;cursor:pointer;display:inline-flex;
+  align-items:center;justify-content:center;gap:6px;min-width:44px;min-height:44px;
+  padding:0 12px;border-radius:999px;font:inherit;font-size:14px;font-weight:600;
+  background:var(--surface,#fff);color:var(--ink-mut,#6b7280);
+  border:1px solid var(--line,#e5e7eb);line-height:1;}
+.fav:hover{border-color:#f0b429;color:#b26b00;}
+.fav[aria-pressed="true"]{background:#fff8e6;border-color:#f0b429;color:#b26b00;}
+.fav .ic{font-size:16px;line-height:1;}
+.fav-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:14px 0 6px;}
+.fav-bar a.all{font-size:13.5px;color:var(--ink-mut,#6b7280);text-decoration:none;
+  min-height:44px;display:inline-flex;align-items:center;}
+.fav-bar a.all:hover{text-decoration:underline;}
+.fav-mini{appearance:none;-webkit-appearance:none;cursor:pointer;background:none;border:0;
+  padding:6px 8px;margin-left:2px;font-size:15px;line-height:1;color:#c3c8d0;
+  min-width:36px;min-height:36px;}
+.fav-mini[aria-pressed="true"]{color:#f0b429;}
+
+</style>
+</head>
+<body>
+<div class="wrap"><div class="inner">
+  <header>
+    <p class="eyebrow">Weekly Insight</p>
+    <h1>今週のインサイト <span style="color:var(--faint);font-weight:500">2026-11-04</span></h1>
+    <p class="lede">今週の論考を通して読むと、共通するテーマは「人は台本どおりには動かない。そこを前提に仕組みをつくる」でした。決算説明会12万件超を分析した研究は、厳しい質問よりも「予想外だが答えられる質問」のほうが相手の本音を引き出すことを示しています。福利厚生の研究は、登録をあえて少し面倒にすると、その後も続けてもらいやすくなるという直感に反する設計を検証しました。一流スポーツコーチの研究と、ピクサーでのジョブズの振る舞いは、重圧の下での決め方や「熱意をどう判断材料にするか」を具体的な場面で見せてくれます。去年までとの違いは、AIで想定問答や整った書類を誰でも用意できるようになったことです。その結果、書類や受け答えの見栄えではなく、即興で出る中身や本当の能力をどう見抜くかが、各研究の共通の関心になってきました。外注の失敗例と、履歴書の政治的な書き換えを扱った論文も、同じ問題を別の角度から突いています。読む順としては、まず「変化球の質問」で面接や報告の聞き方を見直してください。次にコーチの意思決定、最後に外注の論考を読むと、人を見る・決める・任せるの流れでつながります。</p>
+    <div class="fav-bar"><button class="fav" data-fav data-url="https://hacadr-cloud.github.io/weekly-insight/2026-11-04.html" data-title="週次インサイト 2026-11-04" data-kind="insight" data-date="2026-11-04" aria-pressed="false"><span class="ic">☆</span><span class="tx">あとで読む</span></button><a class="all" href="favorites.html">保存した記事を見る →</a></div>
+  </header>
+  <div class="picks">
+    <article class="pick">
+      <div class="n">1</div>
+      <h2>厳しい質問より「変化球の質問」が本音を引き出す</h2>
+      <div class="fig"><div class="fig-t">質問の4類型</div><div class="mtx"><div class="ylab top">話題に密着</div><div class="grid"><div class="mcell"><b>想定内</b><span>準備した答えが返る</span></div><div class="mcell"><b>変化球</b><span>本音と新情報が出る</span></div><div class="mcell"><b>雑談</b><span>情報はほぼ出ない</span></div><div class="mcell"><b>脱線</b><span>「別途」でかわされる</span></div></div><div class="ylab bot">話題と無関係</div><div class="xlabs"><span>予測しやすい</span><span>予測しにくい</span></div></div><div class="fig-c">右上の、話題に沿っていて予測しにくい質問だけが新しい情報を引き出す</div></div>
+      <div class="sum"><h3 class="sh">「厳しい質問」の限界</h3><p>私たちは、厳しい質問をするよう教わってきました。面接官は自由に答えさせる質問を使い、管理職は一般論に具体性を求めます。交渉担当者は、はぐらかしを追及します。</p><p>目的はどれも同じで、相手が明かしたがらない情報を引き出すことです。ところが、厳しく聞こえる質問が率直な答えを引き出すとは限りません。</p><p>経験豊富な回答者は、厳しい質問を予測しています。磨き上げた話を用意し、会話を都合のいい方向へ誘導できます。長々と答えて、何も明かさないことも起こります。AIで想定問答を作れる今、この壁はさらに厚くなっています。</p><p>コロンビア・ビジネススクールとバークレー・ハースの研究者が『ストラテジック・マネジメント・ジャーナル』に発表した研究は、別の道を示しました。相手にとって「予想外だが、答えられる」質問です。著者らはこれを「変化球の質問」と呼んでいます。</p><h3 class="sh">何をどう調べたか</h3><p>舞台は、米国上場企業の四半期決算説明会です。経営陣がまず準備した説明をし、その後アナリストの質問にその場で答えます。台本と即興がはっきり分かれるので、比較に向いた場です。</p><ul class="blist"><li>対象：米国上場企業5609社</li><li>期間：2011〜2021年</li><li>分析した記録：決算説明会12万6910件</li></ul><p>アナリストの質問一つひとつについて、2つの性質を測りました。</p><ul class="blist"><li>予測困難性：準備された説明から、どれだけ予測しにくいか</li><li>話題関連性：その説明に、どれだけ密接に関係しているか</li></ul><p>両方が強い質問を「変化球」としました。突拍子もない質問ではありません。話の筋には沿っているのに、台本の想定からは外れている質問です。</p><h3 class="sh">分かったこと</h3><p>変化球の度合いが高い質問ほど、次の傾向が見られました。</p><ul class="blist"><li>経営陣が動揺している兆候が多く出る</li><li>回答が長くなり、しかも「答えになっていない答え」になりやすい</li><li>専門の担当者に振らず、CEO自身が前に出て答えることが多い</li><li>会議全体で見ると、株価の変動幅と異常収益（市場全体の動きでは説明できない値動き）が大きくなる</li><li>アナリストの平均レーティングが変わる可能性が高まる</li></ul><p>つまり変化球は、市場が企業の見通しを見直すほどの新しい情報を引き出していたのです。</p><p>変化球を投げる人の特徴も見えてきました。スターアナリストや、専門家ネットワークの中心にいるアナリストほど、変化球を多く投げていました。アナリストの間で見通しが割れている時、業種の分類が難しい企業、担当を始めたばかりの時にも増えています。変化球は、熟練した調べ手の商売道具だと言えます。</p><h3 class="sh">なぜ効くのか</h3><p>厳しい質問は、厳しいがゆえに予測されます。予測された質問には、準備された答えが返ってきます。変化球は台本の外にあるため、決まった答えに逃げられません。その場で考えるしかないので、相手が実際にどう考えているかがにじみ出ます。</p><p>関連性が必要なのも同じ理由です。無関係な質問なら「その件は別途」とかわせます。話の筋に沿っているからこそ、答えないわけにいかないのです。</p><h3 class="sh">どんな場面で使えるか</h3><p>たとえば店長候補の面接です。「前職で一番苦労したことは」は想定問答の定番で、整った話が返ってきます。それよりも、相手が語った実績の中身に、本人が準備していない角度から踏み込みます。「その売上が伸びた月、スタッフの配置はどう変えましたか」といった質問です。答えの具体性や詰まり方から、本当に本人がやったことなのかが見えやすくなります。</p><p>業者の提案や幹部の報告を聞くときも同じです。資料を読み込んだうえで、資料の延長線上にあるのに書かれていない点を聞きます。これは聞き手に知識がなければできません。研究でも、変化球を投げていたのは熟練者でした。</p><h3 class="sh">限界と注意点</h3><p>著者ら自身が限界を認めています。決算説明会は特殊な場です。聞き手は非常に知識が豊富で、回答はすぐ株価に響きます。ただし、米連邦準備制度理事会（FRB）の記者会見でも同じ結果が出たといいます。採用面接や取締役会で直接確かめた証拠は、まだありません。</p><p>著者らが有効だと見ている条件は、次の3つです。</p><ul class="blist"><li>回答者に、質問を予測して準備する動機がある</li><li>聞き手に、予測しにくい質問ができるだけの知識がある</li><li>その場で即興の質問ができる</li></ul><p>なお、回答が長くなったり動揺が見えたりしても、それがそのまま「隠し事がある」ことを意味するわけではありません。相手が圧迫されていると感じれば、関係を損なうおそれもあります。原文には実践のための7つの助言が載っていますが、今回取得できた本文には含まれていませんでした。</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14823" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">2</div>
+      <h2>登録をあえて「ひと手間」にすると、行動が続く</h2>
+      <div class="fig"><div class="fig-t">手間と登録者数</div><div class="bars"><div class="brow"><div class="blab">ワンクリック移行<span class="bnote">基準</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:100.0%"></div></div><span class="bval">100指数</span></div></div><div class="brow"><div class="blab">再入力が必要な移行<span class="bnote">25%減</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:75.0%"></div></div><span class="bval">75指数</span></div></div></div><div class="fig-c">手間を加えると入口の人数は減る。研究の焦点は、残った人の継続にある</div></div>
+      <div class="sum"><h3 class="sh">登録はしても、続かない</h3><p>相乗り通勤、健康支援、貯蓄。企業は、従業員の行動を変えるプログラムに多額の投資をしています。ところが多くの企業が気づき始めているのは、登録してもらうよりも、続けてもらうほうがはるかに難しいということです。</p><p>研究では、この「やるつもり」と「実際の行動」の隔たりを「意図と行動のギャップ」と呼んでいます。</p><p>ハーバード・ビジネス・スクールのアシュリー・ウィランズ准教授らは、ここに直感に反する解決策を示しました。最初の登録に、目標に関連した「適度な手間」をあえて加えるというものです。そうすると当事者意識が生まれ、その後も続けやすくなります。著者らはこれを「バイイン効果」と名付けました。論文は『マネジメント・サイエンス』誌に掲載予定です。</p><p>「ある行動に時間をかけると、その行動自体により大きな価値を感じるようになる」とウィランズは説明します。</p><h3 class="sh">実験の中身</h3><p>仮説は2つの大規模な実験で検証されました。1つ目は、オレゴン州運輸局が運営し、地元企業が従業員に勧めている相乗り通勤プラットフォームでの実験です。2019年のシステム移行の機会を使いました。</p><ul class="blist"><li>対象：登録はしていたが、実際には利用していなかった2万7227人</li><li>割り当て：無作為に2つのグループに分けた</li><li>一方：情報の再入力が必要な「手間のかかる移行」</li><li>もう一方：ワンクリックで済む「手間のかからない移行」</li></ul><h3 class="sh">取得できた範囲で分かったこと</h3><p>手間を増やすと、登録する人は減りました。手間のかかるグループでは、登録した人が25%少なかったのです。</p><p>これは手間を加えたことの「コスト」にあたります。研究の主張の中心は、それでも残った人の継続率が上がるという点です。ただし、その後の利用状況のデータは、今回取得できた本文には含まれていませんでした。</p><h3 class="sh">どう読むか</h3><p>入口を狭めるかわりに、残る人の本気度を上げるという取引です。数を取りにいくのか、継続を取りにいくのかで、設計が変わります。</p><p>記事は応用例として、小売業者が顧客のリピートを促すために、あえて顧客にひと手間かけてもらうステップを加えることを挙げています。注意したいのは、手間は目標に関連した「適度な」ものに限るという点です。目的と関係のない手続きの面倒さは、ただ離脱を増やすだけになりかねません。</p><p>（本文は取得できず、公開されている要旨から書いています）</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14792" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">3</div>
+      <h2>一流スポーツコーチは「決める前」に決めている</h2>
+      <div class="fig"><div class="fig-t">重大な判断の3段階</div><div class="flow"><div class="step"><b>事前</b><span>場面を予測し基準と権限を決める</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>最中</b><span>感情を抑え場の空気を読む</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>事後</b><span>説明責任を果たし仕組みを直す</span></div></div><div class="fig-c">判断の質は、本番より前の準備でほぼ決まる</div></div>
+      <div class="sum"><h3 class="sh">なぜコーチに学ぶのか</h3><p>経営者は、不完全で、ときには矛盾する情報をもとに重大な判断を下しています。一流のスポーツコーチも同じですが、条件はさらに厳しくなります。</p><ul class="blist"><li>時間：数秒で指示を出さなければならないことが多い</li><li>人目：試合は生中継され、ファンやメディアから常に批判される</li></ul><p>筆者らは数年かけて、成功している11人のコーチを調べました。対象はNFL、NBA、MLB、欧州のサッカー（プレミアリーグ、ラ・リーガ、チャンピオンズリーグ）、ラグビーです。試合中の指示や選手交代、選手の採用、故障からの復帰判断などに、認知・感情・人間関係の面でどう向き合っているかを聞き取りました。</p><p>そこから得られたのは、特性のチェックリストでも新しい公式でもありません。重大な局面の「事前・最中・事後」に、判断がどう形づくられていくかの記録です。要旨によれば、徹底した準備、感情のコントロール、場の空気を読む力、説明責任、仕組みの改善といった要素が挙がっています。</p><h3 class="sh">事前：判断が必要になる場面を先に洗い出す</h3><p>コーチたちは、シーズン中や試合中に必要になる重要な判断を予想し、シナリオを用意しています。ワールドカップで優勝したラグビーのヘッドコーチは「意思決定が必要になる状況を予測し、あらかじめ解決策を見つけておかなければならない」と語りました。</p><p>この準備は理論ではなく実務です。周囲と話し合い、異論を引き出し、次の点をはっきりさせておきます。</p><ul class="blist"><li>こうなったらどうするか</li><li>誰が決めるか</li><li>どの兆候を重視するか</li></ul><p>狙いは未来を当てることではありません。役割、判断の基準、権限の曖昧さをなくしておくことです。</p><h3 class="sh">実例：前夜に決めた交代</h3><p>あるMLBの監督は、ワールドシリーズ初戦の前夜、相手の先発左腕に対してベテランの右打者ではなく、ルーキーの左打者を起用すると決めました。同時に、相手が左のリリーフに代えたらベテランに戻すことも決めていました。</p><p>7回、相手は左投手から別の左投手に交代します。ルーキーは好調で、計画を変えたくなっても不思議ではない場面でした。それでも監督はぶれずにベテランを代打に送り、その選手がホームランで勝利を決めました。監督は後に「あの采配は前夜に決まっていた」と振り返っています。</p><p>店舗運営に置き換えると、繁忙日の欠員や在庫切れの対応を、誰が何を基準に決めるのか先に決めておく、ということになります。現場で迷う時間そのものが減ります。</p><h3 class="sh">限界</h3><p>調べたのは成功したコーチ11人で、うまくいかなかった判断との比較はありません。うまくいった話が記憶に残りやすい点には注意が必要です。「最中」と「事後」の具体的な手法は、取得できた本文には含まれていませんでした。</p><p>（本文は取得できず、公開されている要旨から書いています）</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/15053" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">4</div>
+      <h2>外注では壊れた組織は直らない、かえって悪化する</h2>
+      <div class="fig"><div class="fig-t">外注の期待と現実</div><div class="cmp"><div class="col"><div class="ch">契約時の期待</div><ul><li>コストが下がる</li><li>本業に集中できる</li><li>面倒な部門から解放</li></ul></div><div class="col"><div class="ch">後から来る現実</div><ul><li>知識が社外へ流出</li><li>変更が毎回契約交渉</li><li>更新時に交渉力を失う</li><li>現場がシャドーIT化</li></ul></div></div><div class="fig-c">左のメリットは早く出て、右のコストは遅れて別の予算に出る</div></div>
+      <div class="sum"><h3 class="sh">期待された大型外注の結末</h3><p>2020年12月、ダイムラーとインフォシスは、8年間で約32億ドル規模とされるIT基盤の外注契約を発表しました。</p><p>書類の上では筋が通っていました。ダイムラーは社内をソフトウェア開発に集中させます。サービスデスク、データセンター、ネットワークといった運用は、担当者数百人ごとインフォシスへ移します。インフォシスは、より大きな規模で、柔軟に、安く提供する。そういう計画でした。</p><p>筆者らによれば、こうした契約には表に出しにくい動機もあります。古いシステムや承認の多層化、コストや資産の見えにくさに苦しむ部門から「逃げたい」という願いです。関係者によると、ダイムラーのIT部門はまさにその状態でした。</p><p>結果は思わしくありませんでした。2026年初めまでに会社はメルセデス・ベンツとダイムラー・トラックに分かれ、両社とも仕事の大部分を別の業者へ移し始めました。効率化どころか、どちらも管理しきれない複雑さが一枚増えただけだったのです。</p><h3 class="sh">なぜ失敗するのか</h3><p>筆者らは著書『オクトパス・オーガニゼーション』で、これを「アンチパターン」と呼んでいます。善意から出たのに、目的そのものを繰り返し損なってしまう対応のことです。</p><p>外注による節約は、初めのうちは本物です。人件費の差、規模、標準化によって、最初の数年は運用コストが確実に下がります。問題は、事業計画書に載らないコストです。</p><ul class="blist"><li>移った担当者と一緒に、知識が社外へ出ていく</li><li>あらゆる変更が契約交渉になり、判断が遅くなる</li><li>更新時に交渉力を失う（システムを分かっている人が全員、他社の社員になっている）</li></ul><p>こうしたコストは遅れて、しかも別の予算に計上されるため、見落とされやすいのです。</p><p>曖昧な責任分担や弱い統制は、外注しても消えません。持ち主が変わるだけで、むしろ解決しにくくなります。業者の体制が追いつかないと、現場は業務を回すために勝手に自前のIT（シャドーIT）をつくり直します。筆者らはこれを、遅い外部の仕組みに対する組織の「免疫反応」と表現しています。</p><h3 class="sh">本来の「柔軟な企業」</h3><p>1986年、アトキンソンとミーガーは「柔軟な企業」を提唱しました。安定した中核の人材を持ち、需要に応じて増減できる外部の力で支えるという考え方です。外に出すのは給与計算や支払処理のような、必要だが差がつかない業務でした。</p><p>ところが多くの企業は、競争力を決める能力まで外に出してしまいました。不況期には、外注先を減らすより社員を減らすほうが説明しやすいものです。しかし、削られた社員こそ、外注先を管理し責任を問う力を持っていた人たちでした。</p><h3 class="sh">日本という大規模な実例</h3><p>筆者らは日本を、この力学が国全体の規模で起きた例として挙げています。</p><ul class="blist"><li>2018年の政府白書：日本のIT人材の72%が、ユーザー企業ではなくITベンダーに勤めている</li><li>2018年の経産省報告：約8割の企業が中身の分からない古いシステムを抱え、刷新できなければ2025年以降、最大で年12兆円の損失</li><li>2025年の追跡調査：多くの業界で7割超の企業が今も古いシステムを使い、DXが成功したと考える企業は約3割</li></ul><p>システムを刷新するには、まず理解する必要があります。その理解が、つくった業者の側にあるのです。</p><p>AIは本来その出口になるはずでした。しかし自社に技術者がいなければ、AIを使うのにも業者に頼るしかありません。そして人月単位で請求する業者にとって、AIが省いた1時間は請求できなくなる1時間です。一番AIを必要とする企業が、節約分を渡す動機が最も弱い相手に頼っていることになります。</p><h3 class="sh">中小企業の場面に置き換えると</h3><p>たとえば、予約管理やPOSの設定変更を、毎回業者に頼んでいる状態を考えてみてください。小さな変更にも見積もりと日数がかかり、仕組みを分かる人が社内に一人もいなくなります。そうなると、次の更新で業者を替える交渉力もなくなります。</p><p>筆者らは外注そのものを否定していません。適切な専門性を適切な時期に入れれば、変革を加速できると述べています。外注先を管理できる人と知識を社内に残すこと。それが分かれ目になります。</p></div>
+      <a class="src" href="http://hbr.org/2026/11/outsourcing-cant-fix-a-broken-organization" target="_blank" rel="noopener">HBR ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">5</div>
+      <h2>職場で避けられる話題と、その切り出し方</h2>
+      <div class="fig"><div class="fig-t">職場のタブー</div><div class="rel"><div class="hub">語られない話題</div><div class="sats"><span class="sat">お金・給与</span><span class="sat">年齢</span><span class="sat">政治</span><span class="sat">家族の事情</span><span class="sat">野心</span><span class="sat">恐れ</span></div></div><div class="fig-c">どれも陰では話されているが、変えられる人には届いていない</div></div>
+      <div class="sum"><h3 class="sh">話していないのではなく、相手を間違えている</h3><p>お金、政治、家族の事情、年齢、野心、そして恐れ。社員にとって大事な話題ほど、職場では口にしにくいものです。</p><p>ハーバード・ビジネス・スクールのクリスティーナ・ウィング講師は、著書『Unspeakable』でこうした職場のタブーを論じています。HBRのポッドキャストで彼女が強調したのは、人はこれらの話をしていないわけではない、という点でした。陰で話しているだけで、状況を変えられる相手とは話していないのです。</p><p>その結果、次のことが起こると彼女は言います。</p><ul class="blist"><li>現場の声を聞かないまま、判断が下される</li><li>信頼と心理的安全性が損なわれる</li><li>経営層が現場から孤立していく</li></ul><h3 class="sh">価値観を掲げる会社ほど問われる</h3><p>多くの会社は「価値観を大切にする職場」を名乗っています。ウィングは、自分にとって大事なことを話せない職場が、本当に価値観に基づいていると言えるのか、と問いかけます。話されないまま溝は広がっていきます。</p><h3 class="sh">世代で広がるずれ</h3><p>世代差も大きいといいます。上の世代にとって、職場で避けるべき話題は政治と宗教くらいでした。今はその範囲がずっと広がっています。</p><p>一方で、若い世代は給与のように、上の世代が口にしない話題を平気で共有します。社会問題についても職場で話したがります。こうして世代間のずれはさらに広がっています。</p><h3 class="sh">現場への置き換え</h3><p>たとえば、スタッフが給与や将来への不安を休憩室では話していても、オーナーには上がってこない状態です。オーナーは辞める理由を知らないまま、採用と退職を繰り返すことになります。</p><p>要旨によれば、ウィングは安心して話せる環境の作り方、ミスを防御的にならずに扱う方法、部下が野心を口にしやすくする方法、話がうまくいかなかったときの立て直し方まで語っています。ただし具体的な手順は、取得できた範囲には含まれていませんでした。また、司会者が指摘するように、職場での失言はキャリアを終わらせかねません。話題を開くことにはリスクも伴います。</p><p>（本文は取得できず、公開されている要旨から書いています）</p></div>
+      <a class="src" href="http://hbr.org/podcast/2026/11/the-topics-we-avoid-at-work-and-how-to-start-talking-about-them" target="_blank" rel="noopener">HBR ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">6</div>
+      <h2>ジョブズは部下の「熱意」を判断材料にした</h2>
+      <div class="fig"><div class="fig-t">熱意が判断を変えた</div><div class="flow"><div class="step"><b>財務で反対</b><span>ジョブズは営業側を支持</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>現場の反論</b><span>芸術的理由を力強く説明</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>熱意を評価</b><span>考えを尊重に値すると判断</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>方針を任せる</b><span>二度と蒸し返さなかった</span></div></div><div class="fig-c">中身を知る人の強い主張を、判断材料の一つとして扱った流れ</div></div>
+      <div class="sum"><h3 class="sh">理屈と感情を対立させない</h3><p>ピクサー共同創業者のエド・キャットムルが、著書『新・ピクサー流 創造するちから』の終章で、スティーブ・ジョブズのピクサーでの姿を語っています。</p><p>人は感情と理屈を相容れないものと考えがちです。キャットムルによれば、ジョブズは違いました。出会った頃から、彼の一番の判断基準は「熱意」だったといいます。</p><h3 class="sh">初期のジョブズ</h3><p>1980年代、ジョブズはアップルを追われて設立したNeXTに時間の大半を割いていました。ピクサーでは、ジョブズを含めて誰も、自分たちが何をしているのか分かっていませんでした。</p><p>交渉で押しすぎることもありました。NeXTはIBMとの間で、ソフトの使用権を許す1億ドルの取引をまとめています。ジョブズは次のバージョンの使用を認めず、一見ホームランに見えました。しかしやりすぎて反感を買い、後年ジョブズ自身が教訓になったと語っています。</p><p>ピクサーは赤字続きでした。時代の先を行く、金のかかる集団を、開花するかどうかも分からないまま抱え続けていました。それでもジョブズは、黒字化するずっと前から、グラフィックスと物語については現場のほうがよく分かっていると認めていました。仕事のやり方を指図せず、自分の望みを押し付けもしませんでした。</p><h3 class="sh">『バグズ・ライフ』の画面比率をめぐる対立</h3><p>2作目の『バグズ・ライフ』で、社内は画面の縦横比をめぐって二つに割れました。</p><ul class="blist"><li>制作チーム：劇場での迫力を重視し、横長のワイドスクリーンを主張</li><li>マーケティングチーム：家庭のテレビでは上下に黒い帯が出て、ビデオ・DVDが売れないと反対</li><li>ジョブズ：財務上の痛手を理由に、マーケティング側についた</li></ul><p>ある日、ジョブズが現場を回っていたとき、プロダクションデザイナーのビル・コーンがワイドスクリーンで作業していました。ジョブズは「頭がおかしいんじゃないか」と口を出します。ビルは真っ向から反論し、芸術的な観点からワイドスクリーンがいかに重要かを説明しました。かなり白熱したやりとりになりました。</p><p>後でビルは怯えた顔でキャットムルに聞きました。「まずいことになりましたか？」。答えは「その反対だ。きみが勝ったよ」でした。ジョブズは、信念のために力強く立ち上がったビルを見て、その考えを尊重に値すると判断したのです。その後、この話を二度と持ち出しませんでした。</p><h3 class="sh">なぜ熱意が判断材料になるのか</h3><p>キャットムルの説明はこうです。ジョブズは、感情で物事を判断してはいけないと分かっていました。同時に、次のことも理解していました。</p><ul class="blist"><li>創造性は一直線には生まれない</li><li>芸術とビジネスは違う</li><li>金儲けの論理を押し付けると、ピクサーを他社と分けているものを壊しかねない</li></ul><p>理屈と感情の両方を重視し、そのバランスを保つこと。それがジョブズを理解する鍵だったといいます。現場の専門家が、自分の評価を懸けてまで強く主張するとき、その強さ自体が「中身を知っている」ことの証拠になりうる、という読み方もできます。</p><h3 class="sh">現場での場面</h3><p>たとえば美容室で、スタイリストが新しいメニューや施術方法を強く主張する場面です。オーナーは採算から反対するかもしれません。そのときスタッフが、反論されてもなお理由を具体的に語れるかどうかを見る。それは、技術を知る人の判断に任せるかどうかの一つの材料になります。</p><h3 class="sh">別の見方と限界</h3><p>ただし、これは当事者による回想で、うまくいった一場面です。熱意があっても間違っていた事例は語られていません。キャットムル自身、ジョブズが常に理屈より情熱を優先したわけではないと断っています。声の大きい人が通る組織になれば、逆効果です。熱意は、理屈と並べて判断する材料の一つであって、理屈の代わりにはなりません。</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/15008" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+  </div>
+  <section class="papers"><h2 class="sec">今週の論文</h2>
+    <article class="paper">
+      <h3>政治色を合わせた履歴書が、能力の劣る採用を生む</h3>
+      <div class="auth">Janet Gao, Joseph Pacelli, Jun Oh</div>
+      <dl>
+        <dt>問い</dt><dd>大統領選の前後に、働く人が履歴書の文言を政治的な風向きに合わせて書き換えているかを問うた研究です。具体的には、環境・社会・ガバナンス（ESG）や多様性（DEI）に関する表現の追加と削除を追いました。さらに、そうした書き換えが転職や昇進に効くのか、企業は政治的な一致と引き換えに能力の低い人を採っていないかも検証しています。採用でカルチャーフィットが重視されるなか、それが本当の適性を映しているかどうかは、雇う側にとって切実な問題です。</dd>
+        <dt>検証</dt><dd>Revelio Labsのデータを使い、2018〜2025年に過去の職務記述を1回以上書き換えた、米上場企業に勤める290万人を分析しました。対象期間は、2020年（バイデン当選）と2024年（トランプ当選）の2回の大統領選をまたいでいます。働く人の支持政党は米国の有権者データで、企業のESG・DEIへの姿勢はRefinitiv Eikonの決算説明会データで把握しました。ESG関連の文言を加えた人と、履歴書の別の部分を書き換えた人を比較しています。さらに、採用された人を似た求職者5人と比べ、能力の適合度がどの程度採用を左右したかも測りました。</dd>
+        <dt>結果</dt><dd><ul class="finds"><li>バイデン当選の月には、約3万5000人が過去の職務記述にESGやDEIの文言を加えました。2024年のトランプ当選後には、約1万2000人がそうした文言を削除しました。</li><li>民主党寄りの人ほどESGの文言を加えやすく、その党派差はバイデン政権期にはトランプ1期目の約4倍でした。バイデン期に加えた人の多くが、トランプ2期目には削除しています。</li><li>企業側も同じように動いていました。決算説明会で初めてESGに言及した企業は、2020年第3四半期に約230社でピークを迎え、2024年末には数社にまで減っています。</li><li>民主党寄りの人は具体的な表現を加え、共和党寄りの人は曖昧で象徴的な表現を加える傾向がありました。</li><li>ESGの文言を加えた人は、翌年に転職する確率が約2.6ポイント高く、社内で昇進する確率もやや高くなりました。</li><li>転職できた人の能力適合度は、平均より2〜3%低いものでした（経験年数が短いなど）。似た求職者5人との比較では、ESGの文言を加えた候補者の場合、適合度が採用を左右する度合いが約10%小さく、特にバイデン期に目立ちました。</li></ul></dd>
+        <dt>含意</dt><dd>履歴書がカルチャーに完璧に合っているように見えるとき、それが本当の適性なのか、タイミングを合わせた書き換えなのかを疑う視点が必要です。著者のパチェリは、流行りの言葉は書類選考を通るために簡単に書き足せると指摘しています。経験とスキルという、仕事に必要な中核能力に目を向け続けるよう助言しています。今日重要な論点が明日には消えることもあるので、長く働いてもらう人材を採るという原点に戻ることが大切です。</dd>
+        <dt>留意</dt><dd>対象は米上場企業の社員で、ESGやDEIという米国特有の政治的対立軸を扱っています。日本の中小企業の採用にそのまま当てはまるとは限りません。また、能力の適合度は経験年数などのデータから推定した値で、実際の仕事ぶりを測ったものではありません。</dd>
+      </dl>
+      <a class="src" href="http://hbr.org/2026/11/research-when-workers-adapt-their-resumes-to-fit-the-political-moment" target="_blank" rel="noopener">HBR ↗</a>
+    </article></section>
+  <footer>
+    コンサルティングファーム・ビジネススクール・調査機関の19ソースから、
+    直近7日の公開分を収集し日本語に要約したもの。判断の前に各出典を確認してください。
+  </footer>
+</div></div>
+<script>
+(function(){
+  var KEY = "lsm-favs-v1";
+  function load(){ try { return JSON.parse(localStorage.getItem(KEY)) || []; }
+                   catch(e){ return []; } }
+  function save(v){ try { localStorage.setItem(KEY, JSON.stringify(v)); } catch(e){} }
+  function has(url){ return load().some(function(x){ return x.url === url; }); }
+  function paint(b){
+    var on = has(b.dataset.url);
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+    var ic = b.querySelector(".ic"), tx = b.querySelector(".tx");
+    if (ic) ic.textContent = on ? "\u2605" : "\u2606";
+    if (tx) tx.textContent = on ? "保存済み" : "あとで読む";
+    if (!ic && !tx) b.textContent = on ? "\u2605" : "\u2606";
+  }
+  function toggle(b){
+    var d = b.dataset, list = load(), i = list.findIndex(function(x){ return x.url === d.url; });
+    if (i >= 0) list.splice(i, 1);
+    else list.unshift({url:d.url, title:d.title||d.url, kind:d.kind||"", date:d.date||"",
+                       note:d.note||"", saved:new Date().toISOString().slice(0,10)});
+    save(list); paint(b);
+    if (window.renderFavs) window.renderFavs();
+  }
+  function wire(){
+    var bs = document.querySelectorAll("[data-fav]");
+    for (var i = 0; i < bs.length; i++){
+      (function(b){ paint(b); b.addEventListener("click", function(e){
+        e.preventDefault(); e.stopPropagation(); toggle(b); }); })(bs[i]);
+    }
+  }
+  window.favStore = {load:load, save:save, has:has};
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", wire);
+  else wire();
+})();
+</script>
+</body>
+</html>
