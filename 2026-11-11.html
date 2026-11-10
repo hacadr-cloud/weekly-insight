@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>今週のインサイト 2026-11-11</title>
+<style>
+  :root{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E; --accent-bg:#F5EFE3;
+    --sans: system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
+      --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#FBFAF8; --card:#FFFFFF; --line:#E8E4DC; --ink:#1E1C19; --muted:#6C665C;
+    --faint:#9A9389; --accent:#7A5C2E; --accent-bg:#F5EFE3;
+  }
+  :root[data-theme="dark"]{
+    --ground:#14130F; --card:#1C1A16; --line:#2E2A24; --ink:#EDE9E1; --muted:#A79F93;
+    --faint:#7C7468; --accent:#C9A468; --accent-bg:#252017;
+  }
+  /* Phone-first. Body text sits at 16px (never below -- iOS zooms on focus under 16px and
+     small type is the main complaint on a handset), the column is capped just above a
+     comfortable measure, and side padding stays generous so text never touches the edge. */
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0}
+  .wrap{background:var(--ground);color:var(--ink);font-family:var(--sans);
+    font-size:16px;line-height:1.9;-webkit-font-smoothing:antialiased;
+    padding:1.5rem 1.15rem 4rem;min-height:100vh}
+  .inner{max-width:34rem;margin:0 auto}
+  header{border-bottom:1px solid var(--line);padding-bottom:1.25rem;margin-bottom:1.5rem}
+  .eyebrow{font-size:.72rem;letter-spacing:.16em;color:var(--faint);
+    text-transform:uppercase;margin:0 0 .5rem}
+  h1{font-size:1.4rem;font-weight:700;letter-spacing:-.01em;line-height:1.45;
+    margin:0;text-wrap:balance}
+  .lede{font-size:1rem;color:var(--muted);margin:1.1rem 0 0;line-height:1.95}
+  .picks{display:flex;flex-direction:column;gap:1.15rem}
+  .pick{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.2rem 1.1rem;position:relative}
+  .n{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.1em;margin-bottom:.35rem}
+  .pick h2{font-size:1.12rem;font-weight:700;line-height:1.6;margin:0 0 .7rem;
+    letter-spacing:-.005em;text-wrap:balance}
+  /* No justify: on a narrow screen it opens rivers of white space between Japanese runs. */
+  .sum{font-size:1rem;color:var(--ink)}
+  .sum p{margin:0 0 .95rem}
+  .sum p:last-child{margin-bottom:0}
+  .sum .blist{list-style:none;margin:0 0 1rem;padding:0;display:flex;
+    flex-direction:column;gap:.5rem}
+  /* 本文中の小見出し: 長い解説を拾い読みできるようにする */
+  .sum .sh{font-size:.94rem;font-weight:700;color:var(--ink);margin:1.5rem 0 .55rem;
+    padding-left:.6rem;border-left:3px solid var(--accent);line-height:1.6}
+  .sum .sh:first-child{margin-top:0}
+  .sum .blist li{position:relative;padding-left:1.1rem;line-height:1.85}
+  .sum .blist li::before{content:"";position:absolute;left:.2rem;top:.75em;
+    width:.32rem;height:.32rem;border-radius:50%;background:var(--accent)}
+  /* 図解の崩れ防止: 長い語も枠内で折り返し、幅が足りなければ横スクロールさせる */
+  .fig *{overflow-wrap:anywhere;word-break:normal;min-width:0}
+  /* 図解: CSS で組む（SVGだと縮小して読めなくなる）。縦積みなので幅の狭い画面でも崩れない */
+  .fig{margin:.9rem 0 1rem;padding:.9rem .85rem;border:1px solid var(--line);
+    border-radius:12px;background:var(--ground)}
+  .fig-t{font-size:.76rem;font-weight:700;letter-spacing:.06em;color:var(--accent);
+    margin-bottom:.7rem}
+  .fig-c{font-size:.78rem;color:var(--muted);margin-top:.7rem;line-height:1.7}
+  .flow{display:flex;flex-direction:column;align-items:stretch;gap:.3rem}
+  .flow .step{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .7rem;text-align:center}
+  .flow .step b{display:block;font-size:.9rem;font-weight:700}
+  .flow .step span{display:block;font-size:.78rem;color:var(--muted);margin-top:.15rem;
+    line-height:1.6}
+  .flow .arr{text-align:center;color:var(--accent);font-size:.9rem;line-height:1}
+  /* 2x2 マトリクス: 経営フレームの定番。軸ラベルを外側に置いて象限を読ませる */
+  .mtx{display:flex;flex-direction:column;gap:.3rem}
+  .mtx .ylab{font-size:.72rem;color:var(--muted);text-align:center}
+  .mtx .grid{display:grid;grid-template-columns:1fr 1fr;gap:.35rem}
+  .mtx .mcell{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.55rem .6rem;min-height:3.6rem;display:flex;flex-direction:column;
+    justify-content:center}
+  .mtx .mcell.empty{background:transparent;border-style:dashed;opacity:.5}
+  .mtx .mcell b{font-size:.86rem;font-weight:700;line-height:1.5}
+  .mtx .mcell span{font-size:.76rem;color:var(--muted);margin-top:.2rem;line-height:1.55}
+  .mtx .xlabs{display:flex;justify-content:space-between;font-size:.72rem;
+    color:var(--muted);padding:0 .2rem}
+  /* 横棒: 研究の効果量・前後差を数字で見せる */
+  .bars{display:flex;flex-direction:column;gap:.5rem}
+  .brow{display:flex;flex-direction:column;gap:.2rem}
+  .blab{font-size:.84rem;font-weight:600}
+  .blab .bnote{font-weight:400;color:var(--muted);font-size:.76rem;margin-left:.4rem}
+  /* grid: the bar track takes the leftover width and the number never wraps under it.
+     A percentage width inside a flex row was being resolved against the wrong box, which is
+     what made the bars overflow on a phone. */
+  .btrack{display:grid;grid-template-columns:minmax(0,1fr) max-content;gap:.55rem;
+    align-items:center}
+  .bwrap{background:var(--line);border-radius:5px;height:1.35rem;overflow:hidden;width:100%}
+  .bbar{height:100%;background:var(--accent);border-radius:5px;opacity:.9}
+  .bval{font-size:.82rem;font-weight:700;color:var(--accent);
+    font-variant-numeric:tabular-nums}
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
+  .cmp .col{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .65rem}
+  .cmp .ch{font-size:.78rem;font-weight:700;color:var(--accent);margin-bottom:.4rem;
+    padding-bottom:.35rem;border-bottom:1px solid var(--line)}
+  .cmp ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.3rem}
+  .cmp li{font-size:.86rem;line-height:1.6;padding-left:.75rem;position:relative}
+  .cmp li::before{content:"・";position:absolute;left:0;color:var(--faint)}
+  .rel{display:flex;flex-direction:column;align-items:center;gap:.55rem}
+  .rel .hub{background:var(--accent);color:var(--card);border-radius:999px;
+    padding:.5rem 1.1rem;font-size:.9rem;font-weight:700}
+  .rel .sats{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem}
+  .rel .sat{background:var(--card);border:1px solid var(--line);border-radius:999px;
+    padding:.35rem .75rem;font-size:.84rem}
+  @media (max-width:380px){ .cmp{grid-template-columns:1fr} }
+  /* Tap target: a bare inline link is hard to hit on a phone, so give it real height. */
+  .src{display:inline-block;margin-top:1rem;font-size:.86rem;color:var(--muted);
+    text-decoration:none;border:1px solid var(--line);border-radius:9px;
+    padding:.6rem .8rem;line-height:1.5;word-break:break-word}
+  .src:hover{color:var(--accent);border-color:var(--accent)}
+  /* 今週の論文: 定義リストで「問い／検証／結果／含意／留意」を固定の型に見せる */
+  .papers{margin-top:2.2rem}
+  .sec{font-size:.78rem;font-weight:700;letter-spacing:.14em;color:var(--accent);
+    margin:0 0 .9rem;padding-bottom:.5rem;border-bottom:1px solid var(--line)}
+  .paper{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.1rem 1.05rem;margin-bottom:1rem}
+  .paper h3{font-size:1.02rem;font-weight:700;line-height:1.6;margin:0 0 .3rem;
+    text-wrap:balance}
+  .paper .auth{font-size:.78rem;color:var(--faint);margin-bottom:.75rem}
+  .paper dl{margin:0;display:grid;grid-template-columns:max-content minmax(0,1fr);
+    gap:.5rem .8rem;align-items:start}
+  .paper dt{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.08em;
+    padding-top:.15rem;white-space:nowrap}
+  .paper dd{margin:0;font-size:.9rem;line-height:1.8;text-align:justify}
+  .paper .finds{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;
+    gap:.35rem}
+  .paper .finds li{position:relative;padding-left:1rem;line-height:1.75}
+  .paper .finds li::before{content:"";position:absolute;left:.2rem;top:.72em;width:.3rem;
+    height:.3rem;border-radius:50%;background:var(--accent)}
+  @media (max-width:420px){ .paper dl{grid-template-columns:1fr;gap:.15rem .8rem}
+    .paper dt{margin-top:.5rem} }
+  footer{margin-top:2.4rem;padding-top:1.1rem;border-top:1px solid var(--line);
+    font-size:.78rem;color:var(--faint);line-height:1.7}
+  a:focus-visible,.src:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+.fav{appearance:none;-webkit-appearance:none;cursor:pointer;display:inline-flex;
+  align-items:center;justify-content:center;gap:6px;min-width:44px;min-height:44px;
+  padding:0 12px;border-radius:999px;font:inherit;font-size:14px;font-weight:600;
+  background:var(--surface,#fff);color:var(--ink-mut,#6b7280);
+  border:1px solid var(--line,#e5e7eb);line-height:1;}
+.fav:hover{border-color:#f0b429;color:#b26b00;}
+.fav[aria-pressed="true"]{background:#fff8e6;border-color:#f0b429;color:#b26b00;}
+.fav .ic{font-size:16px;line-height:1;}
+.fav-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:14px 0 6px;}
+.fav-bar a.all{font-size:13.5px;color:var(--ink-mut,#6b7280);text-decoration:none;
+  min-height:44px;display:inline-flex;align-items:center;}
+.fav-bar a.all:hover{text-decoration:underline;}
+.fav-mini{appearance:none;-webkit-appearance:none;cursor:pointer;background:none;border:0;
+  padding:6px 8px;margin-left:2px;font-size:15px;line-height:1;color:#c3c8d0;
+  min-width:36px;min-height:36px;}
+.fav-mini[aria-pressed="true"]{color:#f0b429;}
+
+</style>
+</head>
+<body>
+<div class="wrap"><div class="inner">
+  <header>
+    <p class="eyebrow">Weekly Insight</p>
+    <h1>今週のインサイト <span style="color:var(--faint);font-weight:500">2026-11-11</span></h1>
+    <p class="lede">今週は「誰が、何を、どう決めるか」を問い直す論考がそろいました。代表は、職場のストレスを「忙しすぎ」の一言で片づけない研究です。515件の研究を束ね、役割の曖昧さと板挟みを分けて見ています。意思決定の役割を割り振るRAPIDモデルと、うまくいかない取り組みのやめ方を集めた7本の論考も、同じ問題を扱っています。どれも原因を個人の頑張りに求めず、決め方の仕組みの中に探しています。一方で、AIが賢くなるほど人間の直観や自社の本質を見極める力が問われる、という論調が今年ははっきりしてきました。分析を機械に任せられるようになったぶん、何を守り何を捨てるかを決めることが、改めて経営者の仕事として語られています。読む順番としては、まずストレスの3要因で自社の職場を点検してください。次にRAPIDとプロジェクトの見切り方で決め方を見直し、最後にレゴの「本質」の話で自社の強みを考えるのがおすすめです。直観、イーロン・マスク氏の速さの哲学、ピクサーの話は、週末の読み物として添えました。</p>
+    <div class="fav-bar"><button class="fav" data-fav data-url="https://hacadr-cloud.github.io/weekly-insight/2026-11-11.html" data-title="週次インサイト 2026-11-11" data-kind="insight" data-date="2026-11-11" aria-pressed="false"><span class="ic">☆</span><span class="tx">あとで読む</span></button><a class="all" href="favorites.html">保存した記事を見る →</a></div>
+  </header>
+  <div class="picks">
+    <article class="pick">
+      <div class="n">1</div>
+      <h2>職場のストレスは「量」だけではない　78万人分の研究が示す3つの型</h2>
+      <div class="fig"><div class="fig-t">3つのストレスの害</div><div class="cmp"><div class="col"><div class="ch">役割の曖昧さ</div><ul><li>満足度・意欲が低下</li><li>公平感が下がる</li><li>協力行動が減る</li></ul></div><div class="col"><div class="ch">役割葛藤</div><ul><li>燃え尽き</li><li>怠けが増える</li><li>離職意向が高まる</li></ul></div><div class="col"><div class="ch">役割過負荷</div><ul><li>こなせる量を超える</li><li>影響の詳細は未取得</li></ul></div></div><div class="fig-c">同じストレスでも、原因の型ごとに出る害が違う</div></div>
+      <div class="sum"><h3 class="sh">何が問題だったのか</h3><p>職場のストレスが高まっています。ギャラップの報告書「世界の職場の現状」では、世界の従業員の40％が前日に「強いストレス」を感じたと答えました。56％は仕事や生活に苦労していると回答しています。</p><p>原因として真っ先に挙がるのは仕事量です。英国の人事・管理職1100人以上を対象にした2025年の調査では、ストレスによる欠勤の原因として最も多かったのが過重な仕事量でした。</p><p>ほかの数字も同じ方向を指しています。</p><ul class="blist"><li>2024年、世界の従業員の半数近くが「過去1年で仕事量が増えた」と回答</li><li>2025年、勤務時間外のチャットが前年比15％増</li><li>同じく午後8時以降の会議が16％増</li></ul><p>そのため、経営陣の打ち手も「量を減らす」方向に偏りがちです。仕事の再配分、時間外連絡の抑制、休暇取得の推奨、ウェルネス支援、時間管理の研修などです。筆者らはこれらに一定の効果を認めています。ただ、それだけでは大事な点を見落とすと言います。仕事量はストレス要因の一つにすぎず、最も深刻なものとは限らないからです。</p><h3 class="sh">どう調べたか</h3><p>筆者らは、オーバーン大学とライト州立大学で産業・組織心理学を研究しています。行ったのはメタ分析です。過去60年間に発表された515件の研究をまとめ直したもので、対象者は世界で約78万8000人に上ります。</p><p>注目したのは、仕事上の「役割」から生じる3つのストレスです。</p><ul class="blist"><li>役割の曖昧さ：何を求められ、どう評価されるのかが分からない状態</li><li>役割葛藤：両立しない要求や優先順位を同時に突きつけられる状態</li><li>役割過負荷：現実にこなせる量を超えた仕事を抱えている状態</li></ul><p>この3つを選んだのは、どれも仕事の決め方・管理の仕方そのものから生まれるからです。職種や業界を問わず起こります。影響を見た項目は、満足度、燃え尽き、心理的苦痛、身体症状、エンゲージメント、組織への愛着、公平感、業務遂行能力、怠けなどの非生産的な行動、離職意向、欠勤と多岐にわたります。</p><h3 class="sh">分かったこと</h3><p>3つの要因は、それぞれ違う害をもたらしていました。</p><ul class="blist"><li>役割の曖昧さ：最も広く悪影響を及ぼす。満足度、エンゲージメント、組織への愛着、公平感、業務遂行能力の低下と強く関連する。情報共有や同僚を助けるといった自発的な協力行動も減る</li><li>役割葛藤：燃え尽き、心理的苦痛、怠けなどの非生産的な行動、離職意向と最も強く結び付く</li><li>役割過負荷：取得できた本文の範囲には、影響の詳細が書かれていない</li></ul><p>つまり、ストレスを「忙しすぎ」とひとくくりにすると、打ち手を間違えます。曖昧さが原因の職場で人を増やしても、葛藤が原因の職場で休暇を増やしても、根っこは残ります。</p><h3 class="sh">なぜそうなるのか</h3><p>筆者らによると、曖昧さの害が広いのは、仕事の「方向感覚」を奪うからです。筆者らはこんな例を挙げています。新しい顧客向けレポートを作れと言われた。けれど、何を入れるか、どこまで詳しく書くか、困ったら誰に聞くかは誰も教えてくれない。これでは、ごく日常的な仕事でさえストレスになります。</p><p>葛藤の例も具体的です。顧客に最高のサービスをしろと言われ、同時に一人にかける時間は最小限にしろとも言われる。片方に応えれば、もう片方を裏切ることになります。成功する道筋がそもそも無いので、疲れて不満がたまり、辞めるしかないと考え始めます。</p><h3 class="sh">店舗の場面に置き換えると</h3><p>葛藤の構図は、店頭の接客によく出てきます。たとえば「お客様に丁寧に説明する」「1組あたりの接客時間を短くする」「オプションの獲得数を上げる」が同時に課されている店です。どれを優先するか上が決めていなければ、スタッフは毎回自分で板挟みを解かなければなりません。研究に照らすと、これは燃え尽きや離職意向と最も強く結び付くタイプです。</p><p>曖昧さの例も身近にあります。新人に「施術のあとに提案しておいて」とだけ伝え、何をどこまで勧めるのか、何で評価するのかを伝えていない場合です。ここで必要なのは人を増やすことではありません。期待と評価の基準を言葉にして渡すことです。</p><h3 class="sh">別の見方と限界</h3><p>筆者らは、仕事量への対策が無意味だとは言っていません。効果は認めたうえで、「量だけ見ていると、もっと深刻な原因を見逃す」と主張しています。</p><p>この結果を使うときの注意点は次のとおりです。</p><ul class="blist"><li>メタ分析は既存研究の「関連」を束ねたもので、因果を直接示したものではない</li><li>元の研究の内訳（アンケート中心かどうかなど）は、取得できた本文には書かれていない</li><li>取得できた本文は途中までで、役割過負荷の影響と、筆者らが示す具体的な対策は読めていない</li></ul><p>自社で使うなら、まず「どの型のストレスが起きているのか」を見極めるところから始めるのが、この研究に沿ったやり方です。</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/14907" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">2</div>
+      <h2>会社の「本質」は決めるものではなく見つけるもの　レゴ再建の教訓</h2>
+      <div class="fig"><div class="fig-t">本質の位置</div><div class="mtx"><div class="ylab top">他社より上手</div><div class="grid"><div class="mcell"><b>効率化</b><span>同じことをより上手に</span></div><div class="mcell"><b>本質</b><span>違っていて、しかも上手い</span></div><div class="mcell"><b>埋没</b><span>模倣し合い見分けがつかない</span></div><div class="mcell"><b>ただの独自</b><span>村で唯一のピザ屋</span></div></div><div class="ylab bot">上手くない</div><div class="xlabs"><span>他社と同じ</span><span>他社と違う</span></div></div><div class="fig-c">右上だけが長続きする強みになる</div></div>
+      <div class="sum"><h3 class="sh">何が問題か</h3><p>2026年5月25日、フェラーリは初の電気自動車「ルーチェ」を、約200人の記者に向けて公開しました。デザインは、アップルの元デザイン責任者ジョニー・アイブ氏の会社LoveFromと共同で手がけたものです。反応は大きく割れました。元会長のモンテゼーモロ氏は「伝説を壊しかねない」と発言しています。翌日、株価は8.4％下がりました（約1週間で回復）。</p><p>争点は、フェラーリの「DNA」がどこまでなのかでした。フェラーリが目指してきたのは、最速の車でも、最も美しい車でも、最も快適な車でもありません。その3つの絶妙な配合です。設計者と技術者が相反する目標をすり合わせ続ける、そのプロセス自体が強みでした。ファンは、社外と組んだことでその本質が失われたと感じたのです。</p><p>筆者はここから、「あなたの会社の本質は何か」という問いを立てます。理念やスローガンのことではありません。競合には同じようにできず、無くなれば顧客が困るもののことです。多くの経営者は「接客が良い」「開発が速い」「生産が効率的」と答えます。しかし、それは競合にもそのまま当てはまる言葉です。</p><h3 class="sh">本質とは何か</h3><p>筆者はアリストテレスの定義を引きます。本質とは「分類」と「その中での違い」の組み合わせです。人間なら、動物（分類）であって理性を持つ（違い）。先ほどの経営者たちは、分類しか言えていないことになります。</p><p>ポーターが1996年に示した区別ともつながります。</p><ul class="blist"><li>業務の効率化：他社と同じことを、より上手にやる</li><li>戦略：他社と違うことをやる。または同じことを違うやり方でやる</li><li>本質（筆者の主張）：その両方。他社と違い、しかも他社より上手い</li></ul><p>さらに筆者は、本質が長続きするのはプロセスと製品に埋め込まれているときだけだと言います。車1台がこれほどの騒ぎになったのは、ファンがルーチェを「フェラーリがこれから何になるのか」という宣言として受け取ったからです。</p><h3 class="sh">レゴの再建</h3><p>筆者が詳しく描くのはレゴです。レゴは本質を「誰よりも上手にできる少数のことで、実際の問題を解き、利益を生むもの」と定義しています。</p><p>2004年にクヌッドストープ氏がCEOに就いた当時、レゴは危機にありました。前任の再建専門家は1億4000万ドルのコスト削減と、従業員の10％削減を進めていました。それでも状況はむしろ悪くなりました。クヌッドストープ氏は「それは本当か」「本当にそう信じているか」「会社は何のために存在するのか」と、繰り返し問い続けました。</p><p>氏によれば、本質は「決める」ものではなく「見つける」ものです。手がかりの多くはファンから来ました。</p><ul class="blist"><li>組立説明書が、思っていた以上に重要だった。普通の人が驚くような作品を作れるのは説明書のおかげだった。そこで説明書に回す資源を増やし、質を上げた</li><li>ブロック同士のつながりが、誰よりも優れていた。しっかり固定されるのに、子どもの力で外せる。数十年前のブロックとも合う。これは極めて精密な金型があって初めてできる</li></ul><h3 class="sh">本質を見誤った失敗</h3><p>この発見は、自分たちの失敗も浮かび上がらせました。レゴは2006年、再建策の一つとして生産の多くをフレクストロニクスに委託しました。狙いはコスト削減です。ところが結果は、リードタイムが延び、調達コストが上がり、金型の寿命も縮みました。2年後に提携を解消し、生産を自社に戻して、最新の射出成形技術に投資しました。</p><p>本質が「精密なつながり」なら、それを生み出す生産工程は外に出してはいけない部分でした。コスト削減の理屈だけで判断すると本質を手放してしまう、という例です。その後レゴは業界で最も成功した会社になりました。2024年の売上高は約103億ドル、純利益は138億デンマーク・クローネ（約19億ドル）で、利益率はおよそ19％です。</p><h3 class="sh">持つ価値のある本質の3条件</h3><p>クヌッドストープ氏は、条件を3つ挙げています。</p><ul class="blist"><li>独自の目的であること。ただし、独自なだけでは足りない</li><li>希少で、真似されにくく、重要であること</li><li>社会にとって意味があり、顧客が十分な値段を払うほどの問題を解くこと</li></ul><p>独自なだけでは足りない例として、氏はレゴ本社がある人口1万人の村の、唯一のピザ屋を挙げます。村の中では強い。しかし隣町に出れば競争力はゼロになる。「本当においしいピザなら別だが」と氏は付け加えています。立地に守られた独占は本質ではない、ということです。</p><h3 class="sh">自社に当てはめると</h3><p>美容室を例に考えてみます。「技術が高い」「接客が丁寧」は分類にすぎません。問うべきは、ほかの店にはできないことは何か、無くなったら常連客が困ることは何か、です。その答えが特定の工程や人に宿っているなら、効率化や外注の対象にする前に立ち止まる価値があります。</p><h3 class="sh">反論と限界</h3><p>本文は事例が中心で、統計的な検証ではありません。成功した会社を後から振り返ると、何でも「本質」に見えてしまうという後知恵の危険もあります。筆者はこの先、本質についての思い込みを仮説として扱い、実験でその境界を確かめる方法に話を進めますが、取得できた本文はその手前で切れています。ルーチェが本質の放棄なのか、ただの実験なのかについても、筆者は問いのまま残しています。</p></div>
+      <a class="src" href="http://hbr.org/2026/11/as-your-company-evolves-hold-on-to-what-makes-it-unique" target="_blank" rel="noopener">HBR ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">3</div>
+      <h2>「誰が決めるか」を明確にするRAPIDモデル</h2>
+      <div class="fig"><div class="fig-t">決定の5つの役割</div><div class="flow"><div class="step"><b>提案</b><span>選択肢を出す</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>意見</b><span>判断材料を出す</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>同意</b><span>同意が必要な人</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>決定</b><span>最終判断を下す</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>実行</b><span>決まったことを動かす</span></div></div><div class="fig-c">決定ごとに、各役割に担当者を書き込む</div></div>
+      <div class="sum"><h3 class="sh">何が問題か</h3><p>ベイン・アンド・カンパニーのポール・ロジャース氏とマーシャ・ブレンコ氏は、意思決定を「産業界に流通する通貨」にたとえます。成功も失敗も、チャンスをつかめるかどうかも、誰かの判断の結果だからです。どれほど戦略が優れていても、的確な決定を素早く下して実行できなければ、事業の土台は揺らぎます。</p><h3 class="sh">調査で分かったこと</h3><p>筆者らは、グローバル企業350社の経営陣を調べました。自社の組織の生産性が競合より高いと自信を持っていたのは、わずか15％でした。そうした高業績組織の強みは、意思決定の質、スピード、実行力にありました。</p><p>ところが、決断力に定評のある組織でも「誰が何を決めるのか」が曖昧になる場面があります。筆者らは、決定が滞りやすい対立を4つ挙げています。</p><ul class="blist"><li>グローバル対ローカル</li><li>本社対事業部</li><li>部門対部門</li><li>社内対社外パートナー</li></ul><p>最も多いのはグローバル対ローカルです。ブランド管理や商品開発では、地域のニーズをどこまで反映するかで揉めがちです。マーケティングでは、価格や広告の決定権を地域に渡すかどうかが争点になります。</p><h3 class="sh">解き方</h3><p>処方の要点は、誰が助言し、誰が決定権を持ち、誰が実行するのかを、決定ごとに明確にすることです。RAPIDという名前は、提案する人（Recommend）、同意が必要な人（Agree）、実行する人（Perform）、意見を出す人（Input）、決める人（Decide）の頭文字として知られています。論文では、BAT、ワイス、ジョン・ルイスの事例を使って説明しています。</p><h3 class="sh">複数拠点の会社に置き換えると</h3><p>「本社対事業部」は、本社対店舗にそのまま置き換えられます。たとえば、沖縄と福岡の店舗で販促の値引き幅を誰が決めるのか。店長は意見を出す人なのか、決める人なのか。ここが曖昧だと、決定が遅れるか、決まった後でひっくり返ります。</p><h3 class="sh">限界</h3><p>2006年の論文で、取得できたのは冒頭だけです。事例の中身と、役割を割り当てる具体的な手順は読めていません。15％という数字も、経営陣の自己評価です。</p><p>（本文は取得できず、公開されている要旨から書いています）</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/11792" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">4</div>
+      <h2>うまくいかない事業をどう見切るか　7本の論考が示すやめ方</h2>
+      <div class="fig"><div class="fig-t">予測と実績の差</div><div class="bars"><div class="brow"><div class="blab">当初の年間予測<span class="bnote">マスク氏の予測</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:100.0%"></div></div><span class="bval">250000台</span></div></div><div class="brow"><div class="blab">2025年の実績<span class="bnote">前年比48%減</span></div><div class="btrack"><div class="bwrap"><div class="bbar" style="width:8.1%"></div></div><span class="bval">20237台</span></div></div></div><div class="fig-c">見込みと実績の開きが、撤退判断の背景にある</div></div>
+      <div class="sum"><h3 class="sh">題材になった出来事</h3><p>テスラは11月6日、サイバートラックの生産を2027年半ばごろに終えると発表しました。テキサス工場の生産能力は、自動運転タクシー「サイバーキャブ」に振り向けます。</p><p>マスク氏はかつて、年間25万台売れると予測していました。しかしケリー・ブルー・ブックによると、2025年の販売は2万237台で、前年から48％減りました。生産の遅れ、約束より高い価格、リコール、政治的な反発も重なりました。</p><h3 class="sh">なぜやめられないのか</h3><p>HBRはここから、どの業界のリーダーも直面する問いを立てます。かつて有望に見えた取り組みを、いつ見切るべきか、という問いです。企業は新しい製品や技術、戦略に大きく投資し、後から期待どおりの成果が出ていないと気づきます。それでも、やめるのは意外なほど難しいものです。理由は3つ挙げられています。</p><ul class="blist"><li>経営陣が失敗を認めたがらない</li><li>チームが自分の仕事に感情的に入れ込んでいる</li><li>いつやめるかを決める手順が、組織に無い</li></ul><h3 class="sh">7本の論考の中身</h3><ul class="blist"><li>クリンゲビール（2021年）：ソニー・エリクソンの製品開発を10年にわたって調べた研究。複数の案を比べて評価し、個別の製品を打ち切る体系的な方法を示す</li><li>ロワイエ（2003年）：有望な案への熱意が「集団の確信」に変わり、警告サインが見えなくなる。前提が崩れても事業が生き残ってしまう組織の力学を分析した古典</li><li>アンソニーら（2015年）：成果を出さないまま何年もお金と人材と経営の注意を食い続ける「ゾンビ・プロジェクト」。その見つけ方と、なくす仕組み</li><li>ケリー（2015年）：苦戦する製品を全部捨てるべきではない。戦略、価値の打ち出し方、設計を変えれば生きるものもある。直すべきものと今すぐやめるべきものを見分ける警告サイン</li><li>ゴビンダラジャン（2016年）：イノベーションの枠組み「スリー・ボックス」の2番目、過去を選んで忘れること。埋没費用の大きい製品ラインを解体する力の磨き方</li><li>ニエト＝ロドリゲス（2025年）：抱えすぎと分かっていても止められない。止めることを失敗ではなくリーダーシップの証として扱う文化に変える。そのための7つの習慣</li><li>シェルシアー（2026年10月）：数百件のデジタル製品の終了例を調べ、顧客が頼るようになったサービスを引き揚げると何が起きるかを探る</li></ul><h3 class="sh">共通する考え方</h3><p>通して読むと、やめる判断は個人の勇気の問題ではなく、仕組みの問題として扱われています。熱意が集団の確信に変わる、手順が無い、という原因は、気合いでは解けないからです。</p><p>この見方を素直に延ばすと、始めるときに「何がどうなったらやめるか」を決めておく、という手が考えられます。たとえば店舗で新しいサービスや新メニューを始めるとき、半年後の目標と、届かなかった場合の扱いを先に書いておく。そうすれば、やめる判断が誰かの失敗の告白にならずに済みます。</p><h3 class="sh">別の見方と限界</h3><p>ケリーの論考が示すとおり、苦戦している＝やめるべき、ではありません。やめすぎて、直せば伸びたものまで捨てる危険もあります。シェルシアーが扱うように、顧客が頼っているサービスをやめるときの痛みも別に考える必要があります。</p><p>この記事は7本の論考の紹介で、それぞれの具体的な判断基準や数字は含まれていません。読めるのは、論点の地図までです。</p></div>
+      <a class="src" href="http://hbr.org/2026/11/the-hbr-guide-to-killing-projects" target="_blank" rel="noopener">HBR ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">5</div>
+      <h2>AI時代に価値が増す、経験から生まれる「直観」</h2>
+      <div class="fig"><div class="fig-t">直感と直観</div><div class="cmp"><div class="col"><div class="ch">直感</div><ul><li>感覚的に真相を感じる</li><li>今回の特集の対象外</li></ul></div><div class="col"><div class="ch">直観</div><ul><li>推論を経ず本質をつかむ</li><li>経験の蓄積が土台</li><li>高度なパターン認識</li></ul></div></div><div class="fig-c">特集が扱うのは右側、経験から鍛えられる力</div></div>
+      <div class="sum"><h3 class="sh">何がテーマか</h3><p>『DIAMOND ハーバード・ビジネス・レビュー』2026年12月号の特集「リーダーの直観力」を、編集長の常盤亜由子氏が紹介しています。リーダーは前例のない不確実な状況で、大きな決断を迫られています。データを集めて分析を尽くしても、判断に踏み切れないことはよくあります。そこで注目されているのが、経験と学習の積み重ねから出てくる、高度なパターン認識としての直観です。</p><h3 class="sh">直感と直観は違う</h3><p>どちらも「ちょっかん」と読みますが、意味は違います。直感は、感覚的に物事の真相を感じ取ること。直観は、推理や推論を経ずに、直接本質をつかむことです。特集が扱うのは後者です。</p><p>優れた経営者や一流のスポーツコーチが瞬時に的確な判断を下せるのは、膨大な経験と徹底した準備があるからです。本人にも言葉にできないほど深く蓄えられた知識が、重大な局面で物を言います。</p><h3 class="sh">AIとの関係</h3><p>興味深いのは、AIが進化するほど人間の直観の価値が高まるといわれている点です。機械は大量のデータを処理し、合理的な選択肢を示してくれます。それでも、数字に表れない兆候に気づき、不確実な中で最後に決め、その責任を負うのは人間です。</p><h3 class="sh">特集の4本</h3><ul class="blist"><li>柳井正氏（ファーストリテイリング）：「即断・即決・即実行」を掲げる。結果を読み切れない状況で、どう決めてきたか</li><li>鈴木真介氏（一橋大学、神経経済学）：直観は「経験」というデータベースから導かれる。厳しい訓練と過酷な意思決定を重ねた人の脳に「生きたデータベース」ができる</li><li>梅原大吾氏（プロゲーマー）：直観と手癖はどう違うのか。直観はどんなときに生きるのか。自分の型にとらわれない姿勢</li><li>11人のプロスポーツコーチへの調査：重大な局面の前、最中、後に何を考え、どう動いているか</li></ul><h3 class="sh">読み方のヒント</h3><p>直観は、生まれつきの勘ではなく、経験を積んだ結果として語られています。裏返せば、経験の浅い領域では直観に頼れないということです。そして、梅原氏が問う「直観と手癖の違い」は、経験豊富な人ほど気をつけたい点です。長年のやり方が、本質をつかむ力なのか、ただの慣れなのか。そこを見分ける問いになります。</p><h3 class="sh">限界</h3><p>これは編集長による特集の紹介で、各記事の本文は読めていません。直観がどの条件で当たり、どの条件で外れるのかといった検証の中身は、特集本体を見ないと分かりません。</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/15021" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">6</div>
+      <h2>元テスラ社長が語る、マスク流「速さ」の意思決定</h2>
+      <div class="fig"><div class="fig-t">速さの構成要素</div><div class="rel"><div class="hub">速さ</div><div class="sats"><span class="sat">決定の速さ</span><span class="sat">資金の速さ</span><span class="sat">対応の速さ</span><span class="sat">問題は3文で</span><span class="sat">悪い報告は即時</span><span class="sat">雑草を抜く</span></div></div><div class="fig-c">中心の「速さ」を、日々の習慣が支えている</div></div>
+      <div class="sum"><h3 class="sh">何の話か</h3><p>テスラの元社長で、現在はDVxベンチャーズの共同創業者兼CEOのジョン・マクニール氏が、ポッドキャスト「ナレッジ・プロジェクト」に出演しました。テーマは、イーロン・マスク氏がどう意思決定をしているかです。</p><h3 class="sh">速さが競争優位を生む</h3><p>マスク氏は、速さが競争優位を生むと考えています。速さには3種類あるといいます。</p><ul class="blist"><li>決定の速さ</li><li>お金（資金）の速さ</li><li>対応の速さ</li></ul><p>では、それは日々の仕事でどんな形をとるのか。会社をその前提でどう組み立てるのか。マクニール氏は、マスク氏の会社の中で何年も働いた経験から説明しています。</p><h3 class="sh">話題になっている要素</h3><p>番組の紹介文から分かる論点は、次のとおりです。</p><ul class="blist"><li>指揮系統を飛び越えると何が起きるか</li><li>悪い知らせは待たせてはいけない</li><li>問題は3文で説明させる</li><li>問題を単純にする「5段階のアルゴリズム」</li><li>会社を「雑草だらけの庭」として扱う</li><li>マーケティング予算ゼロでの成長</li><li>歩合給なしで販売員のやる気を引き出す方法</li></ul><p>販売員の動機づけの話は、販売の現場を持つ会社にとって気になる論点です。ただし、具体的な方法は紹介文には書かれていません。</p><h3 class="sh">限界</h3><p>元幹部による体験談で、検証された研究ではありません。マスク氏の会社のように強い創業者がいる組織での話が、ほかの会社にどこまで当てはまるかも分かりません。5段階のアルゴリズムの中身や、各論点の詳しい説明は、取得できた範囲には含まれていません。</p><p>（本文は取得できず、公開されている要旨から書いています）</p></div>
+      <a class="src" href="https://fs.blog/knowledge-project-podcast/jon-mcneill/" target="_blank" rel="noopener">Farnam Street ↗</a>
+    </article>
+    <article class="pick">
+      <div class="n">7</div>
+      <h2>ピクサーの強さは「問題は必ず起こる」という前提にある</h2>
+      <div class="fig"><div class="fig-t">問題との向き合い方</div><div class="flow"><div class="step"><b>必ず起こる</b><span>問題を前提にする</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>明るみに出す</b><span>不快でも探しにいく</span></div><div class="arr" aria-hidden="true">↓</div><div class="step"><b>全社で解く</b><span>全精力を挙げて対処</span></div></div><div class="fig-c">左の前提があるから、右の行動が生まれる</div></div>
+      <div class="sum"><h3 class="sh">何が語られているか</h3><p>ピクサーの共同創業者エド・キャットムル氏は、カリスマ性ではなく、謙虚さと心理的安全性で組織を率いた「静かなリーダー」として紹介されています。今回の題材は、その著書の完全版『新・ピクサー流 創造するちから』の一節です。</p><p>ピクサーのアニメーターは、自分の仕事場を自由に飾るよう勧められています。社員の自己表現を尊重することは、ピクサーの成功に欠かせません。けれど氏は、それがピクサーを特別にしている理由ではないと言います。</p><h3 class="sh">核心の一文</h3><p>氏によれば、ピクサーを特別にしているのは「問題は必ず起こる」と思って仕事をしていることです。</p><ul class="blist"><li>問題の多くは隠れていて見えない</li><li>明るみに出すのがどれほど不快でも、その努力をする</li><li>問題にぶつかったら、全社の全精力を挙げて解決にあたる</li></ul><p>盛大なイベントでも凝った仕事場でもなく、これがあるから毎朝会社に来たいと思える。氏はそう書いています。</p><h3 class="sh">この一節の読み方</h3><p>「問題が無い状態」を目標にすると、問題を報告することが失敗を告白することになります。すると問題は隠れたままになります。「問題は起こるもの」を前提にすれば、報告は失敗ではなく、仕事の一部になります。</p><p>たとえば店舗で、クレームやミスが起きた場面を考えてみてください。前提が「起きてはいけない」なら、スタッフは報告をためらいます。前提が「必ず起きる」なら、早く見つけて全員で直すことが評価されます。</p><h3 class="sh">限界</h3><p>これは書籍の短い一節の紹介です。隠れた問題を明るみに出すための具体的な仕組みは、取得できた本文には書かれていません。</p></div>
+      <a class="src" href="https://dhbr.diamond.jp/articles/-/15106" target="_blank" rel="noopener">DIAMOND ハーバード・ビジネス・レビュー ↗</a>
+    </article>
+  </div>
+  
+  <footer>
+    コンサルティングファーム・ビジネススクール・調査機関の19ソースから、
+    直近7日の公開分を収集し日本語に要約したもの。判断の前に各出典を確認してください。
+  </footer>
+</div></div>
+<script>
+(function(){
+  var KEY = "lsm-favs-v1";
+  function load(){ try { return JSON.parse(localStorage.getItem(KEY)) || []; }
+                   catch(e){ return []; } }
+  function save(v){ try { localStorage.setItem(KEY, JSON.stringify(v)); } catch(e){} }
+  function has(url){ return load().some(function(x){ return x.url === url; }); }
+  function paint(b){
+    var on = has(b.dataset.url);
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+    var ic = b.querySelector(".ic"), tx = b.querySelector(".tx");
+    if (ic) ic.textContent = on ? "\u2605" : "\u2606";
+    if (tx) tx.textContent = on ? "保存済み" : "あとで読む";
+    if (!ic && !tx) b.textContent = on ? "\u2605" : "\u2606";
+  }
+  function toggle(b){
+    var d = b.dataset, list = load(), i = list.findIndex(function(x){ return x.url === d.url; });
+    if (i >= 0) list.splice(i, 1);
+    else list.unshift({url:d.url, title:d.title||d.url, kind:d.kind||"", date:d.date||"",
+                       note:d.note||"", saved:new Date().toISOString().slice(0,10)});
+    save(list); paint(b);
+    if (window.renderFavs) window.renderFavs();
+  }
+  function wire(){
+    var bs = document.querySelectorAll("[data-fav]");
+    for (var i = 0; i < bs.length; i++){
+      (function(b){ paint(b); b.addEventListener("click", function(e){
+        e.preventDefault(); e.stopPropagation(); toggle(b); }); })(bs[i]);
+    }
+  }
+  window.favStore = {load:load, save:save, has:has};
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", wire);
+  else wire();
+})();
+</script>
+</body>
+</html>
